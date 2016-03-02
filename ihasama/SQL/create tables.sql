@@ -32,3 +32,12 @@ DESCRIBE Pizzantaytteet;
 DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
 DROP TABLE Tayte;
+
+/*aikasemmasta esimerkki*/
+
+CREATE TABLE pizza (
+ id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+ nimi VARCHAR(20) NOT NULL,
+ hinta DECIMAL(6,2) NOT NULL,
+ PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
