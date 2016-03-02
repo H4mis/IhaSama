@@ -20,7 +20,7 @@ pizzaid INT NOT NULL,
 tayteid INT NOT NULL,
 PRIMARY KEY(pizzaid, tayteid),
 FOREIGN KEY(pizzaid) REFERENCES Pizza(pizzaid),
-FOREIGN KEY(tayteid) REFERENCES Tayte(tayteid),
+FOREIGN KEY(tayteid) REFERENCES Tayte(tayteid)
 );
 
 SHOW TABLES;
