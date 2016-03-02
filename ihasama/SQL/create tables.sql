@@ -1,23 +1,23 @@
 CREATE TABLE Pizza
 (
-pizzaid INT NOT NULL,
+pizzaid INT UNSIGNED NOT NULL AUTO_INCREMENT,
 pizzanimi VARCHAR(25) NOT NULL,
-hinta DECIMAL(4,3) NOT NULL,
+hinta DECIMAL(6,2) NOT NULL,
 PRIMARY KEY(pizzaid) 
 );
 
 CREATE TABLE Tayte
 (
-tayteid INT NOT NULL,
+tayteid INT UNSIGNED NOT NULL AUTO_INCREMENT,
 taytenimi VARCHAR(25) NOT NULL,
-saatavilla BOOLEAN NOT NULL,
+saatavilla BOOLEAN(TRUE) NOT NULL,
 PRIMARY KEY(tayteid)
 );
 
 CREATE TABLE Pizzantaytteet
 (
-pizzaid INT NOT NULL,
-tayteid INT NOT NULL,
+pizzaid INT UNSIGNED NOT NULL,
+tayteid INT UNSIGNED NOT NULL,
 PRIMARY KEY(pizzaid, tayteid),
 FOREIGN KEY(pizzaid) REFERENCES Pizza(pizzaid),
 FOREIGN KEY(tayteid) REFERENCES Tayte(tayteid)
