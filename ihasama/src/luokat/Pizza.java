@@ -1,8 +1,13 @@
 package luokat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pizza {
 	
 	//heh
+	
+	List<Tayte> taytteet = new ArrayList<Tayte>();
 
 	private int pizzaid;
 	private String pizzanimi;
@@ -22,6 +27,7 @@ public class Pizza {
 		this.hinta = hinta;
 	}
 
+	//Getterit ja setterit
 	public int getPizzaid() {
 		return pizzaid;
 	}
@@ -46,10 +52,19 @@ public class Pizza {
 		this.hinta = hinta;
 	}
 
+	public List<Tayte> getTaytteet() {
+		return taytteet;
+	}
+
+	public void setTaytteet(List<Tayte> taytteet) {
+		this.taytteet = taytteet;
+	}
+	//tostringit
+
 	@Override
 	public String toString() {
-		return "Pizza [pizzaid=" + pizzaid + ", pizzanimi=" + pizzanimi
-				+ ", hinta=" + hinta + "]";
+		return "Pizza [taytteet=" + taytteet + ", pizzaid=" + pizzaid
+				+ ", pizzanimi=" + pizzanimi + ", hinta=" + hinta + "]";
 	}
 	
 	
