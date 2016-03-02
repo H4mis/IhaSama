@@ -17,27 +17,27 @@ VALUES ('Alkopala', 19.50);
 
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Kinkku', 'TRUE');
+VALUES ('Kinkku', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Juusto', 'TRUE');
+VALUES ('Juusto', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Jauheliha', 'TRUE');
+VALUES ('Jauheliha', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Ananas', 'TRUE');
+VALUES ('Ananas', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Tomaatti', 'TRUE');
+VALUES ('Tomaatti', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Kebab', 'TRUE');
+VALUES ('Kebab', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Salami', 'TRUE');
+VALUES ('Salami', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Kana', 'TRUE');
+VALUES ('Kana', 1);
 
 /* ------------------------------------ */

@@ -10,7 +10,7 @@ CREATE TABLE Tayte
 (
 tayteid INT UNSIGNED NOT NULL AUTO_INCREMENT,
 taytenimi VARCHAR(25) NOT NULL,
-saatavilla BOOLEAN(TRUE) NOT NULL,
+saatavilla BOOLEAN NOT NULL,
 PRIMARY KEY(tayteid)
 );
 
