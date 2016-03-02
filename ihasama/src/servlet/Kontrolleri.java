@@ -1,11 +1,22 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+import luokat.Pizza;
+import dao.PizzaDAO;
+
+
 
 /**
  * Servlet implementation class Kontrolleri
@@ -26,7 +37,28 @@ public class Kontrolleri extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("moro");
+		// Luodaan oliolista tietokannan tiedoista
+
+				PizzaDAO pDAO = new PizzaDAO();
+				pDAO.avaaYhteys();
+				List<Pizza> lista;
+				try {
+					lista = pDAO.haePizzat();
+					request.setAttribute("pizzalista", lista);
+				} catch (NumberFormatException e) {
+
+					e.printStackTrace();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				} finally {
+					pDAO.suljeYhteys();
+				}
+
+				// Pistet‰‰n tieto eteenp‰in list.jsp:lle
+				
+				RequestDispatcher disp = request.getRequestDispatcher("list.jsp");
+				disp.forward(request, response);
 	}
 
 	/**
