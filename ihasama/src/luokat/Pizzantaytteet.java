@@ -1,6 +1,7 @@
 package luokat;
 
 public class Pizzantaytteet {
+	//heh
 	private int pizzaid;
 	private int tayteid;
 	

@@ -1,6 +1,8 @@
 package luokat;
 
 public class Pizza {
+	
+	//heh
 
 	private int pizzaid;
 	private String pizzanimi;
