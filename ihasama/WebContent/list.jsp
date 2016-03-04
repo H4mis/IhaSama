@@ -43,7 +43,7 @@
 			
 
 			<c:forEach items="${pizzalista}" var="pizza">
-			<tr><td><c:out value="${pizza.id}"/> <td><c:out value="${pizza.nimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
+			<tr><td><c:out value="${pizza.pizzaid}"/> <td><c:out value="${pizza.pizzanimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
 			</c:forEach>		
 		
 
