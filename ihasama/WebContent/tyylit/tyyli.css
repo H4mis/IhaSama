@@ -4,25 +4,47 @@ body {
     
 }
 
-table {
+
+#taulukko{
 	background-color: lightgreen;
 	border-style: solid;
-	
+	border-radius: 30px;
+	border-width: 1px;
+	color: #5be65b;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+#taulukko2 {
+	background-color: lightyellow;
+	text-align: center;
+	border-style: solid;
+	border-radius: 30px;
+	border-width: 2px;
+	color: #fcd7b1;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+form{
+	text-align: center;
+	margin-top: 20px;
 }
 
 h1 {
-	
+	font-size: 50px;
+	font-family: 'Dancing Script', cursive;
     color: orange;
     text-align: center;
 }
 
 h2 {
-	color: red;
-	
+	color: black;
+	text-align: center;
 }
 
 p {
-	color: red;
+	color: black;
     font-family: "Times New Roman";
     font-size: 20px;
 }

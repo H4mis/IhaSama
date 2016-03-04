@@ -12,6 +12,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
+<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Pizzalistaussivu</title>
 
 </head>
@@ -21,7 +22,7 @@
 
 <h1>Castello é Fiore</h1>
 
-	<table>
+	<div id=taulukko><table>
 		<tr>
 			<td width="600">
 				<div class="menu">
@@ -30,8 +31,9 @@
 			</td>
 			<td></td>
 			
-	</table>
-	<table>
+	</table></div>
+	<br>
+	<div id=taulukko2><table>
 		<tr>
 			<td><p>#</p></td>
 			<td><p>Pizzalista</p></td>
@@ -41,20 +43,24 @@
 			
 
 			<c:forEach items="${pizzalista}" var="pizza">
-			<tr><td><c:out value="${pizza.pizzaid}"/> <td><c:out value="${pizza.pizzanimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
+			<tr><td><c:out value="${pizza.id}"/> <td><c:out value="${pizza.nimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
 			</c:forEach>		
 		
 
-	</table>
+
+	</table></div>
+
+
 	
 	
-	<div id="Lisauslomake">
+	<div id=Lisauslomake>
 		<form action="Kontrolleri" method="post">
 			Pizzan nimi:<br>
 			<input type="text" name="nimi" required>
 				<br>
 				Hinta:<br>
-			<input type="number" name="hinta" size="6" required>
+			<input type="number" step="0.00" name="hinta" size="6" required>
+				<br>
 				<br>
 			<input type="submit" value="Lisää pizza">
 		</form>
@@ -63,5 +69,6 @@
 				
 	</div>
 	
+
 </body>
 </html>
