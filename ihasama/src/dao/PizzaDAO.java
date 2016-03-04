@@ -32,9 +32,9 @@ public class PizzaDAO {
 
 	public void avaaYhteys() {
 		// K‰ytt‰j‰tiedot ja DB:n osoite - lis‰‰ puuttuvat tiedot!
-		String username = "";
-		String password = "";
-		String url = "jdbc:mariadb://localhost/a#######";
+		String username = "a1500925";
+		String password = "nySUxd46r";
+		String url = "jdbc:mariadb://localhost/a1500925";
 
 		try {
 			// Yhdistet‰‰n tietokantaan
@@ -56,15 +56,14 @@ public class PizzaDAO {
 	}
 
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
-		String sql = "select * from pizza";
+		String sql = "SELECT * FROM Pizza";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);
 
 		while (tulokset.next()) {
-			int id = tulokset.getInt("id");
+			int id = tulokset.getInt("pizzaid");
 			String nimi = tulokset.getString("pizzanimi");
-			String hintax = tulokset.getString("hinta");
-			double hinta = Double.parseDouble(hintax.replace(",", "."));
+			double hinta = tulokset.getDouble("hinta");
 			// lis‰t‰‰n pizza listaan
 			Pizza pizza = new Pizza(id, nimi, hinta);
 			pizzalista.add(pizza);
@@ -79,7 +78,7 @@ public class PizzaDAO {
 
 		try {
 			// alustetaan sql-lause
-			String sql = "insert into pizza(pizzanimi, hinta) values(?,?)";
+			String sql = "INSERT INTO Pizza(pizzanimi, hinta) values(?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 
 			// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)			
