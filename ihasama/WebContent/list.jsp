@@ -46,5 +46,22 @@
 		
 
 	</table>
+	
+	
+	<div id="Lisauslomake">
+		<form action="Kontrolleri" method="post">
+			Pizzan nimi:<br>
+			<input type="text" name="nimi" required>
+				<br>
+				Hinta:<br>
+			<input type="number" step="0.00" name="hinta" size="6" required>
+				<br>
+			<input type="submit" value="Lisää pizza">
+		</form>
+				
+		<c:if test="${not empty param.added}">Uuden pizzan lisääminen onnistui</c:if>
+				
+	</div>
+	
 </body>
 </html>

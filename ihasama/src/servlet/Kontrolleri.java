@@ -2,7 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import luokat.Pizza;
 import dao.PizzaDAO;
@@ -23,6 +23,10 @@ import dao.PizzaDAO;
  */
 @WebServlet("/Kontrolleri")
 public class Kontrolleri extends HttpServlet {
+	
+	//lis‰t‰‰n decimal formatti ett‰ n‰kyy nolla hinnan per‰ss‰
+	DecimalFormat f = new DecimalFormat("0.00");
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -65,7 +69,28 @@ public class Kontrolleri extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+		//luodaan pizzalista
+		List<Pizza> lista = new ArrayList<Pizza>();
+		
+		//haetaan parametrit k‰ytt‰j‰lt‰(submitista) ja lis‰t‰‰n nelopuksi pizza-olioon
+		String nimi = request.getParameter("nimi");
+		double hinta = Double.parseDouble(request.getParameter("hinta"));
+		int id = lista.size() +1;
+		Pizza a = new Pizza(id, nimi, hinta);
+		
+		//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
+		PizzaDAO pDao = new PizzaDAO();
+		pDao.lisaaPizza(a);
+		
+		response.setContentType("text/html");
+	    //java.io.PrintWriter wout = response.getWriter();
+	      
+	    System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
+	    System.out.println("<br>");
+	    System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
+	      
+	    //ohjataan takaisin alkuun
+	  	response.sendRedirect("controller?added=true");
+		}
 
 }
