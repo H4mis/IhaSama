@@ -80,7 +80,9 @@ public class Kontrolleri extends HttpServlet {
 		
 		//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 		PizzaDAO pDao = new PizzaDAO();
+		pDao.avaaYhteys();
 		pDao.lisaaPizza(a);
+		pDao.suljeYhteys();
 		
 		response.setContentType("text/html");
 	    //java.io.PrintWriter wout = response.getWriter();
@@ -90,7 +92,7 @@ public class Kontrolleri extends HttpServlet {
 	    System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
 	      
 	    //ohjataan takaisin alkuun
-	  	response.sendRedirect("controller?added=true");
+	  	response.sendRedirect("Kontrolleri?added=true");
 		}
 
 }

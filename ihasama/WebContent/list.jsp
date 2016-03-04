@@ -41,7 +41,7 @@
 			
 
 			<c:forEach items="${pizzalista}" var="pizza">
-			<tr><td><c:out value="${pizza.id}"/> <td><c:out value="${pizza.nimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
+			<tr><td><c:out value="${pizza.pizzaid}"/> <td><c:out value="${pizza.pizzanimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
 			</c:forEach>		
 		
 
@@ -54,7 +54,7 @@
 			<input type="text" name="nimi" required>
 				<br>
 				Hinta:<br>
-			<input type="number" step="0.00" name="hinta" size="6" required>
+			<input type="number" name="hinta" size="6" required>
 				<br>
 			<input type="submit" value="Lisää pizza">
 		</form>

@@ -78,7 +78,7 @@ public class PizzaDAO {
 
 		try {
 			// alustetaan sql-lause
-			String sql = "INSERT INTO Pizza(pizzanimi, hinta) values(?,?)";
+			String sql = "INSERT INTO Pizza(pizzanimi, hinta) VALUES(?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 
 			// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)			
