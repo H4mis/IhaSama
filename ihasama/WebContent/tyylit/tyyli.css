@@ -1,0 +1,28 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    
+}
+
+table {
+	background-color: lightgreen;
+	
+	
+}
+
+h1 {
+	
+    color: orange;
+    text-align: center;
+}
+
+h2 {
+	color: red;
+	
+}
+
+p {
+	color: red;
+    font-family: "Times New Roman";
+    font-size: 20px;
+}

@@ -11,6 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
 <title>Pizzalistaussivu</title>
 
 </head>
@@ -18,13 +19,13 @@
 
 
 
-<h3>Uusi pizza</h3>
+<h1>Castello é Fiore</h1>
 
 	<table>
 		<tr>
 			<td width="600">
 				<div class="menu">
-					<h1>Listaus</h1>
+					<h2>Listaus</h2>
 				</div>
 			</td>
 			<td></td>
