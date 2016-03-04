@@ -59,7 +59,7 @@
 			<input type="text" name="nimi" required>
 				<br>
 				Hinta:<br>
-			<input type="number" step="0.00" name="hinta" size="6" required>
+			<input type="text" pattern="[0-9]{1-2}|[0-9]{1-2}[,|.][0-9]{1-2}" title="Laita numeroita muodossa 00,00" name="hinta" required>
 				<br>
 				<br>
 			<input type="submit" value="Lisää pizza">
