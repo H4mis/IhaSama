@@ -1,0 +1,4 @@
+Pizza mozzarellap
+			
+mozzarellap.getTaytteet(); //palauttaa listan
+mozzarellap.LisaaTayte(tayte, taytenimi);	//lis‰‰ taytteet listaan taytteen

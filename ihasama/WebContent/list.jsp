@@ -38,22 +38,21 @@
 			<td><p>#</p></td>
 			<td><p>Pizzalista</p></td>
 		</tr>
-
-
-
 			<c:forEach items="${pizzalista}" var="pizza">
 			<tr><td><c:out value="${pizza.pizzaid}"/> <td><c:out value="${pizza.pizzanimi}"/></td><td><c:out value="${pizza.hinta}"/></td></tr>
 			</c:forEach>		
-		
-
-
 	</table></div>
 
-<div id=taulukko3><table>
-		<c:forEach items="${taytelista}" var="tayte">
+	<br>
+	<div id=taulukko3><table>
+		<tr>
+			<td><p>#</p></td>
+			<td><p>Täytelista</p></td>
+		</tr>
+			<c:forEach items="${taytelista}" var="tayte">
 			<tr><td><c:out value="${tayte.tayteid}"/> <td><c:out value="${tayte.taytenimi}"/></td><td><c:out value="${tayte.saatavilla}"/></td></tr>
-			</c:forEach>	
-</table></div>
+			</c:forEach>		
+	</table></div>
 	
 	
 	<div id=Lisauslomake>
