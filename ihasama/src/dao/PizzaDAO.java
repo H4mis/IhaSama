@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import luokat.Pizza;
+import luokat.Tayte;
 
 
 
@@ -28,6 +29,7 @@ public class PizzaDAO {
 	}
 
 	public ArrayList<Pizza> pizzalista = new ArrayList<Pizza>();
+	public ArrayList<Tayte> taytelista = new ArrayList<Tayte>();
 	Connection yhteys = null;
 
 	public void avaaYhteys() {
@@ -70,6 +72,24 @@ public class PizzaDAO {
 		}
 
 		return pizzalista;
+
+	}
+	
+	public List<Tayte> haeTaytteet() throws NumberFormatException, SQLException {
+		String sql = "SELECT * FROM Tayte";
+		Statement haku = yhteys.createStatement();
+		ResultSet tulokset = haku.executeQuery(sql);
+
+		while (tulokset.next()) {
+			int tayteid = tulokset.getInt("tayteid");
+			String taytenimi = tulokset.getString("taytenimi");
+			boolean saatavilla = tulokset.getBoolean("saatavilla");
+			// lis‰t‰‰n pizza listaan
+			Tayte tayte = new Tayte(tayteid, taytenimi, saatavilla);
+			taytelista.add(tayte);
+		}
+
+		return taytelista;
 
 	}
 
