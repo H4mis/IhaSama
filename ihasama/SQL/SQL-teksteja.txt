@@ -14,6 +14,14 @@ Tayte:
 7 Salami
 8 Kana
 
+SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt,
+GROUP_CONCAT(t.taytenimi) as taytenimet
+FROM Pizza p
+LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid
+LEFT JOIN Tayte t ON t.tayteid = pt.tayteid
+GROUP BY p.pizzaid
+order by pizzaid, null;
+
 SELECT DISTINCT t.* FROM Tayte t INNER JOIN Pizzantaytteet pt ON pt.tayteid = t.tayteid INNER JOIN Pizza p ON p.pizzaid = pt.pizzaid WHERE p.pizzaid IN ("2");
 
  insert into Pizzantaytteet (pizzaid, tayteid) values (?, ?);
