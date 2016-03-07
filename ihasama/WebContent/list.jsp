@@ -63,7 +63,7 @@
 		</div>	
 	</div>
 	
-	<div id=Lisauslomake>
+	<div id=Lisauslomake> <!-- Pizzan lisäys lomake -->
 		<form action="Kontrolleri" method="post">
 			Pizzan nimi:<br>
 			<input type="text" name="nimi" required>
@@ -75,8 +75,18 @@
 			<input type="submit" value="Lisää pizza">
 		</form>
 				
-		<c:if test="${not empty param.added}">Uuden pizzan lisääminen onnistui</c:if>
+		<c:if test="${not empty param.added}">Uuden pizzan lisääminen onnistui</c:if>	
+	</div>
+	
+	<div id=Lisauslomake> <!-- Täytteen lisäys lomake -->
+		<form action="Kontrolleri" method="post">
+			Täytteen nimi:<br>
+			<input type="text" name="nimi" required>
+				<br>
+			<input type="submit" value="Lisää täyte">
+		</form>
 				
+		<c:if test="${not empty param.added}">Uuden täytteen lisääminen onnistui</c:if>	
 	</div>
 	
 

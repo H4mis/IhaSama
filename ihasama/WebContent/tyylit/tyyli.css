@@ -22,8 +22,9 @@ body {
 	border-radius: 30px;
 	border-width: 2px;
 	color: #fcd7b1;
-	width: 48%;
+	width: 45%;
 	left: 0px;
+	padding: 5px;
 }
 
 #taulukko3 {
@@ -33,11 +34,12 @@ body {
 	border-radius: 30px;
 	border-width: 2px;
 	color: #fcd7b1;
-	width: 48%;
+	width: 45%;
 	right: 0px;
 	position: absolute;
 	top: 5px; /* pakottaa yläreunaan */
 	right: 5px;
+	padding: 5px;
 }
 
 #container {

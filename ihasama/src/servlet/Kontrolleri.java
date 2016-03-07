@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import luokat.Pizza;
+import luokat.Tayte;
 import dao.PizzaDAO;
 
 
@@ -46,9 +47,14 @@ public class Kontrolleri extends HttpServlet {
 				PizzaDAO pDAO = new PizzaDAO();
 				pDAO.avaaYhteys();
 				List<Pizza> lista;
+				List<Tayte> lista2;
 				try {
 					lista = pDAO.haePizzat();
 					request.setAttribute("pizzalista", lista);
+					
+					lista2 = pDAO.haeTaytteet();
+					request.setAttribute("taytelista", lista2);
+					
 				} catch (NumberFormatException e) {
 
 					e.printStackTrace();
