@@ -11,8 +11,8 @@ body {
 	border-radius: 30px;
 	border-width: 1px;
 	color: #5be65b;
-	margin-left: 300px;
-	margin-right: 300px;
+	width: 300px;
+	margin: auto;
 }
 
 #taulukko2 {
@@ -22,19 +22,30 @@ body {
 	border-radius: 30px;
 	border-width: 2px;
 	color: #fcd7b1;
-	margin-left: 300px;
-	margin-right: 300px;
+	width: 48%;
+	left: 0px;
 }
 
 #taulukko3 {
-		background-color: lightyellow;
+	background-color: lightyellow;
 	text-align: center;
 	border-style: solid;
 	border-radius: 30px;
 	border-width: 2px;
 	color: #fcd7b1;
-	margin-left: 300px;
-	margin-right: 300px;
+	width: 48%;
+	right: 0px;
+	position: absolute;
+	top: 5px; /* pakottaa yläreunaan */
+	right: 5px;
+}
+
+#container {
+	position: relative;
+	width: 600px;
+	margin: auto;
+	background-color: lightgray;
+	padding: 5px;
 }
 
 form{
