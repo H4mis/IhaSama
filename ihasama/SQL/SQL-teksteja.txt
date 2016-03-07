@@ -1,0 +1,19 @@
+Pizza:
+1 Margarita
+2 Tropicana
+3 Porokana
+4 Alkopala
+
+Tayte:
+1 Kinkku
+2 Juusto
+3 Jauheliha
+4 Ananas
+5 Tomaatti
+6 Kebab
+7 Salami
+8 Kana
+
+SELECT DISTINCT t.* FROM Tayte t INNER JOIN Pizzantaytteet pt ON pt.tayteid = t.tayteid INNER JOIN Pizza p ON p.pizzaid = pt.pizzaid WHERE p.pizzaid IN ("2");
+
+ insert into Pizzantaytteet (pizzaid, tayteid) values (?, ?);
