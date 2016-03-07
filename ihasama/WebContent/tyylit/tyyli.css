@@ -47,6 +47,7 @@ body {
 	width: 600px;
 	margin: auto;
 	background-color: lightgray;
+	border-radius: 30px;
 	padding: 5px;
 }
 
@@ -72,3 +73,28 @@ p {
     font-family: "Times New Roman";
     font-size: 20px;
 }
+
+/* Dropdown checkbox */
+
+.dropdown {
+	height: 150px;
+    overflow: scroll;
+    width: 200px;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+li {
+	list-style-type:none;
+	text-align: left;
+}
+
+ul {
+	text-decoration: none;
+	margin-left: -50px;
+}
+
+.mutliSelect {
+}
+
+/*-------------------*/

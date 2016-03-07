@@ -71,6 +71,22 @@
 				Hinta:<br>
 			<input type="number" pattern="([0-9]{1-2}|[0-9]{1-2}[,|.][0-9]{1-2})" title="Laita numeroita muodossa 00.00" name="hinta" required>
 				<br>
+				
+				<dl class="dropdown"> 				  
+				    <dd>
+			            <ul>
+			            	<!-- hakee täytteet valinnoiksi-->
+			                <c:forEach items="${taytelista}" var="tayte">
+				                <li>
+					                <input type="checkbox" value="${tayte.taytenimi}" name="taytteet" />
+									<c:out value="${tayte.taytenimi}"/>
+								</li>
+							</c:forEach>
+			            </ul>
+				    </dd>
+				</dl>
+				
+				<br>
 				<br>
 			<input type="submit" value="Lisää pizza">
 		</form>
