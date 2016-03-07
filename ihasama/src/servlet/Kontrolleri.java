@@ -53,6 +53,8 @@ public class Kontrolleri extends HttpServlet {
 					request.setAttribute("pizzalista", lista);
 					
 					lista2 = pDAO.haeTaytteet();
+					
+					
 					request.setAttribute("taytelista", lista2);
 					
 				} catch (NumberFormatException e) {
@@ -82,7 +84,8 @@ public class Kontrolleri extends HttpServlet {
 		String nimi = request.getParameter("nimi");
 		double hinta = Double.parseDouble(request.getParameter("hinta"));
 		int id = lista.size() +1;
-		Pizza a = new Pizza(id, nimi, hinta);
+		String taytteet = "hahaa";
+		Pizza a = new Pizza(id, nimi, hinta, taytteet);
 		
 		//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 		PizzaDAO pDao = new PizzaDAO();
