@@ -27,7 +27,14 @@ body {
 }
 
 #taulukko3 {
-	
+		background-color: lightyellow;
+	text-align: center;
+	border-style: solid;
+	border-radius: 30px;
+	border-width: 2px;
+	color: #fcd7b1;
+	margin-left: 300px;
+	margin-right: 300px;
 }
 
 form{
