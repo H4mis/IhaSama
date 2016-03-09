@@ -61,14 +61,15 @@
 					</c:forEach>
 			</table>
 		</div>	
-	</div>
-	
-	<div id=Lisauslomake> <!-- Pizzan lisäys lomake -->
+		<div id=taulukko5>
+		<div id=Lisauslomake> <!-- Pizzan lisäys lomake -->
 		<form action="Kontrolleri" method="post">
-			Pizzan nimi:<br>
+		
+			<td><p>Lisää uusi pizza</p></td>
+			<h3>Pizzan nimi:</h3>
 			<input type="text" name="nimi" required>
 				<br>
-				Hinta:<br>
+				<h3>Hinta:</h3>
 			<input type="number" pattern="([0-9]{1-2}|[0-9]{1-2}[,|.][0-9]{1-2})" title="Laita numeroita muodossa 00.00" name="hinta" required>
 				<br>
 				
@@ -93,17 +94,25 @@
 				
 		<c:if test="${not empty param.added}">Uuden pizzan lisääminen onnistui</c:if>	
 	</div>
-	
+	</div>
+	<div id=taulukko4>
 	<div id=Lisauslomake> <!-- Täytteen lisäys lomake -->
 		<form action="Kontrolleri" method="post">
-			Täytteen nimi:<br>
+		<td><p>Lisää uusi täyte</p></td>
+			<h3>Täytteen nimi:</h3>
 			<input type="text" name="nimi" required>
+				<br>
 				<br>
 			<input type="submit" value="Lisää täyte">
 		</form>
 				
 		<c:if test="${not empty param.added}">Uuden täytteen lisääminen onnistui</c:if>	
 	</div>
+	</div>
+		
+	</div>
+	
+	
 	
 
 </body>
