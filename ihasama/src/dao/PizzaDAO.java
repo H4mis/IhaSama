@@ -118,6 +118,7 @@ public class PizzaDAO {
 		
 		public void lisaaPizzantaytteet(Pizza p, Tayte t) {
 			//TÄÄ TEHDÄÄN LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
+			//heheh
 
 			try {
 				// alustetaan sql-lause
