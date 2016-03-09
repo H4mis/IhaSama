@@ -40,4 +40,7 @@ VALUES ('Salami', 1);
 INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Kana', 1);
 
+INSERT INTO Tayte (taytenimi, saatavilla)
+VALUES ('Pora', 0);
+
 /* ------------------------------------ */
