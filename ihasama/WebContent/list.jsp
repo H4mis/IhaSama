@@ -53,11 +53,11 @@
 		<div id=taulukko3>
 			<table>
 				<tr>
-					<td><p>#</p></td>
+					
 					<td><p>Täytelista</p></td>
 				</tr>
 					<c:forEach items="${taytelista}" var="tayte">
-					<tr><td><c:out value="${tayte.tayteid}"/> <td><div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td></tr>
+					<tr><td> <td><div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td></tr>
 					</c:forEach>
 			</table>
 		</div>	
@@ -65,7 +65,7 @@
 		<div id=Lisauslomake> <!-- Pizzan lisäys lomake -->
 		<form action="Kontrolleri" method="post">
 		
-			<td><p>Lisää uusi pizza</p></td>
+			<p>Lisää uusi pizza</p>
 			<h3>Pizzan nimi:</h3>
 			<input type="text" name="nimi" required>
 				<br>
