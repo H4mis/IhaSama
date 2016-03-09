@@ -58,7 +58,7 @@ public class PizzaDAO {
 	}
 
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
-		String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid LEFT JOIN Tayte t ON t.tayteid = pt.tayteid GROUP BY p.pizzaid order by pizzaid, null";
+		String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid LEFT JOIN Tayte t ON t.tayteid = pt.tayteid GROUP BY p.pizzanimi order by pizzanimi, null";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);
 
@@ -77,7 +77,7 @@ public class PizzaDAO {
 	}
 	
 	public List<Tayte> haeTaytteet() throws NumberFormatException, SQLException {
-		String sql = "SELECT * FROM Tayte";
+		String sql = "SELECT * FROM Tayte ORDER BY taytenimi";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);
 
