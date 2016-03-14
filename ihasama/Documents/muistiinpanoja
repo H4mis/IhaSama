@@ -1,0 +1,10 @@
+
+/* jsp forward */
+index.html
+KVG: jsp forward java
+KVG jstl forward
+<c:redirect url="Kontrolleri"/>
+
+http://www.codejava.net/java-ee/jsp/jsp-forward-standard-action-examples
+
+<jsp:forward page="Another.jsp" />
