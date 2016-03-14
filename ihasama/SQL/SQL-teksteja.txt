@@ -29,12 +29,13 @@ SELECT DISTINCT t.* FROM Tayte
 
  insert into Pizzantaytteet (pizzaid, tayteid) values (?, ?);
  
- /* Margarettaan kinkku */
+ /* täytteiden lisäys pizzoihin */
  
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 1);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 7);
 
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 3);
+
 
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 4);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 5);
