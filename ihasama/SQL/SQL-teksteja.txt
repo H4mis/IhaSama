@@ -31,15 +31,19 @@ SELECT DISTINCT t.* FROM Tayte
  
  /* täytteiden lisäys pizzoihin */
  
-INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 1);
-INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 7);
 
-INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 3);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 2);
+
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 4);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 8);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 2);
 
 
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 4);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 5);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 2);
 
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 8);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 6);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 2);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 7);
