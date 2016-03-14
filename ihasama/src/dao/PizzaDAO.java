@@ -114,7 +114,29 @@ public class PizzaDAO {
 			// Tapahtui jokin virhe
 			System.out.println("Pizzan lisäämisyritys aiheutti virheen!");
 		} 
+	}
+		
+		public void lisaaPizzantaytteet(Pizza p, Tayte t) {
+			//TÄÄ TEHDÄÄN LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
+			//heheh
 
+			try {
+				// alustetaan sql-lause
+				String sql = "INSERT INTO Pizzantaytteet(pizzaid, tayteid) VALUES(?,?)";
+				PreparedStatement lause = yhteys.prepareStatement(sql);
+
+				// täydennetään puuttuvat tiedot (eli pizzan nimi ja hinta)			
+				lause.setInt(1, p.getPizzaid());
+				lause.setInt(2, t.getTayteid());
+
+				// suoritetaan lause
+				lause.executeUpdate();
+
+				System.out.println("Pizza" + p + "lisätty tietokantaan");
+			} catch (Exception e) {
+				// Tapahtui jokin virhe
+				System.out.println("Pizzan lisäämisyritys aiheutti virheen!");
+			} 
 	}
 
 }

@@ -15,13 +15,30 @@ Tayte:
 8 Kana
 
 SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt,
-GROUP_CONCAT(t.taytenimi) as taytenimet
-FROM Pizza p
-LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid
-LEFT JOIN Tayte t ON t.tayteid = pt.tayteid
-GROUP BY p.pizzaid
-order by pizzaid, null;
+	GROUP_CONCAT(t.taytenimi) as taytenimet
+	FROM Pizza p
+		LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid
+		LEFT JOIN Tayte t ON t.tayteid = pt.tayteid
+	GROUP BY p.pizzaid
+	order by pizzaid, null;
 
-SELECT DISTINCT t.* FROM Tayte t INNER JOIN Pizzantaytteet pt ON pt.tayteid = t.tayteid INNER JOIN Pizza p ON p.pizzaid = pt.pizzaid WHERE p.pizzaid IN ("2");
+SELECT DISTINCT t.* FROM Tayte
+	t INNER JOIN Pizzantaytteet pt ON pt.tayteid = t.tayteid
+	INNER JOIN Pizza p ON p.pizzaid = pt.pizzaid
+	WHERE p.pizzaid IN ("2");
 
  insert into Pizzantaytteet (pizzaid, tayteid) values (?, ?);
+ 
+ /* Margarettaan kinkku */
+ 
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 1);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (1, 7);
+
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (2, 3);
+
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 4);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (3, 5);
+
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 8);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 6);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) values (4, 2);
