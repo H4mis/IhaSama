@@ -35,7 +35,7 @@ public class PizzaDAO {
 	public void avaaYhteys() {
 		// K‰ytt‰j‰tiedot ja DB:n osoite - lis‰‰ puuttuvat tiedot!
 		String username = "a1500925";
-		String password = "nySUxd46r";
+		String password = "syKA4t68r";
 		String url = "jdbc:mariadb://localhost/a1500925";
 
 		try {

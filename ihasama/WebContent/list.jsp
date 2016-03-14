@@ -57,7 +57,7 @@
 					<td><p>Täytelista</p></td>
 				</tr>
 					<c:forEach items="${taytelista}" var="tayte">
-					<tr><td> <td><div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td></tr>
+					<tr><td> <div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td></tr>
 					</c:forEach>
 			</table>
 		</div>	
