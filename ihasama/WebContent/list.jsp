@@ -11,6 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="jquery-1.12.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Pizzalistaussivu</title>
@@ -39,13 +40,27 @@
 		<div id=taulukko2>
 			<table>
 				<tr>
-					
+					//Tehty tickboxeja ja ihmetelty toimiiko jQuery jsp filessä. Ei toimi vielä
 					<td><p>Pizzalista</p></td>
 				</tr>
+			
+
 					<c:forEach items="${pizzalista}" var="pizza">
-					<tr><td><c:out value="${pizza.pizzanimi}"/><br><div class="taytenimi"><c:out value="${pizza.taytteet}"/></div><td><c:out value="${pizza.hinta}"/></td></tr>
+					<tr><td>	<c:out value="${pizza.pizzanimi}"/><form name="deletePost" id="deletePost" action="" method="post"> 
+    <input class="checkBox" type="checkbox" id="idArray" name="idArray[]" value="1" />
+    <input class="formButtonDelete" type="submit" name="submit" value="Delete" /><br><div class="taytenimi"><c:out value="${pizza.taytteet}"/></div><td><c:out value="${pizza.hinta}"/></td></tr>
 					</c:forEach>		
 			</table>
+			</form>
+	
+			 $('input[name=submit]').click(function(){
+        $('#deletePost input:checkbox').each(function(){
+            if(this.checked){
+                $(this).remove();
+            }
+        });
+        return false;
+    });
 		</div>
 	
 		<br>
