@@ -82,6 +82,8 @@ public class Kontrolleri extends HttpServlet {
 		String taytteet = "hahaa";
 		//haetaan parametrit k‰ytt‰j‰lt‰(submitista) ja lis‰t‰‰n nelopuksi pizza-olioon
 		String nimi = request.getParameter("nimi");
+		String tnimi = request.getParameter("taytenimi");
+		if(nimi != null && !nimi.isEmpty()){
 		double hinta = Double.parseDouble(request.getParameter("hinta"));
 		int id = lista.size() +1;
 		String[] taytteidenIdt = request.getParameterValues("taytteet");
@@ -103,9 +105,19 @@ public class Kontrolleri extends HttpServlet {
 	    System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
 	    System.out.println("<br>");
 	    System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
-	      
+		  
 	    //ohjataan takaisin alkuun
 	  	response.sendRedirect("Kontrolleri?added=true");
+		}
+		if(tnimi != null && !tnimi.isEmpty()){
+			Tayte t = new Tayte(1, tnimi, true);
+			PizzaDAO pDao = new PizzaDAO();
+			pDao.avaaYhteys();
+			pDao.lisaaTayte(t);			
+			pDao.suljeYhteys();
+			response.sendRedirect("Kontrolleri?added=true");
+		}
+		
 		}
 
 }

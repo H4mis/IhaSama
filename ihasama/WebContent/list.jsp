@@ -117,7 +117,7 @@
 		<form action="Kontrolleri" method="post">
 		<td><p>Lisää uusi täyte</p></td>
 			<h3>Täytteen nimi:</h3>
-			<input type="text" name="nimi" required>
+			<input type="text" name="taytenimi" required>
 				<br>
 				<br>
 			<input type="submit" value="Lisää täyte">
