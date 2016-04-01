@@ -40,7 +40,7 @@
 		<div id=taulukko2>
 			<table>
 				<tr>
-					//Tehty tickboxeja ja ihmetelty toimiiko jQuery jsp filessä. Ei toimi vielä
+					
 					<td><p>Pizzalista</p></td>
 				</tr>
 			
@@ -52,7 +52,8 @@
 					</c:forEach>		
 			</table>
 			</form>
-	
+			
+	<script type="text/javascript">
 			 $('input[name=submit]').click(function(){
         $('#deletePost input:checkbox').each(function(){
             if(this.checked){
@@ -61,6 +62,7 @@
         });
         return false;
     });
+			 </script>
 		</div>
 	
 		<br>
