@@ -95,48 +95,68 @@ public class PizzaDAO {
 	}
 
 	public void lisaaPizza(Pizza p) {
-		
 
 		try {
 			// alustetaan sql-lause
 			String sql = "INSERT INTO Pizza(pizzanimi, hinta) VALUES(?,?)";
-			PreparedStatement lause = yhteys.prepareStatement(sql);
+			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)			
+			// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)
 			lause.setString(1, p.getPizzanimi());
 			lause.setDouble(2, p.getHinta());
 
 			// suoritetaan lause
 			lause.executeUpdate();
 
+			int vaikutetutrowit = lause.executeUpdate();
+			
+			if (vaikutetutrowit == 0){
+				throw new SQLException("Pizzan luominen ep‰onnistui, mihink‰‰n rowiin ei tullut mit‰‰n");
+			}
+			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	                p.setPizzaid(generatedKeys.getInt(1));
+	            }
+	            else {
+	                throw new SQLException("Pizzan luominen ep‰onnistui, ei saatu ID:t‰");
+	            }
+			
+			}
 			System.out.println("Pizza" + p + "lis‰tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out.println("Pizzan lis‰‰misyritys aiheutti virheen!");
-		} 
-	}
+			System.out
+					.println("Pizzan lis‰‰misyritys aiheutti virheen pizzanlisaysvaiheessa!");
+		}
 		
-		public void lisaaPizzantaytteet(Pizza p, Tayte t) {
-			//Tƒƒ TEHDƒƒN LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
-			//heheh
+	}
 
-			try {
-				// alustetaan sql-lause
-				String sql = "INSERT INTO Pizzantaytteet(pizzaid, tayteid) VALUES(?,?)";
-				PreparedStatement lause = yhteys.prepareStatement(sql);
+	public void lisaaPizzantaytteet(Pizza a, String[] taytteidenIdt) {
+		// Tƒƒ TEHDƒƒN LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
+		// heheh
 
-				// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)			
-				lause.setInt(1, p.getPizzaid());
-				lause.setInt(2, t.getTayteid());
+		try {
+			// alustetaan sql-lause
+			String sql = "INSERT INTO Pizzantaytteet(pizzaid, tayteid) VALUES(?,?)";
+			PreparedStatement lause = yhteys.prepareStatement(sql);
 
+			for (String s : taytteidenIdt) {
+
+				System.out.println("toimii for-loopin alussa");
+				// t‰ydennet‰‰n puuttuvat tiedot (eli pizzan nimi ja hinta)
+				lause.setInt(1, a.getPizzaid());
+				lause.setInt(2, Integer.parseInt(s));
+				System.out.println("toimi kun lis‰ttiin lauseeseen juttuja");
 				// suoritetaan lause
 				lause.executeUpdate();
-
-				System.out.println("Pizza" + p + "lis‰tty tietokantaan");
-			} catch (Exception e) {
-				// Tapahtui jokin virhe
-				System.out.println("Pizzan lis‰‰misyritys aiheutti virheen!");
-			} 
+				System.out.println("Toimi kun teloitettiin update");
+			}
+			System.out.println("Pizza" + a + "lis‰tty tietokantaan");
+		} catch (Exception e) {
+			// Tapahtui jokin virhe
+			System.out
+					.println("Pizzan lis‰‰misyritys aiheutti virheen pizzantaytevaiheessa!");
+		}
 	}
 
 }

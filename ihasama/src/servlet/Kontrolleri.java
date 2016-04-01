@@ -78,24 +78,28 @@ public class Kontrolleri extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//luodaan pizzalista
-		List<Pizza> lista = new ArrayList<Pizza>();
-		
+		List<Pizza> lista = new ArrayList<Pizza>();		
+		String taytteet = "hahaa";
 		//haetaan parametrit k‰ytt‰j‰lt‰(submitista) ja lis‰t‰‰n nelopuksi pizza-olioon
 		String nimi = request.getParameter("nimi");
 		double hinta = Double.parseDouble(request.getParameter("hinta"));
 		int id = lista.size() +1;
-		String taytteet = "hahaa";
+		String[] taytteidenIdt = request.getParameterValues("taytteet");
+//		taytteet = taytteidenIdt.length;
+		
+		
 		Pizza a = new Pizza(id, nimi, hinta, taytteet);
 		
 		//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 		PizzaDAO pDao = new PizzaDAO();
 		pDao.avaaYhteys();
 		pDao.lisaaPizza(a);
+		pDao.lisaaPizzantaytteet(a, taytteidenIdt);
 		pDao.suljeYhteys();
 		
 		response.setContentType("text/html");
 	    //java.io.PrintWriter wout = response.getWriter();
-	      
+	    System.out.println("T‰ytteet:" +a.getTaytteet());  
 	    System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
 	    System.out.println("<br>");
 	    System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));

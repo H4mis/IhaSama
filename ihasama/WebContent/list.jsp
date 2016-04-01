@@ -96,7 +96,7 @@
 			            	<!-- hakee täytteet valinnoiksi-->
 			                <c:forEach items="${taytelista}" var="tayte">
 				                <li>
-					                <input type="checkbox" value="${tayte.taytenimi}" name="taytteet" />
+					                <input type="checkbox" value="${tayte.tayteid}" name="taytteet" />
 									<c:out value="${tayte.taytenimi}"/>
 								</li>
 							</c:forEach>
