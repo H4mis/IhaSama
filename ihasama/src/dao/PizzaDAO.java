@@ -33,13 +33,13 @@ public class PizzaDAO {
 	Connection yhteys = null;
 
 	public void avaaYhteys() {
-		// Käyttäjätiedot ja DB:n osoite - lisää puuttuvat tiedot!
+		// Kï¿½yttï¿½jï¿½tiedot ja DB:n osoite - lisï¿½ï¿½ puuttuvat tiedot!
 		String username = "a1500925";
 		String password = "syKA4t68r";
-		String url = "jdbc:mariadb://localhost/a1500925";
+		String url = "jdbc:mariadb://localhost/a1500925?useUnicode=true&characterEncoding=utf-8";
 
 		try {
-			// Yhdistetään tietokantaan
+			// Yhdistetï¿½ï¿½n tietokantaan
 			yhteys = DriverManager.getConnection(url, username, password);
 		} catch (SQLException ex) {
 			System.out.println("Virhe yhteyden avaamisessa");
@@ -67,7 +67,7 @@ public class PizzaDAO {
 			String nimi = tulokset.getString("pizzanimi");
 			double hinta = tulokset.getDouble("hinta");
 			String taytteet = tulokset.getString("taytenimet");
-			// lisätään pizza listaan
+			// lisï¿½tï¿½ï¿½n pizza listaan
 			Pizza pizza = new Pizza(id, nimi, hinta, taytteet);
 			pizzalista.add(pizza);
 		}
@@ -85,7 +85,7 @@ public class PizzaDAO {
 			int tayteid = tulokset.getInt("tayteid");
 			String taytenimi = tulokset.getString("taytenimi");
 			boolean saatavilla = tulokset.getBoolean("saatavilla");
-			// lisätään pizza listaan
+			// lisï¿½tï¿½ï¿½n pizza listaan
 			Tayte tayte = new Tayte(tayteid, taytenimi, saatavilla);
 			taytelista.add(tayte);
 		}
@@ -101,32 +101,31 @@ public class PizzaDAO {
 			String sql = "INSERT INTO Pizza(pizzanimi, hinta) VALUES(?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// täydennetään puuttuvat tiedot (eli pizzan nimi ja hinta)
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
 			lause.setString(1, p.getPizzanimi());
 			lause.setDouble(2, p.getHinta());
 
 			// suoritetaan lause
-			lause.executeUpdate();
-
+			
 			int vaikutetutrowit = lause.executeUpdate();
 			
 			if (vaikutetutrowit == 0){
-				throw new SQLException("Pizzan luominen epäonnistui, mihinkään rowiin ei tullut mitään");
+				throw new SQLException("Pizzan luominen epÃ¤onnistui, mihinkï¿½ï¿½n rowiin ei tullut mitÃ¤Ã¤n");
 			}
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
 	                p.setPizzaid(generatedKeys.getInt(1));
 	            }
 	            else {
-	                throw new SQLException("Pizzan luominen epäonnistui, ei saatu ID:tä");
+	                throw new SQLException("Pizzan luominen epÃ¤onnistui, ei saatu ID:tÃ¤");
 	            }
 			
 			}
-			System.out.println("Pizza" + p + "lisätty tietokantaan");
+			System.out.println("Pizza" + p + "lisÃ¤tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisäämisyritys aiheutti virheen pizzanlisaysvaiheessa!");
+					.println("Pizzan lisÃ¤Ã¤misyritys aiheutti virheen pizzanlisaysvaiheessa!");
 		}
 		
 	}
@@ -138,7 +137,7 @@ public class PizzaDAO {
 			String sql = "INSERT INTO Tayte(taytenimi, saatavilla) VALUES(?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 
-			// täydennetään puuttuvat tiedot (eli pizzan nimi ja hinta)
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
 			lause.setString(1, t.getTaytenimi());
 			lause.setBoolean(2, t.isSaatavilla());
 
@@ -146,17 +145,17 @@ public class PizzaDAO {
 			lause.executeUpdate();
 
 			
-			System.out.println("Tayte" + t.getTaytenimi() + "lisätty tietokantaan");
+			System.out.println("Tayte" + t.getTaytenimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Täytteen lisäämisyritys aiheutti virheen täytteenlisaysvaiheessa!");
+					.println("Tï¿½ytteen lisï¿½ï¿½misyritys aiheutti virheen tï¿½ytteenlisaysvaiheessa!");
 		}
 		
 	}
 
 	public void lisaaPizzantaytteet(Pizza a, String[] taytteidenIdt) {
-		// TÄÄ TEHDÄÄN LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
+		// Tï¿½ï¿½ TEHDï¿½ï¿½N LOPPUUN KUN SAADAN ARRAYLISTIT TOIMIMAAN
 		// heheh
 
 		try {
@@ -167,19 +166,19 @@ public class PizzaDAO {
 			for (String s : taytteidenIdt) {
 
 				System.out.println("toimii for-loopin alussa");
-				// täydennetään puuttuvat tiedot (eli pizzan nimi ja hinta)
+				// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
 				lause.setInt(1, a.getPizzaid());
 				lause.setInt(2, Integer.parseInt(s));
-				System.out.println("toimi kun lisättiin lauseeseen juttuja");
+				System.out.println("toimi kun lisï¿½ttiin lauseeseen juttuja");
 				// suoritetaan lause
 				lause.executeUpdate();
 				System.out.println("Toimi kun teloitettiin update");
 			}
-			System.out.println("Pizza" + a + "lisätty tietokantaan");
+			System.out.println("Pizza" + a + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisäämisyritys aiheutti virheen pizzantaytevaiheessa!");
+					.println("Pizzan lisï¿½ï¿½misyritys aiheutti virheen pizzantaytevaiheessa!");
 		}
 	}
 
