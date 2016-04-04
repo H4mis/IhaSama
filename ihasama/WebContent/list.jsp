@@ -38,6 +38,7 @@
 	<br>
 	<div id="container">
 		<div id=taulukko2>
+		<form action="Kontrolleri" method="post">
 			<table>
 					<tr>
 						<td><p>Pizzat</p></td>
@@ -51,36 +52,36 @@
 						</td>
 						<td><c:out value="${pizza.hinta}"/></td>
 						<td>
-							<form name="deletePost" id="deletePost" action="" method="post"><input style="top: 0px" class="formButtonDelete" type="submit" name="submit" value="Poista" /></form>
+							<input type="checkbox" value="${pizza.pizzaid}" name="poistopizza" />
 	    				</td>
 					</tr>
 				</c:forEach>
+				
+		
 			</table>
-	<script type="text/javascript">
-			 $('input[name=submit]').click(function(){
-        $('#deletePost input:checkbox').each(function(){
-            if(this.checked){
-                $(this).remove();
-            }
-        });
-        return false;
-    });
-			 </script>
+			<input type="submit" value="Poista pizzat">
+			</form>	
 		</div>
 	
 		<br>
 		
 		<div id=taulukko3>
+		<form action="Kontrolleri" method="post">
 			<table>
 				<tr>
 					
 					<td><p>Täytelista</p></td>
 				</tr>
 					<c:forEach items="${taytelista}" var="tayte">
-					<tr><td> <div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td></tr>
+					<tr><td> <div class="taytenimi"><c:out value="${tayte.taytenimi}"/></div></td><td><c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if><c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if></td> <td>
+							<input type="checkbox" value="${tayte.tayteid}" name="poistotayte" />
+	    				</td></tr>
 					</c:forEach>
 			</table>
-		</div>	
+						<input type="submit" value="Poista täytteet">
+			</form>
+		</div>
+		<br>
 		<div id=taulukko5>
 		<div id=Lisauslomake> <!-- Pizzan lisäys lomake -->
 		<form action="Kontrolleri" method="post">

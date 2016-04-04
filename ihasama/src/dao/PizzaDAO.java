@@ -110,7 +110,7 @@ public class PizzaDAO {
 			int vaikutetutrowit = lause.executeUpdate();
 			
 			if (vaikutetutrowit == 0){
-				throw new SQLException("Pizzan luominen epäonnistui, mihink��n rowiin ei tullut mitään");
+				throw new SQLException("Pizzan luominen epäonnistui, mihinkään rowiin ei tullut mitään");
 			}
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
@@ -180,6 +180,42 @@ public class PizzaDAO {
 			System.out
 					.println("Pizzan lis��misyritys aiheutti virheen pizzantaytevaiheessa!");
 		}
+	}
+
+	public void poistaPizza(String[] poistop) {
+		
+		
+		try {
+			String sql = "DELETE FROM Pizza WHERE pizzaid=?";
+			PreparedStatement lause = yhteys.prepareStatement(sql);
+			for (String s : poistop){
+				lause.setInt(1, Integer.parseInt(s));
+				lause.executeUpdate();
+				System.out.println("Pizza id: "+ s + " poistettiin listalta.");
+			}
+		} catch (SQLException e) {
+		    System.out.println("Tapahtui virhe poistossa!");
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+	public void poistaTayte(String[] poistot) {
+		try {
+			String sql = "DELETE FROM Tayte WHERE tayteid=?";
+			PreparedStatement lause = yhteys.prepareStatement(sql);
+			for (String s : poistot){
+				lause.setInt(1, Integer.parseInt(s));
+				lause.executeUpdate();
+				System.out.println("Tayte id: "+ s + " poistettiin listalta.");
+			}
+		} catch (SQLException e) {
+		    System.out.println("Tapahtui virhe poistossa!");
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -20,15 +20,15 @@ PRIMARY KEY(tayteid)
 /* Pizzantaytteet */
 CREATE TABLE Pizzantaytteet
 (
-pizzanimi INT UNSIGNED NOT NULL,
-taytenimi INT UNSIGNED NOT NULL,
-PRIMARY KEY(pizzanimi, taytenimi),
-FOREIGN KEY(pizzanimi) REFERENCES Pizza(pizzanimi),
-FOREIGN KEY(taytenimi) REFERENCES Tayte(taytenimi)
+pizzaid INT UNSIGNED NOT NULL,
+tayteid INT UNSIGNED NOT NULL,
+PRIMARY KEY(pizzaid, tayteid),
+FOREIGN KEY(pizzaid) REFERENCES Pizza(pizzaid) ON DELETE CASCADE,
+FOREIGN KEY(tayteid) REFERENCES Tayte(tayteid) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-/* näytä taulut  */
+/* nï¿½ytï¿½ taulut  */
 SHOW TABLES;
 
 DESCRIBE Tayte;
@@ -40,7 +40,7 @@ DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
 DROP TABLE Tayte;
 
-/* attribuuttien lisäys luokkiin */
+/* attribuuttien lisï¿½ys luokkiin */
 /*
 Pizza:
 1 Margarita
@@ -59,7 +59,7 @@ Tayte:
 8 Kana
 */
 
-/* Pizzojen lisäys*/
+/* Pizzojen lisï¿½ys*/
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Margareta', 10.00);
 
@@ -72,7 +72,7 @@ VALUES ('Porakana', 18.00);
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Alkopala', 19.50);
 
-/* Täytteiden lisäys*/
+/* Tï¿½ytteiden lisï¿½ys*/
 INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Kinkku', 1);
 
@@ -100,7 +100,7 @@ VALUES ('Kana', 1);
 INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Pora', 0);
 
- /* täytteiden lisäys pizzoihin */
+ /* tï¿½ytteiden lisï¿½ys pizzoihin */
  insert into Pizzantaytteet (pizzanimi, taytenimi) VALUES (?, ?);
  
 INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Margarita, Kinkku);
@@ -124,7 +124,7 @@ INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Juusto);
 
 /* hakeminen */
 
-/* hakee pizzat täytteineen */           
+/* hakee pizzat tï¿½ytteineen */           
 SELECT p.pizzanimi, p.hinta, GROUP_CONCAT(t.taytenimi) AS taytenimet
        FROM Pizza p
            LEFT JOIN Pizzantaytteet pt ON p.pizzanimi = pt.pizzanimi
@@ -141,6 +141,7 @@ WHERE some_column=some_value;
 DELETE FROM Pizzataytteet
     WHERE pizzanimi = "Margareta" AND taytenimi = "Juusto";
 
-
+DELETE FROM Pizza
+WHERE pizzaid = ?;
            
            
