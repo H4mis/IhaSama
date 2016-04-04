@@ -11,13 +11,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="jquery-1.12.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
+<link rel="stylesheet" type="text/css" href="tyylit/rekisterointi.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Asiakassivu</title>
 
 </head>
 <body>
 
+<ul>
+<li><a href="index.jsp">Etusivu</a></li>
+<li><a href="asiakas.jsp">Menu</a></li>
+<li><a class="active" href="rekisterointi.jsp">Rekisteröinti</a></li>
+<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+</ul>
 
 
 <h1>Castello é Fiore</h1>
@@ -26,6 +32,9 @@
 	
         <!-- Rekisteröitymis lomake -->
         
+    <div id="laatikko">
+    <h2>Homot tervetuloa</h2>
+      <div id="rek">
          <form method="post" action="registration.jsp">
             <table>
                 <thead>
@@ -61,6 +70,8 @@
                 </tbody>
             </table>
         </form>
+	</div>
+</div>
 
 </body>
 </html>
