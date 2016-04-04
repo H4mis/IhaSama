@@ -39,20 +39,23 @@
 	<div id="container">
 		<div id=taulukko2>
 			<table>
-				<tr>
-					
-					<td><p>Pizzalista</p></td>
-				</tr>
-			
-
-					<c:forEach items="${pizzalista}" var="pizza">
-					<tr><td>	<c:out value="${pizza.pizzanimi}"/><form name="deletePost" id="deletePost" action="" method="post"> 
-    <input class="checkBox" type="checkbox" id="idArray" name="idArray[]" value="1" />
-    <input class="formButtonDelete" type="submit" name="submit" value="Delete" /><br><div class="taytenimi"><c:out value="${pizza.taytteet}"/></div><td><c:out value="${pizza.hinta}"/></td></tr>
-					</c:forEach>		
+					<tr>
+						<td><p>Pizzat</p></td>
+						<td><p>Hinta</p></td>
+						<td><p>Poisto</p></td>
+					</tr>
+				<c:forEach items="${pizzalista}" var="pizza">
+					<tr>
+						<td><c:out value="${pizza.pizzanimi}"/><br>
+							<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
+						</td>
+						<td><c:out value="${pizza.hinta}"/></td>
+						<td>
+							<form name="deletePost" id="deletePost" action="" method="post"><input style="top: 0px" class="formButtonDelete" type="submit" name="submit" value="Poista" /></form>
+	    				</td>
+					</tr>
+				</c:forEach>
 			</table>
-			</form>
-			
 	<script type="text/javascript">
 			 $('input[name=submit]').click(function(){
         $('#deletePost input:checkbox').each(function(){
