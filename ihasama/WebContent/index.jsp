@@ -20,7 +20,7 @@
 
 <ul>
 <li><a href="asiakas.jsp">Asiakas</a></li>
-<li><a href="admin.jsp">Admin</a></li>
+<li><a href="Kontrolleri">Admin</a></li>
 </ul>
 
 
