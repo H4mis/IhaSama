@@ -19,12 +19,16 @@
 <body>
 
 <ul>
-<li><a href="asiakas.jsp">Asiakas</a></li>
-<li><a href="Kontrolleri">Admin</a></li>
+<li><a class="active" href="index.jsp">Etusivu</a></li>
+<li><a href="asiakas.jsp">Menu</a></li>
+<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
+<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 </ul>
 
+<h1>Castello é Fiore</h1>
 
 
+<div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 
 </body>
 

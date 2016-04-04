@@ -22,61 +22,8 @@
 
 <h1>Castello é Fiore</h1>
 
-	<div id=taulukko>
-		<table>
-			<tr>
-				<td width="600">
-					<div class="menu">
-						<h2>Listaus</h2>
-					</div>
-				</td>
-				<td></td>
-		</table>
-	</div>
 	
-	<br>
-	<div id="container">
-		<div id=taulukko2>
-			<table>
-				<tr>
-					
-					<td><p>Pizzalista</p></td>
-				</tr>
-			
-
-					<c:forEach items="${pizzalista}" var="pizza"><tr><td><c:out value="${pizza.pizzanimi}"/><br><div class="taytenimi"><c:out value="${pizza.taytteet}"/></div><td><c:out value="${pizza.hinta}"/></td></tr>
-					</c:forEach>		
-			</table>
-		</div>		
-	</div>
 	
-			<!-- Kirjautumis lomake -->
-			
-	<form method="post" action="login.jsp">
-           
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Sisäänkirjautuminen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Käyttäjänimi</td>
-                        <td><input type="text" name="uname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Salasana</td>
-                        <td><input type="password" name="pass" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Login" /></td>
-                        <td><input type="reset" value="Reset" /></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        
         <!-- Rekisteröitymis lomake -->
         
          <form method="post" action="registration.jsp">
