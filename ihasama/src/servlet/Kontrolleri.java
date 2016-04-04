@@ -93,7 +93,7 @@ public class Kontrolleri extends HttpServlet {
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
 			pDao.poistaPizza(poistop);
-			response.sendRedirect("Kontrolleri?removed=true");
+			response.sendRedirect("Kontrolleri?removedPizza=true");
 			
 		}
 		
@@ -101,7 +101,7 @@ public class Kontrolleri extends HttpServlet {
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
 			pDao.poistaTayte(poistot);
-			response.sendRedirect("Kontrolleri?removed=true");
+			response.sendRedirect("Kontrolleri?removedTayte=true");
 			
 		}
 		
@@ -128,7 +128,7 @@ public class Kontrolleri extends HttpServlet {
 			System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
 
 			// ohjataan takaisin alkuun
-			response.sendRedirect("Kontrolleri?added=true");
+			response.sendRedirect("Kontrolleri?addedPizza=true");
 		}
 		if (tnimi != null && !tnimi.isEmpty()) {
 			Tayte t = new Tayte(1, tnimi, true);
@@ -136,7 +136,7 @@ public class Kontrolleri extends HttpServlet {
 			pDao.avaaYhteys();
 			pDao.lisaaTayte(t);
 			pDao.suljeYhteys();
-			response.sendRedirect("Kontrolleri?added=true");
+			response.sendRedirect("Kontrolleri?addedTayte=true");
 		}
 
 	}

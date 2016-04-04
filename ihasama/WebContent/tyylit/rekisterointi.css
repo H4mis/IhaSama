@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 body{
 	background-image:url("../kuvat/pizzauuni.JPG");
@@ -63,21 +63,14 @@ li a:hover {
 }
 
 #laatikko{
-	
 	background-color: lightgrey;
 	opacity:0.9;
-	margin-left:600px;
-	max-width:40%;
-	height:400px;
+	margin: auto;
+	min-width: 300px;
+	width: 40%;
 	border-radius:25px;
 	border-style:ridge;
 	box-shadow: 0 0 200px #000000;
-	
-	
-	
-
-   
-
 }
 
 table{
@@ -88,13 +81,8 @@ h2{
 }
 
 #rek{
-	text-align:center;
+	text-aling: center;
 	color:black;
-	margin:auto;
-    width: 40%;
-    max-width:60%;
-   	 
+	margin: auto;   	 
     padding: 10px;
- 	
-  
 }

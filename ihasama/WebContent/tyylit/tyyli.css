@@ -1,84 +1,31 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
-body {
-    
+body{
+	background-image:url("../kuvat/pizzauuni.JPG");
+	background-repeat:no-repeat;
+	background-position:center; 
+	background-attachment: fixed;
+	background-color:#333;
 }
 
 
-#taulukko{
-	background-color: lightgreen;
-	border-style: solid;
-	border-radius: 30px;
-	border-width: 1px;
-	color: #5be65b;
-	width: 300px;
+.laatikko {
+	background-color: lightgrey;
+	opacity:0.9;
 	margin: auto;
-}
-
-#taulukko2 { /* pizzalistan tyyli */
-	background-color: lightyellow;
-	display: inline-block;
-	border-style: solid;
-	border-radius: 30px;
-	border-width: 2px;
-	color: #fcd7b1;
-	left: 0px;
-	padding: 5px;
-}
-
-#taulukko3 { /* täytelistan tyyli */
-	background-color: lightyellow;
-	display: inline-block;
-	text-align: center;
-	border-style: solid;
-	border-radius: 30px;
-	border-width: 2px;
-	color: #fcd7b1;
-	position: absolute;
-	left: 600px;
-	top: 5px; /* pakottaa yläreunaan */
-	right: 5px;
-	padding: 5px;
-}
-
-#taulukko4 { /* täytteen lisäyslomakkeen tyyli */
-	background-color: lightyellow;
-	display: inline-block;
-	text-align: center;
-	border-style: solid;
-	border-radius: 30px;
-	border-width: 2px;
-	color: #fcd7b1;
-	position: absolute;
-	top: 400px;
-	left: 600px;
-	right: 5px;
-	padding: 5px;
-}
-
-#taulukko5 { /* pizzan lisäyslomakkeen tyyli */
-	background-color: lightyellow;
-	display: inline-block;
-	border-style: solid;
-	border-radius: 30px;
-	border-width: 2px;
-	color: #fcd7b1;
-	top: 450px;
-	left: 10px;
-	right: 200px;
-	padding: 5px;
-}
-
-#container {
-	position: relative;
-	margin: auto;
-	background-color: lightgray;
-	border-radius: 30px;
-	padding: 5px;
+	min-width: 550px;
+	width: 40%;
+	border-radius:25px;
+	border-style:ridge;
+	box-shadow: 0 0 200px #000000;
 }
 
 .taytenimi {
-	color: red;
+	color: rgba(150,150,150,1);
+}
+
+table {
+	margin: auto;
 }
 
 form{
@@ -99,8 +46,10 @@ h2 {
 }
 
 h3 {
-	color: black;
-	font-size: 15px;
+	color: green;
+	font-size: 20px;
+	text-align: center;
+	
 	
 }
 
