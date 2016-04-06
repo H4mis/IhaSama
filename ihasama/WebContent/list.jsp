@@ -21,7 +21,7 @@
 
 <ul id="navul">
 <li id="navli"><a href="index.jsp">Etusivu</a></li>
-<li id="navli"><a href="asiakas.jsp">Menu</a></li>
+<li id="navli"><a href="asiakasKontrolleri">Menu</a></li>
 <li id="navli"><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li id="navli"><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 
