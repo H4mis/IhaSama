@@ -75,4 +75,15 @@ li a:hover {
     max-width:83%;
    
 }
-
+ td{
+     color:white;
+ }
+ 
+.login{
+	
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}

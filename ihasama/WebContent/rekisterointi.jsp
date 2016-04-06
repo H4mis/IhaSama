@@ -23,6 +23,29 @@
 <li><a href="asiakasKontrolleri">Menu</a></li>
 <li><a class="active" href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+<li>
+	<form method="post" action="login.jsp">
+		<div class="login">
+		Käyttäjätunnus
+		<input type="text" name="uname" value="" />
+		</div>
+	</li>
+	
+	<li>
+		<div class="login">
+		Password
+		<input type="password" name="pass" value="" />
+		
+		</div>
+	</li>
+	
+	<li>
+		<div class="login">
+	    <input type="submit" value="Login" />
+	    </div>
+	    
+	</form>
+</li>
 </ul>
 
 
