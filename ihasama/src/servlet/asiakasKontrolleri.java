@@ -65,7 +65,6 @@ public class asiakasKontrolleri extends HttpServlet {
 		RequestDispatcher disp = request.getRequestDispatcher("asiakas.jsp");
 		disp.forward(request, response);
 		
-
 		
 	}
 
