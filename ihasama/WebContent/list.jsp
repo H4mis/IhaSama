@@ -123,7 +123,7 @@
 							Hinta:
 						</td>
 						<td>
-							<input type="number" pattern="([0-9]{1-2}|[0-9]{1-2}[,|.][0-9]{1-2})" title="Laita numeroita muodossa 00.00" name="hinta" required>
+							<input type="number" step="0.01" title="Laita numeroita muodossa 00.00" name="hinta" required>
 						</td>
 					</tr>
 					</table>
