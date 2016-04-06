@@ -16,7 +16,22 @@ h1{
     text-align: center;
 	
 }
-
+#laatikko{
+	background-color: lightgrey;
+	opacity:0.9;
+	margin: auto;
+	min-width: 300px;
+	width: 40%;
+	border-radius:25px;
+	border-style:ridge;
+	box-shadow: 0 0 200px #000000;
+}
+h2{
+	text-align:center;
+}
+pre{
+	text-aling:center;
+}
 ul {
     list-style-type: none;
     margin: 0;

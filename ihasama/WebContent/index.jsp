@@ -20,13 +20,27 @@
 
 <ul>
 <li><a class="active" href="index.jsp">Etusivu</a></li>
-<li><a href="asiakas.jsp">Menu</a></li>
+<li><a href="asiakasKontrolleri">Menu</a></li>
 <li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 </ul>
 
 <h1>Castello é Fiore</h1>
 
+ <div id="laatikko">
+    <h2>Tervetuloa</h2>
+    
+    <pre>
+    Castello é Fiore on laatuun ja hyvään tunnelmaan erikoistunut ravintola. Tavoitteemme on
+    taata asiakkaille korkealaatuista palvelua, ja tuoreista raaka-aineista tehtyä gourmet-ruokaa.
+    Olemme perheyritys, joten ystävällisyys ja mukava ilmapiiri ovat arvoja, jonka mukaan 
+    työskentelemme joka ikinen päivä.
+     
+     
+      ~henkilökunta   </pre>
+    
+    
+ </div>
 
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 
