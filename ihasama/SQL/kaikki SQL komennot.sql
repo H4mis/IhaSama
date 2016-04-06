@@ -27,6 +27,22 @@ FOREIGN KEY(pizzaid) REFERENCES Pizza(pizzaid) ON DELETE CASCADE,
 FOREIGN KEY(tayteid) REFERENCES Tayte(tayteid) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/* Käyttäjät */
+CREATE TABLE Kayttaja
+(
+etunimi VARCHAR (45) NOT NULL,
+sukunimi VARCHAR (45) NOT NULL,
+osoite VARCHAR (45) NOT NULL,
+postinro CHAR (5) NOT NULL,
+sahkoposti VARCHAR (45) NOT NULL,
+kayttajatunnus VARCHAR (45) NOT NULL,
+salasana VARCHAR (45) NOT NULL,
+admin BOOLEAN NOT NULL,
+PRIMARY KEY(kayttajatunnus)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 
 /* nï¿½ytï¿½ taulut  */
 SHOW TABLES;
@@ -121,6 +137,11 @@ INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Kinkku);
 INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Kebab);
 INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Salami);
 INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Juusto);
+
+/* käyttäjän lisääminen */
+
+INSERT INTO Kayttaja (etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana, admin)
+VALUES ('Jaakko','Jaakkima', 'Peltokatu 5 A 9', '00362', 'jaakko.jaakkima@gmail.com', 'JaakkoJ', 'jaakkoonparas', 1);
 
 /* hakeminen */
 
