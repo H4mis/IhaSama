@@ -34,7 +34,7 @@
 	
 	<li>
 		<div class="login">
-		Password
+		Salasana
 		<input type="password" name="pass" value="" />
 		
 		</div>
@@ -61,7 +61,9 @@
     Olemme perheyritys, joten ystävällisyys ja mukava ilmapiiri ovat arvoja, jonka mukaan 
     työskentelemme joka ikinen päivä.
      
-     
+     <br>
+     <br>
+     <br>
       ~henkilökunta   </p>
     
     
