@@ -25,6 +25,7 @@ h1{
 	border-radius:25px;
 	border-style:ridge;
 	box-shadow: 0 0 200px #000000;
+	padding: 10px;
 }
 h2{
 	text-align:center;

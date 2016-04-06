@@ -55,14 +55,14 @@
  <div id="laatikko">
     <h2>Tervetuloa</h2>
     
-    <pre>
+    <p>
     Castello é Fiore on laatuun ja hyvään tunnelmaan erikoistunut ravintola. Tavoitteemme on
     taata asiakkaille korkealaatuista palvelua, ja tuoreista raaka-aineista tehtyä gourmet-ruokaa.
     Olemme perheyritys, joten ystävällisyys ja mukava ilmapiiri ovat arvoja, jonka mukaan 
     työskentelemme joka ikinen päivä.
      
      
-      ~henkilökunta   </pre>
+      ~henkilökunta   </p>
     
     
  </div>
