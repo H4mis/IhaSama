@@ -53,7 +53,7 @@ public class RekisterointiKontrolleri extends HttpServlet {
 			pDao.avaaYhteys();
 			pDao.lisaaKayttaja(k);
 			pDao.suljeYhteys();
-			response.sendRedirect("Kontrolleri?registrationSuccess=true");
+			response.sendRedirect("RekisterointiKontrolleri?registrationSuccess=true");
 		}
 	}
 }
