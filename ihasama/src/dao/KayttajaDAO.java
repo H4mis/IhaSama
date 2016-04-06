@@ -57,7 +57,7 @@ public class KayttajaDAO {
 			String sql = "INSERT INTO Kayttaja (etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, k.getEtunimi());
 			lause.setString(2, k.getSukunimi());
 			lause.setString(3, k.getOsoite());

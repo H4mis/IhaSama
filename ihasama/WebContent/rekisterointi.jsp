@@ -13,7 +13,7 @@
 <script src="jquery-1.12.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="tyylit/rekisterointi.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-<title>Asiakassivu</title>
+<title>Rekisteröinti</title>
 
 </head>
 <body>
@@ -58,7 +58,7 @@
     <div id="laatikko">
     <h2>Homot tervetuloa</h2>
       <div id="rek">
-         <form method="post" action="registration.jsp">
+         <form method="post" action="rekisterointi.jsp">
             <table>
                 <thead>
                     <tr>
@@ -68,23 +68,23 @@
                 <tbody>
                     <tr>
                         <td>Etunimi</td>
-                        <td><input type="text" name="fname" value="" /></td>
+                        <td><input type="text" name="etunimi" value="" /></td>
                     </tr>
                     <tr>
                         <td>Sukunimi</td>
-                        <td><input type="text" name="lname" value="" /></td>
+                        <td><input type="text" name="sukunimi" value="" /></td>
                     </tr>
                     <tr>
                         <td>Sähköposti</td>
-                        <td><input type="text" name="email" value="" /></td>
+                        <td><input type="text" name="sahkoposti" value="" /></td>
                     </tr>
                     <tr>
                         <td>Käyttäjätunnus</td>
-                        <td><input type="text" name="uname" value="" /></td>
+                        <td><input type="text" name="kayttajatunnus" value="" /></td>
                     </tr>
                     <tr>
                         <td>Salasana</td>
-                        <td><input type="password" name="pass" value="" /></td>
+                        <td><input type="password" name="salasana" value="" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Submit" /></td>
