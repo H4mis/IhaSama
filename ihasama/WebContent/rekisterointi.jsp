@@ -58,7 +58,7 @@
     <div id="laatikko">
     <h2>Homot tervetuloa</h2>
       <div id="rek">
-         <form method="post" action="rekisterointi.jsp">
+         <form method="post" action="RekisterointiKontrolleri">
             <table>
                 <thead>
                     <tr>
@@ -93,6 +93,26 @@
                 </tbody>
             </table>
         </form>
+        <c:if test="${not empty param.registrationSuccess}"><h3>Rekisteröinti onnistui! </h3><br>
+	        
+	        <form method="post" action="login.jsp">
+	        
+				<div class="login">
+				Käyttäjätunnus
+				<input type="text" name="uname" value="" />
+				</div>
+	
+				<div class="login">
+				Salasana
+				<input type="password" name="pass" value="" />
+				</div>
+	
+				<div class="login">
+			    <input type="submit" value="Login" />
+			    </div>
+		    
+			</form>
+        </c:if>
 	</div>
 </div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>

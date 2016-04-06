@@ -5,12 +5,18 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.KayttajaDAO;
+import luokat.Kayttaja;
+
 /**
  * Servlet implementation class UserDataServlet
  */
+@WebServlet("/RekisterointiKontrolleri")
 public class RekisterointiKontrolleri extends HttpServlet {
 	/**
 	 * 
@@ -37,6 +43,17 @@ public class RekisterointiKontrolleri extends HttpServlet {
 		{
 			RequestDispatcher rd = request.getRequestDispatcher("asiakas.jsp");
 			rd.forward(request, response);
+		}
+		
+		if (kayttajatunnus != null && !kayttajatunnus.isEmpty()) {
+			Kayttaja k = new Kayttaja(etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana);
+
+			
+			KayttajaDAO pDao = new KayttajaDAO();
+			pDao.avaaYhteys();
+			pDao.lisaaKayttaja(k);
+			pDao.suljeYhteys();
+			response.sendRedirect("Kontrolleri?registrationSuccess=true");
 		}
 	}
 }

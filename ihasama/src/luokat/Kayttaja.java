@@ -2,14 +2,26 @@ package luokat;
 
 public class Kayttaja {
 	
-	String etunimi;
-	String sukunimi;
-	String osoite;
-	int postinro;
-	String sahkoposti;
-	String kayttajatunnus;
-	String salasana;
-	boolean admin;
+	private String etunimi;
+	private String sukunimi;
+	private String osoite;
+	private int postinro;
+	private String sahkoposti;
+	private String kayttajatunnus;
+	private String salasana;
+	private boolean admin;
+	
+	
+	
+	public Kayttaja(String etunimi, String sukunimi, String sahkoposti, String kayttajatunnus, String salasana) {
+		super();
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
+		this.sahkoposti = sahkoposti;
+		this.kayttajatunnus = kayttajatunnus;
+		this.salasana = salasana;
+		this.admin = false;
+	}
 	public String getEtunimi() {
 		return etunimi;
 	}
