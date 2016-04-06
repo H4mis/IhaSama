@@ -20,7 +20,7 @@
 
 <ul>
 <li><a href="index.jsp">Etusivu</a></li>
-<li><a href="asiakas.jsp">Menu</a></li>
+<li><a href="asiakasKontrolleri">Menu</a></li>
 <li><a class="active" href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 </ul>

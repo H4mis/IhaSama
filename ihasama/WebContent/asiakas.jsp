@@ -11,16 +11,23 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="jquery-1.12.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
+<link rel="stylesheet" type="text/css" href="tyylit/Index.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Menu</title>
 
 </head>
 <body>
 
-
+<ul>
+<li><a  href="index.jsp">Etusivu</a></li>
+<li><a class="active" href="asiakasKontrolleri">Menu</a></li>
+<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
+<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+</ul>
 
 <h1>Castello é Fiore</h1>
+ 
+  <div id="laatikko">
  
 <table>
 					<tr>
@@ -38,6 +45,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-
+</div>
+<div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 </body>
 </html>
