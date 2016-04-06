@@ -50,7 +50,9 @@
 							<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
 						</td>
 						<td>
-							<c:out value="${pizza.hinta}"/>
+							<fmt:setLocale value="fi"/>
+							<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" /> €
+							
 						</td>
 						<td>
 							<input type="checkbox" value="${pizza.pizzaid}" name="poistopizza" />
@@ -108,7 +110,7 @@
 		<br>
 		<div class=laatikko>
 			<p style="text-align: center;">Lisää uusi pizza</p>
-				<form action="Kontrolleri" method="post" style="text-align: center;">
+				<form action="Kontrolleri" method="post" style="text-align: center;" accept-charset="UTF-8">
 					<table style="width: 100%;">
 					<tr>
 						<td style="text-align: right;">
@@ -158,7 +160,7 @@
 		<br>
 		<div class=laatikko><!-- Täytteen lisäys lomake -->
 			<p style="text-align: center;">Lisää uusi täyte</p>
-			<form action="Kontrolleri" method="post">
+			<form action="Kontrolleri" method="post" accept-charset="UTF-8">
 				<table style="width: 100%;">
 					<tr>
 						<td style="text-align: right;">

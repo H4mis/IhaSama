@@ -23,7 +23,7 @@ import dao.PizzaDAO;
 @WebServlet("/Kontrolleri")
 public class Kontrolleri extends HttpServlet {
 
-	// lis�t��n decimal formatti ett� n�kyy nolla hinnan per�ss�
+	// lisï¿½tï¿½ï¿½n decimal formatti ettï¿½ nï¿½kyy nolla hinnan perï¿½ssï¿½
 	DecimalFormat f = new DecimalFormat("0.00");
 
 	private static final long serialVersionUID = 1L;
@@ -66,7 +66,7 @@ public class Kontrolleri extends HttpServlet {
 			pDAO.suljeYhteys();
 		}
 
-		// Pistet��n tieto eteenp�in list.jsp:lle
+		// Pistetï¿½ï¿½n tieto eteenpï¿½in list.jsp:lle
 
 		RequestDispatcher disp = request.getRequestDispatcher("list.jsp");
 		disp.forward(request, response);
@@ -78,17 +78,25 @@ public class Kontrolleri extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		// Varmistaa, että character encoding on UTF-8
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		// luodaan pizzalista
 		List<Pizza> lista = new ArrayList<Pizza>();
+		
+		// Luodaan täyte-string
 		String taytteet = "hahaa";
-		// haetaan parametrit k�ytt�j�lt�(submitista) ja lis�t��n nelopuksi
+		
+		// haetaan parametrit kï¿½yttï¿½jï¿½ltï¿½(submitista) ja lisï¿½tï¿½ï¿½n nelopuksi
 		// pizza-olioon
 		String nimi = request.getParameter("nimi");
 		String tnimi = request.getParameter("taytenimi");
 		String[] poistop = request.getParameterValues("poistopizza");
 		String[] poistot = request.getParameterValues("poistotayte");
 		
-		
+		// Onko poistop (pizzan poisto) String arrayssa mitään? Jos on, niin...
 		if(poistop != null && !poistop.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -97,6 +105,7 @@ public class Kontrolleri extends HttpServlet {
 			
 		}
 		
+		// Onko poistot (täytteen poisto) String arrayssa mitään? Jos on, niin...
 		if(poistot != null && !poistot.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -104,6 +113,8 @@ public class Kontrolleri extends HttpServlet {
 			response.sendRedirect("Kontrolleri?removedTayte=true");
 			
 		}
+		
+		// Onko (pizzan) nimi-stringissä jotain? Jos on, niin...
 		
 		if (nimi != null && !nimi.isEmpty()) {
 			double hinta = Double.parseDouble(request.getParameter("hinta"));
@@ -113,7 +124,7 @@ public class Kontrolleri extends HttpServlet {
 
 			Pizza a = new Pizza(id, nimi, hinta, taytteet);
 
-			// lis�t��n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
+			// lisï¿½tï¿½ï¿½n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
 			pDao.lisaaPizza(a);
@@ -122,7 +133,7 @@ public class Kontrolleri extends HttpServlet {
 
 			response.setContentType("text/html");
 			// java.io.PrintWriter wout = response.getWriter();
-			System.out.println("T�ytteet:" + a.getTaytteet());
+			System.out.println("Tï¿½ytteet:" + a.getTaytteet());
 			System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
 			System.out.println("<br>");
 			System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
@@ -130,6 +141,9 @@ public class Kontrolleri extends HttpServlet {
 			// ohjataan takaisin alkuun
 			response.sendRedirect("Kontrolleri?addedPizza=true");
 		}
+		
+		// Onko (täytteen) tnimi stringissä jotain? Jos on, niin...
+		
 		if (tnimi != null && !tnimi.isEmpty()) {
 			Tayte t = new Tayte(1, tnimi, true);
 			PizzaDAO pDao = new PizzaDAO();
