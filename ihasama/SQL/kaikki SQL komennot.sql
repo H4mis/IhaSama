@@ -32,8 +32,8 @@ CREATE TABLE Kayttaja
 (
 etunimi VARCHAR (45) NOT NULL,
 sukunimi VARCHAR (45) NOT NULL,
-osoite VARCHAR (45) NOT NULL,
-postinro CHAR (5) NOT NULL,
+osoite VARCHAR (45) ,
+postinro CHAR (5) ,
 sahkoposti VARCHAR (45) NOT NULL,
 kayttajatunnus VARCHAR (45) NOT NULL,
 salasana VARCHAR (45) NOT NULL,
@@ -41,7 +41,9 @@ admin BOOLEAN NOT NULL,
 PRIMARY KEY(kayttajatunnus)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+UPDATE Kayttaja
+SET osoite=?,postinro=?
+WHERE kayttajatunnus=?;
 
 
 /* n�yt� taulut  */

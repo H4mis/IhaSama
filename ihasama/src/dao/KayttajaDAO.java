@@ -54,18 +54,16 @@ public class KayttajaDAO {
 
 		try {
 			// alustetaan sql-lause
-			String sql = "INSERT INTO Kayttaja (etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
 			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, k.getEtunimi());
 			lause.setString(2, k.getSukunimi());
-			lause.setString(3, k.getOsoite());
-			lause.setInt(4, k.getPostinro());
-			lause.setString(5, k.getSahkoposti());
-			lause.setString(6, k.getKayttajatunnus());
-			lause.setString(7, k.getSalasana());
-			lause.setBoolean(8, k.isAdmin());
+			lause.setString(3, k.getSahkoposti());
+			lause.setString(4, k.getKayttajatunnus());
+			lause.setString(5, k.getSalasana());
+			lause.setBoolean(6, k.isAdmin());
 
 			// suoritetaan lause
 			
@@ -79,6 +77,30 @@ public class KayttajaDAO {
 		
 	}
 	
+	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, int postinro){
+		
+		try {
+			// alustetaan sql-lause
+			String sql = "UPDATE Kayttaja SET osoite=?,postinro=? WHERE kayttajatunnus=?";
+			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
+
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
+			lause.setString(1, osoite);
+			lause.setInt(2, postinro);
+			lause.setString(3, k.getKayttajatunnus());
+
+			// suoritetaan lause
+			
+			
+			System.out.println("Käyttäjän " + k.getKayttajatunnus() + " osoitetiedot lisÃ¤tty tietokantaan");
+		} catch (Exception e) {
+			// Tapahtui jokin virhe
+			System.out
+					.println("Käyttäjän osoitetietojen lisÃ¤Ã¤misyritys aiheutti virheen osoitetietojen lisäysvaiheessa!");
+		}
+		
+	}
+		
 	
 
 	public void poistaKayttaja(String[] poistok) {

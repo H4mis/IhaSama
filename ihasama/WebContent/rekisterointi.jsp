@@ -87,8 +87,8 @@
                         <td><input type="password" name="salasana" value="" /></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Submit" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                        <td><input type="submit" value="Vahvista" /></td>
+                        <td><input type="reset" value="Tyhjennä" /></td>
                     </tr>
                 </tbody>
             </table>
