@@ -95,6 +95,6 @@
         </form>
 	</div>
 </div>
-
+<div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 </body>
 </html>
