@@ -79,7 +79,7 @@
 					<tr>
 						<td><p>Täytelista</p></td>
 						<td><p>Saatavilla</p></td>
-						<td><p>Poisto</p></td>
+						<td><p>Poista</p></td>
 					</tr>
 						<c:forEach items="${taytelista}" var="tayte">
 					<tr>
