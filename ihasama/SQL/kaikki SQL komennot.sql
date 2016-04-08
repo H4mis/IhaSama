@@ -5,6 +5,7 @@ CREATE TABLE Pizza
 pizzaid INT UNSIGNED NOT NULL AUTO_INCREMENT,
 pizzanimi VARCHAR(25) NOT NULL,
 hinta DECIMAL(6,2) NOT NULL,
+piilossa BOOLEAN NOT NULL,
 PRIMARY KEY(pizzaid) 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,12 +42,19 @@ admin BOOLEAN NOT NULL,
 PRIMARY KEY(kayttajatunnus)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/* käyttäjän päivitys, osoitteiden lisäys */
 UPDATE Kayttaja
 SET osoite=?,postinro=?
 WHERE kayttajatunnus=?;
 
+/* taulun muuttaminen */
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
 
-/* nï¿½ytï¿½ taulut  */
+ALTER TABLE Pizza
+ADD COLUMN piilossa BOOLEAN NOT NULL;
+
+/* näytä taulut  */
 SHOW TABLES;
 
 DESCRIBE Tayte;
