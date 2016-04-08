@@ -33,7 +33,7 @@
 	
 	<li>
 		<div class="login">
-		Password
+		Salasana
 		<input type="password" name="pass" value="" />
 		
 		</div>
@@ -41,7 +41,7 @@
 	
 	<li>
 		<div class="login">
-	    <input type="submit" value="Login" />
+	    <input type="submit" value="Kirjaudu" />
 	    </div>
 	    
 	</form>
@@ -56,45 +56,78 @@
         <!-- Rekisteröitymis lomake -->
         
     <div id="laatikko">
-    <h2>Rekisteröinti</h2>
-      <div id="rek">
-         <form method="post" action="RekisterointiKontrolleri">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Täytä tietosi tähän</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Etunimi</td>
-                        <td><input type="text" name="etunimi" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Sukunimi</td>
-                        <td><input type="text" name="sukunimi" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Sähköposti</td>
-                        <td><input type="text" name="sahkoposti" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Käyttäjätunnus</td>
-                        <td><input type="text" name="kayttajatunnus" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Salasana</td>
-                        <td><input type="password" name="salasana" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Vahvista" /></td>
-                        <td><input type="reset" value="Tyhjennä" /></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+    <c:if test="${empty param.registrationSuccess}">
+	    <h2>Rekisteröinti</h2>
+	      <div id="rek">
+	         <form method="post" action="RekisterointiKontrolleri">
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <th colspan="2">Täytä tietosi tähän</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr>
+	                        <td>Etunimi</td>
+	                        <td><input type="text" name="etunimi" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td>Sukunimi</td>
+	                        <td><input type="text" name="sukunimi" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td>Sähköposti</td>
+	                        <td><input type="text" name="sahkoposti" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td>Käyttäjätunnus</td>
+	                        <td><input type="text" name="kayttajatunnus" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td>Salasana</td>
+	                        <td><input type="password" name="salasana" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td><input type="submit" value="Vahvista" /></td>
+	                        <td><input type="reset" value="Tyhjennä" /></td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </form>
+        </c:if>
         <c:if test="${not empty param.registrationNoSuccess}"><h3 style="color: red;">Täytä kaikki kentät!</h3><br></c:if>
-
+     
+        <c:if test="${not empty param.registrationSuccess}"><h3 style="color: green;">Rekisteröinti onnistui! </h3><br>
+	        
+	        <form method="post" action="login.jsp">
+	        	<table>
+		        	<tr>
+		        		<td>
+		        			Käyttäjätunnus: 
+		        		</td>
+		        		<td>
+		        			<input type="text" name="uname" value="" />
+		        		</td>
+		        	</tr>
+					<tr>
+		        		<td>
+		        			Salasana: 
+		        		</td>
+		        		<td>
+						<input type="password" name="pass" value="" />
+		        		</td>
+		        	</tr>
+		        	<tr>
+		        		<td>
+		        			Kirjaudu
+		        		</td>
+		        		<td>
+						<input type="submit" value="Kirjaudu" />
+		        		</td>
+		        	</tr>
+		    	</table>
+			</form>
+        </c:if>
 	</div>
 </div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>

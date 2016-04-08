@@ -37,6 +37,7 @@ public class RekisterointiKontrolleri extends HttpServlet {
 		
 		if(etunimi.isEmpty()||sukunimi.isEmpty()||sahkoposti.isEmpty()||kayttajatunnus.isEmpty()||salasana.isEmpty())
 		{
+			response.sendRedirect("rekisterointi.jsp?registrationNoSuccess=true");
 			RequestDispatcher rd = request.getRequestDispatcher("rekisterointi.jsp");
 			rd.include(request, response);
 		}
@@ -49,10 +50,10 @@ public class RekisterointiKontrolleri extends HttpServlet {
 			kDao.avaaYhteys();
 			kDao.lisaaKayttaja(k);
 			kDao.suljeYhteys();
-			//response.sendRedirect("RekisterointiKontrolleri?registrationSuccess=true");
+			response.sendRedirect("rekisterointi.jsp?registrationSuccess=true");
 			
 			//vaihtaa asiakasKontrolleri servlettiin joka ohjaa asiakas.jsp:hen.
-			response.sendRedirect("asiakasKontrolleri"); 
+			//response.sendRedirect("asiakasKontrolleri"); 
 		}
 	}
 }
