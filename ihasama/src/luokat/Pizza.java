@@ -71,14 +71,18 @@ public class Pizza {
 	public void setTaytteet(String taytteet) {
 		this.taytteet = taytteet;
 	}
-
-	//tostringit
 	
+	//tostringit
 	@Override
 	public String toString() {
-		return "Pizza [taytteet=" + taytteet + ", pizzaid=" + pizzaid
-				+ ", pizzanimi=" + pizzanimi + ", hinta=" + hinta + "]";
+		return "Pizza [pizzaid=" + pizzaid + ", pizzanimi=" + pizzanimi
+				+ ", hinta=" + hinta + ", taytteet=" + taytteet + ", piilossa="
+				+ piilossa + "]";
 	}
+
+	
+	
+	
 	
 	
 	
