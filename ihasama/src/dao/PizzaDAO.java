@@ -58,7 +58,7 @@ public class PizzaDAO {
 	}
 
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
-		String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid LEFT JOIN Tayte t ON t.tayteid = pt.tayteid GROUP BY p.pizzanimi order by pizzanimi, null";
+		String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, p.piilossa, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid LEFT JOIN Tayte t ON t.tayteid = pt.tayteid GROUP BY p.pizzanimi order by pizzanimi, null";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);
 
@@ -68,7 +68,8 @@ public class PizzaDAO {
 			double hinta = tulokset.getDouble("hinta");
 			String taytteet = tulokset.getString("taytenimet");
 			// lisï¿½tï¿½ï¿½n pizza listaan
-			Pizza pizza = new Pizza(id, nimi, hinta, taytteet);
+			boolean piilossa = tulokset.getBoolean("piilossa");
+			Pizza pizza = new Pizza(id, nimi, hinta, taytteet, piilossa);
 			pizzalista.add(pizza);
 		}
 
@@ -237,6 +238,29 @@ public class PizzaDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void muutaPiilotus(String[] pizzaIDt, int piilossa){
+	    try {
+	        String sql = "UPDATE Pizza SET piilossa ="+piilossa +" WHERE pizzaid =?";
+	        PreparedStatement lause = yhteys.prepareStatement(sql); 
+	            
+	        for (String s : pizzaIDt){
+	            
+	            lause.setInt(1,  Integer.parseInt(s));
+	            
+	            lause.executeUpdate();
+	            
+	            
+	            System.out.println("Pizzaid id: "+ s + " näkyvyyttä muutettiin!");
+	        
+	            
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Tapahtui virhe muuttamisessa!");
+	        e.printStackTrace();
+	    }
+	}
+	
 public void muutaSaatavuus(String[] tayteIdt, int saatavilla){
 			
 			try {

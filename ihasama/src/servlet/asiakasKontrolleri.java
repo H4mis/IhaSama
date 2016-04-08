@@ -90,9 +90,9 @@ public class asiakasKontrolleri extends HttpServlet {
 				int id = lista.size() +1;
 				String[] taytteidenIdt = request.getParameterValues("taytteet");
 //				taytteet = taytteidenIdt.length;
+				boolean piilossa = false;
 				
-				
-				Pizza a = new Pizza(id, nimi, hinta, taytteet);
+				Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
 				
 				//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 				PizzaDAO pDao = new PizzaDAO();

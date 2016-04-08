@@ -15,21 +15,22 @@ public class Pizza {
 	private boolean piilossa;
 	
 	//parametriton konstruktori
-	public Pizza() {
-		this.pizzaid = 0;
-		this.pizzanimi = null;
-		this.hinta = 0;
-		this.taytteet = null;
-		this.piilossa = false;
-	}
-		
-	//parametrillinen konstruktori
-	public Pizza(int id, String nimi, double hinta, String taytteet) {
-		this.pizzaid = id;
-		this.pizzanimi = nimi;
-		this.hinta = hinta;
-		this.taytteet = taytteet;
-	}
+    public Pizza() {
+        this.pizzaid = 0;
+        this.pizzanimi = null;
+        this.hinta = 0;
+        this.taytteet = null;
+        this.piilossa = false;
+    }
+        
+    //parametrillinen konstruktori
+    public Pizza(int id, String nimi, double hinta, String taytteet, boolean piilossa) {
+        this.pizzaid = id;
+        this.pizzanimi = nimi;
+        this.hinta = hinta;
+        this.taytteet = taytteet;
+        this.piilossa=piilossa;
+    }
 
 	//Getterit ja setterit
 	public int getPizzaid() {
@@ -60,7 +61,7 @@ public class Pizza {
 		this.piilossa = piilossa;
 	}
 	
-	public boolean getPiilossa() {
+	public boolean isPiilossa() {
 		return piilossa;
 	}
 

@@ -36,7 +36,7 @@
 	<br>
 	<div id="container">
 		<div class=laatikko>
-			<form action="Kontrolleri" method="post">
+			
 				<table style="width: 100%;">
 					<tr>
 						<td><p>Pizzat</p></td>
@@ -44,31 +44,43 @@
 						<td><p>Poisto</p></td>
 					</tr>
 					<c:forEach items="${pizzalista}" var="pizza">
-					<tr>
-						<td>
-							<c:out value="${pizza.pizzanimi}"/><br>
-							<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
-						</td>
-						<td>
-							<fmt:setLocale value="fi"/>
-							<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" /> €
-							
-						</td>
-						<td>
-							<input type="checkbox" value="${pizza.pizzaid}" name="poistopizza" />
-		   				</td>
-					</tr>
-					</c:forEach>
+                    <tr>
+                        <td><c:out value="${pizza.pizzanimi}" /><br>
+                            <div class="taytenimi">
+                                <c:out value="${pizza.taytteet}" />
+                            </div></td>
+                        <td><fmt:setLocale value="fi" /> <fmt:formatNumber
+                                value="${pizza.hinta}" type="number" minFractionDigits="2"
+                                maxFractionDigits="2" /> €</td>
+                        <td><form action="Kontrolleri" method="post">
+                                <input type="hidden" value="${pizza.pizzaid}" name="poistopizza" />
+                                <input type="submit" value="Poista" />
+                            </form></td>
+                        <td>
+                            <form action="Kontrolleri" method="post">
+                                <input type="hidden" name="pid" value="${pizza.pizzaid}" /> 
+                                <input type="radio" name="piilossa" value="1" /> Kyllä 
+                                <input type="radio" name="piilossa" value="0" /> Ei 
+                                <input type="submit" value="Muuta" />
+                            </form>
+                        </td>
+                        <td><c:if test="${pizza.piilossa}">
+                                <c:out value="Kyllä" />
+                            </c:if> <c:if test="${!pizza.piilossa}">
+                                <c:out value="Ei" />
+                            </c:if></td>
+                    </tr>
+                </c:forEach>
 					
 					<tr>
 						<td></td>
 						<td></td>
 						<td>
-							<input type="submit" value="Poista pizzat">
+							
 						</td>
 					</tr>
 				</table>
-			</form>
+			
 			<c:if test="${not empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>	
 		</div>
 		<br>

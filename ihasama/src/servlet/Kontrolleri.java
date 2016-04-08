@@ -99,6 +99,18 @@ public class Kontrolleri extends HttpServlet {
 		if(saatava != null && !saatava.isEmpty()){
 		saatavilla=Integer.parseInt(saatava);}
 		
+		String[]pizzaIDt=request.getParameterValues("pid");
+        String piilo =request.getParameter("piilossa");
+        int piilosha = 0;
+        System.out.println("Piilon arvo on: " + piilo);
+        
+        if(piilo == null) {
+            piilo = "0";
+        }
+        
+        if(piilo != null && !piilo.isEmpty()){
+            piilosha=Integer.parseInt(piilo);
+        }
 		
 		
 		// Onko poistop (pizzan poisto) String arrayssa mitään? Jos on, niin...
@@ -126,8 +138,9 @@ public class Kontrolleri extends HttpServlet {
 			int id = lista.size() + 1;
 			String[] taytteidenIdt = request.getParameterValues("taytteet");
 			// taytteet = taytteidenIdt.length;
+			boolean piilossa = false;
 
-			Pizza a = new Pizza(id, nimi, hinta, taytteet);
+			Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
 
 			// lisï¿½tï¿½ï¿½n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 			PizzaDAO pDao = new PizzaDAO();
@@ -160,16 +173,27 @@ public class Kontrolleri extends HttpServlet {
 
 	
 
-	if(saatava !=null && !saatava.isEmpty()){
-		PizzaDAO pDao = new PizzaDAO();
-		pDao.avaaYhteys();
-		pDao.muutaSaatavuus(tayteIdt, saatavilla);
-		pDao.suljeYhteys();
-		response.sendRedirect("Kontrolleri?addedTayte=true");
-	}
+		if(saatava !=null && !saatava.isEmpty()){
+			PizzaDAO pDao = new PizzaDAO();
+			pDao.avaaYhteys();
+			pDao.muutaSaatavuus(tayteIdt, saatavilla);
+			pDao.suljeYhteys();
+			response.sendRedirect("Kontrolleri?addedTayte=true");
+		}
+		
+		if(piilo !=null && !piilo.isEmpty()){
+	        System.out.println("t��ll� ollaan :D");
+	        PizzaDAO pDao = new PizzaDAO();
+	        pDao.avaaYhteys();
+	        pDao.muutaPiilotus(pizzaIDt, piilosha);
+	        System.out.println("muutos tehty");
+	        pDao.suljeYhteys();
+	        response.sendRedirect("Kontrolleri?changedPiilotus=true");
+	    }
+    }
 
 }
 
-}
+
 
 
