@@ -95,6 +95,11 @@ public class Kontrolleri extends HttpServlet {
 		String tnimi = request.getParameter("taytenimi");
 		String[] poistop = request.getParameterValues("poistopizza");
 		String[] poistot = request.getParameterValues("poistotayte");
+		String[] tayteIdt=request.getParameterValues("tid");
+		String saatava=request.getParameter("saatavilla");
+		int saatavilla=Integer.parseInt(saatava);
+		
+		
 		
 		// Onko poistop (pizzan poisto) String arrayssa mitään? Jos on, niin...
 		if(poistop != null && !poistop.equals(null)){
@@ -153,6 +158,18 @@ public class Kontrolleri extends HttpServlet {
 			response.sendRedirect("Kontrolleri?addedTayte=true");
 		}
 
+	
+
+	if(saatava !=null && !saatava.isEmpty()){
+		PizzaDAO pDao = new PizzaDAO();
+		pDao.avaaYhteys();
+		pDao.muutaSaatavuus(tayteIdt, saatavilla);
+		pDao.suljeYhteys();
+		response.sendRedirect("Kontrolleri?addedTayte=true");
 	}
 
 }
+
+}
+
+

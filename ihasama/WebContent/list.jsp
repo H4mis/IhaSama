@@ -74,7 +74,7 @@
 		</div>
 		<br>
 		<div class=laatikko>
-			<form action="Kontrolleri" method="post">
+			
 				<table style="width: 100%;">
 					<tr>
 						<td><p>Täytelista</p></td>
@@ -89,15 +89,29 @@
 							</div>
 						</td>
 						<td>
+						<form action="Kontrolleri" method="post">
+						<input type="hidden" name="tid" value="${tayte.tayteid}" />
+						<input type="radio" name="saatavilla" value="1" /> Kyllä
+						<input type="radio" name="saatavilla" value="0" /> Ei
+						<input type="submit" value="Muuta">
+						</form>
+						</td>
+						
+						<td>
+		
 							<c:if test="${tayte.saatavilla}"><c:out value="kyllä"/></c:if>
 							<c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if>
 						</td>
 						<td>
-							<input type="checkbox" value="${tayte.tayteid}" name="poistotayte" />
+										<form action="Kontrolleri" method="post">
+							<input type="hidden" value="${tayte.tayteid}" name="poistotayte" />
+							<input type="submit" value="Poista">
+							</form>
 		    			</td>
 		    		</tr>
+		    									
 					</c:forEach>
-					<tr>
+
 						<td></td>
 						<td></td>
 						<td>

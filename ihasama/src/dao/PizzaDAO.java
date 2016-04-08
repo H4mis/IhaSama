@@ -215,7 +215,29 @@ public class PizzaDAO {
 		    System.out.println("Tapahtui virhe poistossa!");
 			e.printStackTrace();
 		}
+	}
+public void muutaSaatavuus(String[] tayteIdt, int saatavilla){
+			
+			try {
+				String sql = "UPDATE Tayte SET saatavilla ="+saatavilla +" WHERE tayteid =?";
+				PreparedStatement lause = yhteys.prepareStatement(sql);	
+					
+				for (String s : tayteIdt){
+					
+					lause.setInt(1,  Integer.parseInt(s));
+					
+					lause.executeUpdate();
+					
+					
+					System.out.println("Tayte id: "+ s + " saatavuutta muutettiin");
+				
+					
+				}
+			} catch (SQLException e) {
+			    System.out.println("Tapahtui virhe muuttamisessa!");
+				e.printStackTrace();
+			}}
+			
+			
 		
 	}
-
-}
