@@ -12,6 +12,7 @@ public class Pizza {
 	private String pizzanimi;
 	private double hinta;
 	private String taytteet;
+	private boolean piilossa;
 	
 	//parametriton konstruktori
 	public Pizza() {
@@ -19,6 +20,7 @@ public class Pizza {
 		this.pizzanimi = null;
 		this.hinta = 0;
 		this.taytteet = null;
+		this.piilossa = false;
 	}
 		
 	//parametrillinen konstruktori
@@ -54,8 +56,13 @@ public class Pizza {
 		this.hinta = hinta;
 	}
 
+	public void setPiilossa(boolean piilossa) {
+		this.piilossa = piilossa;
+	}
 	
-	
+	public boolean getPiilossa() {
+		return piilossa;
+	}
 
 	public String getTaytteet() {
 		return taytteet;
