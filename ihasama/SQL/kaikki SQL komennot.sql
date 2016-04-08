@@ -53,6 +53,11 @@ DESCRIBE Tayte;
 DESCRIBE Pizza;
 DESCRIBE Pizzantaytteet;
 
+INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?)
+
+INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin)
+	VALUES ('AdminNimi', 'AdminSuku', 'adminposti@posti.com', 'admin', 'admin1234567890', 1);
+
 /* taulujen poistot */
 DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;

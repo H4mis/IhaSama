@@ -53,7 +53,7 @@ public class RekisterointiKontrolleri extends HttpServlet {
 			//response.sendRedirect("RekisterointiKontrolleri?registrationSuccess=true");
 			
 			//ohjataan sivulle asiakas.jsp
-			RequestDispatcher rd = request.getRequestDispatcher("asiakas.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/asiakas.jsp");
 			rd.forward(request, response);
 		}
 	}
