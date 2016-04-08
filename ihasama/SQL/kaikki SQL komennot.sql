@@ -61,6 +61,7 @@ DESCRIBE Tayte;
 DESCRIBE Pizza;
 DESCRIBE Pizzantaytteet;
 
+/* käyttäjän lisäys */
 INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?)
 
 INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin)
@@ -90,7 +91,7 @@ Tayte:
 8 Kana
 */
 
-/* Pizzojen lisï¿½ys*/
+/* Pizzojen lisäys*/
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Margareta', 10.00);
 
@@ -132,26 +133,14 @@ INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Pora', 0);
 
  /* tï¿½ytteiden lisï¿½ys pizzoihin */
- insert into Pizzantaytteet (pizzanimi, taytenimi) VALUES (?, ?);
+ insert into Pizzantaytteet (pizzaid, tayteid) VALUES (?, ?);
  
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Margarita, Kinkku);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Margarita, Juusto);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Margarita, Tomaatti);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (1, 1);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (1, 2);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (1, 3);
 
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Tropicana, Ananas);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Tropicana, Kinkku);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Tropicana, Juusto);
-
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Porokana, Kana);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Porokana, Juusto);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Porokana, Tomaatti);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Porokana, Salami);
-
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Jauheliha);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Kinkku);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Kebab);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Salami);
-INSERT INTO Pizzantaytteet (pizzanimi, taytenimi) VALUES (Alkopala, Juusto);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (2, 3);
+INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (2, 4);
 
 /* käyttäjän lisääminen */
 
@@ -175,7 +164,7 @@ WHERE some_column=some_value;
 
 /* esim  */
 DELETE FROM Pizzataytteet
-    WHERE pizzanimi = "Margareta" AND taytenimi = "Juusto";
+    WHERE pizzaid = 1 AND tayteid = 2;
 
 DELETE FROM Pizza
 WHERE pizzaid = ?;
