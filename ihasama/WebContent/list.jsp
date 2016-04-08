@@ -27,7 +27,6 @@
 
 </ul>
 
-
 <h1>Castello é Fiore</h1>
 
 	<div class="laatikko">
@@ -73,6 +72,7 @@
 			<c:if test="${not empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>	
 		</div>
 		<br>
+		
 		<div class=laatikko>
 			
 				<table style="width: 100%;">
