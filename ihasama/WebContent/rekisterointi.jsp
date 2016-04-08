@@ -97,7 +97,7 @@
         </c:if>
         <c:if test="${not empty param.registrationNoSuccess}"><h3 style="color: red;">Täytä kaikki kentät!</h3><br></c:if>
      
-        <c:if test="${not empty param.registrationSuccess}"><h3 style="color: green;">Rekisteröinti onnistui! </h3><br>
+        <c:if test="${not empty param.registrationSuccess}"><h3 style="color: green; text-align: center;">Rekisteröinti onnistui! </h3><br>
 	        
 	        <form method="post" action="login.jsp">
 	        	<table>
