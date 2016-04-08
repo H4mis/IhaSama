@@ -63,7 +63,9 @@ li a:hover {
 .active {
     background-color: #a6a6a6;
 }
-
+.taytenimi{
+	color:#808080;
+}
 #footer {
    position:absolute;
    bottom:0;
@@ -77,7 +79,7 @@ li a:hover {
    
 }
  td{
-     color:white;
+     color:black;
  }
  
 .login{
