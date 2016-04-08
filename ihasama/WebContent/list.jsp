@@ -115,7 +115,7 @@
 						<td></td>
 						<td></td>
 						<td>
-							<input type="submit" value="Poista täytteet">
+							
 						</td>
 					</tr>
 				</table>
