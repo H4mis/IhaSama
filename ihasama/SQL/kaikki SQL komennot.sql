@@ -147,6 +147,10 @@ INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (2, 4);
 INSERT INTO Kayttaja (etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana, admin)
 VALUES ('Jaakko','Jaakkima', 'Peltokatu 5 A 9', '00362', 'jaakko.jaakkima@gmail.com', 'JaakkoJ', 'jaakkoonparas', 1);
 
+/* käyttäjien poisto HUOM POISTAA KAIKKI MUUT PAITSI ADMINIT*/
+DELETE FROM Kayttaja
+    WHERE admin = 0;
+    
 /* hakeminen */
 
 /* hakee pizzat täytteineen */           
