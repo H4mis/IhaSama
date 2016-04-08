@@ -46,9 +46,14 @@ public class asiakasKontrolleri extends HttpServlet {
 		PizzaDAO pDAO = new PizzaDAO();
 		pDAO.avaaYhteys();
 		List<Pizza> lista;
+		List<Pizza> lista2;
 		try {
 			lista = pDAO.haePizzat();
 			request.setAttribute("pizzalista", lista);
+			
+			lista2 = pDAO.haeAsiakasPizzat(lista);
+            
+            request.setAttribute("menulista", lista2);
 			
 		} catch (NumberFormatException e) {
 

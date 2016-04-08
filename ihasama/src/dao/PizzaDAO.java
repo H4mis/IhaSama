@@ -130,6 +130,27 @@ public class PizzaDAO {
 		
 	}
 	
+	public List<Pizza> haeAsiakasPizzat(List<Pizza> pizzalista) throws NumberFormatException, SQLException {
+        String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p  LEFT JOIN Pizzantaytteet pt ON pt.pizzaid = p.pizzaid  LEFT JOIN Tayte t ON t.tayteid = pt.tayteid  WHERE pt.pizzaid = p.pizzaid and t.saatavilla IS FALSE GROUP BY p.pizzanimi order by pizzanimi";
+        Statement haku = yhteys.createStatement();
+        ResultSet tulokset = haku.executeQuery(sql);
+        while (tulokset.next()) {
+            int id = tulokset.getInt("pizzaid");
+            
+            // Poistetaan pizza listalta            
+            
+            for (int i = 0; i < pizzalista.size(); i++) {
+                if(pizzalista.get(i).getPizzaid() == id){
+                    pizzalista.remove(i);
+                }
+            }
+            
+            
+            
+        }
+        return pizzalista;
+    }
+	
 	public void lisaaTayte(Tayte t) {
 
 		try {

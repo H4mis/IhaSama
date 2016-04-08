@@ -48,23 +48,21 @@ public class Kontrolleri extends HttpServlet {
 		pDAO.avaaYhteys();
 		List<Pizza> lista;
 		List<Tayte> lista2;
-		try {
-			lista = pDAO.haePizzat();
-			request.setAttribute("pizzalista", lista);
-
-			lista2 = pDAO.haeTaytteet();
-
-			request.setAttribute("taytelista", lista2);
-
-		} catch (NumberFormatException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			pDAO.suljeYhteys();
-		}
+		
+        try {
+            lista = pDAO.haePizzat();
+            request.setAttribute("pizzalista", lista);
+            lista2 = pDAO.haeTaytteet();
+            request.setAttribute("taytelista", lista2);
+            
+            
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            pDAO.suljeYhteys();
+        }
 
 		// Pistetï¿½ï¿½n tieto eteenpï¿½in list.jsp:lle
 
