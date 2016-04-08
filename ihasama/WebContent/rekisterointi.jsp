@@ -27,14 +27,14 @@
 	<form method="post" action="login.jsp">
 		<div class="login">
 		Käyttäjätunnus
-		<input type="text" name="uname" value="" />
+		<input type="text" name="kayttajatunnus" value="" />
 		</div>
 	</li>
 	
 	<li>
 		<div class="login">
 		Salasana
-		<input type="password" name="pass" value="" />
+		<input type="password" name="salasana" value="" />
 		
 		</div>
 	</li>
