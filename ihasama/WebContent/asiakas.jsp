@@ -20,7 +20,7 @@
 
 <ul>
 <li><a  href="index.jsp">Etusivu</a></li>
-<li><a class="active" href="asiakasKontrolleri">Menu</a></li>
+<li><a class="active" href="asiakas.jsp">Menu</a></li>
 <li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 <li>
@@ -63,7 +63,8 @@
 						<td><c:out value="${pizza.pizzanimi}"/><br>
 							<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
 						</td>
-						<td><c:out value="${pizza.hinta}"/></td>
+						<td><fmt:setLocale value="fi"/>
+							<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" /> €</td>
 						
 					</tr>
 				</c:forEach>
