@@ -97,7 +97,9 @@ public class Kontrolleri extends HttpServlet {
 		String[] poistot = request.getParameterValues("poistotayte");
 		String[] tayteIdt=request.getParameterValues("tid");
 		String saatava=request.getParameter("saatavilla");
-		int saatavilla=Integer.parseInt(saatava);
+		int saatavilla = 0;
+		if(saatava != null && !saatava.isEmpty()){
+		saatavilla=Integer.parseInt(saatava);}
 		
 		
 		
