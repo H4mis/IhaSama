@@ -56,7 +56,7 @@
         <!-- Rekisteröitymis lomake -->
         
     <div id="laatikko">
-    <h2>Homot tervetuloa</h2>
+    <h2>Rekisteröinti</h2>
       <div id="rek">
          <form method="post" action="RekisterointiKontrolleri">
             <table>
@@ -93,6 +93,8 @@
                 </tbody>
             </table>
         </form>
+        <c:if test="${not empty param.registrationNoSuccess}"><h3 style="color: red;">Täytä kaikki kentät!</h3><br></c:if>
+     
         <c:if test="${not empty param.registrationSuccess}"><h3>Rekisteröinti onnistui! </h3><br>
 	        
 	        <form method="post" action="login.jsp">

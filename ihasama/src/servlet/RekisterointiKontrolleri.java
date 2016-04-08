@@ -29,31 +29,32 @@ public class RekisterointiKontrolleri extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String etunimi = request.getParameter("etunimi");
 		String sukunimi = request.getParameter("sukunimi");
-		String sahkoposti = request.getParameter("sähköposti");
-		String kayttajatunnus = request.getParameter("käyttäjätunnus");
+		String sahkoposti = request.getParameter("sahkoposti");
+		String kayttajatunnus = request.getParameter("kayttajatunnus");
 		String salasana = request.getParameter("salasana");
+		
+		System.out.println("etunimi: " + etunimi + " sukunimi: " + sukunimi + " sähköposti: " + sahkoposti + " käyttäjätunnus: " + kayttajatunnus + " salasana: " + salasana);
 		
 		if(etunimi.isEmpty()||sukunimi.isEmpty()||sahkoposti.isEmpty()||kayttajatunnus.isEmpty()||salasana.isEmpty())
 		{
 			RequestDispatcher rd = request.getRequestDispatcher("rekisterointi.jsp");
-			out.println("<font color=red>Täytä kaikki kentät</font>");
+			response.sendRedirect("RekisterointiKontrolleri?registrationNoSuccess=true");
 			rd.include(request, response);
 		}
 		else
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("asiakas.jsp");
-			rd.forward(request, response);
-		}
-		
-		if (kayttajatunnus != null && !kayttajatunnus.isEmpty()) {
+			//luodaan käyttäjä
 			Kayttaja k = new Kayttaja(etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana);
 
+			KayttajaDAO kDao = new KayttajaDAO();
+			kDao.avaaYhteys();
+			kDao.lisaaKayttaja(k);
+			kDao.suljeYhteys();
+			//response.sendRedirect("RekisterointiKontrolleri?registrationSuccess=true");
 			
-			KayttajaDAO pDao = new KayttajaDAO();
-			pDao.avaaYhteys();
-			pDao.lisaaKayttaja(k);
-			pDao.suljeYhteys();
-			response.sendRedirect("RekisterointiKontrolleri?registrationSuccess=true");
+			//ohjataan sivulle asiakas.jsp
+			RequestDispatcher rd = request.getRequestDispatcher("asiakas.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

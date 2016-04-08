@@ -66,13 +66,17 @@ public class KayttajaDAO {
 			lause.setBoolean(6, k.isAdmin());
 
 			// suoritetaan lause
+			int vaikutetutRowit = lause.executeUpdate();
 			
+			if (vaikutetutRowit == 0){
+				throw new SQLException("K‰ytt‰j‰n luominen ep‰onnistui, mihink‰‰n rowiin ei tullut mit‰‰n");
+			}
 			
-			System.out.println("K‰ytt‰j‰" + k.getKayttajatunnus() + "lis√§tty tietokantaan");
+			System.out.println("K‰ytt‰j‰" + k.getKayttajatunnus() + "lis‰tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out
-					.println("K‰ytt‰j‰n lis√§√§misyritys aiheutti virheen k‰ytt‰j‰n lis‰ysvaiheessa!");
+			System.out.println("K‰ytt‰j‰n lis‰‰misyritys aiheutti virheen k‰ytt‰j‰n lis‰ysvaiheessa!");
+			System.out.println(k.toString());
 		}
 		
 	}

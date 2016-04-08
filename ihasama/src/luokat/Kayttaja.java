@@ -70,9 +70,15 @@ public class Kayttaja {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-
-		
+	@Override
+	public String toString() {
+		return "Kayttaja [etunimi=" + etunimi + ", sukunimi=" + sukunimi + ", osoite=" + osoite + ", postinro="
+				+ postinro + ", sahkoposti=" + sahkoposti + ", kayttajatunnus=" + kayttajatunnus + ", salasana="
+				+ salasana + ", admin=" + admin + "]";
 	}
+
+	
+}
 	
 	
 
