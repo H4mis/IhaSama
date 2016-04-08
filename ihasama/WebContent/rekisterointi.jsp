@@ -94,27 +94,7 @@
             </table>
         </form>
         <c:if test="${not empty param.registrationNoSuccess}"><h3 style="color: red;">Täytä kaikki kentät!</h3><br></c:if>
-     
-        <c:if test="${not empty param.registrationSuccess}"><h3>Rekisteröinti onnistui! </h3><br>
-	        
-	        <form method="post" action="login.jsp">
-	        
-				<div class="login">
-				Käyttäjätunnus
-				<input type="text" name="uname" value="" />
-				</div>
-	
-				<div class="login">
-				Salasana
-				<input type="password" name="pass" value="" />
-				</div>
-	
-				<div class="login">
-			    <input type="submit" value="Login" />
-			    </div>
-		    
-			</form>
-        </c:if>
+
 	</div>
 </div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
