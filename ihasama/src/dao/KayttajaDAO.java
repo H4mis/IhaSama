@@ -33,6 +33,7 @@ public class KayttajaDAO {
 		try {
 			// YhdistetÔøΩÔøΩn tietokantaan
 			yhteys = DriverManager.getConnection(url, username, password);
+			System.out.println("Yhteys avattu tietokantaan.");
 		} catch (SQLException ex) {
 			System.out.println("Virhe yhteyden avaamisessa");
 		}
@@ -41,10 +42,12 @@ public class KayttajaDAO {
 
 	public void suljeYhteys() {
 		try {
-			if (yhteys != null && !yhteys.isClosed())
+			if (yhteys != null && !yhteys.isClosed()) {
 				yhteys.close();
+				System.out.println("Yhteys suljettu tietokantaan.");
+			}
 		} catch (Exception e) {
-			System.out.println("Tietokantayhteys ei jostain syyst√§ suostu menem√§√§n kiinni.");
+			System.out.println("Tietokantayhteyden sulkeminen ei onnistunut");
 			e.printStackTrace();
 		}
 	}
@@ -94,13 +97,16 @@ public class KayttajaDAO {
 			lause.setString(3, k.getKayttajatunnus());
 
 			// suoritetaan lause
+			int vaikutetutRowit = lause.executeUpdate();
+			if (vaikutetutRowit == 0){
+				throw new SQLException("K‰ytt‰j‰n osoitteiden lis‰ys ei onnistunut! rowit on tyhji‰!");
+			}
 			
-			
-			System.out.println("K‰ytt‰j‰n " + k.getKayttajatunnus() + " osoitetiedot lis√§tty tietokantaan");
+			System.out.println("tietokantaan lis‰ttiin k‰ytt‰j‰n " + k.getKayttajatunnus());
+			System.out.println("osoitetiedot: " + k.getOsoite() + " " + k.getPostinro());
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out
-					.println("K‰ytt‰j‰n osoitetietojen lis√§√§misyritys aiheutti virheen osoitetietojen lis‰ysvaiheessa!");
+			System.out.println("Osoitetietojen lis‰ys k‰ytt‰j‰lle aiheutti virheen!");
 		}
 		
 	}
@@ -109,17 +115,16 @@ public class KayttajaDAO {
 
 	public void poistaKayttaja(String[] poistok) {
 		
-		
 		try {
 			String sql = "DELETE FROM Kayttaja WHERE kayttajatunnus=?";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 			for (String s : poistok){
 				lause.setString(1, s);
 				lause.executeUpdate();
-				System.out.println("K‰ytt‰j‰tunnus: "+ s + " poistettiin listalta.");
+				System.out.println("Listalta poistettii k‰ytt‰j‰tunnus: "+ s);
 			}
 		} catch (SQLException e) {
-		    System.out.println("Tapahtui virhe poistossa!");
+		    System.out.println("Tapahtui virhe yritett‰ess‰ poistaa k‰ytt‰j‰‰: " + poistok);
 			e.printStackTrace();
 		}
 		

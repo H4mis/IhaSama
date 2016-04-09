@@ -23,7 +23,7 @@ import dao.PizzaDAO;
 @WebServlet("/Kontrolleri")
 public class Kontrolleri extends HttpServlet {
 
-	// lisï¿½tï¿½ï¿½n decimal formatti ettï¿½ nï¿½kyy nolla hinnan perï¿½ssï¿½
+	// lis�t��n decimal formatti et� n�kyy nolla hinnan per�ss�
 	DecimalFormat f = new DecimalFormat("0.00");
 
 	private static final long serialVersionUID = 1L;
@@ -64,7 +64,7 @@ public class Kontrolleri extends HttpServlet {
             pDAO.suljeYhteys();
         }
 
-		// Pistetï¿½ï¿½n tieto eteenpï¿½in list.jsp:lle
+		// Pistet��n tieto eteenp�in list.jsp:lle
 
 		RequestDispatcher disp = request.getRequestDispatcher("list.jsp");
 		disp.forward(request, response);
@@ -87,8 +87,7 @@ public class Kontrolleri extends HttpServlet {
 		// Luodaan täyte-string
 		String taytteet = "hahaa";
 		
-		// haetaan parametrit kï¿½yttï¿½jï¿½ltï¿½(submitista) ja lisï¿½tï¿½ï¿½n nelopuksi
-		// pizza-olioon
+		// haetaan parametrit k�ytt�j�lt�(submitista) ja lis�t��n ne lopuksi pizza-olioon
 		String nimi = request.getParameter("nimi");
 		String tnimi = request.getParameter("taytenimi");
 		String[] poistop = request.getParameterValues("poistopizza");
@@ -96,24 +95,22 @@ public class Kontrolleri extends HttpServlet {
 		String[] tayteIdt=request.getParameterValues("tid");
 		String saatava=request.getParameter("saatavilla");
 		int saatavilla = 0;
+		
 		if(saatava != null && !saatava.isEmpty()){
-		saatavilla=Integer.parseInt(saatava);}
+			saatavilla=Integer.parseInt(saatava);
+		}
 		
 		String[]pizzaIDt=request.getParameterValues("pid");
         String piilo =request.getParameter("piilossa");
         int piilosha = 0;
         System.out.println("Piilon arvo on: " + piilo);
         
-        if(piilo == null) {
-            piilo = "0";
-        }
-        
         if(piilo != null && !piilo.isEmpty()){
             piilosha=Integer.parseInt(piilo);
         }
 		
 		
-		// Onko poistop (pizzan poisto) String arrayssa mitään? Jos on, niin...
+		// Onko poistop (pizzan poisto) String arrayssa mit��n? Jos on, niin...
 		if(poistop != null && !poistop.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -122,7 +119,7 @@ public class Kontrolleri extends HttpServlet {
 			
 		}
 		
-		// Onko poistot (täytteen poisto) String arrayssa mitään? Jos on, niin...
+		// Onko poistot (t�ytteen poisto) String arrayssa mit��n? Jos on, niin...
 		if(poistot != null && !poistot.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -131,7 +128,7 @@ public class Kontrolleri extends HttpServlet {
 			
 		}
 		
-		// Onko (pizzan) nimi-stringissä jotain? Jos on, niin...
+		// Onko (pizzan) nimi-stringiss� jotain? Jos on, niin...
 		
 		if (nimi != null && !nimi.isEmpty()) {
 			double hinta = Double.parseDouble(request.getParameter("hinta"));
@@ -142,7 +139,7 @@ public class Kontrolleri extends HttpServlet {
 
 			Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
 
-			// lisï¿½tï¿½ï¿½n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
+			// lis�t��n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
 			pDao.lisaaPizza(a);
@@ -151,7 +148,7 @@ public class Kontrolleri extends HttpServlet {
 
 			response.setContentType("text/html");
 			// java.io.PrintWriter wout = response.getWriter();
-			System.out.println("Tï¿½ytteet:" + a.getTaytteet());
+			System.out.println("T�ytteet:" + a.getTaytteet());
 			System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
 			System.out.println("<br>");
 			System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
@@ -160,8 +157,7 @@ public class Kontrolleri extends HttpServlet {
 			response.sendRedirect("Kontrolleri?addedPizza=true");
 		}
 		
-		// Onko (täytteen) tnimi stringissä jotain? Jos on, niin...
-		
+		// Onko (t�ytteen) tnimi stringiss� jotain? Jos on, niin...
 		if (tnimi != null && !tnimi.isEmpty()) {
 			Tayte t = new Tayte(1, tnimi, true);
 			PizzaDAO pDao = new PizzaDAO();
@@ -170,8 +166,6 @@ public class Kontrolleri extends HttpServlet {
 			pDao.suljeYhteys();
 			response.sendRedirect("Kontrolleri?addedTayte=true");
 		}
-
-	
 
 		if(saatava !=null && !saatava.isEmpty()){
 			PizzaDAO pDao = new PizzaDAO();
@@ -182,11 +176,9 @@ public class Kontrolleri extends HttpServlet {
 		}
 		
 		if(piilo !=null && !piilo.isEmpty()){
-	        System.out.println("t��ll� ollaan :D");
 	        PizzaDAO pDao = new PizzaDAO();
 	        pDao.avaaYhteys();
 	        pDao.muutaPiilotus(pizzaIDt, piilosha);
-	        System.out.println("muutos tehty");
 	        pDao.suljeYhteys();
 	        response.sendRedirect("Kontrolleri?changedPiilotus=true");
 	    }

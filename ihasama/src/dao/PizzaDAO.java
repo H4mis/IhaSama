@@ -12,12 +12,9 @@ import java.util.List;
 import luokat.Pizza;
 import luokat.Tayte;
 
-
-
 public class PizzaDAO {
 
 	// Tietokanta-ajurin lataus siirretty constructoriin
-
 	public PizzaDAO() {
 
 		try {
@@ -33,7 +30,7 @@ public class PizzaDAO {
 	Connection yhteys = null;
 
 	public void avaaYhteys() {
-		// Kï¿½yttï¿½jï¿½tiedot ja DB:n osoite - lisï¿½ï¿½ puuttuvat tiedot!
+		// Käyttäjätiedot ja DB:n osoite - lisää puuttuvat tiedot!
 		String username = "a1500925";
 		String password = "syKA4t68r";
 		String url = "jdbc:mariadb://localhost/a1500925?useUnicode=true&characterEncoding=utf-8";
@@ -41,6 +38,7 @@ public class PizzaDAO {
 		try {
 			// Yhdistetï¿½ï¿½n tietokantaan
 			yhteys = DriverManager.getConnection(url, username, password);
+			System.out.println("Yhteys avattu tietokantaan.");
 		} catch (SQLException ex) {
 			System.out.println("Virhe yhteyden avaamisessa");
 		}
@@ -49,10 +47,12 @@ public class PizzaDAO {
 
 	public void suljeYhteys() {
 		try {
-			if (yhteys != null && !yhteys.isClosed())
+			if (yhteys != null && !yhteys.isClosed()) {
 				yhteys.close();
+				System.out.println("Yhteys suljettu tietokantaan.");
+			}
 		} catch (Exception e) {
-			System.out.println("Tietokantayhteys ei jostain syystÃ¤ suostu menemÃ¤Ã¤n kiinni.");
+			System.out.println("Tietokantayhteyttä suljettaessa tapahtui virhe!");
 			e.printStackTrace();
 		}
 	}
@@ -71,10 +71,9 @@ public class PizzaDAO {
 			boolean piilossa = tulokset.getBoolean("piilossa");
 			Pizza pizza = new Pizza(id, nimi, hinta, taytteet, piilossa);
 			pizzalista.add(pizza);
+			System.out.println("Tietokannasta haettu pizza: " + pizza.getPizzanimi());
 		}
-
 		return pizzalista;
-
 	}
 	
 	public List<Tayte> haeTaytteet() throws NumberFormatException, SQLException {
@@ -89,6 +88,7 @@ public class PizzaDAO {
 			// lisï¿½tï¿½ï¿½n pizza listaan
 			Tayte tayte = new Tayte(tayteid, taytenimi, saatavilla);
 			taytelista.add(tayte);
+			System.out.println("Tietokannasta haettu täyte: " + tayte.getTaytenimi());
 		}
 
 		return taytelista;
@@ -111,22 +111,22 @@ public class PizzaDAO {
 			int vaikutetutrowit = lause.executeUpdate();
 			
 			if (vaikutetutrowit == 0){
-				throw new SQLException("Pizzan luominen epÃ¤onnistui, mihinkÃ¤Ã¤n rowiin ei tullut mitÃ¤Ã¤n");
+				throw new SQLException("Pizzan luominen epännistui, mihinkään rowiin ei tullut mitään");
 			}
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
 	                p.setPizzaid(generatedKeys.getInt(1));
 	            }
 	            else {
-	                throw new SQLException("Pizzan luominen epÃ¤onnistui, ei saatu ID:tÃ¤");
+	                throw new SQLException("Pizzan luominen epäonnistui, ei saatu ID:tä");
 	            }
 			
 			}
-			System.out.println("Pizza" + p + "lisÃ¤tty tietokantaan");
+			System.out.println("Pizza" + p.getPizzanimi() + "lisätty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisÃ¤Ã¤misyritys aiheutti virheen pizzanlisaysvaiheessa!");
+					.println("Pizzan lisäämisyritys aiheutti virheen pizzanlisäysvaiheessa!");
 		}
 		
 	}
@@ -138,17 +138,14 @@ public class PizzaDAO {
         while (tulokset.next()) {
             int id = tulokset.getInt("pizzaid");
             
-            // Poistetaan pizza listalta            
-            
+            // Poistetaan pizza menulistalta            
             for (int i = 0; i < pizzalista.size(); i++) {
                 if(pizzalista.get(i).getPizzaid() == id){
                     pizzalista.remove(i);
                 }
-            }
-            
-            
-            
+            }   
         }
+        System.out.println("Luotu asiakkaille menu!");
         return pizzalista;
     }
 	
@@ -158,20 +155,19 @@ public class PizzaDAO {
 			// alustetaan sql-lause
 			String sql = "INSERT INTO Tayte(taytenimi, saatavilla) VALUES(?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
-
+			
 			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
 			lause.setString(1, t.getTaytenimi());
 			lause.setBoolean(2, t.isSaatavilla());
-
+			
 			// suoritetaan lause
 			lause.executeUpdate();
-
 			
-			System.out.println("Tayte" + t.getTaytenimi() + "lisï¿½tty tietokantaan");
+			System.out.println("Tayte" + t.getTaytenimi() + "lisätty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Tï¿½ytteen lisï¿½ï¿½misyritys aiheutti virheen tï¿½ytteenlisaysvaiheessa!");
+					.println("Täytteen lisäämisyritys aiheutti virheen täytteenlisäysvaiheessa!");
 		}
 		
 	}
@@ -186,42 +182,34 @@ public class PizzaDAO {
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 
 			for (String s : taytteidenIdt) {
-
-				System.out.println("toimii for-loopin alussa");
-				// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
 				lause.setInt(1, a.getPizzaid());
 				lause.setInt(2, Integer.parseInt(s));
-				System.out.println("toimi kun lisï¿½ttiin lauseeseen juttuja");
 				// suoritetaan lause
 				lause.executeUpdate();
-				System.out.println("Toimi kun teloitettiin update");
+				System.out.println("Lisättiin pizzaan: " + a.getPizzanimi() + " täyte: " + s);
 			}
-			System.out.println("Pizza" + a + "lisï¿½tty tietokantaan");
+			System.out.println("Pizza" + a.getPizzanimi() + "lisätty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisï¿½ï¿½misyritys aiheutti virheen pizzantaytevaiheessa!");
+					.println("Pizzan lisäämisyritys aiheutti virheen pizzantäytevaiheessa!");
 		}
 	}
 
 	public void poistaPizza(String[] poistop) {
-		
-		
+			
 		try {
 			String sql = "DELETE FROM Pizza WHERE pizzaid=?";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 			for (String s : poistop){
 				lause.setInt(1, Integer.parseInt(s));
 				lause.executeUpdate();
-				System.out.println("Pizza id: "+ s + " poistettiin listalta.");
+				System.out.println("Pizza id: "+ s + " poistettiin pizzalistalta.");
 			}
 		} catch (SQLException e) {
-		    System.out.println("Tapahtui virhe poistossa!");
+		    System.out.println("Tapahtui virhe pizzan poistossa!");
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 
 	public void poistaTayte(String[] poistot) {
@@ -231,32 +219,28 @@ public class PizzaDAO {
 			for (String s : poistot){
 				lause.setInt(1, Integer.parseInt(s));
 				lause.executeUpdate();
-				System.out.println("Tayte id: "+ s + " poistettiin listalta.");
+				System.out.println("Tayte id: "+ s + " poistettiin täytelistalta.");
 			}
 		} catch (SQLException e) {
-		    System.out.println("Tapahtui virhe poistossa!");
+		    System.out.println("Tapahtui virhe täytteen poistossa!");
 			e.printStackTrace();
 		}
 	}
 	
 	public void muutaPiilotus(String[] pizzaIDt, int piilossa){
 	    try {
-	        String sql = "UPDATE Pizza SET piilossa ="+piilossa +" WHERE pizzaid =?";
+	        String sql = "UPDATE Pizza SET piilossa =" + piilossa + " WHERE pizzaid =?";
 	        PreparedStatement lause = yhteys.prepareStatement(sql); 
 	            
 	        for (String s : pizzaIDt){
 	            
 	            lause.setInt(1,  Integer.parseInt(s));
-	            
 	            lause.executeUpdate();
 	            
-	            
-	            System.out.println("Pizzaid id: "+ s + " näkyvyyttä muutettiin!");
-	        
-	            
+	            System.out.println("Pizzaid id: "+ s + " piiloisuutta muutettiin: " + piilossa);
 	        }
 	    } catch (SQLException e) {
-	        System.out.println("Tapahtui virhe muuttamisessa!");
+	        System.out.println("Tapahtui virhe pizzan piilotuksen muutossa!");
 	        e.printStackTrace();
 	    }
 	}
@@ -267,22 +251,16 @@ public void muutaSaatavuus(String[] tayteIdt, int saatavilla){
 				String sql = "UPDATE Tayte SET saatavilla ="+saatavilla +" WHERE tayteid =?";
 				PreparedStatement lause = yhteys.prepareStatement(sql);	
 					
-				for (String s : tayteIdt){
-					
+				for (String s : tayteIdt){				
 					lause.setInt(1,  Integer.parseInt(s));
-					
 					lause.executeUpdate();
-					
-					
-					System.out.println("Tayte id: "+ s + " saatavuutta muutettiin");
-				
-					
+
+					System.out.println("Tayte id: "+ s + " saatavuutta muutettiin: " + saatavilla);
 				}
 			} catch (SQLException e) {
 			    System.out.println("Tapahtui virhe muuttamisessa!");
 				e.printStackTrace();
-			}}
-			
-			
-		
+			}
 	}
+
+}

@@ -4,10 +4,6 @@ package luokat;
 
 public class Pizza {
 	
-	//heh
-	
-	
-
 	private int pizzaid;
 	private String pizzanimi;
 	private double hinta;
@@ -80,13 +76,4 @@ public class Pizza {
 				+ ", hinta=" + hinta + ", taytteet=" + taytteet + ", piilossa="
 				+ piilossa + "]";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 }

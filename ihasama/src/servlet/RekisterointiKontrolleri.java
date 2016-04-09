@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,16 +23,16 @@ public class RekisterointiKontrolleri extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		// haetaan responsesta tiedot asiakkaan rekisteröinnistä
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		String etunimi = request.getParameter("etunimi");
 		String sukunimi = request.getParameter("sukunimi");
 		String sahkoposti = request.getParameter("sahkoposti");
 		String kayttajatunnus = request.getParameter("kayttajatunnus");
 		String salasana = request.getParameter("salasana");
 		
-		System.out.println("etunimi: " + etunimi + " sukunimi: " + sukunimi + " sähköposti: " + sahkoposti + " käyttäjätunnus: " + kayttajatunnus + " salasana: " + salasana);
+		System.out.println("Response palautti tiedot: etunimi: " + etunimi + ", sukunimi: " + sukunimi + ", sähköposti: " + sahkoposti + ", käyttäjätunnus: " + kayttajatunnus + ", salasana: " + salasana);
 		
 		if(etunimi.isEmpty()||sukunimi.isEmpty()||sahkoposti.isEmpty()||kayttajatunnus.isEmpty()||salasana.isEmpty())
 		{
@@ -51,9 +50,6 @@ public class RekisterointiKontrolleri extends HttpServlet {
 			kDao.lisaaKayttaja(k);
 			kDao.suljeYhteys();
 			response.sendRedirect("rekisterointi.jsp?registrationSuccess=true");
-			
-			//vaihtaa asiakasKontrolleri servlettiin joka ohjaa asiakas.jsp:hen.
-			//response.sendRedirect("asiakasKontrolleri"); 
 		}
 	}
 }

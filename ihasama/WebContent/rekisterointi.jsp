@@ -56,9 +56,8 @@
         <!-- Rekisteröitymis lomake -->
         
     <div id="laatikko">
-    <c:if test="${empty param.registrationSuccess}">
+    	<c:if test="${empty param.registrationSuccess}">
 	    <h2>Rekisteröinti</h2>
-	      <div id="rek">
 	         <form method="post" action="RekisterointiKontrolleri">
 	            <table>
 	                <thead>
@@ -106,7 +105,7 @@
 		        			Käyttäjätunnus: 
 		        		</td>
 		        		<td>
-		        			<input type="text" name="uname" value="" />
+		        			<input type="text" name="kayttajatunnus" value="" />
 		        		</td>
 		        	</tr>
 					<tr>
@@ -114,7 +113,7 @@
 		        			Salasana: 
 		        		</td>
 		        		<td>
-						<input type="password" name="pass" value="" />
+						<input type="password" name="salasana" value="" />
 		        		</td>
 		        	</tr>
 		        	<tr>
@@ -129,7 +128,6 @@
 			</form>
         </c:if>
 	</div>
-</div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 </body>
 </html>

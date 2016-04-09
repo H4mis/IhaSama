@@ -72,25 +72,6 @@ DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
 DROP TABLE Tayte;
 
-/* attribuuttien lisï¿½ys luokkiin */
-/*
-Pizza:
-1 Margarita
-2 Tropicana
-3 Porokana
-4 Alkopala
-
-Tayte:
-1 Kinkku
-2 Juusto
-3 Jauheliha
-4 Ananas
-5 Tomaatti
-6 Kebab
-7 Salami
-8 Kana
-*/
-
 /* Pizzojen lisäys*/
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Margareta', 10.00);
@@ -99,7 +80,7 @@ INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Tropicana', 14.99);
 
 INSERT INTO Pizza (pizzanimi,hinta)
-VALUES ('Porakana', 18.00);
+VALUES ('PoroPizza', 18.00);
 
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Alkopala', 19.50);
@@ -130,7 +111,7 @@ INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Kana', 1);
 
 INSERT INTO Tayte (taytenimi, saatavilla)
-VALUES ('Pora', 0);
+VALUES ('Poro', 0);
 
  /* tï¿½ytteiden lisï¿½ys pizzoihin */
  insert into Pizzantaytteet (pizzaid, tayteid) VALUES (?, ?);

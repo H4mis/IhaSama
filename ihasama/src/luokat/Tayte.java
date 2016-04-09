@@ -2,7 +2,6 @@ package luokat;
 
 public class Tayte {
 
-	
 	private int tayteid;
 	private String taytenimi;
 	private boolean saatavilla;
@@ -37,7 +36,4 @@ public class Tayte {
 	public void setSaatavilla(boolean saatavilla) {
 		this.saatavilla = saatavilla;
 	}
-	
-	
-	
 }

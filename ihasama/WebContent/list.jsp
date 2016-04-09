@@ -35,78 +35,88 @@
 	
 	<br>
 	<div id="container">
-		<div class=laatikko>
-			
+		<div class=laatikko><!-- pizzalista -->
 				<table style="width: 100%;">
 					<tr>
 						<td><p>Pizzat</p></td>
 						<td><p>Hinta</p></td>
+						<td><p>Piilotus</p></td>
+						<td><p>Piilossa</p></td>
 						<td><p>Poisto</p></td>
 					</tr>
+					<!-- pizzalistan tulostus -->
 					<c:forEach items="${pizzalista}" var="pizza">
                     <tr>
-                        <td><c:out value="${pizza.pizzanimi}" /><br>
+                        <td>
+                        	<c:if test="${pizza.piilossa}">
+                                <div style="text-decoration: line-through;"><c:out value="${pizza.pizzanimi}" /></div>
+                            </c:if>
+                            <c:if test="${!pizza.piilossa}">
+                                <c:out value="${pizza.pizzanimi}" />
+                            </c:if>
                             <div class="taytenimi">
                                 <c:out value="${pizza.taytteet}" />
-                            </div></td>
-                        <td><fmt:setLocale value="fi" /> <fmt:formatNumber
+                            </div>
+                        </td>
+                        <td>
+                        	<fmt:setLocale value="fi" />
+                        	<fmt:formatNumber
                                 value="${pizza.hinta}" type="number" minFractionDigits="2"
-                                maxFractionDigits="2" /> €</td>
-                        <td><form action="Kontrolleri" method="post">
-                                <input type="hidden" value="${pizza.pizzaid}" name="poistopizza" />
-                                <input type="submit" value="Poista" />
-                            </form></td>
+                                maxFractionDigits="2"
+                            	/>€
+                        </td>
                         <td>
                             <form action="Kontrolleri" method="post">
                                 <input type="hidden" name="pid" value="${pizza.pizzaid}" /> 
-                                <input type="radio" name="piilossa" value="1" /> Kyllä 
-                                <input type="radio" name="piilossa" value="0" /> Ei 
+                                <input type="radio" name="piilossa" value="1" />K 
+                                <input type="radio" name="piilossa" value="0" />E 
                                 <input type="submit" value="Muuta" />
                             </form>
                         </td>
-                        <td><c:if test="${pizza.piilossa}">
+                        <td>
+                        	<c:if test="${pizza.piilossa}">
                                 <c:out value="Kyllä" />
-                            </c:if> <c:if test="${!pizza.piilossa}">
+                            </c:if>
+                            <c:if test="${!pizza.piilossa}">
                                 <c:out value="Ei" />
-                            </c:if></td>
+                            </c:if>
+                       </td>
+                       <td>
+                        	<form action="Kontrolleri" method="post">
+                                <input type="hidden" value="${pizza.pizzaid}" name="poistopizza" />
+                                <input type="submit" value="Poista" />
+                            </form>
+                        </td>
                     </tr>
-                </c:forEach>
-					
-					<tr>
-						<td></td>
-						<td></td>
-						<td>
-							
-						</td>
-					</tr>
+                	</c:forEach>
 				</table>
 			
 			<c:if test="${not empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>	
 		</div>
 		<br>
 		
-		<div class=laatikko>
+		<div class=laatikko><!-- täytelista -->
 			
 				<table style="width: 100%;">
 					<tr>
 						<td><p>Täytelista</p></td>
+						<td><p>Saatavuus</p></td>
 						<td><p>Saatavilla</p></td>
-						<td><p>Poista</p></td>
+						<td><p>Poisto</p></td>
 					</tr>
+						<!-- täytelistan tulostus -->
 						<c:forEach items="${taytelista}" var="tayte">
 					<tr>
 						<td>
-							<div class="taytenimi">
-								<c:out value="${tayte.taytenimi}"/>
-							</div>
+							<c:out value="${tayte.taytenimi}"/>
 						</td>
 						<td>
-						<form action="Kontrolleri" method="post">
-						<input type="hidden" name="tid" value="${tayte.tayteid}" />
-						<input type="radio" name="saatavilla" value="1" /> Kyllä
-						<input type="radio" name="saatavilla" value="0" /> Ei
-						<input type="submit" value="Muuta">
-						</form>
+							<form action="Kontrolleri" method="post">
+								<input type="hidden" name="tid" value="${tayte.tayteid}" />
+								<input type="radio" name="saatavilla" value="1" /> Kyllä
+								<input type="radio" name="saatavilla" value="0" /> Ei
+								<input type="submit" value="Muuta">
+							</form>
 						</td>
 						
 						<td>
@@ -115,21 +125,14 @@
 							<c:if test="${!tayte.saatavilla}"><c:out value="ei"/></c:if>
 						</td>
 						<td>
-										<form action="Kontrolleri" method="post">
-							<input type="hidden" value="${tayte.tayteid}" name="poistotayte" />
-							<input type="submit" value="Poista">
+							<form action="Kontrolleri" method="post">
+								<input type="hidden" value="${tayte.tayteid}" name="poistotayte" />
+								<input type="submit" value="Poista">
 							</form>
 		    			</td>
 		    		</tr>
 		    									
 					</c:forEach>
-
-						<td></td>
-						<td></td>
-						<td>
-							
-						</td>
-					</tr>
 				</table>
 			</form>
 			<c:if test="${not empty param.removedTayte}"><h3>Täytteen poisto onnistui!</h3></c:if>
@@ -137,6 +140,7 @@
 		<br>
 		<div class=laatikko>
 			<p style="text-align: center;">Lisää uusi pizza</p>
+				<!-- pizza lisäys formi -->
 				<form action="Kontrolleri" method="post" style="text-align: center;" accept-charset="UTF-8">
 					<table style="width: 100%;">
 					<tr>
@@ -185,8 +189,9 @@
 			</div>
 		</div>
 		<br>
-		<div class=laatikko><!-- Täytteen lisäys lomake -->
+		<div class=laatikko>
 			<p style="text-align: center;">Lisää uusi täyte</p>
+			<!-- Täytteen lisäys lomake -->
 			<form action="Kontrolleri" method="post" accept-charset="UTF-8">
 				<table style="width: 100%;">
 					<tr>

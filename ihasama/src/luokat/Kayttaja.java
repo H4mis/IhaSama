@@ -11,8 +11,6 @@ public class Kayttaja {
 	private String salasana;
 	private boolean admin;
 	
-	
-	
 	public Kayttaja(String etunimi, String sukunimi, String sahkoposti, String kayttajatunnus, String salasana) {
 		super();
 		this.etunimi = etunimi;
@@ -76,8 +74,6 @@ public class Kayttaja {
 				+ postinro + ", sahkoposti=" + sahkoposti + ", kayttajatunnus=" + kayttajatunnus + ", salasana="
 				+ salasana + ", admin=" + admin + "]";
 	}
-
-	
 }
 	
 	

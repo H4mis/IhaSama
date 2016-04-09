@@ -10,18 +10,17 @@ body{
 
 
 .laatikko {
-	background-color: lightgrey;
-	opacity:0.9;
+	background-color: rgba(150,150,150,0.8);
 	margin: auto;
-	min-width: 550px;
-	width: 40%;
-	border-radius:25px;
-	border-style:ridge;
-	box-shadow: 0 0 200px #000000;
+	width: 80%;
+	max-width: 700px;
+	border-radius:5px;
+	padding: 5px;
 }
 
 .taytenimi {
-	color: rgba(150,150,150,1);
+	color: rgba(50,50,50,1);
+	font-size: 18px;
 }
 
 table {
