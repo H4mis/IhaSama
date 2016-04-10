@@ -33,8 +33,9 @@ CREATE TABLE Kayttaja
 (
 etunimi VARCHAR (45) NOT NULL,
 sukunimi VARCHAR (45) NOT NULL,
-osoite VARCHAR (45) ,
-postinro CHAR (5) ,
+osoite VARCHAR (45),
+postinro CHAR (5),
+postitmp VARCHAR(45),
 sahkoposti VARCHAR (45) NOT NULL,
 kayttajatunnus VARCHAR (45) NOT NULL,
 salasana VARCHAR (45) NOT NULL,
@@ -42,10 +43,46 @@ admin BOOLEAN NOT NULL,
 PRIMARY KEY(kayttajatunnus)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* käyttäjän päivitys, osoitteiden lisäys */
-UPDATE Kayttaja
-SET osoite=?,postinro=?
-WHERE kayttajatunnus=?;
+/* Pöytä */
+CREATE TABLE Poyta
+(
+poytanro INT NOT NULL,
+paikkalkm INT NOT NULL,
+PRIMARY KEY(poytanro)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* Pöydän varaus */
+CREATE TABLE Poytavaraus
+(
+varausnro INT NOT NULL,
+poytanro INT NOT NULL,
+ajankohta DATE NOT NULL,
+erityistoiveet VARCHAR(60) NOT NULL,
+PRIMARY KEY(varausnro),
+FOREIGN KEY (poytanro) REFERENCES Poyta(poytanro)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* Tilaus */
+CREATE TABLE Tilaus
+(
+tilausnro INT NOT NULL,
+tilaajatunnus VARCHAR(45) NOT NULL,
+tilausaika DATE NOT NULL,
+varausnro INT NOT NULL,
+PRIMARY KEY(tilausnro),
+FOREIGN KEY (varausnro) REFERENCES Poytavaraus(varausnro),
+FOREIGN KEY (tilaajatunnus) REFERENCES Kayttaja(kayttajatunnus)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* pizzan tilaus */
+CREATE TABLE Pizzatilaus
+(
+tilausnro INT NOT NULL,
+pizzaid INT UNSIGNED NOT NULL,
+PRIMARY KEY(tilausnro),
+FOREIGN KEY (tilausnro) REFERENCES Tilaus(tilausnro),
+FOREIGN KEY (pizzaid) REFERENCES Pizza(pizzaid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* taulun muuttaminen */
 ALTER TABLE table_name
@@ -53,6 +90,9 @@ MODIFY COLUMN column_name datatype;
 
 ALTER TABLE Pizza
 ADD COLUMN piilossa BOOLEAN NOT NULL;
+
+ALTER TABLE Kayttaja
+ADD COLUMN postitmp VARCHAR(45);
 
 /* näytä taulut  */
 SHOW TABLES;
@@ -67,10 +107,44 @@ INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, a
 INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin)
 	VALUES ('AdminNimi', 'AdminSuku', 'adminposti@posti.com', 'admin', 'admin1234567890', 1);
 
+INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin)
+	VALUES ('Matti', 'Mallikas', 'matinposti@sahkoposti.fi', 'matti', 'mallikassalasana', 0);
+	
+/* käyttäjän päivitys, osoitteiden lisäys */
+UPDATE Kayttaja
+SET osoite=?,postinro=?
+WHERE kayttajatunnus=?;
+
+UPDATE Kayttaja
+SET osoite='matintie 5',postinro='00560', postitmp='Helsinki'
+WHERE kayttajatunnus='matti';
+	
 /* taulujen poistot */
 DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
 DROP TABLE Tayte;
+
+/* pöytien lisäys */
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (1,2);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (2,2);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (3,2);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (4,4);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (5,4);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (6,6);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (7,6);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (8,10);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (9,10);
+INSERT INTO Poyta (poytanro, paikkalkm)
+VALUES (10,20);
 
 /* Pizzojen lisäys*/
 INSERT INTO Pizza (pizzanimi,hinta)

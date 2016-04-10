@@ -43,33 +43,32 @@
 		<div class="login">
 	    <input type="submit" value="Kirjaudu" />
 	    </div>
-	    
+	
 	</form>
 </li>
 </ul>
 
 <h1>Castello é Fiore</h1>
- 
-  <div id="laatikko">
- 
-<table>
-					<tr>
-						<td><p>Pizzat</p></td>
-						<td><p>Hinta</p></td>
-						
-					</tr>
-				<c:forEach items="${pizzalista}" var="pizza">
-					<tr>
-						<td><c:out value="${pizza.pizzanimi}"/><br>
-							<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
-						</td>
-						<td><fmt:setLocale value="fi"/>
-							<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" /> €</td>
-						
-					</tr>
-				</c:forEach>
-			</table>
-</div>
+  	<div id="laatikko">
+		<table>
+			<tr>
+				<td><p>Pizzat</p></td>
+				<td><p>Hinta</p></td>
+			</tr>
+			<c:forEach items="${menulista}" var="pizza">
+			<tr>
+				<td>
+					<c:out value="${pizza.pizzanimi}"/>
+					<br>
+					<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
+				</td>
+				<td><fmt:setLocale value="fi"/>
+					<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 </body>
 </html>

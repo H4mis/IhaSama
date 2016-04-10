@@ -84,26 +84,26 @@ public class KayttajaDAO {
 		
 	}
 	
-	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, int postinro){
+	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, int postinro, String postitmp){
 		
 		try {
 			// alustetaan sql-lause
-			String sql = "UPDATE Kayttaja SET osoite=?,postinro=? WHERE kayttajatunnus=?";
+			String sql = "UPDATE Kayttaja SET osoite=?,postinro=?,postitmp=? WHERE kayttajatunnus=?";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
 			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, osoite);
 			lause.setInt(2, postinro);
-			lause.setString(3, k.getKayttajatunnus());
+			lause.setString(3, postitmp);
+			lause.setString(4, k.getKayttajatunnus());
 
 			// suoritetaan lause
 			int vaikutetutRowit = lause.executeUpdate();
 			if (vaikutetutRowit == 0){
 				throw new SQLException("Käyttäjän osoitteiden lisäys ei onnistunut! rowit on tyhjiä!");
 			}
-			
 			System.out.println("tietokantaan lisättiin käyttäjän " + k.getKayttajatunnus());
-			System.out.println("osoitetiedot: " + k.getOsoite() + " " + k.getPostinro());
+			System.out.println("osoitetiedot: " + k.getOsoite() + " " + k.getPostinro() + " " + k.getPostitmp());
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out.println("Osoitetietojen lisäys käyttäjälle aiheutti virheen!");

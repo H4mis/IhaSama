@@ -138,13 +138,20 @@ public class PizzaDAO {
         while (tulokset.next()) {
             int id = tulokset.getInt("pizzaid");
             
-            // Poistetaan pizza menulistalta            
+            // k‰yd‰‰n l‰pi listalta pizzat          
             for (int i = 0; i < pizzalista.size(); i++) {
                 if(pizzalista.get(i).getPizzaid() == id){
-                    pizzalista.remove(i);
+                    pizzalista.remove(i); //poistetaan menulistasta pizzat joissa on t‰yte joka ei ole saatavilla.
                 }
             }   
         }
+        //toinen luuppi testataan, jos pizza on piilotus listalla, poistetaan se menu-listalta.
+        for(int i = 0; i <pizzalista.size(); i++) {
+        	if(pizzalista.get(i).isPiilossa() == true) {
+        		pizzalista.remove(i);
+        	}
+        }
+        
         System.out.println("Luotu asiakkaille menu!");
         return pizzalista;
     }

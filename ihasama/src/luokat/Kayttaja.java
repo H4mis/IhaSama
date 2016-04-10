@@ -6,6 +6,7 @@ public class Kayttaja {
 	private String sukunimi;
 	private String osoite;
 	private int postinro;
+	private String postitmp;
 	private String sahkoposti;
 	private String kayttajatunnus;
 	private String salasana;
@@ -68,12 +69,21 @@ public class Kayttaja {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+	
+	public String getPostitmp() {
+		return postitmp;
+	}
+	public void setPostitmp(String postitmp) {
+		this.postitmp = postitmp;
+	}
+	
 	@Override
 	public String toString() {
 		return "Kayttaja [etunimi=" + etunimi + ", sukunimi=" + sukunimi + ", osoite=" + osoite + ", postinro="
-				+ postinro + ", sahkoposti=" + sahkoposti + ", kayttajatunnus=" + kayttajatunnus + ", salasana="
-				+ salasana + ", admin=" + admin + "]";
+				+ postinro + ", postitmp=" + postitmp + ", sahkoposti=" + sahkoposti + ", kayttajatunnus="
+				+ kayttajatunnus + ", salasana=" + salasana + ", admin=" + admin + "]";
 	}
+	
 }
 	
 	

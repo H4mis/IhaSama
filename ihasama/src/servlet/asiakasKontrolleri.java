@@ -71,48 +71,7 @@ public class asiakasKontrolleri extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		//luodaan pizzalista
-				List<Pizza> lista = new ArrayList<Pizza>();		
-				String taytteet = "hahaa";
-				//haetaan parametrit k‰ytt‰j‰lt‰(submitista) ja lis‰t‰‰n nelopuksi pizza-olioon
-				String nimi = request.getParameter("nimi");
-				String tnimi = request.getParameter("taytenimi");
-				
-				if(nimi != null && !nimi.isEmpty()){
-					double hinta = Double.parseDouble(request.getParameter("hinta"));
-					int id = lista.size() +1;
-					String[] taytteidenIdt = request.getParameterValues("taytteet");
-					boolean piilossa = false;
-					
-					Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
-					
-					//lis‰t‰‰n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
-					PizzaDAO pDao = new PizzaDAO();
-					pDao.avaaYhteys();
-					pDao.lisaaPizza(a);
-					pDao.lisaaPizzantaytteet(a, taytteidenIdt);
-					pDao.suljeYhteys();
-					
-					response.setContentType("text/html");
-				    //java.io.PrintWriter wout = response.getWriter();
-				    System.out.println("T‰ytteet:" +a.getTaytteet());  
-				    System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
-				    System.out.println("<br>");
-				    System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
-					  
-				    //ohjataan takaisin alkuun
-				  	response.sendRedirect("asiakasKontrolleri?added=true");
-				}
-				if(tnimi != null && !tnimi.isEmpty()){
-					Tayte t = new Tayte(1, tnimi, true);
-					PizzaDAO pDao = new PizzaDAO();
-					pDao.avaaYhteys();
-					pDao.lisaaTayte(t);			
-					pDao.suljeYhteys();
-					response.sendRedirect("asiakasKontrolleri?added=true");
-				}	
+		// TODO: hae asiakkaalta tilatut pizzat.
 	}
 }
 
