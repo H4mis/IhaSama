@@ -3,9 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 
 import luokat.Kayttaja;
 
@@ -52,6 +52,25 @@ public class KayttajaDAO {
 		}
 	}
 
+	public boolean onkoKayttajatunnusOlemassa(Kayttaja k) throws SQLException {
+		
+		String sql = "SELECT * FROM Kayttaja"; //haetaan kaikki käyttätunnukset
+		Statement haku = yhteys.createStatement();
+		ResultSet tulokset = haku.executeQuery(sql);
+				
+		while (tulokset.next()) {
+			String kayttajatunnus = tulokset.getString("kayttajatunnus");
+			
+			//HUOM: EI OTA HUOMIOON ONKO KIRJOITETTU ISOILLA VAI PIENILLÄ KIRJAIMILLA!
+			if(k.getKayttajatunnus().equalsIgnoreCase(kayttajatunnus)) {
+				  System.out.println("Löydettiin samalla nimellä oleva käyttäjätunnus: " + kayttajatunnus);
+				  return true; //käyttäjä löytyi
+			}
+		}
+			    
+		return false; //käyttäjää ei löytynyt
+	}
+	
 	
 	public void lisaaKayttaja(Kayttaja k) {
 
@@ -60,7 +79,7 @@ public class KayttajaDAO {
 			String sql = "INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin) VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
+			// täydennetään puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, k.getEtunimi());
 			lause.setString(2, k.getSukunimi());
 			lause.setString(3, k.getSahkoposti());
@@ -110,8 +129,6 @@ public class KayttajaDAO {
 		}
 		
 	}
-		
-	
 
 	public void poistaKayttaja(String[] poistok) {
 		

@@ -21,6 +21,7 @@ public class Kayttaja {
 		this.salasana = salasana;
 		this.admin = false;
 	}
+	
 	public String getEtunimi() {
 		return etunimi;
 	}

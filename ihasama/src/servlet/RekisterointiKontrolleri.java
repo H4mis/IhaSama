@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class RekisterointiKontrolleri extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// haetaan responsesta tiedot asiakkaan rekisteröinnistä
@@ -33,6 +34,9 @@ public class RekisterointiKontrolleri extends HttpServlet {
 		String salasana = request.getParameter("salasana");
 		
 		System.out.println("Response palautti tiedot: etunimi: " + etunimi + ", sukunimi: " + sukunimi + ", sähköposti: " + sahkoposti + ", käyttäjätunnus: " + kayttajatunnus + ", salasana: " + salasana);
+		
+		
+		//TODO: chekkaa myös että käyttäjätunnus ei ole olemassa jo!
 		
 		if(etunimi.isEmpty()||sukunimi.isEmpty()||sahkoposti.isEmpty()||kayttajatunnus.isEmpty()||salasana.isEmpty())
 		{
@@ -46,10 +50,24 @@ public class RekisterointiKontrolleri extends HttpServlet {
 			Kayttaja k = new Kayttaja(etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana);
 
 			KayttajaDAO kDao = new KayttajaDAO();
-			kDao.avaaYhteys();
-			kDao.lisaaKayttaja(k);
-			kDao.suljeYhteys();
-			response.sendRedirect("rekisterointi.jsp?registrationSuccess=true");
+			
+			
+			try {
+				kDao.avaaYhteys();
+				if(kDao.onkoKayttajatunnusOlemassa(k) == false) { //tarkistetaan onko käyttäjä jo olemassa
+					kDao.lisaaKayttaja(k); //Lisätään käyttäjä tietokantaan
+					kDao.suljeYhteys();
+					response.sendRedirect("rekisterointi.jsp?registrationSuccess=true");
+				}
+				else { //käyttäjä on jo olemassa!
+					kDao.suljeYhteys();
+					response.sendRedirect("rekisterointi.jsp?userExists=true");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("joku errori SQL:ssä");
+				e.printStackTrace();
+			}
 		}
 	}
 }

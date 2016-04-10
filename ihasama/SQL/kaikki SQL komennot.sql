@@ -66,9 +66,9 @@ FOREIGN KEY (poytanro) REFERENCES Poyta(poytanro)
 CREATE TABLE Tilaus
 (
 tilausnro INT NOT NULL,
-tilaajatunnus VARCHAR(45) NOT NULL,
+tilaajatunnus VARCHAR(45),
 tilausaika DATE NOT NULL,
-varausnro INT NOT NULL,
+varausnro INT,
 PRIMARY KEY(tilausnro),
 FOREIGN KEY (varausnro) REFERENCES Poytavaraus(varausnro),
 FOREIGN KEY (tilaajatunnus) REFERENCES Kayttaja(kayttajatunnus)
@@ -120,9 +120,24 @@ SET osoite='matintie 5',postinro='00560', postitmp='Helsinki'
 WHERE kayttajatunnus='matti';
 	
 /* taulujen poistot */
+
+DROP TABLE Pizzatilaus;
+DROP TABLE Tilaus;
+DROP TABLE Poytavaraus;
+DROP TABLE Poyta;
+
+DROP TABLE Kayttaja;
+
 DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
 DROP TABLE Tayte;
+
+
+
+
+
+
+
 
 /* pöytien lisäys */
 INSERT INTO Poyta (poytanro, paikkalkm)

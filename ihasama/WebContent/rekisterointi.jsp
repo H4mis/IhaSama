@@ -62,39 +62,49 @@
 	            <table>
 	                <thead>
 	                    <tr>
-	                        <th colspan="2">Täytä tietosi tähän</th>
+	                        <th colspan="2">Täytä tietosi tähän, * on pakollinen kohta</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
 	                    <tr>
 	                        <td>Etunimi</td>
-	                        <td><input type="text" name="etunimi" value="" /></td>
+	                        <td><input type="text" name="etunimi" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Sukunimi</td>
-	                        <td><input type="text" name="sukunimi" value="" /></td>
+	                        <td><input type="text" name="sukunimi" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Sähköposti</td>
-	                        <td><input type="text" name="sahkoposti" value="" /></td>
+	                        <td><input type="text" name="sahkoposti" value="" />*</td>
+	                    </tr>
+	                    <tr>
+	                        <td><br></td>
+	                        <td></td>
 	                    </tr>
 	                    <tr>
 	                        <td>Käyttäjätunnus</td>
-	                        <td><input type="text" name="kayttajatunnus" value="" /></td>
+	                        <td><input type="text" name="kayttajatunnus" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Salasana</td>
-	                        <td><input type="password" name="salasana" value="" /></td>
+	                        <td><input type="password" name="salasana" value="" />*</td>
 	                    </tr>
 	                    <tr>
-	                        <td><input type="submit" value="Vahvista" /></td>
-	                        <td><input type="reset" value="Tyhjennä" /></td>
+	                        <td><br></td>
+	                        <td></td>
+	                    </tr>
+	                    <tr>
+	                    	<td></td>
+	                    	<td><input type="submit" value="Vahvista" /></td>
+	                    	<td><input type="reset" value="Tyhjennä" /></td>                     
 	                    </tr>
 	                </tbody>
 	            </table>
 	        </form>
         </c:if>
         <c:if test="${not empty param.registrationNoSuccess}"><h3 style="color: red;">Täytä kaikki kentät!</h3><br></c:if>
+     	<c:if test="${not empty param.userExists}"><h3 style="color: red;">Käyttäjätunnus on jo olemassa, kokeile jotain muuta!</h3><br></c:if>
      
         <c:if test="${not empty param.registrationSuccess}"><h3 style="color: green; text-align: center;">Rekisteröinti onnistui! </h3><br>
 	        

@@ -172,7 +172,7 @@ public class Kontrolleri extends HttpServlet {
 			pDao.avaaYhteys();
 			pDao.muutaSaatavuus(tayteIdt, saatavilla);
 			pDao.suljeYhteys();
-			response.sendRedirect("Kontrolleri?addedTayte=true");
+			response.sendRedirect("Kontrolleri?changedSaatavuus=true");
 		}
 		
 		if(piilo !=null && !piilo.isEmpty()){
