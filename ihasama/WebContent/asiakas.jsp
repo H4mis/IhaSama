@@ -11,42 +11,51 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="jquery-1.12.0.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="tyylit/Index.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Menu</title>
 
 </head>
 <body>
-
-<ul>
-<li><a  href="index.jsp">Etusivu</a></li>
-<li><a class="active" href="asiakas.jsp">Menu</a></li>
-<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
-<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-<li>
-	<form method="post" action="login.jsp">
-		<div class="login">
-		Käyttäjätunnus
-		<input type="text" name="kayttajatunnus" value="" />
-		</div>
-	</li>
-	
-	<li>
-		<div class="login">
-		Salasana
-		<input type="password" name="salasana" value="" />
-		
-		</div>
-	</li>
-	
-	<li>
-		<div class="login">
-	    <input type="submit" value="Kirjaudu" />
-	    </div>
-	
-	</form>
-</li>
-</ul>
+<nav class="navbar navbar-inverse">
+ 
+    <div>
+      <ul class="nav navbar-nav">
+      
+     	<li><a  href="index.jsp">Etusivu</a></li>
+		<li><a class="active" href="asiakasKontrolleri">Menu</a></li>
+		<li><a  href="rekisterointi.jsp">Rekisteröinti</a></li>
+		<li><a  href="yhteystiedot.jsp">Yhteystiedot</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+          <div class="dropdown-menu">
+            <form id="formLogin" class="form container-fluid">
+              <div class="form-group">
+                <label for="usr">Sähköposti:</label>
+                <input type="text" class="form-control" id="usr">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Salasana:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <button type="button" id="btnLogin" class="btn btn-block">Login</button>
+            </form>
+            	
+          </div>
+        </li>
+      </ul>
+    </div>
+ 
+</nav>
 
 <h1>Castello é Fiore</h1>
   	<div id="laatikko">

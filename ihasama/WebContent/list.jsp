@@ -12,6 +12,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="jquery-1.12.0.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Pizzalistaussivu</title>
