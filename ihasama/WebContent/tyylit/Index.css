@@ -6,26 +6,34 @@ body{
 	background-position:center; 
 	background-attachment: fixed;
 	background-color:#333;
+	
 }
 
 h1{
-	
+  
+	text-shadow: 2px 2px 4px #000000;
 	font-size: 50px;
 	font-family: 'Dancing Script', cursive;
     color: orange;
     text-align: center;
-	
+    
 }
 #laatikko{
-	background-color: lightgrey;
+	background-color: rgba(150,150,150,0.8);
+	
+	
+	
+	
 	opacity:0.9;
 	margin: auto;
 	min-width: 300px;
 	width: 40%;
-	border-radius:25px;
-	border-style:ridge;
-	box-shadow: 0 0 200px #000000;
+	border-radius:5px;
+
+	box-shadow: 0 0 200px #00000;
 	padding: 10px;
+	
+	
 }
 h2{
 	text-align:center;
@@ -33,6 +41,7 @@ h2{
 pre{
 	text-aling:center;
 }
+/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -57,14 +66,19 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
+
+/*
 li a:hover {
     background-color: #111;
-}
+}*/
+
 .active {
-    background-color: #a6a6a6;
+	
+    background-color: #812325;
+    
 }
 .taytenimi{
-	color:#808080;
+	color:rgba(50,50,50,1);
 }
 #footer {
    position:absolute;
@@ -82,7 +96,7 @@ li a:hover {
      color:black;
  }
  
-.login{
+/*.login{
 	
 	display: block;
     color: white;
