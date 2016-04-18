@@ -65,6 +65,9 @@
 				<td><fmt:setLocale value="fi"/>
 					<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 				</td>
+				<td>
+					
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

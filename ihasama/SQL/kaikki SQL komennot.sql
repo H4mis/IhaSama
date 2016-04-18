@@ -69,6 +69,8 @@ tilausnro INT NOT NULL,
 tilaajatunnus VARCHAR(45),
 tilausaika DATE NOT NULL,
 varausnro INT,
+valmiina BOOLEAN NOT NULL,
+toimitettu BOOLEAN NOT NULL,
 PRIMARY KEY(tilausnro),
 FOREIGN KEY (varausnro) REFERENCES Poytavaraus(varausnro),
 FOREIGN KEY (tilaajatunnus) REFERENCES Kayttaja(kayttajatunnus)
@@ -79,10 +81,17 @@ CREATE TABLE Pizzatilaus
 (
 tilausnro INT NOT NULL,
 pizzaid INT UNSIGNED NOT NULL,
+laktoositon BOOLEAN NOT NULL,
+gluteeniton BOOLEAN NOT NULL,
+oregano BOOLEAN NOT NULL,
 PRIMARY KEY(tilausnro),
 FOREIGN KEY (tilausnro) REFERENCES Tilaus(tilausnro),
 FOREIGN KEY (pizzaid) REFERENCES Pizza(pizzaid)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO Kayttaja (etunimi, sukunimi, sahkoposti, kayttajatunnus, salasana, admin)
+	VALUES ('Matti', 'Mallikas', 'matinposti@sahkoposti.fi', 'matti', 'mallikassalasana', 0);
+
 
 /* taulun muuttaminen */
 ALTER TABLE table_name
