@@ -57,6 +57,30 @@ public class PizzaDAO {
 		}
 	}
 
+	public Pizza haePizza(String pizzaid) throws SQLException {
+		//haetaan yksi tilaus tietokannasta ja palautetaan se valmiina Pizzaoliona
+		String sql = "SELECT * FROM Tilaus WHERE tilausnro= ?";
+		PreparedStatement lause = yhteys.prepareStatement(sql);
+		int pizzaidInt = Integer.parseInt(pizzaid);
+		lause.setInt(1, pizzaidInt); //täytetään lausekkeen ? kohta
+		ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro löytyvä Tilaus
+		
+		if(tulokset.equals(null)) { //jos tilausta ei löydy tietokannasta palauta null
+			return null;
+		}
+		
+		//haetaan pizzan tiedot
+		int id = tulokset.getInt("pizzaid");
+		String nimi = tulokset.getString("pizzanimi");
+		double hinta = tulokset.getDouble("hinta");
+		String taytteet = tulokset.getString("taytenimet");
+		// lisï¿½tï¿½ï¿½n pizza listaan
+		boolean piilossa = tulokset.getBoolean("piilossa");
+		Pizza pizza = new Pizza(id, nimi, hinta, taytteet, piilossa); //luodaan pizza olio
+		return pizza; //palautetaan pizza
+
+	}
+	
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
 		String sql = "SELECT p.pizzaid, p.pizzanimi, p.hinta, p.piilossa, GROUP_CONCAT(t.tayteid) as tayteidt, GROUP_CONCAT(t.taytenimi) as taytenimet FROM Pizza p LEFT JOIN Pizzantaytteet pt ON p.pizzaid = pt.pizzaid LEFT JOIN Tayte t ON t.tayteid = pt.tayteid GROUP BY p.pizzanimi order by pizzanimi, null";
 		Statement haku = yhteys.createStatement();
