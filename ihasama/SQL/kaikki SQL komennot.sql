@@ -54,7 +54,7 @@ PRIMARY KEY(poytanro)
 /* Pöydän varaus */
 CREATE TABLE Poytavaraus
 (
-varausnro INT NOT NULL,
+varausnro INT NOT NULL AUTO_INCREMENT,
 poytanro INT NOT NULL,
 ajankohta DATE NOT NULL,
 erityistoiveet VARCHAR(60) NOT NULL,
@@ -65,12 +65,13 @@ FOREIGN KEY (poytanro) REFERENCES Poyta(poytanro)
 /* Tilaus */
 CREATE TABLE Tilaus
 (
-tilausnro INT NOT NULL,
+tilausnro INT NOT NULL AUTO_INCREMENT,
 tilaajatunnus VARCHAR(45),
 tilausaika DATE NOT NULL,
 varausnro INT,
 valmiina BOOLEAN NOT NULL,
 toimitettu BOOLEAN NOT NULL,
+toimitustapa VARCHAR(45) NOT NULL,
 PRIMARY KEY(tilausnro),
 FOREIGN KEY (varausnro) REFERENCES Poytavaraus(varausnro),
 FOREIGN KEY (tilaajatunnus) REFERENCES Kayttaja(kayttajatunnus)

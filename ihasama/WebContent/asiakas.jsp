@@ -54,23 +54,33 @@
 			<tr>
 				<td><p>Pizzat</p></td>
 				<td><p>Hinta</p></td>
+				<td><p>Tilaa</p></td>
 			</tr>
 			<c:forEach items="${menulista}" var="pizza">
 			<tr>
 				<td>
+					<form action="asiakasKontrolleri" method="post">
 					<c:out value="${pizza.pizzanimi}"/>
 					<br>
 					<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
+					<input type="checkbox" value="1" name="oregano"/> oregano 
+					<input type="checkbox" value="1" name="laktoositon"/> lakt.
+					<input type="checkbox" value="1" name="gluteeniton"/> glut.
+					<br><br>
 				</td>
-				<td><fmt:setLocale value="fi"/>
+				<td>
+					<fmt:setLocale value="fi"/>
 					<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 				</td>
 				<td>
-					
+                    <input type="hidden" value="${pizza.pizzaid}" name="tilaapizza" />
+                    <input type="submit" value="Tilaa" />
+                    </form>
 				</td>
 			</tr>
 			</c:forEach>
 		</table>
+		<c:if test="${not empty param.orderedPizza}"><h3 style="color: green;">Pizza lisätty ostoskoriin!</h3></c:if>
 	</div>
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 </body>
