@@ -81,7 +81,7 @@ public class asiakasKontrolleri extends HttpServlet {
 		String tilattupizza = request.getParameter("tilaapizza");
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
-		if(tilaus.getTilausaika().equals(null)) { //jos tilausaikaa ei olla vielä määritelty
+		if(tilaus.getTilausaika() == null) { //jos tilausaikaa ei olla vielä määritelty
 			Date tilausaika = new Date(); //luodaan aika
 			tilaus.setTilausaika(tilausaika); //asetetaan tilauksen tilausaika
 		}
@@ -94,15 +94,15 @@ public class asiakasKontrolleri extends HttpServlet {
 				if(pDao.haePizza(tilattupizza) != null) // jos pizza löytyy tietokannasta
 				{
 					boolean oregano = false; //asetetaan oregano aluksi falseksi.
-					if(request.getParameter("oregano").contentEquals("1")) { //jos oregano checkbox on ruksattu
+					if(request.getParameter("oregano") == "1") { //jos oregano checkbox on ruksattu
 						oregano = true; //oregano on true
 					}
 					boolean laktoositon = false;
-					if(request.getParameter("laktoositon").contentEquals("1")) {
+					if(request.getParameter("laktoositon") == "1") {
 						laktoositon = true;
 					}
 					boolean gluteeniton = false;
-					if(request.getParameter("gluteeniton").contentEquals("1")) {
+					if(request.getParameter("gluteeniton") == "1") {
 						gluteeniton = true;
 					}
 					Pizza tilPizza = pDao.haePizza(request.getParameter("pizzaid"));

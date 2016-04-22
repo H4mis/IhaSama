@@ -14,7 +14,7 @@ public class Tilaus {
 	private boolean toimitettu;
 	private String toimitustapa; //tekstin‰: nouto, kuljetus, paikanp‰‰ll‰
 	
-	List<Pizza> tilatutPizzat;
+	List<TilattuPizza> tilatutPizzat;
 	
 	public Tilaus() {
 		this.tilausnro = -1;
@@ -25,7 +25,7 @@ public class Tilaus {
 		this.toimitettu = false;
 		this.toimitustapa = null;
 		
-		List<Pizza> tilatutPizzat1 = new ArrayList<Pizza>(); //luodaan tyhj‰ lista pizzoille
+		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhj‰ lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
 	}
 	
@@ -38,7 +38,7 @@ public class Tilaus {
 		this.toimitettu = false;
 		this.toimitustapa = toimitustapa;
 		
-		List<Pizza> tilatutPizzat1 = new ArrayList<Pizza>(); //luodaan tyhj‰ lista pizzoille
+		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhj‰ lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
 	}
 	
@@ -108,11 +108,11 @@ public class Tilaus {
 		this.toimitustapa = toimitustapa;
 	}
 
-	public List<Pizza> getTilatutPizzat() {
+	public List<TilattuPizza> getTilatutPizzat() {
 		return tilatutPizzat;
 	}
 
-	public void setTilatutPizzat(List<Pizza> tilatutPizzat) {
+	public void setTilatutPizzat(List<TilattuPizza> tilatutPizzat) {
 		this.tilatutPizzat = tilatutPizzat;
 	}
 	

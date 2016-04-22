@@ -56,10 +56,10 @@ public class TilausDAO {
 	public Tilaus haeTilaus(Tilaus tilaus) throws SQLException {
 		
 				//haetaan yksi tilaus tietokannasta ja palautetaan se valmiina Pizzaoliona
-				String sql = "SELECT * FROM Tilaus WHERE tilausnro= ?";
+				String sql = "SELECT * FROM Tilaus WHERE tilausnro= " + tilaus.getTilausnro();
 				PreparedStatement lause = yhteys.prepareStatement(sql);
-				lause.setInt(1, tilaus.getTilausnro()); //täytetään lausekkeen ? kohta
 				ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro löytyvä Tilaus
+				tulokset.next(); //mene ekalle riville
 				
 				if(tulokset.equals(null)) { //jos tilausta ei löydy tietokannasta palauta null
 					return null;

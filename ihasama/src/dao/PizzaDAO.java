@@ -58,27 +58,20 @@ public class PizzaDAO {
 	}
 
 	public Pizza haePizza(String pizzaid) throws SQLException {
-		//haetaan yksi tilaus tietokannasta ja palautetaan se valmiina Pizzaoliona
-		String sql = "SELECT * FROM Tilaus WHERE tilausnro= ?";
-		PreparedStatement lause = yhteys.prepareStatement(sql);
-		int pizzaidInt = Integer.parseInt(pizzaid);
-		lause.setInt(1, pizzaidInt); //täytetään lausekkeen ? kohta
-		ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro löytyvä Tilaus
 		
-		if(tulokset.equals(null)) { //jos tilausta ei löydy tietokannasta palauta null
-			return null;
+		List<Pizza> pizzalista = haePizzat(); //haetaan kaikki pizzat pizzalistaan
+		
+		for(int i = 0; i < pizzalista.size(); i++){ //käydään läpi haettu pizzalista
+			System.out.println("koidaan parsettaa: " + pizzaid);
+			int parsepizzaid = Integer.parseInt(pizzaid);
+			if(pizzalista.get(i).getPizzaid() == parsepizzaid) { //jos pizzaid:llä löytyi vastaava
+				
+				System.out.println("Pizza pizzaid:llä " + pizzaid + " löytyi pizzalistalta!");
+				return pizzalista.get(i); //palautetaan se pizzana takaisin.
+			}
 		}
-		
-		//haetaan pizzan tiedot
-		int id = tulokset.getInt("pizzaid");
-		String nimi = tulokset.getString("pizzanimi");
-		double hinta = tulokset.getDouble("hinta");
-		String taytteet = tulokset.getString("taytenimet");
-		// lisï¿½tï¿½ï¿½n pizza listaan
-		boolean piilossa = tulokset.getBoolean("piilossa");
-		Pizza pizza = new Pizza(id, nimi, hinta, taytteet, piilossa); //luodaan pizza olio
-		return pizza; //palautetaan pizza
-
+		System.out.println("pizzaa ei löytynyt listalta!");
+		return null; //jos lista käytiin läpi ja siellä ei ollut kyseistä pizzaa palautetaan null!
 	}
 	
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
