@@ -9,10 +9,10 @@ public class Tilaus {
 	private int tilausnro; //id
 	private String tilaajatunnus; //asiakasid
 	private Date tilausaika; 
-	private int varausnro; //pöydän varausnro
+	private int varausnro; //pï¿½ydï¿½n varausnro
 	private boolean valmiina;
 	private boolean toimitettu;
-	private String toimitustapa; //tekstinä: nouto, kuljetus, paikanpäällä
+	private String toimitustapa; //tekstinï¿½: nouto, kuljetus, paikanpï¿½ï¿½llï¿½
 	
 	List<TilattuPizza> tilatutPizzat;
 	
@@ -23,9 +23,9 @@ public class Tilaus {
 		this.varausnro = -1;
 		this.valmiina = false;
 		this.toimitettu = false;
-		this.toimitustapa = null;
+		this.toimitustapa = null;		
 		
-		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhjä lista pizzoille
+		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhjï¿½ lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
 	}
 	
@@ -36,9 +36,9 @@ public class Tilaus {
 		this.varausnro = -1;
 		this.valmiina = false;
 		this.toimitettu = false;
-		this.toimitustapa = toimitustapa;
+		this.toimitustapa = toimitustapa;		
 		
-		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhjä lista pizzoille
+		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhjï¿½ lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
 	}
 	
@@ -50,6 +50,16 @@ public class Tilaus {
 		this.valmiina = valmiina;
 		this.toimitettu = toimitettu;
 		this.toimitustapa = toimitustapa;
+	}
+	
+	public Tilaus(int tilausnro, String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat) {
+		this.tilausnro = tilausnro;
+		this.tilaajatunnus = tilaajatunnus;
+		this.tilausaika = tilausaika;		
+		this.valmiina = valmiina;
+		this.toimitettu = toimitettu;
+		this.toimitustapa = toimitustapa;
+		this.tilatutPizzat = tilatutPizzat;
 	}
 
 	public int getTilausnro() {
@@ -115,7 +125,6 @@ public class Tilaus {
 	public void setTilatutPizzat(List<TilattuPizza> tilatutPizzat) {
 		this.tilatutPizzat = tilatutPizzat;
 	}
-	
-	
+
 	
 }

@@ -2,17 +2,34 @@ package luokat;
 
 public class TilattuPizza {
 	private Pizza pizza;
+	private int tilausnro;
+	private int pizzaid;
 	private boolean oregano;
 	private boolean laktoositon;
 	private boolean gluteeniton;
 
+	public TilattuPizza(Pizza pizza, int tilausnro, boolean oregano, boolean laktoositon, boolean gluteeniton) {
+		this.pizza = pizza;
+		this.oregano = oregano;
+		this.laktoositon = laktoositon;
+		this.gluteeniton = gluteeniton;
+		this.setTilausnro(tilausnro);
+	}
 	public TilattuPizza(Pizza pizza, boolean oregano, boolean laktoositon, boolean gluteeniton) {
 		this.pizza = pizza;
 		this.oregano = oregano;
 		this.laktoositon = laktoositon;
 		this.gluteeniton = gluteeniton;
+		
 	}
 
+	public TilattuPizza(int pizzaid, boolean oregano, boolean laktoositon, boolean gluteeniton) {
+		this.setPizzaid(pizzaid);
+		this.oregano = oregano;
+		this.laktoositon = laktoositon;
+		this.gluteeniton = gluteeniton;
+	}
+	
 	public Pizza getPizza() {
 		return pizza;
 	}
@@ -43,6 +60,22 @@ public class TilattuPizza {
 
 	public void setGluteeniton(boolean gluteeniton) {
 		this.gluteeniton = gluteeniton;
+	}
+
+	public int getPizzaid() {
+		return pizzaid;
+	}
+
+	public void setPizzaid(int pizzaid) {
+		this.pizzaid = pizzaid;
+	}
+
+	public int getTilausnro() {
+		return tilausnro;
+	}
+
+	public void setTilausnro(int tilausnro) {
+		this.tilausnro = tilausnro;
 	}
 	
 	
