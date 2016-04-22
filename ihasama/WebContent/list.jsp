@@ -211,8 +211,22 @@
 				<br>
 			</form>
 		</div>
-		
 	
+			<br>
+			<div class=laatikko>
+			
+			<p style="text-align: center;">Lisää tiedote asiakassivulle</p>
+			<!-- Tiedotteen lisäys lomake -->
+			<form action="index.jsp" method="post" accept-charset="UTF-8">
+			
+    		<textarea name="tiedote" rows="20" cols="70">
+			</textarea>
+				<br>
+				<br>
+    		<input type="submit" value="Lisää tiedote">
+</form>
+			
+		</div>
 	
 	
 

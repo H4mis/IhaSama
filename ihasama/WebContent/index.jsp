@@ -74,7 +74,19 @@
      <br>
      <br>
       ~henkilökunta   </p>
-    
+     <br>
+     <br>
+     <p>
+     <jsp:declaration>
+     	String tiedote = "";
+     </jsp:declaration>
+     
+     <jsp:scriptlet>
+     	tiedote = request.getParameter("tiedote");
+     </jsp:scriptlet>
+     
+     <jsp:expression>tiedote</jsp:expression>
+     </p>
     
  </div>
 
