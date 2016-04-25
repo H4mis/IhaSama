@@ -1,4 +1,14 @@
-/* luokkien luominen */
+/* luokkien muokkaus */
+
+ALTER TABLE Tilaus
+MODIFY COLUMN tilausaika CHAR(10) NOT NULL;
+
+ALTER TABLE Tilaus
+MODIFY COLUMN tilausklo CHAR(5) NOT NULL;
+
+ALTER TABLE Tilaus
+ADD tilausklo VARCHAR(5) NOT NULL;
+
 /* Pizza */
 CREATE TABLE Pizza
 (

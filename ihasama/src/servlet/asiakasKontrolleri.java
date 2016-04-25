@@ -81,30 +81,38 @@ public class asiakasKontrolleri extends HttpServlet {
 		String tilattupizza = request.getParameter("tilaapizza");
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
-		if(tilaus.getTilausaika() == null) { //jos tilausaikaa ei olla vielä määritelty
-			Date tilausaika = new Date(); //luodaan aika
-			tilaus.setTilausaika(tilausaika); //asetetaan tilauksen tilausaika
-		}
 		
 		
 		if(tilattupizza.length() > 0) //jos tilauskenttä ei ole tyhjä, eli asiakas haluaa lisätä pizzan tilaukseensa
 		{
 			try {
 				pDao.avaaYhteys();
-				if(!pDao.haePizza(tilattupizza).equals(null)) // jos pizza löytyy tietokannasta
+				Pizza pizza = pDao.haePizza(tilattupizza);
+				System.out.println(pizza.getPizzanimi());
+				if(!pizza.equals(null)) // jos pizza löytyy tietokannasta
 				{
+					System.out.println("ollaa tääl");
+
 					boolean oregano = false; //asetetaan oregano aluksi falseksi.
-					if(request.getParameter("oregano") == "1") { //jos oregano checkbox on ruksattu
+					String oreganoB = request.getParameter("oregano");
+					if(oreganoB != null) { //jos oregano checkbox on ruksattu
 						oregano = true; //oregano on true
 					}
+					
 					boolean laktoositon = false;
-					if(request.getParameter("laktoositon") == "1") {
-						laktoositon = true;
+					String laktoositonB = request.getParameter("laktoositon");
+					if(laktoositonB != null) { //jos oregano checkbox on ruksattu
+						laktoositon = true; //oregano on true
 					}
+					
 					boolean gluteeniton = false;
-					if(request.getParameter("gluteeniton") == "1") {
-						gluteeniton = true;
+					String gluteenitonB = request.getParameter("gluteeniton");
+					if(gluteenitonB != null) { //jos oregano checkbox on ruksattu
+						gluteeniton = true; //oregano on true
 					}
+					
+					System.out.println("oregano: " + oregano + ", laktoositon: "+ laktoositon + ", gluteeniton: " + gluteeniton);
+					
 					Pizza tilPizza = pDao.haePizza(tilattupizza);
 					TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
 					

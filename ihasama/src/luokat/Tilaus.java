@@ -22,9 +22,7 @@ public class Tilaus {
 		this.tilausaika = new Date(); //luodaan uusi tilausaika Tilaus-olion luodessa.
 		this.varausnro = -1;
 		this.valmiina = false;
-		this.toimitettu = false;
-		this.toimitustapa = null;		
-		
+		this.toimitustapa = "ei valittu";
 		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhj� lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
 	}
