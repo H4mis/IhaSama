@@ -91,7 +91,7 @@ public class asiakasKontrolleri extends HttpServlet {
 		{
 			try {
 				pDao.avaaYhteys();
-				if(pDao.haePizza(tilattupizza) != null) // jos pizza lˆytyy tietokannasta
+				if(!pDao.haePizza(tilattupizza).equals(null)) // jos pizza lˆytyy tietokannasta
 				{
 					boolean oregano = false; //asetetaan oregano aluksi falseksi.
 					if(request.getParameter("oregano") == "1") { //jos oregano checkbox on ruksattu
@@ -105,21 +105,16 @@ public class asiakasKontrolleri extends HttpServlet {
 					if(request.getParameter("gluteeniton") == "1") {
 						gluteeniton = true;
 					}
-					Pizza tilPizza = pDao.haePizza(request.getParameter("pizzaid"));
+					Pizza tilPizza = pDao.haePizza(tilattupizza);
 					TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
 					
-					try {
-						tDao.avaaYhteys();
-						if(tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
-							//luodaan tilaus
-							tDao.LisaaTilaus(tilaus);
-						}
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lis‰t‰‰n tilattu pizza tilaukseen
+					tilaus.getTilatutPizzat().add(tpizza); //lis‰t‰‰n pizza tilauksen tilattuihin pizzoihin(listaan)
+					tDao.avaaYhteys();
+					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
+						//luodaan tilaus
+						tDao.LisaaTilaus(tilaus); //lis‰‰ tilauksen tietokantaan
+						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lis‰t‰‰n tilattu pizza tilaukseen
+					//}
 				}
 				
 				tDao.suljeYhteys(); //suljetaan yhteydet! Mik‰‰n Dao komento ei toimi n‰iden j‰lkeen ellei avata yhteytt‰ uudelleen!

@@ -57,15 +57,18 @@ public class PizzaDAO {
 		}
 	}
 
-	public Pizza haePizza(String pizzaid) throws SQLException {
+public Pizza haePizza(String pizzaid) throws SQLException {
 		
+		String pizza = pizzaid;
+		int parsepizzaid = -1;
 		List<Pizza> pizzalista = haePizzat(); //haetaan kaikki pizzat pizzalistaan
+		if(pizza != null) {
+			parsepizzaid = Integer.parseInt(pizza);
+			System.out.println("parsetettiin koska ei ollut null, pizzaid=" +pizzaid);
+		}
 		
 		for(int i = 0; i < pizzalista.size(); i++){ //käydään läpi haettu pizzalista
-			System.out.println("koidaan parsettaa: " + pizzaid);
-			int parsepizzaid = Integer.parseInt(pizzaid);
 			if(pizzalista.get(i).getPizzaid() == parsepizzaid) { //jos pizzaid:llä löytyi vastaava
-				
 				System.out.println("Pizza pizzaid:llä " + pizzaid + " löytyi pizzalistalta!");
 				return pizzalista.get(i); //palautetaan se pizzana takaisin.
 			}
