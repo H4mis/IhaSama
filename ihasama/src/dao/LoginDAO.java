@@ -69,7 +69,7 @@ public class LoginDAO {
 		lause.setString(1, kayttaja); //täytetään lausekkeen ? kohta
 		lause.setString(2, salasana);
 		ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta kayttaja 
-	
+		tulokset.next();
 		
 		if(tulokset.equals(null)) { //jos kayttajaa ei löydy tietokannasta palauta null
 			System.out.println(tulokset);
@@ -79,7 +79,7 @@ public class LoginDAO {
 		//haetaan pizzan tiedot
 		String etunimi = tulokset.getString("etunimi");
 		String sukunimi = tulokset.getString("sukunimi");
-		String osoite = tulokset.getString("osoite ");
+		String osoite = tulokset.getString("osoite");
 		String postinro = tulokset.getString("postinro");
 		String sahkoposti = tulokset.getString("sahkoposti");
 		String kayttajatunnus = tulokset.getString("kayttajatunnus");
@@ -87,6 +87,11 @@ public class LoginDAO {
 		Boolean admin = tulokset.getBoolean("admin");
 		String postitmp = tulokset.getString("postitmp");
 
+		if(postinro == null){
+			postinro = "0";
+		}
+		
+		
 		Kayttaja kayttaja1 = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana1, admin, postitmp); //luodaan tilaus olio
 		return kayttaja1; //palautetaan pizza
 

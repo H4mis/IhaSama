@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 
     
     
@@ -16,8 +18,7 @@
         salasana:<input type="password" name="salasana" /><br/>
         <input type="submit" value="kirjaudu" />
         </form>
-        <c:if test="${ empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>
        <c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">onnistu</h3></c:if>
-       <c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Haista Vittu</h3></c:if>
+       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Haista Vittu</h3></c:if>
 </body>
 </html>

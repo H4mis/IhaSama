@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import luokat.Kayttaja;
 import dao.LoginDAO;
 
 
@@ -28,6 +29,7 @@ public class LoginKontrolleri extends HttpServlet {
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
     	LoginDAO LDao= new LoginDAO ();
     	
         response.setContentType("text/html;charset=UTF-8");
@@ -36,13 +38,14 @@ public class LoginKontrolleri extends HttpServlet {
         String kayttaja = request.getParameter("kayttajatunnus");
         String salasana = request.getParameter("salasana");
         
-        if(salasana !=null && kayttaja !=null){
+        if(salasana !=null && kayttaja !=null){ 
         try {
         	LDao.avaaYhteys();
+        	Kayttaja kayttajaotus = LDao.haeKayttaja(kayttaja, salasana);
         	
-			if(LDao.haeKayttaja(kayttaja, salasana) != null)
-			{System.out.println("käyttäjä  löytytiawrjfa" + kayttaja);
-			response.sendRedirect("loginKontrolleri?LoginSuccess=true");
+			if(!kayttajaotus.equals(null))
+			{System.out.println("käyttäjä  löytyi: " + kayttaja);
+			response.sendRedirect("LoginKontrolleri?LoginSuccess=true");
 			
 			  //  RequestDispatcher rs = request.getRequestDispatcher("asiakasKontrolleri");
 			 //   rs.forward(request, response);
@@ -50,7 +53,7 @@ public class LoginKontrolleri extends HttpServlet {
 			else
 			{
 			   out.println("Username or Password incorrect");
-			   response.sendRedirect("loginKontrolleri?LoginNoSuccess=true");
+			   response.sendRedirect("LoginKontrolleri?LoginNoSuccess=true");
 			  // RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
 			  // rs.include(request, response);
 			}
