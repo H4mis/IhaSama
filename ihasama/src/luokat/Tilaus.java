@@ -19,7 +19,7 @@ public class Tilaus {
 	public Tilaus() {
 		this.tilausnro = -1;
 		this.tilaajatunnus = null;
-		this.tilausaika = null;
+		this.tilausaika = new Date(); //luodaan uusi tilausaika Tilaus-olion luodessa.
 		this.varausnro = -1;
 		this.valmiina = false;
 		this.toimitettu = false;
