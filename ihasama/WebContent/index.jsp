@@ -77,15 +77,24 @@
      <br>
      <br>
      <p>
-     <jsp:declaration>
-     	String tiedote = "";
-     </jsp:declaration>
-     
-     <jsp:scriptlet>
-     	tiedote = request.getParameter("tiedote");
-     </jsp:scriptlet>
-     
-     <jsp:expression>tiedote</jsp:expression>
+     <table>
+     <c:forEach items="${tiedotelista}" var="tiedote">
+                    
+        
+                        	<c:if test="${!tiedote.piilossa}">
+                                
+                            </c:if>                            
+                            <c:if test="${tiedote.piilossa}">
+                            <tr>
+                            <td>
+                                <c:out value="${tiedote.tiedote}" />
+                                </td>
+                                </tr>
+                            </c:if>                            
+                        
+                        
+                        </c:forEach>
+                        </table>
      </p>
     
  </div>

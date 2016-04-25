@@ -215,15 +215,14 @@
 			<br>
 			<div class=laatikko>
 			
-			<p style="text-align: center;">Lisää tiedote asiakassivulle</p>
+			<p style="text-align: center;">Tiedote asiakassivulle</p>
 			<!-- Tiedotteen lisäys lomake -->
-			<form action="index.jsp" method="post" accept-charset="UTF-8">
+			<form action="TiedoteKontrolleri" method="post" accept-charset="UTF-8">
 			
-    		<textarea name="tiedote" rows="20" cols="70">
-			</textarea>
+    		<textarea name="tiedote" rows="10" cols="30"><c:forEach items="${tiedotelista}" var="tiedote"><c:out value="${tiedote.tiedote}" /></c:forEach></textarea>
 				<br>
 				<br>
-    		<input type="submit" value="Lisää tiedote">
+    		<input type="submit" value="Muokkaa tiedotetta">
 </form>
 			
 		</div>

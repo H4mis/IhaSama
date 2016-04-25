@@ -3,9 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import luokat.Pizza;
 import luokat.Tiedote;
 
 public class TiedoteDAO {
@@ -24,7 +28,7 @@ public class TiedoteDAO {
 Connection yhteys = null;
 
 public void avaaYhteys() {
-	// Käyttäjätiedot ja DB:n osoite - lisää puuttuvat tiedot!
+	// Kï¿½yttï¿½jï¿½tiedot ja DB:n osoite - lisï¿½ï¿½ puuttuvat tiedot!
 	String username = "a1500925";
 	String password = "syKA4t68r";
 	String url = "jdbc:mariadb://localhost/a1500925?useUnicode=true&characterEncoding=utf-8";
@@ -46,7 +50,7 @@ public void suljeYhteys() {
 			System.out.println("Yhteys suljettu tietokantaan.");
 		}
 	} catch (Exception e) {
-		System.out.println("Tietokantayhteyttä suljettaessa tapahtui virhe!");
+		System.out.println("Tietokantayhteyttï¿½ suljettaessa tapahtui virhe!");
 		e.printStackTrace();
 	}
 }
@@ -55,10 +59,10 @@ public void lisaaTiedote(Tiedote t) {
 
 	try {
 		// alustetaan sql-lause
-		String sql = "INSERT INTO Tiedote (tiedote, piilossa) VALUES (?, ?)";
+		String sql = "INSERT INTO Tiedote (tiedote, saatavilla) VALUES (?, ?)";
 		PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-		// täydennetään puuttuvat tiedot (eli tiedote)
+		// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli tiedote)
 		lause.setString(1, t.getTiedote());
 		lause.setBoolean(2, t.isPiilossa());
 	
@@ -67,13 +71,13 @@ public void lisaaTiedote(Tiedote t) {
 		int vaikutetutRowit = lause.executeUpdate();
 		
 		if (vaikutetutRowit == 0){
-			throw new SQLException("Tiedotteen luominen epäonnistui, mihinkään rowiin ei tullut mitään");
+			throw new SQLException("Tiedotteen luominen epï¿½onnistui, mihinkï¿½ï¿½n rowiin ei tullut mitï¿½ï¿½n");
 		}
 		
-		System.out.println("Tiedote " + t.getTiedote() + " lisätty tietokantaan.");
+		System.out.println("Tiedote " + t.getTiedote() + " lisï¿½tty tietokantaan.");
 	} catch (Exception e) {
 		// Tapahtui jokin virhe
-		System.out.println("Tiedotteen lisäämisyritys aiheutti virheen tiedotteen lisäysvaiheessa!");
+		System.out.println("Tiedotteen lisï¿½ï¿½misyritys aiheutti virheen tiedotteen lisï¿½ysvaiheessa!");
 		System.out.println(t.toString());
 	}
 	
@@ -83,19 +87,20 @@ public void muokkaaTiedote(Tiedote t){
 	
 	try {
 		// alustetaan sql-lause
-		String sql = "UPDATE Tiedote SET tiedote=?, piilossa=? WHERE tiedotenro=?";
+		String sql = "UPDATE Tiedote SET tiedote=?, saatavilla=? WHERE tiedoteid=?";
 		PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-		// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
+		// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli kï¿½yttï¿½jï¿½n tiedot)
 		lause.setString(1, t.getTiedote());
 		lause.setBoolean(2, t.isPiilossa());
+		lause.setInt(3, t.getTiedotenro());
 
 		// suoritetaan lause
 		int vaikutetutRowit = lause.executeUpdate();
 		if (vaikutetutRowit == 0){
-			throw new SQLException("Tiedotteen muokkaus ei onnistunut! rowit on tyhjiä!");
+			throw new SQLException("Tiedotteen muokkaus ei onnistunut! rowit on tyhjiï¿½!");
 		}
-		System.out.println("tietokantaan lisättiin tiedote: " + t.getTiedote() + " .");
+		System.out.println("tietokantaan lisï¿½ttiin tiedote: " + t.getTiedote() + " .");
 		
 	} catch (Exception e) {
 		// Tapahtui jokin virhe
@@ -115,10 +120,30 @@ public void poistaTiedote(String[] poistoT) {
 			System.out.println("Listalta poistettiin tiedote: "+ T);
 		}
 	} catch (SQLException e) {
-	    System.out.println("Tapahtui virhe yritettäessä poistaa tiedotetta: " + poistoT);
+	    System.out.println("Tapahtui virhe yritettï¿½essï¿½ poistaa tiedotetta: " + poistoT);
 		e.printStackTrace();
 	}
 	
+}
+
+public List<Tiedote> haeTiedotteet() throws NumberFormatException, SQLException {
+	String sql = "SELECT * from Tiedote GROUP BY Tiedote.tiedoteid order by Tiedote.tiedoteid";
+	Statement haku = yhteys.createStatement();
+	ResultSet tulokset = haku.executeQuery(sql);	
+	List<Tiedote> tiedotelista = new ArrayList<Tiedote>();
+	tulokset.next();
+		int id = tulokset.getInt("tiedoteid");
+		String tiedote = tulokset.getString("tiedote");
+		boolean piilossa = tulokset.getBoolean("saatavilla");
+		Tiedote tiedotus = new Tiedote(id, tiedote, piilossa);
+		tiedotelista.add(tiedotus);
+		System.out.println("Tietokannasta haettu tiedote: " + tiedotus.getTiedotenro());
+	
+	if(tiedotelista.isEmpty()){
+		return null;
+	}
+	
+	return tiedotelista;
 }
 	
 }

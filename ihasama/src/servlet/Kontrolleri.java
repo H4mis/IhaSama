@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import luokat.Pizza;
 import luokat.Tayte;
+import luokat.Tiedote;
 import dao.PizzaDAO;
+import dao.TiedoteDAO;
 
 /**
  * Servlet implementation class Kontrolleri
@@ -23,7 +25,7 @@ import dao.PizzaDAO;
 @WebServlet("/Kontrolleri")
 public class Kontrolleri extends HttpServlet {
 
-	// lisätään decimal formatti etä näkyy nolla hinnan perässä
+	// lisï¿½tï¿½ï¿½n decimal formatti etï¿½ nï¿½kyy nolla hinnan perï¿½ssï¿½
 	DecimalFormat f = new DecimalFormat("0.00");
 
 	private static final long serialVersionUID = 1L;
@@ -48,23 +50,31 @@ public class Kontrolleri extends HttpServlet {
 		pDAO.avaaYhteys();
 		List<Pizza> lista;
 		List<Tayte> lista2;
+		TiedoteDAO tDAO = new TiedoteDAO();
+		tDAO.avaaYhteys();
+		List<Tiedote> lista3;
+		
+		
+		
 		
         try {
             lista = pDAO.haePizzat();
             request.setAttribute("pizzalista", lista);
             lista2 = pDAO.haeTaytteet();
             request.setAttribute("taytelista", lista2);
-            
+            lista3 = tDAO.haeTiedotteet();
+            request.setAttribute("tiedotelista", lista3);
             
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+        	tDAO.suljeYhteys();
             pDAO.suljeYhteys();
         }
 
-		// Pistetään tieto eteenpäin list.jsp:lle
+		// Pistetï¿½ï¿½n tieto eteenpï¿½in list.jsp:lle
 
 		RequestDispatcher disp = request.getRequestDispatcher("list.jsp");
 		disp.forward(request, response);
@@ -84,10 +94,12 @@ public class Kontrolleri extends HttpServlet {
 		// luodaan pizzalista
 		List<Pizza> lista = new ArrayList<Pizza>();
 		
+		
+		
 		// Luodaan tÃ¤yte-string
 		String taytteet = "hahaa";
 		
-		// haetaan parametrit käyttäjältä(submitista) ja lisätään ne lopuksi pizza-olioon
+		// haetaan parametrit kï¿½yttï¿½jï¿½ltï¿½(submitista) ja lisï¿½tï¿½ï¿½n ne lopuksi pizza-olioon
 		String nimi = request.getParameter("nimi");
 		String tnimi = request.getParameter("taytenimi");
 		String[] poistop = request.getParameterValues("poistopizza");
@@ -110,7 +122,7 @@ public class Kontrolleri extends HttpServlet {
         }
 		
 		
-		// Onko poistop (pizzan poisto) String arrayssa mitään? Jos on, niin...
+		// Onko poistop (pizzan poisto) String arrayssa mitï¿½ï¿½n? Jos on, niin...
 		if(poistop != null && !poistop.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -119,7 +131,7 @@ public class Kontrolleri extends HttpServlet {
 			
 		}
 		
-		// Onko poistot (täytteen poisto) String arrayssa mitään? Jos on, niin...
+		// Onko poistot (tï¿½ytteen poisto) String arrayssa mitï¿½ï¿½n? Jos on, niin...
 		if(poistot != null && !poistot.equals(null)){
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
@@ -128,7 +140,7 @@ public class Kontrolleri extends HttpServlet {
 			
 		}
 		
-		// Onko (pizzan) nimi-stringissä jotain? Jos on, niin...
+		// Onko (pizzan) nimi-stringissï¿½ jotain? Jos on, niin...
 		
 		if (nimi != null && !nimi.isEmpty()) {
 			double hinta = Double.parseDouble(request.getParameter("hinta"));
@@ -139,7 +151,7 @@ public class Kontrolleri extends HttpServlet {
 
 			Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
 
-			// lisätään pizza-olio tietokantaan PizzaDAO-java luokan avulla.
+			// lisï¿½tï¿½ï¿½n pizza-olio tietokantaan PizzaDAO-java luokan avulla.
 			PizzaDAO pDao = new PizzaDAO();
 			pDao.avaaYhteys();
 			pDao.lisaaPizza(a);
@@ -148,7 +160,7 @@ public class Kontrolleri extends HttpServlet {
 
 			response.setContentType("text/html");
 			// java.io.PrintWriter wout = response.getWriter();
-			System.out.println("Täytteet:" + a.getTaytteet());
+			System.out.println("Tï¿½ytteet:" + a.getTaytteet());
 			System.out.println("<b>Nimi:</b> " + a.getPizzanimi());
 			System.out.println("<br>");
 			System.out.println("<b>Hinta:</b> " + f.format(a.getHinta()));
@@ -157,7 +169,7 @@ public class Kontrolleri extends HttpServlet {
 			response.sendRedirect("Kontrolleri?addedPizza=true");
 		}
 		
-		// Onko (täytteen) tnimi stringissä jotain? Jos on, niin...
+		// Onko (tï¿½ytteen) tnimi stringissï¿½ jotain? Jos on, niin...
 		if (tnimi != null && !tnimi.isEmpty()) {
 			Tayte t = new Tayte(1, tnimi, true);
 			PizzaDAO pDao = new PizzaDAO();

@@ -19,7 +19,13 @@ public class Tiedote {
 	        this.piilossa=piilossa;
 	    }
 	
-	
+	    public Tiedote(String tiedote) {
+	        this.tiedotenro = 1;
+	        this.tiedote = tiedote;
+	        this.piilossa=true;
+	    }
+	    
+	    
 	public int getTiedotenro() {
 		return tiedotenro;
 	}
