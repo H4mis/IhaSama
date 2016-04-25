@@ -62,16 +62,6 @@ PRIMARY KEY(varausnro),
 FOREIGN KEY (poytanro) REFERENCES Poyta(poytanro)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* Tiedote */
-
-CREATE TABLE Tiedote
-(
-tiedoteid INT UNSIGNED NOT NULL AUTO_INCREMENT,
-tiedote VARCHAR(100) NOT NULL,
-saatavilla BOOLEAN NOT NULL,
-PRIMARY KEY(tiedoteid)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 /* Tilaus */
 CREATE TABLE Tilaus
 (
@@ -147,8 +137,6 @@ DROP TABLE Poytavaraus;
 DROP TABLE Poyta;
 
 DROP TABLE Kayttaja;
-
-DROP TABLE Tiedote;
 
 DROP TABLE Pizzantaytteet;
 DROP TABLE Pizza;
