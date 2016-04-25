@@ -65,10 +65,10 @@ public class TilausDAO {
 			//haetaan yksi tilaus tietokannasta ja palautetaan se valmiina Pizzaoliona
 			String sql = "SELECT * FROM Tilaus WHERE tilausnro= '" + tilausNro + "';";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
-			ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro löytyvä Tilaus
+			ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro lï¿½ytyvï¿½ Tilaus
 			tulokset.next(); //mene ekalle riville
 			
-			if(tulokset.equals(null)) { //jos tilausta ei löydy tietokannasta palauta null
+			if(tulokset.equals(null)) { //jos tilausta ei lï¿½ydy tietokannasta palauta null
 				return null;
 			}
 			
@@ -85,7 +85,7 @@ public class TilausDAO {
 			return tilaus1; //palautetaan pizza
 		}
 				
-		return null; //tilausta ei löytynyt, palautetaan null	
+		return null; //tilausta ei lï¿½ytynyt, palautetaan null	
 
 	}
 	
@@ -123,11 +123,11 @@ public class TilausDAO {
 	}
 	
 	public void LisaaTilaus(Tilaus tilaus) {
-		System.out.println("ollaan LisaaTilaus()-metodissa tilaus sisältää: tilausnro=" + tilaus.getTilausnro() + ", valmiina=" + tilaus.isValmiina() + ", toimitettu=" + tilaus.isToimitettu() + ", toimitustapa=" + tilaus.getToimitustapa());
+		System.out.println("ollaan LisaaTilaus()-metodissa tilaus sisï¿½ltï¿½ï¿½: tilausnro=" + tilaus.getTilausnro() + ", valmiina=" + tilaus.isValmiina() + ", toimitettu=" + tilaus.isToimitettu() + ", toimitustapa=" + tilaus.getToimitustapa());
 		System.out.println(tilaus.getTilausaika().toString());
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		//String source = sdf.format(tilaus.getTilausaika());
-		//TODO VIKA ON TÄÄLLÄ!
+		//TODO VIKA ON Tï¿½ï¿½LLï¿½!
 		java.sql.Date aika = new java.sql.Date(0l);
 		try {
 			aika = new java.sql.Date(sdf.parse(tilaus.getTilausaika().toString()).getTime());
@@ -142,7 +142,7 @@ public class TilausDAO {
 			String sql = "INSERT INTO Tilaus (tilausaika, valmiina, toimitettu, toimitustapa) VALUES (?, ?, ?, ?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// täydennetään puuttuvat tiedot (eli käyttäjän tiedot)
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli kï¿½yttï¿½jï¿½n tiedot)
 			lause.setDate(1, aika);
 			lause.setBoolean(2, tilaus.isValmiina());
 			lause.setBoolean(3, tilaus.isToimitettu());
@@ -152,34 +152,34 @@ public class TilausDAO {
 			int vaikutetutRowit = lause.executeUpdate();
 			
 			if (vaikutetutRowit == 0){
-				throw new SQLException("Tilauksen luominen epäonnistui, kenttiä tyhjinä?");
+				throw new SQLException("Tilauksen luominen epï¿½onnistui, kenttiï¿½ tyhjinï¿½?");
 			}
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
 	                tilaus.setTilausnro(generatedKeys.getInt(1)); //tuodaan generoidut attribuutit
 	            }
 	            else {
-	                throw new SQLException("Tilauksen luominen epäonnistui, ei saatu tilausnroa");
+	                throw new SQLException("Tilauksen luominen epï¿½onnistui, ei saatu tilausnroa");
 	            }
 			
 			}
 			
-			System.out.println("Tilaus " + tilaus.getTilausnro() + " lisätty tietokantaan.");
+			System.out.println("Tilaus " + tilaus.getTilausnro() + " lisï¿½tty tietokantaan.");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out.println("Tilauksen lisäämisyritys aiheutti virheen lisäysvaiheessa!");
+			System.out.println("Tilauksen lisï¿½ï¿½misyritys aiheutti virheen lisï¿½ysvaiheessa!");
 			System.out.println(tilaus.toString());
 		}
 	}
 	
 	public void LisaaPizzaTilaukseen(TilattuPizza tpizza, Tilaus tilaus) {
-		System.out.println("Yritetään lisätä pizzaid=" +tpizza.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
+		System.out.println("Yritetï¿½ï¿½n lisï¿½tï¿½ pizzaid=" +tpizza.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
 		try {
 			// alustetaan sql-lause
 			String sql = "INSERT INTO Pizzantilaus(tilausnro, pizzaid, laktoositon, gluteeniton, oregano) VALUES(?,?,?,?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
 			
-			//täytetään lausekkeen VALUES() kohdat.
+			//tï¿½ytetï¿½ï¿½n lausekkeen VALUES() kohdat.
 			lause.setInt(1, tilaus.getTilausnro());
 			lause.setInt(2, tpizza.getPizza().getPizzaid());
 			lause.setBoolean(3, tpizza.isLaktoositon());
@@ -188,13 +188,49 @@ public class TilausDAO {
 			
 			// suoritetaan lause
 			lause.executeUpdate();
-			System.out.println("Lisättiin pizzaan: " + tpizza.getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
+			System.out.println("Lisï¿½ttiin pizzaan: " + tpizza.getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
 			
-			System.out.println("Tilaukseen lisätty Pizza" + tpizza.getPizza().getPizzanimi() + "lisätty tietokantaan");
+			System.out.println("Tilaukseen lisï¿½tty Pizza" + tpizza.getPizza().getPizzanimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out.println("Tilauksen lisäämisyritys aiheutti virheen LisaaPizzaTilaukseen() -vaiheessa!");
+			System.out.println("Tilauksen lisï¿½ï¿½misyritys aiheutti virheen LisaaPizzaTilaukseen() -vaiheessa!");
 		}
+	}
+	
+	public void muutaValmius(String[] valmisIdt, int valmis){
+	    try {
+	        String sql = "UPDATE Tilaus SET valmiina =" + valmis + " WHERE tilausnro =?";
+	        PreparedStatement lause = yhteys.prepareStatement(sql); 
+	            
+	        for (String s : valmisIdt){
+	            
+	            lause.setInt(1,  Integer.parseInt(s));
+	            lause.executeUpdate();
+	            
+	            System.out.println("Valmiin tiluaksen id: "+ s + " valmiutta muutettiin: " + valmis);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Tapahtui virhe tilauksen valmiuden muutossa!");
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void muutaToimitus(String[] toimiIdt, int toimitettu){
+	    try {
+	        String sql = "UPDATE Tilaus SET toimitettu =" + toimitettu + " WHERE tilausnro =?";
+	        PreparedStatement lause = yhteys.prepareStatement(sql); 
+	            
+	        for (String s : toimiIdt){
+	            
+	            lause.setInt(1,  Integer.parseInt(s));
+	            lause.executeUpdate();
+	            
+	            System.out.println("Valmiin tilauksen id: "+ s + " toimitustilaa muutettiin: " + toimitettu);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Tapahtui virhe tilauksen valmiuden muutossa!");
+	        e.printStackTrace();
+	    }
 	}
 	
 }

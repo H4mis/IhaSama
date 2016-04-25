@@ -64,7 +64,50 @@ public class TilausKontrolleri extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String[]toimiIDt=request.getParameterValues("toiminro");		
+		String[]valmisIDt=request.getParameterValues("valmisnro");
+		String[]tilausIDt=request.getParameterValues("tilausnro");
+        String valmis =request.getParameter("valmis");
+        String toimitettu =request.getParameter("toimitettu");
+        String palautus =request.getParameter("palautus");
+        int valmish = 0;
+        int toimitus = 0;
+        int palaa = 0;
+        System.out.println("Valmis arvo on: " + valmis);
+        
+        if(valmis != null && !valmis.isEmpty()){
+            valmish=Integer.parseInt(valmis);
+        }
+        if(toimitettu != null && !toimitettu.isEmpty()){
+            toimitus=Integer.parseInt(toimitettu);
+        }
+        if(palautus != null && !palautus.isEmpty()){
+            palaa=Integer.parseInt(palautus);
+        }
+        
+        if(valmis !=null && !valmis.isEmpty()){
+	        TilausDAO tDao = new TilausDAO();
+	        tDao.avaaYhteys();
+	        tDao.muutaValmius(valmisIDt, valmish);
+	        tDao.suljeYhteys();
+	        response.sendRedirect("TilausKontrolleri?changedValmis=true");
+	    }
+        if(toimitettu !=null && !toimitettu.isEmpty()){
+	        TilausDAO tDao = new TilausDAO();
+	        tDao.avaaYhteys();
+	        tDao.muutaToimitus(toimiIDt, toimitus);
+	        tDao.suljeYhteys();
+	        response.sendRedirect("TilausKontrolleri?changedValmis=true");
+    }
+        if(palautus !=null && !palautus.isEmpty()){
+	        TilausDAO tDao = new TilausDAO();
+	        tDao.avaaYhteys();
+	        tDao.muutaToimitus(tilausIDt, palaa);
+	        tDao.muutaValmius(tilausIDt, palaa);
+	        tDao.suljeYhteys();
+	        response.sendRedirect("TilausKontrolleri?changedValmis=true");
+    }
+        
 	}
 
 }
