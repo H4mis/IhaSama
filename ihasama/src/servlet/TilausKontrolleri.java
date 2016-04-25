@@ -97,7 +97,7 @@ public class TilausKontrolleri extends HttpServlet {
 	        tDao.avaaYhteys();
 	        tDao.muutaToimitus(toimiIDt, toimitus);
 	        tDao.suljeYhteys();
-	        response.sendRedirect("TilausKontrolleri?changedValmis=true");
+	        response.sendRedirect("TilausKontrolleri?changedToimitus=true");
     }
         if(palautus !=null && !palautus.isEmpty()){
 	        TilausDAO tDao = new TilausDAO();
@@ -105,7 +105,7 @@ public class TilausKontrolleri extends HttpServlet {
 	        tDao.muutaToimitus(tilausIDt, palaa);
 	        tDao.muutaValmius(tilausIDt, palaa);
 	        tDao.suljeYhteys();
-	        response.sendRedirect("TilausKontrolleri?changedValmis=true");
+	        response.sendRedirect("TilausKontrolleri?changedPalautus=true");
     }
         
 	}
