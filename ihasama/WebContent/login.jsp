@@ -18,7 +18,7 @@
         salasana:<input type="password" name="salasana" /><br/>
         <input type="submit" value="kirjaudu" />
         </form>
-       <c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">onnistu</h3></c:if>
-       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Haista Vittu</h3></c:if>
+       <c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
+       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui, yritä uudelleen!</h3></c:if>
 </body>
 </html>
