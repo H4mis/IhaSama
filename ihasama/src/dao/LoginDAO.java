@@ -58,44 +58,54 @@ public class LoginDAO {
 		}
 	}
 	
-	//etsitään käyttäjä
+	//etsitï¿½ï¿½n kï¿½yttï¿½jï¿½
 		
-	public Kayttaja haeKayttaja(String kayttaja, String salasana) throws SQLException {
-		
-		//haetaan yksi kayttaja tietokannasta 
-		
+	public Kayttaja haeKayttaja(String kayttaja, String salasana)
+			throws SQLException {
+
+		// haetaan yksi kayttaja tietokannasta
+
 		String sql = "SELECT * FROM Kayttaja WHERE kayttajatunnus= ? and salasana = ?";
 		PreparedStatement lause = yhteys.prepareStatement(sql);
-		lause.setString(1, kayttaja); //täytetään lausekkeen ? kohta
+		lause.setString(1, kayttaja); // tï¿½ytetï¿½ï¿½n lausekkeen ? kohta
 		lause.setString(2, salasana);
-		ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta kayttaja 
-		tulokset.next();
-		
-		if(tulokset.equals(null)) { //jos kayttajaa ei löydy tietokannasta palauta null
-			System.out.println(tulokset);
-			return null;
-		}
-		
-		//haetaan pizzan tiedot
-		String etunimi = tulokset.getString("etunimi");
-		String sukunimi = tulokset.getString("sukunimi");
-		String osoite = tulokset.getString("osoite");
-		String postinro = tulokset.getString("postinro");
-		String sahkoposti = tulokset.getString("sahkoposti");
-		String kayttajatunnus = tulokset.getString("kayttajatunnus");
-		String salasana1 = tulokset.getString("salasana");
-		Boolean admin = tulokset.getBoolean("admin");
-		String postitmp = tulokset.getString("postitmp");
+		ResultSet tulokset = lause.executeQuery();// haetaan tietokannasta
+													// kayttaja
+		Kayttaja kayttaja1 = new Kayttaja();
 
-		if(postinro == null){
-			postinro = "0";
-		}
-		
-		
-		Kayttaja kayttaja1 = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, salasana1, admin, postitmp); //luodaan tilaus olio
-		return kayttaja1; //palautetaan pizza
+		while (tulokset.next()) {
 
-}
+			// haetaan pizzan tiedot
+			String etunimi = tulokset.getString("etunimi");
+			String sukunimi = tulokset.getString("sukunimi");
+			String osoite = tulokset.getString("osoite");
+			String postinro = tulokset.getString("postinro");
+			String sahkoposti = tulokset.getString("sahkoposti");
+			String kayttajatunnus = tulokset.getString("kayttajatunnus");
+			String salasana1 = tulokset.getString("salasana");
+			Boolean admin = tulokset.getBoolean("admin");
+			String postitmp = tulokset.getString("postitmp");
+
+			if (postinro == null) {
+				postinro = "0";
+			}
+			int postinro2 = Integer.parseInt(postinro);
+			
+			kayttaja1.setEtunimi(etunimi);  // luodaan
+			kayttaja1.setSukunimi(sukunimi);
+			kayttaja1.setOsoite(osoite);
+			kayttaja1.setPostinro(postinro2); // tilaus
+			kayttaja1.setSahkoposti(sahkoposti);
+			kayttaja1.setKayttajatunnus(kayttajatunnus);
+			kayttaja1.setSalasana(salasana1);
+			kayttaja1.setAdmin(admin); 
+			kayttaja1.setPostitmp(postitmp);// olio
+			
+		
+		}
+
+		return kayttaja1;
+	}
 
 	
 }

@@ -26,7 +26,7 @@ import dao.TilausDAO;
 @WebServlet("/asiakasKontrolleri")
 public class asiakasKontrolleri extends HttpServlet {
 	
-	//lisätään decimal formatti että näkyy nolla hinnan perässä
+	//lisï¿½tï¿½ï¿½n decimal formatti ettï¿½ nï¿½kyy nolla hinnan perï¿½ssï¿½
 		DecimalFormat f = new DecimalFormat("0.00");
 	private static final long serialVersionUID = 1L;
        
@@ -47,14 +47,15 @@ public class asiakasKontrolleri extends HttpServlet {
 
 		PizzaDAO pDAO = new PizzaDAO();
 		pDAO.avaaYhteys(); //avataan yhteys tietokantaan
-		List<Pizza> lista; //luodaan lista ja lista2 jotka tulee sisältämään Pizzoja
+		List<Pizza> lista; //luodaan lista ja lista2 jotka tulee sisï¿½ltï¿½mï¿½ï¿½n Pizzoja
 		List<Pizza> lista2; //lista2 on asiakas menua varten
 		try {
-			lista = pDAO.haePizzat(); //haetaan tietokannasta pizzat ja lisätään listaan
+			lista = pDAO.haePizzat(); //haetaan tietokannasta pizzat ja lisï¿½tï¿½ï¿½n listaan
 			request.setAttribute("pizzalista", lista); //annetaan requestille lista pizzoista
 			
 			lista2 = pDAO.haeAsiakasPizzat(lista); //luodaan menu asiakkaille
             request.setAttribute("menulista", lista2); //annetaan requestille menu lista pizzoista
+            request.setAttribute("kukkuluuruu", request.getServletPath());
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
@@ -64,7 +65,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			pDAO.suljeYhteys(); //lopuksi suljetaan yhteys
 		}
 
-		// Pistetään tieto eteenpäin asiakas.jsp:lle
+		// Pistetï¿½ï¿½n tieto eteenpï¿½in asiakas.jsp:lle
 		RequestDispatcher disp = request.getRequestDispatcher("asiakas.jsp");
 		disp.forward(request, response);
 	}
@@ -83,15 +84,15 @@ public class asiakasKontrolleri extends HttpServlet {
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
 		
 		
-		if(tilattupizza.length() > 0) //jos tilauskenttä ei ole tyhjä, eli asiakas haluaa lisätä pizzan tilaukseensa
+		if(tilattupizza.length() > 0) //jos tilauskenttï¿½ ei ole tyhjï¿½, eli asiakas haluaa lisï¿½tï¿½ pizzan tilaukseensa
 		{
 			try {
 				pDao.avaaYhteys();
 				Pizza pizza = pDao.haePizza(tilattupizza);
 				System.out.println(pizza.getPizzanimi());
-				if(!pizza.equals(null)) // jos pizza löytyy tietokannasta
+				if(!pizza.equals(null)) // jos pizza lï¿½ytyy tietokannasta
 				{
-					System.out.println("ollaa tääl");
+					System.out.println("ollaa tï¿½ï¿½l");
 
 					boolean oregano = false; //asetetaan oregano aluksi falseksi.
 					String oreganoB = request.getParameter("oregano");
@@ -116,16 +117,16 @@ public class asiakasKontrolleri extends HttpServlet {
 					Pizza tilPizza = pDao.haePizza(tilattupizza);
 					TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
 					
-					tilaus.getTilatutPizzat().add(tpizza); //lisätään pizza tilauksen tilattuihin pizzoihin(listaan)
+					tilaus.getTilatutPizzat().add(tpizza); //lisï¿½tï¿½ï¿½n pizza tilauksen tilattuihin pizzoihin(listaan)
 					tDao.avaaYhteys();
 					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
 						//luodaan tilaus
-						tDao.LisaaTilaus(tilaus); //lisää tilauksen tietokantaan
-						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lisätään tilattu pizza tilaukseen
+						tDao.LisaaTilaus(tilaus); //lisï¿½ï¿½ tilauksen tietokantaan
+						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lisï¿½tï¿½ï¿½n tilattu pizza tilaukseen
 					//}
 				}
 				
-				tDao.suljeYhteys(); //suljetaan yhteydet! Mikään Dao komento ei toimi näiden jälkeen ellei avata yhteyttä uudelleen!
+				tDao.suljeYhteys(); //suljetaan yhteydet! Mikï¿½ï¿½n Dao komento ei toimi nï¿½iden jï¿½lkeen ellei avata yhteyttï¿½ uudelleen!
 				pDao.suljeYhteys();
 				
 			} catch (SQLException e) {

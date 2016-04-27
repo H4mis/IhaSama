@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import luokat.Kayttaja;
 import dao.LoginDAO;
@@ -19,50 +20,76 @@ import dao.LoginDAO;
 @WebServlet("/LoginKontrolleri")
 public class LoginKontrolleri extends HttpServlet {
 	
+	private String sivu = "login.jsp";
+	
+	
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-			// Pistet‰‰n tieto eteenp‰in asiakas.jsp:lle
-					RequestDispatcher disp = request.getRequestDispatcher("login.jsp");
+			// Tieto eteenp√§in sivulle, jolle login tehty
+					RequestDispatcher disp = request.getRequestDispatcher(sivu);
 					disp.forward(request, response);
 		}
 	    
 	
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	
-    	LoginDAO LDao= new LoginDAO ();
-    	
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String kayttaja = request.getParameter("kayttajatunnus");
-        String salasana = request.getParameter("salasana");
-        
-        if(salasana !=null && kayttaja !=null){ 
-        try {
-        	LDao.avaaYhteys();
-        	Kayttaja kayttajaotus = LDao.haeKayttaja(kayttaja, salasana);
-        	
-			if(!kayttajaotus.equals(null))
-			{System.out.println("k‰ytt‰j‰  lˆytyi: " + kayttaja);
-			response.sendRedirect("LoginKontrolleri?LoginSuccess=true");
-			
-			  //  RequestDispatcher rs = request.getRequestDispatcher("asiakasKontrolleri");
-			 //   rs.forward(request, response);
-			}
-			else
-			{
+ protected void doPost(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
+ 	
+ 	LoginDAO LDao= new LoginDAO ();
+ 	
+     response.setContentType("text/html;charset=UTF-8");
+     PrintWriter out = response.getWriter();
+     
+     String kayttaja = request.getParameter("kayttajatunnus");
+     String salasana = request.getParameter("salasana");
+     sivu = request.getParameter("from");
+    
+     
+     
+     if(!sivu.equals(null)){
+         sivu.replaceFirst("ihasama/","");
+         
+         System.out.println(sivu);}
+       
+     
+     if(sivu.equals("/asiakasKontrolleri")){
+    	 sivu = "/ihasama" + request.getParameter("from");
+    	 System.out.println("Kun yritet√§√§n muuttaa asiakas.jspt√§:" + sivu);
+     }
+     
+     if(sivu.equals("/TiedoteKontrolleri")){
+    	 sivu = "/ihasama" + request.getParameter("from");
+    	 System.out.println("Kun yritet√§√§n muuttaa index.jspt√§:" + sivu);
+     }
+     
+     
+     if(salasana !=null && kayttaja !=null){
+     try {
+     	LDao.avaaYhteys();
+     	Kayttaja kayttajaotus = LDao.haeKayttaja(kayttaja, salasana);        	
+     	
+     	if(kayttajaotus.getKayttajatunnus().equals("N/A")){
 			   out.println("Username or Password incorrect");
-			   response.sendRedirect("LoginKontrolleri?LoginNoSuccess=true");
+			   response.sendRedirect(sivu+"?LoginNoSuccess=true");
 			  // RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
 			  // rs.include(request, response);
 			}
+			
+     	if(!kayttajaotus.getKayttajatunnus().equals("N/A"))
+			{System.out.println("K√§ytt√§j√§ l√∂ytyi: " + kayttaja);
+			response.sendRedirect(sivu+"?LoginSuccess=true");
+			HttpSession sessio=request.getSession(); 
+			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
+			sessio.setAttribute("admin",kayttajaotus.isAdmin());
+			// RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+			  // rs.include(request, response);
+			  
+			}		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        LDao.suljeYhteys();
-    }  
-    
-    }
+     LDao.suljeYhteys();
+ }  
+ 
+ }
 }

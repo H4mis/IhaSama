@@ -48,7 +48,7 @@
     
       <ul class="nav navbar-nav">
       
-     	<li><a class="active" href="index.jsp">Etusivu</a></li>
+     	<li><a class="active" href="TiedoteKontrolleri">Etusivu</a></li>
 		<li><a href="asiakasKontrolleri">Menu</a></li>
 		<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
@@ -57,17 +57,21 @@
       <li><a href="Kontrolleri">Admin</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
-            <form id="formLogin" class="form container-fluid">
+            <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
               <div class="form-group">
-                <label for="usr">Sähköposti:</label>
-                <input type="text" class="form-control" id="usr">
+                <label for="usr">Käyttäjätunnus:</label>
+                <input type="text" class="form-control" id="usr" name="kayttajatunnus">
               </div>
               <div class="form-group">
                 <label for="pwd">Salasana:</label>
-                <input type="password" class="form-control" id="pwd">
+                <input type="password" class="form-control" id="pwd" name="salasana">
               </div>
-              <button type="button" id="btnLogin" class="btn btn-block">Login</button>
+              <input type="hidden" name="from" value="${kukkuluuruu}">
+              <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
             </form>
+            	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
+       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
+            
             	
           </div>
         </li>

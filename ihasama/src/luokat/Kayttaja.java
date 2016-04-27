@@ -35,6 +35,18 @@ public class Kayttaja {
 		this.admin = admin;
 	}
 	
+	public Kayttaja() {
+		 this.etunimi = "N/A";
+		 this.sukunimi = "N/A";
+		 this.sahkoposti = "N/A";
+		 this.kayttajatunnus = "N/A";
+		 this.osoite = "N/A";
+		 this.postinro = 0;
+		this.postitmp = "N/A";
+		this.salasana = "N/A";
+		this.admin = false;
+		}
+	
 	public String getEtunimi() {
 		return etunimi;
 	}

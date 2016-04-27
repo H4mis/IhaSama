@@ -35,8 +35,8 @@
 		<div>
 			<ul class="nav navbar-nav">
 
-				<li><a href="index.jsp">Etusivu</a></li>
-				<li><a class="active" href="asiakasKontrolleri">Menu</a></li>
+				<li><a href="TiedoteKontrolleri">Etusivu</a></li>
+				<li><a href="asiakasKontrolleri">Menu</a></li>
 				<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 				<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 			</ul>

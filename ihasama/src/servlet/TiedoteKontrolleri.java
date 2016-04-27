@@ -43,7 +43,7 @@ public class TiedoteKontrolleri extends HttpServlet {
 	        try {
 	            lista = tDAO.haeTiedotteet();
 	            request.setAttribute("tiedotelista", lista);
-	            
+	            request.setAttribute("kukkuluuruu", request.getServletPath());
 	            
 	            
 	        } catch (NumberFormatException e) {
