@@ -31,7 +31,16 @@
 <body>
 <nav class="navbar navbar-inverse">
  
-    <div>
+     <div class="container-fluid">
+  <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+     <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>    
+   </div>
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       
      	<li><a  href="index.jsp">Etusivu</a></li>
@@ -40,6 +49,7 @@
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      <li><a href="Kontrolleri">Admin</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
             <form id="formLogin" class="form container-fluid">
@@ -58,7 +68,7 @@
         </li>
       </ul>
     </div>
- 
+  </div>
 </nav>
 
 
