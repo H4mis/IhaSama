@@ -19,6 +19,10 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- sosiaalinen media kuvat -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 <link rel="stylesheet" type="text/css" href="tyylit/Index.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Yhteystiedot</title>
@@ -103,6 +107,20 @@ th, td {
 
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 
+ <footer class="footer">
+     <div class="container">
+        <ul id="sosiaalinenmedia">
+        
+			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
+			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+			<li id="googleplus"><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
+			<div class="clr"></div>
+
+		</ul>
+ 	 </div>
+   
+ </footer>
 </body>
 
 </html>

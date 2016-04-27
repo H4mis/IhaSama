@@ -14,6 +14,9 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+ <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
@@ -21,6 +24,10 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="tyylit/Index.css">
+
+<!-- sosiaalinen media kuvat -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <title>Index</title>
 
@@ -95,12 +102,36 @@
                         
                         </c:forEach>
                         </table>
-     </p>
+  
     
  </div>
 
 <div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
 
+ <footer class="footer">
+     <div class="container">
+        <ul id="sosiaalinenmedia">
+        
+			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
+			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+			<li id="googleplus"><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
+			<div class="clr"></div>
+
+		</ul>
+ 	 </div>
+   
+ </footer>
+  
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    
 </body>
 
 </html>

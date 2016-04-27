@@ -92,6 +92,105 @@ li a:hover {
     max-width:83%;
    
 }
+
+.clr{
+    clear:both;
+    font-size:0;
+}
+#sosiaalinenmedia{
+	overflow: auto;
+	
+}
+#facebook{
+	padding-top:5px;
+	list-style-type: none;
+	float: left;
+}
+#linkedin{
+	padding-top:5px;
+	list-style-type: none;
+	float: left;
+}
+
+#twitter{
+	padding-top:5px;
+	list-style-type: none;
+	float: left;
+}
+
+#googleplus{
+	padding-top:5px;
+	list-style-type: none;
+	float: left;
+}
+
+ul li a i {
+	background: #205D7A;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	font-size: 25px;
+	text-align: center;
+	margin-right: 10px;
+	padding-top: 15%;
+	transition: all 0.2s ease-in-out;
+}
+ul li a i:hover {
+	opacity: .7;
+}
+
+
+.fa-facebook {
+	background:#3b5998
+} 
+.fa-linkedin {
+	background:#007bb6
+}
+.fa-twitter {
+	background:#00aced
+}
+.fa-google-plus {
+	background:#dd4b39
+}
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #4b4b4b;
+}
+
+footer { 
+    display: block;
+}
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+	float:left;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
  td{
      color:black;
  }
