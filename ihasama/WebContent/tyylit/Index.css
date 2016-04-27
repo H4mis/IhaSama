@@ -12,7 +12,7 @@ body{
 h1{
   
 	text-shadow: 2px 2px 4px #000000;
-	font-size: 50px;
+	font-size: 100px;
 	font-family: 'Dancing Script', cursive;
     color: orange;
     text-align: center;
@@ -20,16 +20,11 @@ h1{
 }
 #laatikko{
 	background-color: rgba(150,150,150,0.8);
-	
-	
-	
-	
 	opacity:0.9;
 	margin: auto;
 	min-width: 300px;
 	width: 40%;
-	border-radius:5px;
-
+	border-radius:10px;
 	box-shadow: 0 0 200px #00000;
 	padding: 10px;
 	
@@ -40,6 +35,12 @@ h2{
 }
 pre{
 	text-aling:center;
+}
+.nav.navbar-nav li a {
+    color: Lightgrey;
+}
+.navbar .nav .active {
+  color:Black;
 }
 /*
 ul {
@@ -74,9 +75,9 @@ li a:hover {
 
 .active {
 	
-    background-color: #812325;
-    
+    background-color: orange; 
 }
+
 .taytenimi{
 	color:rgba(50,50,50,1);
 }
