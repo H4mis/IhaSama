@@ -120,8 +120,42 @@
   
     
  </div>
+<br>
 
-<div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
+
+<!-- Myynti kikka laatikot alkavat täsäää!!!! -->
+
+<div class="usp">
+	<div class="marginblock">
+	   <div id="laatikko1">
+	   <img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:300px;height:150px;">
+	 		<p> Nopeat kuljetukset
+	 			Yli 20 € tilauksille ilmainen kotiin kuljetus</p>
+	 	</div>
+	 	
+	  	<div id="laatikko1">
+	  		<p> Unique Selling Proposition (USP)</p>
+	 	</div>
+	 	
+	  	<div id="laatikko1">
+	  		<p> Unique Selling Proposition (USP)</p>
+	  </div>
+  </div>	
+</div>
+<!-- loppuu tähän -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  <footer class="footer">
      <div class="container">
@@ -130,7 +164,7 @@
 			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
 			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
 			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-			<li id="googleplus"><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
+			
 			<div class="clr"></div>
 
 		</ul>

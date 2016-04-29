@@ -19,6 +19,8 @@ h1{
     text-align: center;
     
 }
+
+/*###################pizza taulukko tyyliä######################################*/ 
 #laatikko{
 	background-color: rgba(150,150,150,0.8);
 	font-family: 'Merienda', cursive;
@@ -32,6 +34,32 @@ h1{
 	
 	
 }
+
+.taytenimi{
+	color:rgba(50,50,50,1);
+	font-family: 'Merienda', cursive;
+}
+
+#pizza{
+	opacity:0.9;
+	
+	background-color:#646464;
+	
+}
+#hinta{
+	opacity:0.9;
+	
+	background-color:#646464;
+}
+#tilaa{
+	opacity:0.9;
+
+	background-color:#646464;
+}
+
+
+/*################################################*/
+
 h2{
 	text-align:center;
 	font-family: 'Merienda', cursive;
@@ -48,36 +76,7 @@ pre{
   color:Black;
   font-family: 'Merienda', cursive;
 }
-/*
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    margin-left:160px;
-    max-width:83%;
-   
-}
 
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-
-/*
-li a:hover {
-    background-color: #111;
-}*/
 
 .active {
 	
@@ -85,23 +84,66 @@ li a:hover {
     font-family: 'Merienda', cursive;
 }
 
-.taytenimi{
-	color:rgba(50,50,50,1);
-	font-family: 'Merienda', cursive;
+
+
+/* ####################kolmen boxin USP:t ################################################*/
+
+.usp{
+	margin:auto;
+	background-color: rgba(150,150,150,0.8);
+	opacity:0.9;
+	
+	min-width: 300px;
+	width: 40%;
+	border-radius:10px;
+	box-shadow: 0 0 200px #00000;
+	padding: 10px;
 }
-#footer {
-   position:absolute;
-   font-family: 'Merienda', cursive;
-   bottom:0;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    margin-left:160px;
-    max-width:83%;
-   
+
+.marginblock{
+	margin:auto;
+	text-align:center;
 }
+
+#laatikko1{
+	display:inline-block;
+	background-color: rgba(150,150,150,0.8);
+	opacity:0.9;
+	margin: auto;
+	
+	
+	border-radius:10px;
+	box-shadow: 0 0 200px #00000;
+	padding: 10px;
+}
+
+#laatikko2{
+	display:inline-block;
+	background-color: rgba(150,150,150,0.8);
+	opacity:0.9;
+	margin: auto;
+
+	border-radius:10px;
+	box-shadow: 0 0 200px #00000;
+	padding: 10px;
+}
+
+#laatikko3{
+	display:inline-block;
+	background-color: rgba(150,150,150,0.8);
+	opacity:0.9;
+	margin: auto;
+	
+	border-radius:10px;
+	box-shadow: 0 0 200px #00000;
+	padding: 10px;
+}
+
+
+
+
+
+
 
 .clr{
     clear:both;

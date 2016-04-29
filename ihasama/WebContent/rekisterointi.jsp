@@ -165,7 +165,7 @@
 			</form>
         </c:if>
 	</div>
-<div id="footer"><li><a href="Kontrolleri">Admin</a></li></div>
+
 
  <footer class="footer">
      <div class="container">
@@ -174,7 +174,7 @@
 			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
 			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
 			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-			<li id="googleplus"><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
+			
 			<div class="clr"></div>
 
 		</ul>
