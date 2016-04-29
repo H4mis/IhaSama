@@ -53,12 +53,12 @@ public class LoginKontrolleri extends HttpServlet {
      
      if(sivu.equals("/asiakasKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetään muuttaa asiakas.jsptä:" + sivu);
+    	 System.out.println("Kun yritetÃ¤Ã¤n muuttaa asiakas.jsptÃ¤:" + sivu);
      }
      
      if(sivu.equals("/TiedoteKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetään muuttaa index.jsptä:" + sivu);
+    	 System.out.println("Kun yritetÃ¤Ã¤n muuttaa index.jsptÃ¤:" + sivu);
      }
      
      
@@ -78,6 +78,7 @@ public class LoginKontrolleri extends HttpServlet {
 			{System.out.println("Käyttäjä löytyi: " + kayttaja);
 			response.sendRedirect(sivu+"?LoginSuccess=true");
 			HttpSession sessio=request.getSession(); 
+			sessio.setAttribute("nimi", kayttajaotus.getEtunimi());
 			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
 			sessio.setAttribute("admin",kayttajaotus.isAdmin());
 			// RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
