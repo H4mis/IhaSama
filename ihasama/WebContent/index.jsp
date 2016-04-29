@@ -128,18 +128,22 @@
 <div class="usp">
 	<div class="marginblock">
 	   <div id="laatikko1">
-	   <img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:300px;height:150px;">
-	 		<p> Nopeat kuljetukset
-	 			Yli 20 € tilauksille ilmainen kotiin kuljetus</p>
+	   <img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:150px;height:75px;border-radius:60%;">
+	 		<p> NOPEAT KULJETUKSET
+	 			<br> & <br>Yli 20 € tilauksille ilmainen kotiin kuljetus</p>
 	 	</div>
 	 	
 	  	<div id="laatikko1">
-	  		<p> Unique Selling Proposition (USP)</p>
+	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:65px;border-radius:60%;">
+	  		<p> 100% tyytyväisyys takuu,<br> jos et pidä tuotteesta palautamme rahanne
+	  		<br><br>
+	  		 </p>
 	 	</div>
 	 	
-	  	<div id="laatikko1">
+	  <!--  	<div id="laatikko1">
+	  		<img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:150px;height:75px;border-radius:60%;">
 	  		<p> Unique Selling Proposition (USP)</p>
-	  </div>
+	  </div> -->
   </div>	
 </div>
 <!-- loppuu tähän -->

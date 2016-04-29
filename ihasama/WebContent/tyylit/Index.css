@@ -107,37 +107,13 @@ pre{
 
 #laatikko1{
 	display:inline-block;
-	background-color: rgba(150,150,150,0.8);
-	opacity:0.9;
+	background-color: lightgrey;
+	opacity:0.7;
 	margin: auto;
-	
-	
 	border-radius:10px;
-	box-shadow: 0 0 200px #00000;
 	padding: 10px;
 }
 
-#laatikko2{
-	display:inline-block;
-	background-color: rgba(150,150,150,0.8);
-	opacity:0.9;
-	margin: auto;
-
-	border-radius:10px;
-	box-shadow: 0 0 200px #00000;
-	padding: 10px;
-}
-
-#laatikko3{
-	display:inline-block;
-	background-color: rgba(150,150,150,0.8);
-	opacity:0.9;
-	margin: auto;
-	
-	border-radius:10px;
-	box-shadow: 0 0 200px #00000;
-	padding: 10px;
-}
 
 
 
@@ -220,7 +196,7 @@ body {
   font-family: 'Merienda', cursive;
 }
 .footer {
-  position: absolute;
+  position: fixed;
   font-family: 'Merienda', cursive;
   bottom: 0;
   width: 100%;
