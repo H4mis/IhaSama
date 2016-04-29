@@ -15,6 +15,7 @@
 
 <link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
 <title>Pizzalistaussivu</title>
 
 </head>

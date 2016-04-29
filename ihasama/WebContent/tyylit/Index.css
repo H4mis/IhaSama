@@ -12,6 +12,7 @@ body{
 h1{
   
 	text-shadow: 2px 2px 4px #000000;
+	font-family: 'Merienda', cursive;
 	font-size: 100px;
 	font-family: 'Dancing Script', cursive;
     color: orange;
@@ -20,6 +21,7 @@ h1{
 }
 #laatikko{
 	background-color: rgba(150,150,150,0.8);
+	font-family: 'Merienda', cursive;
 	opacity:0.9;
 	margin: auto;
 	min-width: 300px;
@@ -32,15 +34,19 @@ h1{
 }
 h2{
 	text-align:center;
+	font-family: 'Merienda', cursive;
 }
 pre{
 	text-aling:center;
+	font-family: 'Merienda', cursive;
 }
 .nav.navbar-nav li a {
     color: Lightgrey;
+    font-family: 'Merienda', cursive;
 }
 .navbar .nav .active {
   color:Black;
+  font-family: 'Merienda', cursive;
 }
 /*
 ul {
@@ -76,13 +82,16 @@ li a:hover {
 .active {
 	
     background-color: orange; 
+    font-family: 'Merienda', cursive;
 }
 
 .taytenimi{
 	color:rgba(50,50,50,1);
+	font-family: 'Merienda', cursive;
 }
 #footer {
    position:absolute;
+   font-family: 'Merienda', cursive;
    bottom:0;
     list-style-type: none;
     margin: 0;
@@ -96,6 +105,7 @@ li a:hover {
 
 .clr{
     clear:both;
+    font-family: 'Merienda', cursive;
     font-size:0;
 }
 #sosiaalinenmedia{
@@ -127,6 +137,7 @@ li a:hover {
 
 ul li a i {
 	background: #205D7A;
+	font-family: 'Merienda', cursive;
 	color: #fff;
 	width: 40px;
 	height: 40px;
@@ -139,6 +150,7 @@ ul li a i {
 }
 ul li a i:hover {
 	opacity: .7;
+	font-family: 'Merienda', cursive;
 }
 
 
@@ -157,14 +169,17 @@ ul li a i:hover {
 -------------------------------------------------- */
 html {
   position: relative;
+  font-family: 'Merienda', cursive;
   min-height: 100%;
 }
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  font-family: 'Merienda', cursive;
 }
 .footer {
   position: absolute;
+  font-family: 'Merienda', cursive;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -174,31 +189,38 @@ body {
 
 footer { 
     display: block;
+    font-family: 'Merienda', cursive;
 }
 body > .container {
   padding: 60px 15px 0;
+  font-family: 'Merienda', cursive;
 }
 .container .text-muted {
   margin: 20px 0;
+  font-family: 'Merienda', cursive;
 }
 
 .footer > .container {
 	float:left;
   padding-right: 15px;
   padding-left: 15px;
+  font-family: 'Merienda', cursive;
 }
 
 code {
   font-size: 80%;
+  font-family: 'Merienda', cursive;
 }
 
  td{
      color:black;
+     font-family: 'Merienda', cursive;
  }
  
 /*.login{
 	
 	display: block;
+	font-family: 'Merienda', cursive;
     color: white;
     text-align: center;
     padding: 14px 16px;

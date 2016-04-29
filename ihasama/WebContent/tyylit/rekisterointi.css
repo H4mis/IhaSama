@@ -12,6 +12,7 @@ body{
 h1{
 	
 	font-size: 50px;
+	font-family: 'Merienda', cursive;
 	font-family: 'Dancing Script', cursive;
     color: orange;
     text-align: center;
@@ -20,6 +21,7 @@ h1{
 
 ul {
     list-style-type: none;
+    font-family: 'Merienda', cursive;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -31,10 +33,12 @@ ul {
 
 li {
     float: left;
+    font-family: 'Merienda', cursive;
 }
 
 li a {
     display: block;
+    font-family: 'Merienda', cursive;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -47,10 +51,12 @@ li a:hover {
 }
 .active {
     background-color: #a6a6a6;
+    font-family: 'Merienda', cursive;
 }
 
 #footer {
    position:absolute;
+   font-family: 'Merienda', cursive;
    bottom:0;
     list-style-type: none;
     margin: 0;
@@ -64,6 +70,7 @@ li a:hover {
 
 #laatikko{
 	background-color: lightgrey;
+	font-family: 'Merienda', cursive;
 	opacity:0.9;
 	margin: auto;
 	min-width: 300px;
@@ -75,13 +82,16 @@ li a:hover {
 
 table{
 	text-align:center;
+	font-family: 'Merienda', cursive;
 }
 h2{
 	text-align:center;
+	font-family: 'Merienda', cursive;
 }
 
 #rek{
 	text-aling: center;
+	font-family: 'Merienda', cursive;
 	color:black;
 	margin: auto;   	 
     padding: 10px;
@@ -90,6 +100,7 @@ h2{
 .login{
 	
 	display: block;
+	font-family: 'Merienda', cursive;
     color: white;
     text-align: center;
     padding: 14px 16px;

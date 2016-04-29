@@ -11,6 +11,7 @@ body{
 
 .laatikko {
 	background-color: rgba(150,150,150,0.8);
+	font-family: 'Merienda', cursive;
 	margin: auto;
 	width: 80%;
 	max-width: 700px;
@@ -20,15 +21,18 @@ body{
 
 .taytenimi {
 	color: rgba(50,50,50,1);
+	font-family: 'Merienda', cursive;
 	font-size: 18px;
 }
 
 table {
 	margin: auto;
+	font-family: 'Merienda', cursive;
 }
 
 form{
 	text-align: center;
+	font-family: 'Merienda', cursive;
 	/*margin-top: 20px;*/
 }
 
@@ -41,11 +45,13 @@ h1 {
 
 h2 {
 	color: black;
+	font-family: 'Merienda', cursive;
 	text-align: center;
 }
 
 h3 {
 	color: green;
+	font-family: 'Merienda', cursive;
 	font-size: 20px;
 	text-align: center;
 	
@@ -54,12 +60,13 @@ h3 {
 
 p {
 	color: black;
-    font-family: "Times New Roman";
+	font-family: 'Merienda', cursive;
     font-size: 20px;
 }
 
 td {
 	color: black;
+	font-family: 'Merienda', cursive;
 	font-size: 22px;
 	vertical-align: top;
 }
@@ -77,15 +84,18 @@ td {
 li {
 	list-style-type:none;
 	text-align: left;
+	font-family: 'Merienda', cursive;
 }
 
 ul {
 	text-decoration: none;
+	font-family: 'Merienda', cursive;
 	margin-left: -50px;
 }
 .login{
 	
 	display: block;
+	font-family: 'Merienda', cursive;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -94,6 +104,7 @@ ul {
 
 #navul{
 	  list-style-type: none;
+	  font-family: 'Merienda', cursive;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -104,10 +115,12 @@ ul {
 
 #navli{
 	float: left;
+	font-family: 'Merienda', cursive;
 }
 
 li a {
     display: block;
+    font-family: 'Merienda', cursive;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -116,9 +129,11 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
+    font-family: 'Merienda', cursive;
 }
 .active {
     background-color: #a6a6a6;
+    font-family: 'Merienda', cursive;
 }
 
 
