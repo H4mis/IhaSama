@@ -95,15 +95,15 @@
 	                <tbody>
 	                    <tr>
 	                        <td>Etunimi</td>
-	                        <td><input type="text" name="etunimi" value="" />*</td>
+	                        <td><input type="text"  title='Käytä vain merkkejä "A-Z", "a-z", "0-9", "-" tai "_"!'  name="etunimi" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Sukunimi</td>
-	                        <td><input type="text" name="sukunimi" value="" />*</td>
+	                        <td><input type="text"  title='' name="sukunimi" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Sähköposti</td>
-	                        <td><input type="text" name="sahkoposti" value="" />*</td>
+	                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td><br></td>
@@ -111,11 +111,11 @@
 	                    </tr>
 	                    <tr>
 	                        <td>Käyttäjätunnus</td>
-	                        <td><input type="text" name="kayttajatunnus" value="" />*</td>
+	                        <td><input type="text" pattern='([a-z]|[A-Z]|[0-9]|[^!"#¤%&/)(=?`]).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", ".", "_", "+" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td>Salasana</td>
-	                        <td><input type="password" name="salasana" value="" />*</td>
+	                        <td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" />*</td>
 	                    </tr>
 	                    <tr>
 	                        <td><br></td>

@@ -82,3 +82,9 @@ INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (1, 3);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (2, 3);
 INSERT INTO Pizzantaytteet (pizzaid, tayteid) VALUES (2, 4);
 
+INSERT INTO Tilaus(tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa)
+VALUES ('matti', '1990-07-23', 0, 0, 'nouto');
+
+INSERT INTO Tilaus(tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa)
+VALUES ('testi1', '2016-04-28', 1, 0, 'kotiinkuljetus');
+
