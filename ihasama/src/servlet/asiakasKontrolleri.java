@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import luokat.Pizza;
 import luokat.TilattuPizza;
@@ -47,16 +48,31 @@ public class asiakasKontrolleri extends HttpServlet {
 
 		PizzaDAO pDAO = new PizzaDAO();
 		pDAO.avaaYhteys(); //avataan yhteys tietokantaan
-		List<Pizza> lista; //luodaan lista ja lista2 jotka tulee sis�lt�m��n Pizzoja
+		List<Pizza> lista; //luodaan lista ja lista2 jotka tulee sisältämään Pizzoja
 		List<Pizza> lista2; //lista2 on asiakas menua varten
+		HttpSession sessio = request.getSession(false);
+		
 		try {
-			lista = pDAO.haePizzat(); //haetaan tietokannasta pizzat ja lis�t��n listaan
+			lista = pDAO.haePizzat(); //haetaan tietokannasta pizzat ja lisätään listaan
 			request.setAttribute("pizzalista", lista); //annetaan requestille lista pizzoista
 			
 			lista2 = pDAO.haeAsiakasPizzat(lista); //luodaan menu asiakkaille
             request.setAttribute("menulista", lista2); //annetaan requestille menu lista pizzoista
             request.setAttribute("kukkuluuruu", request.getServletPath());
-			
+            if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
+
+				String nimi = (String) sessio.getAttribute("nimi");
+				String kayttajatunnus = (String) sessio
+						.getAttribute("kayttajatunnus");
+				boolean admin = (Boolean) sessio.getAttribute("admin");				
+				request.setAttribute("kayttaja", kayttajatunnus);
+				request.setAttribute("nimi", nimi);
+				request.setAttribute("admin", admin);
+				
+
+			}
+            
+            
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -84,7 +100,7 @@ public class asiakasKontrolleri extends HttpServlet {
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
 		
 		
-		if(tilattupizza.length() > 0) //jos tilauskentt� ei ole tyhj�, eli asiakas haluaa lis�t� pizzan tilaukseensa
+		if(tilattupizza.length() > 0) //jos tilauskenttä ei ole tyhjä, eli asiakas haluaa lisätä pizzan tilaukseensa
 		{
 			try {
 				pDao.avaaYhteys();
@@ -92,7 +108,7 @@ public class asiakasKontrolleri extends HttpServlet {
 				System.out.println(pizza.getPizzanimi());
 				if(!pizza.equals(null)) // jos pizza l�ytyy tietokannasta
 				{
-					System.out.println("ollaa t��l");
+					System.out.println("ollaa tääl");
 
 					boolean oregano = false; //asetetaan oregano aluksi falseksi.
 					String oreganoB = request.getParameter("oregano");
@@ -117,16 +133,16 @@ public class asiakasKontrolleri extends HttpServlet {
 					Pizza tilPizza = pDao.haePizza(tilattupizza);
 					TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
 					
-					tilaus.getTilatutPizzat().add(tpizza); //lis�t��n pizza tilauksen tilattuihin pizzoihin(listaan)
+					tilaus.getTilatutPizzat().add(tpizza); //lisätään pizza tilauksen tilattuihin pizzoihin(listaan)
 					tDao.avaaYhteys();
 					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
 						//luodaan tilaus
-						tDao.LisaaTilaus(tilaus); //lis�� tilauksen tietokantaan
-						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lis�t��n tilattu pizza tilaukseen
+						tDao.LisaaTilaus(tilaus); //lisää tilauksen tietokantaan
+						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lisätään tilattu pizza tilaukseen
 					//}
 				}
 				
-				tDao.suljeYhteys(); //suljetaan yhteydet! Mik��n Dao komento ei toimi n�iden j�lkeen ellei avata yhteytt� uudelleen!
+				tDao.suljeYhteys(); //suljetaan yhteydet! Mikään Dao komento ei toimi näiden jälkeen ellei avata yhteyttä uudelleen!
 				pDao.suljeYhteys();
 				
 			} catch (SQLException e) {

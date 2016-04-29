@@ -23,42 +23,48 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="tyylit/Index.css">
+<link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script'
 	rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
-<title>Menu</title>
+<title>Tilauslista</title>
 
 </head>
 <body>
+<c:if test="${!sessionScope.admin}"><c:redirect url="TiedoteKontrolleri"/></c:if>
+
+<c:if test="${sessionScope.admin}">
 	<nav class="navbar navbar-inverse">
 
 		<div>
 			<ul class="nav navbar-nav">
 
 				<li><a href="TiedoteKontrolleri">Etusivu</a></li>
-				<li><a href="asiakasKontrolleri">Menu</a></li>
-				<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
+				<li><a href="asiakasKontrolleri">Menu</a></li>				
 				<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Login <span
-						class="glyphicon glyphicon-log-in"></span></a>
-					<div class="dropdown-menu">
-						<form id="formLogin" class="form container-fluid">
-							<div class="form-group">
-								<label for="usr">Sähköposti:</label> <input type="text"
-									class="form-control" id="usr">
-							</div>
-							<div class="form-group">
-								<label for="pwd">Salasana:</label> <input type="password"
-									class="form-control" id="pwd">
-							</div>
-							<button type="button" id="btnLogin" class="btn btn-block">Login</button>
-						</form>
-
-					</div></li>
+				 <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a>. <a href="Logout">Logout</a></li></c:if>
+     <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+          <div class="dropdown-menu">
+            <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
+              <div class="form-group">
+                <label for="usr">Käyttäjätunnus:</label>
+                <input type="text" class="form-control" id="usr" name="kayttajatunnus">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Salasana:</label>
+                <input type="password" class="form-control" id="pwd" name="salasana">
+              </div>
+              <input type="hidden" name="from" value="${kukkuluuruu}">
+              <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
+            </form>
+            	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
+       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
+          </div>
+        </li>   
+            	</c:if>
 			</ul>
 		</div>
 
@@ -81,6 +87,9 @@
 				<td><p>Palauta</p></td>
 				<td><p>Tilauksen tila</p></td>
 			</tr>
+			<c:if test="${empty tilauslista}">
+			</table>LISTA ON TYHJÄ!!!!!</c:if>
+			<c:if test="${not empty tilauslista}">
 			<c:forEach items="${tilauslista}" var="tilaus">
 				<tr>
 					
@@ -106,9 +115,10 @@
 						<c:out value="${tilaus.toimitustapa}" />
 					</td>
 				
-					<c:forEach items="${tilaus.tilatutPizzat}" var="tilatut">
-						
-							<c:if test="${tilaus.tilausnro == tilatut.tilausnro}">
+					<c:forEach items="${tilaus.pizzantilausAvuste}" var="avuste">
+					<c:forEach items="${tilaus.tilatutPizzat}" var="tilatut">					
+								
+							<c:if test="${(avuste.key == tilatut.pizzatilausId) && (avuste.value == tilatut.pizzaid)}">
 						 		<td>
 							 		<c:out value="${tilatut.pizza.pizzanimi}" />
 								</td>
@@ -127,7 +137,7 @@
 							</c:if>
 							<form action="TilausKontrolleri" method="post">
 							
-	   <c:if test="${tilaus.tilausnro == tilatut.tilausnro}">
+	   <c:if test="${(avuste.key == tilatut.pizzatilausId) && (avuste.value == tilatut.pizzaid)}">
 	    							
 	    							<c:if test="${!tilaus.valmiina}">
 	    							<td>
@@ -181,15 +191,14 @@
 	    							
 	    						</c:if>	
 							
-							
-						
-					</c:forEach>
+					</c:forEach>		
+					</c:forEach>					
 				</tr>
+				
 			</c:forEach>
+			</c:if>
 		</table>
-	</div>
-	<div id="footer">
-		<li><a href="Kontrolleri">Admin</a></li>
-	</div>
+	</div>	
+	</c:if>
 </body>
 </html>

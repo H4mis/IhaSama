@@ -2,18 +2,27 @@ package luokat;
 
 public class TilattuPizza {
 	private Pizza pizza;
+	private int pizzatilausId;
 	private int tilausnro;
 	private int pizzaid;
 	private boolean oregano;
 	private boolean laktoositon;
 	private boolean gluteeniton;
 
-	public TilattuPizza(Pizza pizza, int tilausnro, boolean oregano, boolean laktoositon, boolean gluteeniton) {
+	public TilattuPizza(Pizza pizza, int pizzatilausId, int pizzaid, int tilausnro, boolean oregano, boolean laktoositon, boolean gluteeniton) {
 		this.pizza = pizza;
+		this.pizzaid = pizzaid;
+		this.pizzatilausId = pizzatilausId;
 		this.oregano = oregano;
 		this.laktoositon = laktoositon;
 		this.gluteeniton = gluteeniton;
 		this.setTilausnro(tilausnro);
+	}
+	public int getPizzatilausId() {
+		return pizzatilausId;
+	}
+	public void setPizzatilausId(int pizzatilausId) {
+		this.pizzatilausId = pizzatilausId;
 	}
 	public TilattuPizza(Pizza pizza, boolean oregano, boolean laktoositon, boolean gluteeniton) {
 		this.pizza = pizza;

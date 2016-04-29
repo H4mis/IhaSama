@@ -51,11 +51,11 @@
       
      	<li><a class="active" href="TiedoteKontrolleri">Etusivu</a></li>
 		<li><a href="asiakasKontrolleri">Menu</a></li>
-		<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>
+		<c:if test="${empty sessionScope.kayttajatunnus}"><li><a  href="rekisterointi.jsp">Rekisteröinti</a></li></c:if>
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <c:if test="${admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+      <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
       <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a>. <a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">

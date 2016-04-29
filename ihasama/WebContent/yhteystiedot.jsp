@@ -61,14 +61,15 @@ th, td {
       
      	<li><a  href="TiedoteKontrolleri">Etusivu</a></li>
 		<li><a href="asiakasKontrolleri">Menu</a></li>
-		<li><a  href="rekisterointi.jsp">Rekisteröinti</a></li>
+		<c:if test="${empty sessionScope.kayttajatunnus}"><li><a  href="rekisterointi.jsp">Rekisteröinti</a></li></c:if>
 		<li><a class="active" href="yhteystiedot.jsp">Yhteystiedot</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="Kontrolleri">Admin</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+      <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a>. <a href="Logout">Logout</a></li></c:if>
+     <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
-          <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
+            <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
               <div class="form-group">
                 <label for="usr">Käyttäjätunnus:</label>
                 <input type="text" class="form-control" id="usr" name="kayttajatunnus">
@@ -82,9 +83,9 @@ th, td {
             </form>
             	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
        <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
-            	
           </div>
-        </li>
+        </li>   
+            	</c:if>        
       </ul>
     </div>
  </div>

@@ -20,13 +20,14 @@
 
 </head>
 <body>
+<c:if test="${!sessionScope.admin}"><c:redirect url="TiedoteKontrolleri"/></c:if>
 
+<c:if test="${sessionScope.admin}"> 
 <ul id="navul">
 <li id="navli"><a href="TiedoteKontrolleri">Etusivu</a></li>
 <li id="navli"><a href="asiakasKontrolleri">Menu</a></li>
-<li id="navli"><a href="rekisterointi.jsp">Rekisteröinti</a></li>
 <li id="navli"><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-
+<li id="navli"><a href="TilausKontrolleri">Tilauslista</a></li>
 </ul>
 
 <h1>Castello é Fiore</h1>
@@ -46,6 +47,8 @@
 						<td><p>Piilossa</p></td>
 						<td><p>Poisto</p></td>
 					</tr>
+					<c:if test="${empty pizzalista}"></table> Pizzalista on tyhjä!</c:if>
+					<c:if test="${not empty pizzalista}">
 					<!-- pizzalistan tulostus -->
 					<c:forEach items="${pizzalista}" var="pizza">
                     <tr>
@@ -93,7 +96,8 @@
                 	</c:forEach>
 				</table>
 			
-			<c:if test="${not empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>	
+			<c:if test="${not empty param.removedPizza}"><h3>Pizzan poisto onnistui!</h3></c:if>
+			</c:if>	
 		</div>
 		<br>
 		
@@ -107,6 +111,8 @@
 						<td><p>Poisto</p></td>
 					</tr>
 						<!-- täytelistan tulostus -->
+						<c:if test="${empty taytelista}"></table> Täytelista on tyhjä!</c:if>
+					<c:if test="${not empty taytelista}">
 						<c:forEach items="${taytelista}" var="tayte">
 					<tr>
 						<td>
@@ -136,8 +142,10 @@
 		    									
 					</c:forEach>
 				</table>
+				
 			</form>
 			<c:if test="${not empty param.removedTayte}"><h3>Täytteen poisto onnistui!</h3></c:if>
+			</c:if>
 		</div>
 		<br>
 		<div class=laatikko>
@@ -230,6 +238,6 @@
 	
 	
 
-
+</c:if>
 </body>
 </html>

@@ -64,10 +64,10 @@ public class TilausDAO {
 			//haetaan yksi tilaus tietokannasta ja palautetaan se valmiina Pizzaoliona
 			String sql = "SELECT * FROM Tilaus WHERE tilausnro= '" + tilausNro + "';";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
-			ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro löytyvä Tilaus
+			ResultSet tulokset = lause.executeQuery();//haetaan tietokannasta tilausnro lï¿½ytyvï¿½ Tilaus
 			tulokset.next(); //mene ekalle riville
 			
-			if(tulokset.equals(null)) { //jos tilausta ei löydy tietokannasta palauta null
+			if(tulokset.equals(null)) { //jos tilausta ei lï¿½ydy tietokannasta palauta null
 				return null;
 			}
 			
@@ -77,7 +77,7 @@ public class TilausDAO {
 			String aika = tulokset.getString("tilausaika") + " " + tulokset.getString("tilausklo");
 			java.util.Date tilausaika = new java.util.Date();
 			try {
-				tilausaika = formatDateAndTime.parse(aika); //TODO TÄMÄ EI KAI TOIMI?
+				tilausaika = formatDateAndTime.parse(aika); //TODO Tï¿½Mï¿½ EI KAI TOIMI?
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,19 +91,20 @@ public class TilausDAO {
 			return tilaus1; //palautetaan pizza
 		}
 				
-		return null; //tilausta ei löytynyt, palautetaan null	
+		return null; //tilausta ei lï¿½ytynyt, palautetaan null	
 
 	}
 	
 	public List<Tilaus> haeTilaukset(List<Pizza> pizzalista) throws NumberFormatException, SQLException {
-		SimpleDateFormat formatDateAndTime = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat formatDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
-		String sql = "SELECT pt.tilausnro, GROUP_CONCAT(p.pizzaid) as pizzaid, GROUP_CONCAT(t.tilaajatunnus) as Tilaajatunnus, GROUP_CONCAT(t.tilausaika) as tilausaika, GROUP_CONCAT(t.tilausklo) as tilausklo, GROUP_CONCAT(t.valmiina) as valmiina, GROUP_CONCAT(t.toimitettu) as toimitettu, GROUP_CONCAT(t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid GROUP BY pt.tilausnro ORDER BY pt.tilausnro";
+		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt  LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid GROUP BY pt.pizzatilausid ORDER BY pt.tilausnro";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);		
 		List<Tilaus>tilauxet = new ArrayList<Tilaus>();
 		Pizza pizza = new Pizza();
 		List<TilattuPizza> tilPizzat = new ArrayList<TilattuPizza>(); 
+		HashMap<Integer,Integer> pizzantilausAvuste = new HashMap<Integer,Integer>();
 		while (tulokset.next()) {
 			int tilausnro = tulokset.getInt("tilausnro");
 			String tilaajatunnus = tulokset.getString("tilaajatunnus");
@@ -115,6 +116,7 @@ public class TilausDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			int pizzatilausId = tulokset.getInt("pizzatilausid");			
 			boolean valmiina = tulokset.getBoolean("valmiina");
 			boolean toimitettu = tulokset.getBoolean("toimitettu");
 			String toimitustapa = tulokset.getString("toimitustapa");		
@@ -128,9 +130,13 @@ public class TilausDAO {
 				}
 			
 			}
-			TilattuPizza tilPizza = new TilattuPizza(pizza, tilausnro, oregano, laktoositon, gluteeniton);
+			TilattuPizza tilPizza = new TilattuPizza(pizza, pizzatilausId, pizzaid, tilausnro, oregano, laktoositon, gluteeniton);
 			tilPizzat.add(tilPizza);
-			Tilaus tilaus = new Tilaus(tilausnro, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilPizzat);
+			System.out.println("Pizzan nimi tilauslistalla on " + pizzaid);
+			System.out.println("Pizzan tilausid on " +pizzatilausId);			
+					
+			pizzantilausAvuste.put(pizzatilausId, pizzaid);			
+			Tilaus tilaus = new Tilaus(tilausnro, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilPizzat, pizzantilausAvuste);
 			tilauxet.add(tilaus);
 		}			
 		
@@ -140,7 +146,7 @@ public class TilausDAO {
 	public Tilaus LisaaTilaus(Tilaus tilaus) {
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
-		System.out.println("ollaan LisaaTilaus()-metodissa tilaus sisältää: tilausnro=" + tilaus.getTilausnro() + ", valmiina=" + tilaus.isValmiina() + ", toimitettu=" + tilaus.isToimitettu() + ", toimitustapa=" + tilaus.getToimitustapa());
+		System.out.println("ollaan LisaaTilaus()-metodissa tilaus sisï¿½ltï¿½ï¿½: tilausnro=" + tilaus.getTilausnro() + ", valmiina=" + tilaus.isValmiina() + ", toimitettu=" + tilaus.isToimitettu() + ", toimitustapa=" + tilaus.getToimitustapa());
 		System.out.println(tilaus.getTilausaika().toString());
 
 		java.util.Date aikaJava = tilaus.getTilausaika();
@@ -152,7 +158,7 @@ public class TilausDAO {
 			// alustetaan sql-lause
 			String sql = "INSERT INTO Tilaus(tilausaika, valmiina, toimitettu, toimitustapa, tilausklo) VALUES(?, ?, ?, ?, ?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
-			// täydennetään puuttuvat tiedot (eli käyttäjän tiedot)
+			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli kï¿½yttï¿½jï¿½n tiedot)
 			lause.setString(1, tilausaika);
 			lause.setBoolean(2, tilaus.isValmiina());
 			lause.setBoolean(3, tilaus.isToimitettu());
@@ -161,15 +167,15 @@ public class TilausDAO {
 			System.out.println("testiiii");
 			
 			// suoritetaan lause
-			int vaikutetutRowit = lause.executeUpdate(); //TÄMÄ EI TOIMI?
-			System.out.println("execute update toimii jos tämä teksti näkyy!");
+			int vaikutetutRowit = lause.executeUpdate(); //Tï¿½Mï¿½ EI TOIMI?
+			System.out.println("execute update toimii jos tï¿½mï¿½ teksti nï¿½kyy!");
 			
 			System.out.println("vaikutetutRowit: " + vaikutetutRowit);
 			if (vaikutetutRowit == 0){
-				throw new SQLException("Tilauksen luominen epäonnistui, kenttiä tyhjinä?");
+				throw new SQLException("Tilauksen luominen epï¿½onnistui, kenttiï¿½ tyhjinï¿½?");
 			}
 			
-			System.out.println("palautettu sisältö: " + lause.getGeneratedKeys().toString());
+			System.out.println("palautettu sisï¿½ltï¿½: " + lause.getGeneratedKeys().toString());
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 				
 	            if (generatedKeys.next()) {
@@ -178,13 +184,13 @@ public class TilausDAO {
 	                return tilaus;
 	            }
 	            else {
-	                throw new SQLException("Tilauksen luominen epäonnistui, ei saatu tilausnroa");
+	                throw new SQLException("Tilauksen luominen epï¿½onnistui, ei saatu tilausnroa");
 	            }
 			}
 			
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
-			System.out.println("Tilauksen lisäämisyritys aiheutti virheen lisäysvaiheessa!");
+			System.out.println("Tilauksen lisï¿½ï¿½misyritys aiheutti virheen lisï¿½ysvaiheessa!");
 			System.out.println("tilausnro: " + tilaus.getTilausnro());
 		}
 		System.out.println("palautetaan tilaus kontrolleriin, tilausnro: " + tilaus.getTilausnro());
@@ -192,7 +198,7 @@ public class TilausDAO {
 	}
 	
 	public void LisaaPizzaTilaukseen(TilattuPizza tpizza, Tilaus tilaus) {
-		System.out.println("Yritetään lisätä pizzaid=" +tpizza.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
+		System.out.println("Yritetï¿½ï¿½n lisï¿½tï¿½ pizzaid=" +tpizza.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
 		System.out.println("tilausnro: " + tilaus.getTilausnro() + ", pizzaid: " + tpizza.getPizza().getPizzaid() + ", laktoositon: " + tpizza.isLaktoositon() + ", gluteeniton: " + tpizza.isGluteeniton() + ", oregano: " + tpizza.isOregano());
 		
 		try {
@@ -209,9 +215,9 @@ public class TilausDAO {
 			
 			// suoritetaan lause
 			lause.executeUpdate();
-			System.out.println("Lisättiin pizzaan: " + tpizza.getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
+			System.out.println("Lisï¿½ttiin pizzaan: " + tpizza.getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
 			
-			System.out.println("Tilaukseen lisätty Pizza" + tpizza.getPizza().getPizzanimi() + "lisï¿½tty tietokantaan");
+			System.out.println("Tilaukseen lisï¿½tty Pizza" + tpizza.getPizza().getPizzanimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out.println("Tilauksen lisï¿½ï¿½misyritys aiheutti virheen LisaaPizzaTilaukseen() -vaiheessa!");

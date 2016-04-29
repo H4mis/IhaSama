@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import luokat.Pizza;
 import luokat.Tayte;
@@ -53,7 +54,7 @@ public class Kontrolleri extends HttpServlet {
 		TiedoteDAO tDAO = new TiedoteDAO();
 		tDAO.avaaYhteys();
 		List<Tiedote> lista3;
-		
+		HttpSession sessio = request.getSession(false);
 		
 		
 		
@@ -64,6 +65,17 @@ public class Kontrolleri extends HttpServlet {
             request.setAttribute("taytelista", lista2);
             lista3 = tDAO.haeTiedotteet();
             request.setAttribute("tiedotelista", lista3);
+            
+        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
+
+				String nimi = (String) sessio.getAttribute("nimi");
+				String kayttajatunnus = (String) sessio
+						.getAttribute("kayttajatunnus");
+				boolean admin = (Boolean) sessio.getAttribute("admin");
+				request.setAttribute("kayttaja", kayttajatunnus);
+				request.setAttribute("nimi", nimi);
+				request.setAttribute("admin", admin);
+        	}
             
         } catch (NumberFormatException e) {
             e.printStackTrace();

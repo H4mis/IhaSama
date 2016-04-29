@@ -80,7 +80,8 @@ public class LoginKontrolleri extends HttpServlet {
 			HttpSession sessio=request.getSession(); 
 			sessio.setAttribute("nimi", kayttajaotus.getEtunimi());
 			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
-			sessio.setAttribute("admin",kayttajaotus.isAdmin());
+			sessio.setAttribute("admin",kayttajaotus.isAdmin());			
+			
 			// RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
 			  // rs.include(request, response);
 			  

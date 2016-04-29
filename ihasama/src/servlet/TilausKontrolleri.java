@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import luokat.Pizza;
 import luokat.Tilaus;
@@ -40,11 +41,25 @@ public class TilausKontrolleri extends HttpServlet {
 		pDAO.avaaYhteys();
 		tDAO.avaaYhteys();
 		List<Pizza> lista;
-		List<Tilaus>lista2;
+		List<Tilaus>lista2;		
+		HttpSession sessio = request.getSession(false);
+		
 		 try {
 	            lista = pDAO.haePizzat();
 	            lista2 = tDAO.haeTilaukset(lista);	            
 	            request.setAttribute("tilauslista", lista2);
+	            
+	        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
+
+					String nimi = (String) sessio.getAttribute("nimi");
+					String kayttajatunnus = (String) sessio
+							.getAttribute("kayttajatunnus");
+					boolean admin = (Boolean) sessio.getAttribute("admin");
+					request.setAttribute("kayttaja", kayttajatunnus);
+					request.setAttribute("nimi", nimi);
+					request.setAttribute("admin", admin);
+
+				}
 	            
 	        } catch (NumberFormatException e) {
 	            e.printStackTrace();
