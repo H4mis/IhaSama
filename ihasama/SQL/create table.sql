@@ -67,7 +67,8 @@ CREATE TABLE Tilaus
 (
 tilausnro INT NOT NULL AUTO_INCREMENT,
 tilaajatunnus VARCHAR(45),
-tilausaika DATE NOT NULL,
+tilausaika CHAR(10) NOT NULL,
+tilausklo CHAR(5) NOT NULL,
 varausnro INT,
 valmiina BOOLEAN NOT NULL,
 toimitettu BOOLEAN NOT NULL,
@@ -79,12 +80,13 @@ FOREIGN KEY (tilaajatunnus) REFERENCES Kayttaja(kayttajatunnus)
 
 CREATE TABLE Pizzatilaus
 (
+pizzatilausid int NOT NULL AUTO_INCREMENT,
 tilausnro INT NOT NULL,
 pizzaid INT UNSIGNED NOT NULL,
 laktoositon BOOLEAN NOT NULL,
 gluteeniton BOOLEAN NOT NULL,
 oregano BOOLEAN NOT NULL,
-PRIMARY KEY(tilausnro),
-FOREIGN KEY (tilausnro) REFERENCES Tilaus(tilausnro),
-FOREIGN KEY (pizzaid) REFERENCES Pizza(pizzaid)
+PRIMARY KEY(pizzatilausid),
+FOREIGN KEY (tilausnro) REFERENCES Tilaus(tilausnro) ON DELETE CASCADE,
+FOREIGN KEY (pizzaid) REFERENCES Pizza(pizzaid) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

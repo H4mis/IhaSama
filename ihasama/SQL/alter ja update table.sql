@@ -23,3 +23,15 @@ WHERE kayttajatunnus=?;
 UPDATE Kayttaja
 SET osoite='matintie 5',postinro='00560', postitmp='Helsinki'
 WHERE kayttajatunnus='matti';
+
+UPDATE Tilaus
+SET tilausaika='1990-07-23'
+WHERE tilausnro=1;
+
+UPDATE Tilaus
+SET tilausklo='05:30'
+WHERE tilausnro=1;
+
+UPDATE Tilaus
+SET tilausklo='12:30'
+WHERE tilausnro=2;
