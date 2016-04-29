@@ -87,10 +87,21 @@
     <h2>Tervetuloa</h2>
     
     <p>
-    Castello é Fiore on laatuun ja hyvään tunnelmaan erikoistunut ravintola. Tavoitteemme on
-    taata asiakkaille korkealaatuista palvelua, ja tuoreista raaka-aineista tehtyä gourmet-ruokaa.
-    Olemme perheyritys, joten ystävällisyys ja mukava ilmapiiri ovat arvoja, jonka mukaan 
+    Tervetuloa Castello é Fiore- ravintolan kotisivuille! 
+    <br>
+    <br>
+    Olemme pieni perheyritys, arvojamme ovat mm. upeiden makuelämysten tarjoaminen sekä hyvä tunnelma. Tavoitteemme on
+    taata asiakkaille korkealaatuista palvelua, ja korkealuokkaisista raaka-aineista tehtyjä gourmet- pizzoja.
+    Laadukkaat raaka-aineet, ekologisuus, ystävällisyys ja mukava ilmapiiri ovat arvoja, joita noudattaen 
     työskentelemme joka ikinen päivä.
+    <br>
+    <br>
+    Sivuiltamme voit tilata haluamiasi pizzoja valitsemaasi osoitteeseen ja nauttia upeista makuelämyksistä siellä missä itse haluat. 
+    Menu- välilehdeltä voit valita haluamasi pizzat ja tilata ne kotiinkuljetettuina haluamaasi osoitteeseen. 
+    Voit myös soittaa suoraan ravintolaamme ja tehdä pöytävarauksen.
+    <br>
+    <br>
+    Siirry tilaamaan <a href="asiakasKontrolleri">tästä</a>.
      
      <br>
      <br>

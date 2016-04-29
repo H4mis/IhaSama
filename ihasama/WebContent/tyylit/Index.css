@@ -23,6 +23,7 @@ h1{
 /*###################pizza taulukko tyyliä######################################*/ 
 #laatikko{
 	background-color: rgba(150,150,150,0.8);
+	text-align: center;
 	font-family: 'Merienda', cursive;
 	opacity:0.9;
 	margin: auto;
