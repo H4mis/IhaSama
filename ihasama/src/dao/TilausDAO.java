@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import java.text.ParseException;
 
 import luokat.Pizza;
@@ -117,6 +118,57 @@ public class TilausDAO {
         return lisaapu;
 
     }
+	
+	public List<TilattuPizza> HaeTilatutPizzat(int tilausnro) throws SQLException {
+		String sql = "SELECT tp.tilausnro, tp.pizzaid, laktoositon, gluteeniton, oregano, pizzanimi, hinta, piilossa"
+				+ " FROM Pizzatilaus as tp JOIN Pizza ON tp.pizzaid = Pizza.pizzaid"
+				+ " WHERE tp.tilausnro=" + tilausnro;
+		Statement haku = yhteys.createStatement();
+		ResultSet tulokset = haku.executeQuery(sql);
+		
+		List<TilattuPizza> tilatutpizzat = new ArrayList<TilattuPizza>();
+		while (tulokset.next()) {
+			int pizzaid = tulokset.getInt("pizzaid");
+			boolean laktoositon = tulokset.getBoolean("laktoositon");
+			boolean gluteeniton = tulokset.getBoolean("gluteeniton");
+			boolean oregano = tulokset.getBoolean("oregano");
+			String pizzanimi = tulokset.getString("pizzanimi");
+			double pizzahinta = Double.parseDouble(tulokset.getString("hinta"));
+			boolean piilossa = tulokset.getBoolean("piilossa");
+			String taytteet = null; //täytteitä ei tarvita tilaukseen eikö?
+			Pizza pizza = new Pizza(pizzaid, pizzanimi, pizzahinta, taytteet, piilossa);
+			TilattuPizza tilattupizza = new TilattuPizza(pizza, oregano, laktoositon, gluteeniton);
+			tilatutpizzat.add(tilattupizza);
+		}
+		return tilatutpizzat;
+	}
+	
+	public List<Tilaus> HaeTilaukset1() throws SQLException, ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		List<Tilaus> tilaukset = new ArrayList<Tilaus>();
+		
+		String sql = "SELECT * FROM Tilaus";
+		Statement haku = yhteys.createStatement();
+		ResultSet tulokset = haku.executeQuery(sql);
+
+		while (tulokset.next()) {
+			int tilausnro = tulokset.getInt("tilausnro");
+			String tilaajatunnus = tulokset.getString("tilaajatunnus");
+			String Stilausaika = tulokset.getString("tilausaika");
+			String Stilausklo = tulokset.getString("tilausklo");
+			int varausnro = tulokset.getInt("varausnro");
+			boolean valmiina = tulokset.getBoolean("valmiina");
+			boolean toimitettu = tulokset.getBoolean("toimitettu");
+			String toimitustapa = tulokset.getString("toimitustapa");
+			Date tilausaika = sdf.parse(Stilausaika + " " + Stilausklo);
+			List<TilattuPizza> tilatutpizzat = HaeTilatutPizzat(tilausnro);
+			Tilaus tilaus = new Tilaus(tilausnro, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilatutpizzat);
+			tilaukset.add(tilaus);
+			System.out.println("Tietokannasta haettiin tilaus: " + tilaus.getTilausnro());
+		}
+		System.out.println("Tilauksia löytyi yhteensä: " + tilaukset.size());
+		return tilaukset;
+	}
 	
 	public List<Tilaus> haeTilaukset(List<Pizza> pizzalista) throws NumberFormatException, SQLException {
 		SimpleDateFormat formatDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");

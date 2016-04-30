@@ -18,19 +18,21 @@ public class TilattuPizza {
 		this.gluteeniton = gluteeniton;
 		this.setTilausnro(tilausnro);
 	}
+	
+	public TilattuPizza(Pizza pizza, boolean oregano, boolean laktoositon, boolean gluteeniton) {
+		this.pizza = pizza;
+		this.oregano = oregano;
+		this.laktoositon = laktoositon;
+		this.gluteeniton = gluteeniton;
+	}
+	
 	public int getPizzatilausId() {
 		return pizzatilausId;
 	}
 	public void setPizzatilausId(int pizzatilausId) {
 		this.pizzatilausId = pizzatilausId;
 	}
-	public TilattuPizza(Pizza pizza, boolean oregano, boolean laktoositon, boolean gluteeniton) {
-		this.pizza = pizza;
-		this.oregano = oregano;
-		this.laktoositon = laktoositon;
-		this.gluteeniton = gluteeniton;
-		
-	}
+	
 
 	public TilattuPizza(int pizzaid, boolean oregano, boolean laktoositon, boolean gluteeniton) {
 		this.setPizzaid(pizzaid);

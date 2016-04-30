@@ -23,7 +23,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="tyylit/tyyli.css">
+<link rel="stylesheet" type="text/css" href="">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script'
 	rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
@@ -73,20 +73,49 @@
 	<h1>Castello é Fiore</h1>
 
 	<div id="laatikko">
-		<table>
+		<table border="1">
 			<tr>
-				<td><p>Tilausnro</p></td>
-				<td><p>Tilausaika</p></td>
-				<td><p>Tilaajatunnus</p></td>				
-				<td><p>Toimitustapa</p></td>
-				<td><p>Pizzat</p></td>
-				<td><p>Oregano</p></td>
-				<td><p>Laktoositon</p></td>
-				<td><p>Gluteeniton</p></td>
-				<td><p>Tilan muutos</p></td>				
-				<td><p>Palauta</p></td>
-				<td><p>Tilauksen tila</p></td>
+				<th>Tilausnro</th>
+				<th>Tilausaika</th>
+				<th>Tilaajatunnus</th>				
+				<th>Toimitustapa</th>
+				<th>Pizzat</th>
+				<th>Oregano</th>
+				<th>Laktoositon</th>
+				<th>Gluteeniton</th>
+				<th>Tilan muutos</th>				
+				<th>Palauta</th>
+				<th>Tilauksen tila</th>
 			</tr>
+			<c:forEach items="${tilauslista}" var="tilaus">
+				<tr>
+					<td><c:out value="${tilaus.tilausnro}" /></td>
+					<td><c:out value="${tilaus.tilausaika}" /></td>
+					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
+					<td><c:out value="${tilaus.toimitustapa}" /></td>
+					<td colspan="6"></td>
+					<td>Tilauksen tila</td>
+					<c:forEach items="${tilaus.tilatutPizzat}" var="tpizza">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><c:out value="${tpizza.pizza.pizzanimi}" /></td>
+						<td><c:out value="${tpizza.oregano}" /></td>
+						<td><c:out value="${tpizza.laktoositon}" /></td>
+						<td><c:out value="${tpizza.gluteeniton}" /></td>
+						<td>Tilan muutos</td>				
+						<td>Palauta</td>
+					</tr>
+					</c:forEach>
+					
+					
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+			<!-- vanha hirvitys
 			<c:if test="${empty tilauslista}">
 			</table>LISTA ON TYHJÄ!!!!!</c:if>
 			<c:if test="${not empty tilauslista}">
@@ -200,8 +229,8 @@
 			</c:forEach>
 			</c:if>
 		</table>
+		vanha hirvitys loppuu tähän -->
 	
-	</div>	
-	</c:if>
+	</c:if> <!-- näytä vain jos sessio on admin iffi loppuu tähän -->
 </body>
 </html>

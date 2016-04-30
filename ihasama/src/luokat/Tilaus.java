@@ -2,7 +2,6 @@ package luokat;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class Tilaus {
@@ -52,6 +51,16 @@ public class Tilaus {
 		this.valmiina = valmiina;
 		this.toimitettu = toimitettu;
 		this.toimitustapa = toimitustapa;
+	}
+	
+	public Tilaus(int tilausnro, String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat) {
+		this.tilausnro = tilausnro;
+		this.tilaajatunnus = tilaajatunnus;
+		this.tilausaika = tilausaika;		
+		this.valmiina = valmiina;
+		this.toimitettu = toimitettu;
+		this.toimitustapa = toimitustapa;
+		this.tilatutPizzat = tilatutPizzat;
 	}
 	
 	public Tilaus(int tilausnro, String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat, List<Integer> pizzantilausAvuste) {

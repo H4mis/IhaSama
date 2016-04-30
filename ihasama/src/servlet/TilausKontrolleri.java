@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import luokat.Pizza;
 import luokat.Tilaus;
-import dao.PizzaDAO;
 import dao.TilausDAO;
 
 /**
@@ -36,26 +35,21 @@ public class TilausKontrolleri extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PizzaDAO pDAO = new PizzaDAO();
-		TilausDAO tDAO = new TilausDAO();		
-		pDAO.avaaYhteys();
+		TilausDAO tDAO = new TilausDAO();
 		tDAO.avaaYhteys();
-		List<Pizza> lista;
-		List<Tilaus>lista2;		
+		
+		List<Tilaus>tilauslista;	
+		
 		HttpSession sessio = request.getSession(false);
 		
 		 try {
-	            lista = pDAO.haePizzat();
-	            lista2 = tDAO.haeTilaukset(lista);	            
-	            request.setAttribute("tilauslista", lista2);
-	            request.setAttribute("pizzat", lista);
-	            
-	            
+	            tilauslista = tDAO.HaeTilaukset1();	            
+	            request.setAttribute("tilauslista", tilauslista);
+	            	            
 	        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
 					String nimi = (String) sessio.getAttribute("nimi");
-					String kayttajatunnus = (String) sessio
-							.getAttribute("kayttajatunnus");
+					String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
 					boolean admin = (Boolean) sessio.getAttribute("admin");
 					request.setAttribute("kayttaja", kayttajatunnus);
 					request.setAttribute("nimi", nimi);
@@ -67,9 +61,11 @@ public class TilausKontrolleri extends HttpServlet {
 	            e.printStackTrace();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        } finally {
+	        } catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
 	        	tDAO.suljeYhteys();
-	            pDAO.suljeYhteys();
 	            
 	        }
 		 
