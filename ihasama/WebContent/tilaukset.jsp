@@ -88,13 +88,26 @@
 				<th>Tilauksen tila</th>
 			</tr>
 			<c:forEach items="${tilauslista}" var="tilaus">
-				<tr>
+				<c:if test="${tilaus.toimitettu}"><tr style="text-decoration: line-through;"></c:if>
+				<c:if test="${!tilaus.toimitettu}"><tr></c:if>
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
 					<td><c:out value="${tilaus.toimitustapa}" /></td>
 					<td colspan="6"></td>
-					<td>Tilauksen tila</td>
+					<td>
+						<c:if test="${(!tilaus.valmiina) && (!tilaus.toimitettu)}">
+							VASTAANOTETTU
+						</c:if>
+						
+						<c:if test="${(tilaus.valmiina) && (!tilaus.toimitettu)}">
+							VALMIS TOIMITUKSEEN
+						</c:if>
+						
+						<c:if test="${(tilaus.valmiina) && (tilaus.toimitettu)}">
+							TOIMITETTU
+						</c:if>
+					</td>
 					<c:forEach items="${tilaus.tilatutPizzat}" var="tpizza">
 					<tr>
 						<td></td>
@@ -102,15 +115,45 @@
 						<td></td>
 						<td></td>
 						<td><c:out value="${tpizza.pizza.pizzanimi}" /></td>
-						<td><c:out value="${tpizza.oregano}" /></td>
-						<td><c:out value="${tpizza.laktoositon}" /></td>
-						<td><c:out value="${tpizza.gluteeniton}" /></td>
-						<td>Tilan muutos</td>				
-						<td>Palauta</td>
+						<td>
+							<c:if test="${tilatut.oregano}">KYLLÄ</c:if> 
+							<c:if test="${!tilatut.oregano}">EI</c:if>
+						</td>
+						<td>
+							<c:if test="${tilatut.laktoositon}">KYLLÄ</c:if> 
+							<c:if test="${!tilatut.laktoositon}">EI</c:if>
+						</td>
+						<td>
+							<c:if test="${tilatut.gluteeniton}">KYLLÄ</c:if> 
+							<c:if test="${!tilatut.gluteeniton}">EI</c:if>
+						</td>
+						<td>
+							<form action="TilausKontrolleri" method="post">
+								<c:if test="${!tilaus.valmiina && !tilaus.toimitettu}">
+									<input type="hidden" value="${tilaus.tilausnro}" name="valmisnro" />
+	    							<input type="hidden" name="valmis" value="1" />
+	    							<input type="submit" value="Valmis">
+								</c:if>
+								<c:if test="${tilaus.valmiina && !tilaus.toimitettu}">
+									<input type="hidden" value="${tilaus.tilausnro}" name="toiminro" />
+	    							<input type="hidden" name="toimitettu" value="1" />
+	    							<input type="submit" value="Toimitettu">
+								</c:if>
+								<c:if test="${tilaus.valmiina && tilaus.toimitettu}">
+									N/A
+								</c:if>
+							
+							</form>
+						</td>				
+						<td>
+							<form action="TilausKontrolleri" method="post">
+                                 <input type="hidden" value="${tilaus.tilausnro}" name="tilausnro" />                                 
+                                 <input type="hidden" name="palautus" value="0" />
+                                <input type="submit" value="Palauta" />
+                            </form>
+						</td>
 					</tr>
-					</c:forEach>
-					
-					
+					</c:forEach>	
 				</tr>
 			</c:forEach>
 		</table>
@@ -168,7 +211,7 @@
 							</c:if>
 							<form action="TilausKontrolleri" method="post">
 							
-	  <c:if test="${(tilaus.tilausnro == tilatut.tilausnro) and (tilaus.pizzantilausAvuste[loop.index] == tilatut.pizzatilausId)}">
+	  							<c:if test="${(tilaus.tilausnro == tilatut.tilausnro) and (tilaus.pizzantilausAvuste[loop.index] == tilatut.pizzatilausId)}">
 	    							
 	    							<c:if test="${!tilaus.valmiina}">
 	    							<td>
