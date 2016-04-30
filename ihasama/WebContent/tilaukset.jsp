@@ -90,9 +90,9 @@
 			<c:if test="${empty tilauslista}">
 			</table>LISTA ON TYHJÄ!!!!!</c:if>
 			<c:if test="${not empty tilauslista}">
-			<c:forEach items="${tilauslista}" var="tilaus">
+			<c:forEach items="${tilauslista}" var="tilaus" varStatus="loop">
 				<tr>
-					
+				
 					<td>
 						<c:if test="${tilaus.toimitettu}">
 							<div style="text-decoration: line-through;">
@@ -115,10 +115,12 @@
 						<c:out value="${tilaus.toimitustapa}" />
 					</td>
 				
-					<c:forEach items="${tilaus.pizzantilausAvuste}" var="avuste">
-					<c:forEach items="${tilaus.tilatutPizzat}" var="tilatut">					
-								
-							<c:if test="${(avuste.key == tilatut.pizzatilausId) && (avuste.value == tilatut.pizzaid)}">
+					
+					<c:forEach items="${tilaus.tilatutPizzat}" var="tilatut" varStatus="loop2">					
+					
+					
+					key: <c:out value="${tilaus.tilausnro}" /> val: <c:out value="${tilaus.pizzantilausAvuste[loop.index]}" /> 
+							<c:if test="${(tilaus.tilausnro eq tilatut.tilausnro) and (tilaus.pizzantilausAvuste[loop.index] eq tilatut.pizzatilausId)}">
 						 		<td>
 							 		<c:out value="${tilatut.pizza.pizzanimi}" />
 								</td>
@@ -137,7 +139,7 @@
 							</c:if>
 							<form action="TilausKontrolleri" method="post">
 							
-	   <c:if test="${(avuste.key == tilatut.pizzatilausId) && (avuste.value == tilatut.pizzaid)}">
+	  <c:if test="${(tilaus.tilausnro == tilatut.tilausnro) and (tilaus.pizzantilausAvuste[loop.index] == tilatut.pizzatilausId)}">
 	    							
 	    							<c:if test="${!tilaus.valmiina}">
 	    							<td>
@@ -189,15 +191,16 @@
 	    							</td>
 	    							</c:if>
 	    							
-	    						</c:if>	
-							
-					</c:forEach>		
+	    						</c:if>
+					
+	
 					</c:forEach>					
 				</tr>
 				
 			</c:forEach>
 			</c:if>
 		</table>
+	
 	</div>	
 	</c:if>
 </body>

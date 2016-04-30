@@ -23,7 +23,7 @@ import dao.TilausDAO;
 @WebServlet("/TilausKontrolleri")
 public class TilausKontrolleri extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,6 +48,8 @@ public class TilausKontrolleri extends HttpServlet {
 	            lista = pDAO.haePizzat();
 	            lista2 = tDAO.haeTilaukset(lista);	            
 	            request.setAttribute("tilauslista", lista2);
+	            request.setAttribute("pizzat", lista);
+	            
 	            
 	        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
@@ -82,9 +84,9 @@ public class TilausKontrolleri extends HttpServlet {
 		String[]toimiIDt=request.getParameterValues("toiminro");		
 		String[]valmisIDt=request.getParameterValues("valmisnro");
 		String[]tilausIDt=request.getParameterValues("tilausnro");
-        String valmis =request.getParameter("valmis");
+	    String valmis =request.getParameter("valmis");
         String toimitettu =request.getParameter("toimitettu");
-        String palautus =request.getParameter("palautus");
+        String palautus =request.getParameter("palautus");      
         int valmish = 0;
         int toimitus = 0;
         int palaa = 0;
@@ -122,6 +124,8 @@ public class TilausKontrolleri extends HttpServlet {
 	        tDao.suljeYhteys();
 	        response.sendRedirect("TilausKontrolleri?changedPalautus=true");
     }
+       
+     
         
 	}
 

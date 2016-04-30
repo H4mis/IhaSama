@@ -14,7 +14,7 @@ public class Tilaus {
 	private boolean valmiina;
 	private boolean toimitettu;
 	private String toimitustapa; //tekstin�: nouto, kuljetus, paikanp��ll�
-	HashMap<Integer,Integer> pizzantilausAvuste;
+	List<Integer> pizzantilausAvuste;
 	
 	List<TilattuPizza> tilatutPizzat;
 	
@@ -27,7 +27,7 @@ public class Tilaus {
 		this.toimitustapa = "ei valittu";
 		List<TilattuPizza> tilatutPizzat1 = new ArrayList<TilattuPizza>(); //luodaan tyhj� lista pizzoille
 		this.tilatutPizzat = tilatutPizzat1;
-		HashMap<Integer,Integer> pizzantilausAvuste2 = new HashMap<Integer,Integer>();
+		List<Integer> pizzantilausAvuste2 = new ArrayList<Integer>();
 		this.pizzantilausAvuste = pizzantilausAvuste2;
 	}
 	
@@ -54,7 +54,7 @@ public class Tilaus {
 		this.toimitustapa = toimitustapa;
 	}
 	
-	public Tilaus(int tilausnro, String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat, HashMap<Integer,Integer> pizzantilausAvuste) {
+	public Tilaus(int tilausnro, String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat, List<Integer> pizzantilausAvuste) {
 		this.tilausnro = tilausnro;
 		this.tilaajatunnus = tilaajatunnus;
 		this.tilausaika = tilausaika;		
@@ -129,11 +129,11 @@ public class Tilaus {
 	public void setTilatutPizzat(List<TilattuPizza> tilatutPizzat) {
 		this.tilatutPizzat = tilatutPizzat;
 	}
-	public HashMap<Integer,Integer> getPizzantilausAvuste() {
+	public List<Integer> getPizzantilausAvuste() {
 		return pizzantilausAvuste;
 	}
 
-	public void setPizzantilausAvuste(HashMap<Integer,Integer> pizzantilausAvuste) {	
+	public void setPizzantilausAvuste(List<Integer> pizzantilausAvuste) {	
 		
 		this.pizzantilausAvuste = pizzantilausAvuste;
 	}

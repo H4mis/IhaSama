@@ -95,16 +95,40 @@ public class TilausDAO {
 
 	}
 	
+	public List<Integer> pizzaApu(int tilausnro) throws SQLException {
+		String sql = "SELECT pt.pizzatilausid, pt.tilausnro FROM Pizzatilaus pt WHERE pt.tilausnro= " + tilausnro; 
+        Statement haku = yhteys.createStatement();
+        ResultSet tulokset = haku.executeQuery(sql);
+        List<Integer> lisaapu = new ArrayList<Integer>();        
+        while (tulokset.next()) {        	
+            int pizzatilausId = tulokset.getInt("pizzatilausid");          
+            
+            
+            lisaapu.add(pizzatilausId);
+            
+            
+            System.out.println("Pizzan tilausnro on " +tilausnro);
+            System.out.println("Pizzan pizzatilausId on" +pizzatilausId);
+
+        }
+
+        
+    
+        return lisaapu;
+
+    }
+	
 	public List<Tilaus> haeTilaukset(List<Pizza> pizzalista) throws NumberFormatException, SQLException {
 		SimpleDateFormat formatDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
-		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt  LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid GROUP BY pt.pizzatilausid ORDER BY pt.tilausnro";
+		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid GROUP BY pt.pizzatilausid ORDER BY pt.tilausnro";
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);		
 		List<Tilaus>tilauxet = new ArrayList<Tilaus>();
 		Pizza pizza = new Pizza();
 		List<TilattuPizza> tilPizzat = new ArrayList<TilattuPizza>(); 
-		HashMap<Integer,Integer> pizzantilausAvuste = new HashMap<Integer,Integer>();
+		List<Integer> pizzantilausAvuste = new ArrayList<Integer>();
+		
 		while (tulokset.next()) {
 			int tilausnro = tulokset.getInt("tilausnro");
 			String tilaajatunnus = tulokset.getString("tilaajatunnus");
@@ -115,11 +139,11 @@ public class TilausDAO {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			int pizzatilausId = tulokset.getInt("pizzatilausid");			
+			}						
 			boolean valmiina = tulokset.getBoolean("valmiina");
 			boolean toimitettu = tulokset.getBoolean("toimitettu");
-			String toimitustapa = tulokset.getString("toimitustapa");		
+			String toimitustapa = tulokset.getString("toimitustapa");	
+			int pizzatilausId = tulokset.getInt("pizzatilausid");
 			int pizzaid = tulokset.getInt("pizzaid");
 			boolean oregano = tulokset.getBoolean("oregano");
 			boolean laktoositon = tulokset.getBoolean("laktoositon");
@@ -133,12 +157,19 @@ public class TilausDAO {
 			TilattuPizza tilPizza = new TilattuPizza(pizza, pizzatilausId, pizzaid, tilausnro, oregano, laktoositon, gluteeniton);
 			tilPizzat.add(tilPizza);
 			System.out.println("Pizzan nimi tilauslistalla on " + pizzaid);
-			System.out.println("Pizzan tilausid on " +pizzatilausId);			
-					
-			pizzantilausAvuste.put(pizzatilausId, pizzaid);			
+				
+			pizzantilausAvuste = pizzaApu(tilausnro);
+			
 			Tilaus tilaus = new Tilaus(tilausnro, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilPizzat, pizzantilausAvuste);
-			tilauxet.add(tilaus);
+				
+			tilauxet.add(tilaus);	
 		}			
+		
+		for (int i = 0; i < tilauxet.size(); i++) {
+			System.out.println("Tilausnumero #"+i+" tilauksessa on " + tilauxet.get(i).getTilausnro() + "pizza: "+ tilauxet.get(i).getTilatutPizzat().get(i).getPizza().getPizzanimi() );	
+		}
+		
+		
 		
 		return tilauxet;
 	}
