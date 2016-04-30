@@ -89,7 +89,7 @@
 			<c:forEach items="${menulista}" var="pizza">
 			<tr>
 				<td>
-					<form action="asiakasKontrolleri" method="post">
+					<form action="KoriKontrolleri" method="post">
 					<c:out value="${pizza.pizzanimi}"/>
 					<br>
 					<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>

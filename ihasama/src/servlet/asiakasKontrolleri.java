@@ -4,6 +4,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,18 +94,30 @@ public class asiakasKontrolleri extends HttpServlet {
 		// TODO: hae asiakkaalta tilatut pizzat.
 		PizzaDAO pDao = new PizzaDAO();
 		TilausDAO tDao = new TilausDAO();
-		
+		HttpSession sessio = request.getSession(false);
+		String kayttajatunnus = null;
+		if (sessio != null && sessio.getAttribute("kayttajatunnus") != null){
+			kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");}
 		request.setCharacterEncoding("UTF-8"); //skandit toimimaan
 		String tilattupizza = request.getParameter("tilaapizza");
+		List<TilattuPizza> kori;
+		kori = (List<TilattuPizza>) sessio.getAttribute("kori");
+		
+		if(kori == null){
+			kori = new ArrayList<TilattuPizza>();
+			sessio.setAttribute("kori", kori);
+		}
+		
+		
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
 		
 		
-		if(tilattupizza.length() > 0) //jos tilauskenttä ei ole tyhjä, eli asiakas haluaa lisätä pizzan tilaukseensa
+		if(!kori.isEmpty()) //jos tilauskenttä ei ole tyhjä, eli asiakas haluaa lisätä pizzan tilaukseensa
 		{
 			try {
-				pDao.avaaYhteys();
-				Pizza pizza = pDao.haePizza(tilattupizza);
+				//pDao.avaaYhteys();
+				/*Pizza pizza = pDao.haePizza(tilattupizza);
 				System.out.println(pizza.getPizzanimi());
 				if(!pizza.equals(null)) // jos pizza l�ytyy tietokannasta
 				{
@@ -133,19 +146,26 @@ public class asiakasKontrolleri extends HttpServlet {
 					Pizza tilPizza = pDao.haePizza(tilattupizza);
 					TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
 					
-					tilaus.getTilatutPizzat().add(tpizza); //lisätään pizza tilauksen tilattuihin pizzoihin(listaan)
+					tilaus.getTilatutPizzat().add(tpizza);*/ //lisätään pizza tilauksen tilattuihin pizzoihin(listaan)
 					tDao.avaaYhteys();
 					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
 						//luodaan tilaus
-						tDao.LisaaTilaus(tilaus); //lisää tilauksen tietokantaan
-						tDao.LisaaPizzaTilaukseen(tpizza, tilaus);//lisätään tilattu pizza tilaukseen
+					if(kayttajatunnus != null && !kayttajatunnus.isEmpty()){ // jos olemassa on käyttäjätunnus, tee näin
+						tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus);
+					}else{					
+					tDao.LisaaTilaus(tilaus); //lisää tilauksen tietokantaan
+					}
+						tDao.LisaaPizzaTilaukseen(kori, tilaus);//lisätään tilattu pizza tilaukseen
 					//}
-				}
+						
+				
 				
 				tDao.suljeYhteys(); //suljetaan yhteydet! Mikään Dao komento ei toimi näiden jälkeen ellei avata yhteyttä uudelleen!
-				pDao.suljeYhteys();
+			//	pDao.suljeYhteys();
 				
-			} catch (SQLException e) {
+				response.sendRedirect("asiakasKontrolleri?addedTilaus=true");
+				
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

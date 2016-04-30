@@ -268,27 +268,85 @@ public class TilausDAO {
 		return tilaus;
 	}
 	
-	public void LisaaPizzaTilaukseen(TilattuPizza tpizza, Tilaus tilaus) {
-		System.out.println("Yritet��n lis�t� pizzaid=" +tpizza.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
-		System.out.println("tilausnro: " + tilaus.getTilausnro() + ", pizzaid: " + tpizza.getPizza().getPizzaid() + ", laktoositon: " + tpizza.isLaktoositon() + ", gluteeniton: " + tpizza.isGluteeniton() + ", oregano: " + tpizza.isOregano());
+	public Tilaus LisaaTunnistettuTilaus(Tilaus tilaus, String kayttajatunnus) {
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
+		System.out.println("ollaan LisaaTunnistettuTilaus()-metodissa tilaus sis�lt��: tilausnro=" + tilaus.getTilausnro() + ", valmiina=" + tilaus.isValmiina() + ", toimitettu=" + tilaus.isToimitettu() + ", toimitustapa=" + tilaus.getToimitustapa());
+		System.out.println(tilaus.getTilausaika().toString());
+
+		java.util.Date aikaJava = tilaus.getTilausaika();
+		String tilausaika = formatDate.format(aikaJava);
+		String tilausklo = formatTime.format(aikaJava);
+		System.out.println("LisaaTilaus(): tilausaika: " + tilausaika + ", tilausklo: " + tilausklo);
+
+		try {
+			// alustetaan sql-lause
+			String sql = "INSERT INTO Tilaus(tilausaika, valmiina, toimitettu, toimitustapa, tilausklo, tilaajatunnus) VALUES(?, ?, ?, ?, ?, ?)";
+			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
+			// t�ydennet��n puuttuvat tiedot (eli k�ytt�j�n tiedot)
+			lause.setString(1, tilausaika);
+			lause.setBoolean(2, tilaus.isValmiina());
+			lause.setBoolean(3, tilaus.isToimitettu());
+			lause.setString(4, tilaus.getToimitustapa());
+			lause.setString(5, tilausklo);
+			lause.setString(6, kayttajatunnus);
+			System.out.println("testiiii");
+			
+			// suoritetaan lause
+			int vaikutetutRowit = lause.executeUpdate(); //T�M� EI TOIMI?
+			System.out.println("execute update toimii jos t�m� teksti n�kyy!");
+			
+			System.out.println("vaikutetutRowit: " + vaikutetutRowit);
+			if (vaikutetutRowit == 0){
+				throw new SQLException("Tilauksen luominen ep�onnistui, kentti� tyhjin�?");
+			}
+			
+			System.out.println("palautettu sis�lt�: " + lause.getGeneratedKeys().toString());
+			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
+				
+	            if (generatedKeys.next()) {
+	                tilaus.setTilausnro(generatedKeys.getInt("tilausnro")); //tuodaan generoidut attribuutit
+	                System.out.println("palautettiin tilaukselle tilausnro: " + tilaus.getTilausnro());
+	                return tilaus;
+	            }
+	            else {
+	                throw new SQLException("Tilauksen luominen ep�onnistui, ei saatu tilausnroa");
+	            }
+			}
+			
+		} catch (Exception e) {
+			// Tapahtui jokin virhe
+			System.out.println("Tilauksen lis��misyritys aiheutti virheen lis�ysvaiheessa!");
+			System.out.println("tilausnro: " + tilaus.getTilausnro());
+		}
+		System.out.println("palautetaan tilaus kontrolleriin, tilausnro: " + tilaus.getTilausnro());
+		return tilaus;
+	}
+	
+	public void LisaaPizzaTilaukseen(List<TilattuPizza> kori, Tilaus tilaus) {
+		//System.out.println("Yritet��n lis�t� pizzaid=" +kori.getPizza().getPizzaid() + " tilaukseen nro=" + tilaus.getTilausnro());
+	//	System.out.println("tilausnro: " + tilaus.getTilausnro() + ", pizzaid: " + kori.getPizza().getPizzaid() + ", laktoositon: " + kori.isLaktoositon() + ", gluteeniton: " + kori.isGluteeniton() + ", oregano: " + kori.isOregano());
 		
 		try {
 			// alustetaan sql-lause
 			String sql = "INSERT INTO Pizzatilaus(tilausnro, pizzaid, laktoositon, gluteeniton, oregano) VALUES(?,?,?,?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql);
+			for (int i = 0; i < kori.size(); i++) {
+				
 			
 			//t�ytet��n lausekkeen VALUES() kohdat.
 			lause.setInt(1, tilaus.getTilausnro());
-			lause.setInt(2, tpizza.getPizza().getPizzaid());
-			lause.setBoolean(3, tpizza.isLaktoositon());
-			lause.setBoolean(4, tpizza.isGluteeniton());
-			lause.setBoolean(5, tpizza.isOregano());
+			lause.setInt(2, kori.get(i).getPizza().getPizzaid());
+			lause.setBoolean(3, kori.get(i).isLaktoositon());
+			lause.setBoolean(4, kori.get(i).isGluteeniton());
+			lause.setBoolean(5, kori.get(i).isOregano());
 			
 			// suoritetaan lause
 			lause.executeUpdate();
-			System.out.println("Lis�ttiin pizzaan: " + tpizza.getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
+			System.out.println("Lis�ttiin pizzaan: " + kori.get(i).getPizza().getPizzanimi() + " tilaukseen: " + tilaus.getTilausnro());
 			
-			System.out.println("Tilaukseen lis�tty Pizza" + tpizza.getPizza().getPizzanimi() + "lis�tty tietokantaan");
+			System.out.println("Tilaukseen lis�tty Pizza" + kori.get(i).getPizza().getPizzanimi() + "lis�tty tietokantaan");
+			}
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out.println("Tilauksen lis��misyritys aiheutti virheen LisaaPizzaTilaukseen() -vaiheessa!");
