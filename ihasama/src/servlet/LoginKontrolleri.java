@@ -53,12 +53,12 @@ public class LoginKontrolleri extends HttpServlet {
      
      if(sivu.equals("/asiakasKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetÃ¤Ã¤n muuttaa asiakas.jsptÃ¤:" + sivu);
+    	 System.out.println("Kun yritetäänn muuttaa asiakas.jsptä:" + sivu);
      }
      
      if(sivu.equals("/TiedoteKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetÃ¤Ã¤n muuttaa index.jsptÃ¤:" + sivu);
+    	 System.out.println("Kun yritetään muuttaa index.jsptä:" + sivu);
      }
      
      

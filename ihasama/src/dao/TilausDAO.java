@@ -135,7 +135,7 @@ public class TilausDAO {
 			String pizzanimi = tulokset.getString("pizzanimi");
 			double pizzahinta = Double.parseDouble(tulokset.getString("hinta"));
 			boolean piilossa = tulokset.getBoolean("piilossa");
-			String taytteet = null; //täytteitä ei tarvita tilaukseen eikö?
+			String taytteet = null; //tï¿½ytteitï¿½ ei tarvita tilaukseen eikï¿½?
 			Pizza pizza = new Pizza(pizzaid, pizzanimi, pizzahinta, taytteet, piilossa);
 			TilattuPizza tilattupizza = new TilattuPizza(pizza, oregano, laktoositon, gluteeniton);
 			tilatutpizzat.add(tilattupizza);
@@ -166,23 +166,21 @@ public class TilausDAO {
 			tilaukset.add(tilaus);
 			System.out.println("Tietokannasta haettiin tilaus: " + tilaus.getTilausnro());
 		}
-		System.out.println("Tilauksia löytyi yhteensä: " + tilaukset.size());
+		System.out.println("Tilauksia lÃ¶ytyi yhteensÃ¤: " + tilaukset.size());
 		return tilaukset;
 	}
 	
-	public List<Tilaus> haeTilaukset(List<Pizza> pizzalista) throws NumberFormatException, SQLException {
+	public List<Tilaus> haeTilaukset(int tilnum) throws NumberFormatException, SQLException {
 		SimpleDateFormat formatDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
-		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid GROUP BY pt.pizzatilausid ORDER BY pt.tilausnro";
+		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano FROM Pizzatilaus pt LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid WHERE pt.tilausnro ="+tilnum;
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);		
-		List<Tilaus>tilauxet = new ArrayList<Tilaus>();
-		Pizza pizza = new Pizza();
-		List<TilattuPizza> tilPizzat = new ArrayList<TilattuPizza>(); 
+		List<Tilaus>tilauxet = new ArrayList<Tilaus>();				 
 		List<Integer> pizzantilausAvuste = new ArrayList<Integer>();
 		
 		while (tulokset.next()) {
-			int tilausnro = tulokset.getInt("tilausnro");
+			
 			String tilaajatunnus = tulokset.getString("tilaajatunnus");
 			String aika = tulokset.getString("tilausaika") + " " + tulokset.getString("tilausklo");
 			java.util.Date tilausaika = new java.util.Date();
@@ -194,25 +192,15 @@ public class TilausDAO {
 			}						
 			boolean valmiina = tulokset.getBoolean("valmiina");
 			boolean toimitettu = tulokset.getBoolean("toimitettu");
-			String toimitustapa = tulokset.getString("toimitustapa");	
-			int pizzatilausId = tulokset.getInt("pizzatilausid");
-			int pizzaid = tulokset.getInt("pizzaid");
-			boolean oregano = tulokset.getBoolean("oregano");
-			boolean laktoositon = tulokset.getBoolean("laktoositon");
-			boolean gluteeniton = tulokset.getBoolean("gluteeniton");			
-			for (int i = 0; i < pizzalista.size(); i++) {
-				if(pizzalista.get(i).getPizzaid() == pizzaid){
-					pizza = new Pizza(pizzalista.get(i).getPizzaid(), pizzalista.get(i).getPizzanimi(), pizzalista.get(i).getHinta(), pizzalista.get(i).getTaytteet(), pizzalista.get(i).isPiilossa());
-				}
+			String toimitustapa = tulokset.getString("toimitustapa");			
+			int pizzaid = tulokset.getInt("pizzaid");						
+			List<TilattuPizza> tilPizzat = HaeTilatutPizzat(tilnum);
 			
-			}
-			TilattuPizza tilPizza = new TilattuPizza(pizza, pizzatilausId, pizzaid, tilausnro, oregano, laktoositon, gluteeniton);
-			tilPizzat.add(tilPizza);
 			System.out.println("Pizzan nimi tilauslistalla on " + pizzaid);
 				
-			pizzantilausAvuste = pizzaApu(tilausnro);
+			pizzantilausAvuste = pizzaApu(tilnum);
 			
-			Tilaus tilaus = new Tilaus(tilausnro, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilPizzat, pizzantilausAvuste);
+			Tilaus tilaus = new Tilaus(tilnum, tilaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilPizzat, pizzantilausAvuste);
 				
 			tilauxet.add(tilaus);	
 		}			

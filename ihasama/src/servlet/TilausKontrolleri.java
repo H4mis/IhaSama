@@ -23,6 +23,8 @@ import dao.TilausDAO;
 public class TilausKontrolleri extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
+	
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,15 +41,27 @@ public class TilausKontrolleri extends HttpServlet {
 		tDAO.avaaYhteys();
 		
 		List<Tilaus>tilauslista;	
-		
+		List<Tilaus>varalista;
 		HttpSession sessio = request.getSession(false);
 		
-		 try {
+		 try {			
+			 	int tilnum = 0;
+			 	if(request.getAttribute("tilnum") != null){
+			 	tilnum = (int) request.getAttribute("tilnum");}
 	            tilauslista = tDAO.HaeTilaukset1();	            
 	            request.setAttribute("tilauslista", tilauslista);
-	            	            
+	            request.setAttribute("poistalista", false);
+	            if(tilnum != 0){
+	        	   varalista = tDAO.haeTilaukset(tilnum);
+	        	   request.setAttribute("varalista", varalista);
+	        	   request.setAttribute("poistalista", true);
+	           }
+	            
+	            
 	        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
+	        		
+	        		
 					String nimi = (String) sessio.getAttribute("nimi");
 					String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
 					boolean admin = (Boolean) sessio.getAttribute("admin");
@@ -83,6 +97,9 @@ public class TilausKontrolleri extends HttpServlet {
 	    String valmis =request.getParameter("valmis");
         String toimitettu =request.getParameter("toimitettu");
         String palautus =request.getParameter("palautus");      
+        String tilnum2=request.getParameter("tilnum");
+        int tilnum = 0;
+        
         int valmish = 0;
         int toimitus = 0;
         int palaa = 0;
@@ -121,7 +138,12 @@ public class TilausKontrolleri extends HttpServlet {
 	        response.sendRedirect("TilausKontrolleri?changedPalautus=true");
     }
        
-     
+     if(tilnum2 != null && !tilnum2.isEmpty()){
+    	 tilnum = Integer.parseInt(tilnum2);
+    	 request.setAttribute("tilnum", tilnum);    	
+    	 doGet(request,response);
+	        
+     }
         
 	}
 
