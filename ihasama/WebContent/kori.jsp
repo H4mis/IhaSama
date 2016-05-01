@@ -77,11 +77,11 @@
 			<td>Hinta</td>
 			<td>Oregano</td>
 			<td>Laktoositon</td>
-			<td>Gluteeniton</td>
-			<c:if test="${empty korilista}"><c:out value="</table> Ostoskorisi on tyhjä!"/></c:if>
-			<c:if test="${not empty korilista}">
-			<c:set var="index" value="${0}" />
+			<td>Gluteeniton</td>			
 		</tr>
+		<c:if test="${empty korilista}"></table>Ostoskorisi on tyhjä!</c:if>
+		<c:if test="${not empty korilista}">
+			<c:set var="index" value="${0}" />
 		<c:forEach items="${korilista}" var="kori" varStatus="loop">
 			<tr>
 				<td>
@@ -117,7 +117,8 @@
 	   <input type="hidden" value="${korilista}" name="tilattavat" />
        <input type="submit" value="Tilaa" />
     </form>
-    yhteensä: <c:out value="${yht}"></c:out>€
+    yhteensä: <fmt:setLocale value="fi"/>
+			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 	</c:if>
 </body>
 </html>

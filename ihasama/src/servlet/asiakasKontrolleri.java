@@ -151,7 +151,7 @@ public class asiakasKontrolleri extends HttpServlet {
 					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
 						//luodaan tilaus
 					if(kayttajatunnus != null && !kayttajatunnus.isEmpty()){ // jos olemassa on käyttäjätunnus, tee näin
-						tilaus = tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus); //pit�� palauttaa tilaus jotta saadaan tilausnro!
+						tilaus = tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus); //pit�� palauttaa tilaus jotta saadaan tilausnro!
 					}else{					
 					tilaus = tDao.LisaaTilaus(tilaus); //lisää tilauksen tietokantaan ja palauttaa tilauksen generoidun avaimen eli tilausnron kanssa!
 					}
@@ -162,7 +162,8 @@ public class asiakasKontrolleri extends HttpServlet {
 				
 				tDao.suljeYhteys(); //suljetaan yhteydet! Mikään Dao komento ei toimi näiden jälkeen ellei avata yhteyttä uudelleen!
 			//	pDao.suljeYhteys();
-				
+				sessio.removeAttribute("kori");
+				sessio.removeAttribute("yht");
 				response.sendRedirect("asiakasKontrolleri?addedTilaus=true");
 				
 			} catch (Exception e) {
