@@ -54,8 +54,6 @@ public class KoriKontrolleri extends HttpServlet {
 				request.setAttribute("kayttaja", kayttajatunnus);
 				request.setAttribute("nimi", nimi);
 				request.setAttribute("admin", admin);
-				
-
 			}
           
 		}catch(Exception e) {
@@ -75,16 +73,18 @@ public class KoriKontrolleri extends HttpServlet {
 		
 		String poistop = request.getParameter("poistopizza");
 		int poisto = -1;
-if(poistop != null && !poistop.isEmpty()){
-	System.out.println("poistop:ssa lukee" + poistop.toString());
-	poisto = Integer.parseInt(poistop);
-	
-}
+		if(poistop != null && !poistop.isEmpty()){
+			System.out.println("poistop:ssa lukee" + poistop.toString());
+			poisto = Integer.parseInt(poistop);
+			
+		}
 		PizzaDAO pDao = new PizzaDAO();
 		KoriDAO kDao = new KoriDAO();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession sessio = request.getSession();
 		List<TilattuPizza> kori;
+		double yhteishinta;
+		
 		kori = (List<TilattuPizza>) sessio.getAttribute("kori");
 		
 		if(poistop != null && !poistop.equals(null)){
@@ -135,6 +135,11 @@ if(poistop != null && !poistop.isEmpty()){
 				kori = kDao.lisaaKoriin(tpizza, kori); //lisätään tilattu pizza niine hyvineen koriin
 				
 				sessio.setAttribute("kori", kori);
+				
+				yhteishinta = pDao.LaskeYhteishinta(kori);
+				
+				sessio.setAttribute("yht", yhteishinta);
+				
 			
 		}} catch (SQLException e) {
 			

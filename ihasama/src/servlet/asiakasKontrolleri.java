@@ -151,9 +151,9 @@ public class asiakasKontrolleri extends HttpServlet {
 					//if(!tDao.haeTilaus(tilaus).equals(null)) { //jos tilaus ei ole olemassa
 						//luodaan tilaus
 					if(kayttajatunnus != null && !kayttajatunnus.isEmpty()){ // jos olemassa on k채ytt채j채tunnus, tee n채in
-						tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus);
+						tilaus = tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus); //pit狎 palauttaa tilaus jotta saadaan tilausnro!
 					}else{					
-					tDao.LisaaTilaus(tilaus); //lis채채 tilauksen tietokantaan
+					tilaus = tDao.LisaaTilaus(tilaus); //lis채채 tilauksen tietokantaan ja palauttaa tilauksen generoidun avaimen eli tilausnron kanssa!
 					}
 						tDao.LisaaPizzaTilaukseen(kori, tilaus);//lis채t채채n tilattu pizza tilaukseen
 					//}

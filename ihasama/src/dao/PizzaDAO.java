@@ -11,6 +11,7 @@ import java.util.List;
 
 import luokat.Pizza;
 import luokat.Tayte;
+import luokat.TilattuPizza;
 
 public class PizzaDAO {
 
@@ -149,6 +150,14 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 					.println("Pizzan lis‰‰misyritys aiheutti virheen pizzanlis‰ysvaiheessa!");
 		}
 		
+	}
+	
+	public double LaskeYhteishinta(List<TilattuPizza> kori) { //laskee tilattujen pizzojen yhteishinnan ja palauttaa sen.
+		double yhteishinta = 0;
+		for(int i = 0; i < kori.size(); i++) {
+			yhteishinta += kori.get(i).getPizza().getHinta();
+		}
+		return yhteishinta;
 	}
 	
 	public List<Pizza> haeAsiakasPizzat(List<Pizza> pizzalista) throws NumberFormatException, SQLException {

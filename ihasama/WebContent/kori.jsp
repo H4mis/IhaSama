@@ -71,51 +71,53 @@
 	<h1>Ostoskorisi</h1>
 	<form action='asiakasKontrolleri'>Lisää pizzoja listaan <input type='submit' value='tästä'></form>
 	Ostoskori:
-	<table>
-	<td>Pizzan nimi</td>
-	<td>Hinta</td>
-	<td>Oregano</td>
-	<td>Laktoositon</td>
-	<td>Gluteeniton</td>
-	<c:if test="${empty korilista}"></table> Ostoskorisi on tyhjä!</c:if>
-			
-	<c:if test="${not empty korilista}">
-	<c:set var="index" value="${0}" />
-	<c:forEach items="${korilista}" var="kori" varStatus="loop">
-	<tr>
-	<td>
-	<c:out value="${kori.pizza.pizzanimi}" />
-	</td>
-	<td>
-	<fmt:setLocale value="fi"/>
-	<fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
-	</td>
-	<td>
-    <c:if test="${kori.oregano}">Oreganoa</c:if> 
-	<c:if test="${!kori.oregano}">Ei oreganoa</c:if>
-	</td>
-	<td>
-	<c:if test="${kori.laktoositon}">Laktoositon</c:if> 
-	<c:if test="${!kori.laktoositon}">Ei laktoositon</c:if>
-	</td>
-	<td>
-	<c:if test="${kori.gluteeniton}">Gluteeniton</c:if> 
-	<c:if test="${!kori.gluteeniton}">Ei gluteeniton</c:if>
-	</td>
-	<td>
-	<form action="KoriKontrolleri" method="post">
-                                <input type="hidden" value="${index}" name="poistopizza" />
-                                <input type="submit" value="Poista" />
-                            </form>
-                            </td>
-	</tr>
-	<c:set var="index" value="${index+1}" />
-	</c:forEach>	
+	<table border="1">
+		<tr>
+			<td>Pizzan nimi</td>
+			<td>Hinta</td>
+			<td>Oregano</td>
+			<td>Laktoositon</td>
+			<td>Gluteeniton</td>
+			<c:if test="${empty korilista}"><c:out value="</table> Ostoskorisi on tyhjä!"/></c:if>
+			<c:if test="${not empty korilista}">
+			<c:set var="index" value="${0}" />
+		</tr>
+		<c:forEach items="${korilista}" var="kori" varStatus="loop">
+			<tr>
+				<td>
+					<c:out value="${kori.pizza.pizzanimi}" />
+				</td>
+				<td>
+					<fmt:setLocale value="fi"/>
+					<fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+				</td>
+				<td>
+			    	<c:if test="${kori.oregano}">Oreganoa</c:if> 
+					<c:if test="${!kori.oregano}">Ei oreganoa</c:if>
+				</td>
+				<td>
+					<c:if test="${kori.laktoositon}">Laktoositon</c:if> 
+					<c:if test="${!kori.laktoositon}">Ei laktoositon</c:if>
+				</td>
+				<td>
+					<c:if test="${kori.gluteeniton}">Gluteeniton</c:if> 
+					<c:if test="${!kori.gluteeniton}">Ei gluteeniton</c:if>
+				</td>
+				<td>
+					<form action="KoriKontrolleri" method="post">
+			            <input type="hidden" value="${index}" name="poistopizza" />
+			            <input type="submit" value="Poista" />
+			        </form>
+			    </td>
+			</tr>
+			<c:set var="index" value="${index+1}" />
+		</c:forEach>	
 	</table>
 	<form action="asiakasKontrolleri" method="post">
 	   <input type="hidden" value="${korilista}" name="tilattavat" />
-                    <input type="submit" value="Tilaa" />
-                    </form>
+       <input type="submit" value="Tilaa" />
+    </form>
+    yhteensä: <c:out value="${yht}"></c:out>€
 	</c:if>
 </body>
 </html>
