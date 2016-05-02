@@ -136,7 +136,7 @@
      
         <c:if test="${not empty param.registrationSuccess}"><h3 style="color: green; text-align: center;">Rekisteröinti onnistui! </h3><br>
 	        
-	        <form method="post" action="login.jsp">
+	        <form method="post" action="LoginKontrolleri">
 	        	<table>
 		        	<tr>
 		        		<td>
@@ -159,6 +159,7 @@
 		        			Kirjaudu
 		        		</td>
 		        		<td>
+		        		<input type="hidden" name="from" value="/TiedoteKontrolleri">
 						<input type="submit" value="Kirjaudu" />
 		        		</td>
 		        	</tr>
