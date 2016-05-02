@@ -18,6 +18,28 @@
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
 <title>Pizzalistaussivu</title>
 
+
+<script type="text/javascript">
+
+function checkboxlimit(checkgroup, limit){
+	var checkgroup=checkgroup
+	var limit=limit
+	for (var i=0; i<checkgroup.length; i++){
+		checkgroup[i].onclick=function(){
+		var checkedcount=0
+		for (var i=0; i<checkgroup.length; i++)
+			checkedcount+=(checkgroup[i].checked)? 1 : 0
+		if (checkedcount>limit){
+			alert("Voit valita enintään "+limit+" täytettä!")
+			this.checked=false
+			}
+		}
+	}
+}
+
+</script>
+
+
 </head>
 <body>
 <c:if test="${!sessionScope.admin}"><c:redirect url="TiedoteKontrolleri"/></c:if>
@@ -151,7 +173,7 @@
 		<div class=laatikko>
 			<p style="text-align: center;">Lisää uusi pizza</p>
 				<!-- pizza lisäys formi -->
-				<form action="Kontrolleri" method="post" style="text-align: center;" accept-charset="UTF-8">
+				<form action="Kontrolleri" method="post" style="text-align: center;" accept-charset="UTF-8" name="tarkistus">
 					<table style="width: 100%;">
 					<tr>
 						<td style="text-align: right;">
@@ -194,7 +216,13 @@
 					<br>
 					<br>
 				</form>
-				
+				 
+				<script type="text/javascript">
+
+					//Syntax: checkboxlimit(checkbox_reference, limit)
+					checkboxlimit(document.forms.tarkistus.taytteet, 4)
+	
+				</script>
 				<c:if test="${not empty param.addedPizza}"><h3>Uuden pizzan lisääminen onnistui</h3></c:if>	
 			</div>
 		</div>
