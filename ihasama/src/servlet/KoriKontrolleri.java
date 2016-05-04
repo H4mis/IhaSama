@@ -88,7 +88,11 @@ public class KoriKontrolleri extends HttpServlet {
 		kori = (List<TilattuPizza>) sessio.getAttribute("kori");
 		
 		if(poistop != null && !poistop.equals(null)){
-			kDao.PoistaKorista(poisto, kori);			
+			kDao.PoistaKorista(poisto, kori);	
+			
+			//päivitä ostoskorin yht hinta!
+			yhteishinta = pDao.LaskeYhteishinta(kori);
+			sessio.setAttribute("yht", yhteishinta);
 			
 		}
 		

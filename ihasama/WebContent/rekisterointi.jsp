@@ -51,7 +51,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-      <li><a href="KoriKontrolleri">Ostoskori</a></li> 
+      <li></li>
+      
+      <c:if test="${ empty sessionScope.yht}"><li><a href="KoriKontrolleri">Ostoskori</a></li></c:if>
+      <c:if test="${not empty sessionScope.yht}"><li><a href="KoriKontrolleri">Ostoskori <c:out value="${sessionScope.yht}" />€</a></li></c:if>
       <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
