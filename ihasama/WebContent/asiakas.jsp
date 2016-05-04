@@ -52,10 +52,44 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-      	<c:if test="${ empty sessionScope.yht}"><li><a href="KoriKontrolleri"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori</a></li></c:if>
-      <c:if test="${not empty sessionScope.yht}"><li><a href="KoriKontrolleri"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <c:out value="${sessionScope.yht}" />€</a></li></c:if>
+      	
+<!-- ostoskori dropdown -->
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
+	      <div class="dropdown-menu">
+	     	 <table>
+	     	 	<c:set var="index" value="${0}" />
+	      		<c:forEach items="${sessionScope.kori}" var="kori">
+	      			<tr>
+		      			<td><c:out value="${kori.pizza.pizzanimi}" /></td>
+		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
+		      			<td>
+		      				<form action="KoriKontrolleri" method="post">
+				            	<input type="hidden" value="${index}" name="poistopizza" />
+				            	<input type="submit" value="Poista" />
+				       		 </form>
+		      			</td>
+	      			</tr>
+	      			<c:set var="index" value="${index+1}" />
+	      		</c:forEach>
+	      		<tr>
+	      			<td>
+		      			<c:if test="${not empty sessionScope.kori}">
+		      				<form action="TilausKontrolleri">
+		      					<input type="hidden" name="toiminto" value="Tilaa">
+		      					<button type="submit">tilaa</button>
+		      				</form>
+		      			</c:if>
+		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
+	      			</td>
+	      		</tr>
+	      	</table>
+	      </div>
+      <li>
+<!-- ostoskori dropdown loppuu tähän -->
+      
+<!-- Login/logout -->
       <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
-     	<c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+     <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
               <div class="form-group">
@@ -66,14 +100,16 @@
                 <label for="pwd">Salasana:</label>
                 <input type="password" class="form-control" id="pwd" name="salasana">
               </div>
-              <input type="hidden" name="from" value="${kukkuluuruu}">
+              <input type="hidden" name="from" value="${mistatulen}">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
             </form>
             	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
-       			<c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
-          </div><!-- dropdown-menu loppuu tähän -->
+       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
+          </div>
         </li>   
-        </c:if><!-- if käyttäjätunnus sessiolla olemassa loppuu tähän -->
+      </c:if>
+<!-- Login/logout loppuu tähän -->
+
       </ul>
     </div><!-- collapse navbar-collapse loppuu tähän -->
   </div><!-- container fluid loppuu tähän -->

@@ -42,7 +42,7 @@ public class TiedoteKontrolleri extends HttpServlet {
 		try {
 			lista = tDAO.haeTiedotteet();
 			request.setAttribute("tiedotelista", lista);
-			request.setAttribute("kukkuluuruu", request.getServletPath());
+			request.setAttribute("mistatulen", request.getServletPath());
 			if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
 				String nimi = (String) sessio.getAttribute("nimi");
