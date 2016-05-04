@@ -82,7 +82,7 @@
 </nav>
 
 <h1>Castello é Fiore</h1>
-
+<div class="marginblock">
  <div id="laatikko">
     <h2>Tervetuloa</h2>
     
@@ -131,6 +131,7 @@
   
     
  </div>
+</div> 
 <br>
 
 

@@ -82,7 +82,7 @@
 	
 	
         <!-- Rekisteröitymis lomake -->
-        
+    <div class="marginblock">    
     <div id="laatikko">
     	<c:if test="${empty param.registrationSuccess}">
 	    <h2>Rekisteröinti</h2>
@@ -95,37 +95,37 @@
 	                </thead>
 	                <tbody>
 	                    <tr>
-	                        <td>Etunimi</td>
-	                        <td><input type="text"  title='Käytä vain merkkejä "A-Z", "a-z", "0-9", "-" tai "_"!'  name="etunimi" value="" />*</td>
+	                        <td style="text-align:right;">Etunimi *</td>
+	                        <td><input type="text"  title='Käytä vain merkkejä "A-Z", "a-z", "0-9", "-" tai "_"!'  name="etunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
-	                        <td>Sukunimi</td>
-	                        <td><input type="text"  title='' name="sukunimi" value="" />*</td>
+	                        <td style="text-align:right;"> Sukunimi *</td>
+	                        <td><input type="text"  title='' name="sukunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
-	                        <td>Sähköposti</td>
-	                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" />*</td>
-	                    </tr>
-	                    <tr>
-	                        <td><br></td>
-	                        <td></td>
-	                    </tr>
-	                    <tr>
-	                        <td>Käyttäjätunnus</td>
-	                        <td><input type="text" pattern='([a-z]|[A-Z]|[0-9]|[^!"#¤%&/)(=?`]).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", ".", "_", "+" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" />*</td>
-	                    </tr>
-	                    <tr>
-	                        <td>Salasana</td>
-	                        <td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" />*</td>
+	                        <td style="text-align:right;">Sähköposti *</td>
+	                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td><br></td>
 	                        <td></td>
 	                    </tr>
 	                    <tr>
-	                    	<td></td>
+	                        <td style="text-align:right;">Käyttäjätunnus *</td>
+	                        <td><input type="text" pattern='([a-z]|[A-Z]|[0-9]|[^!"#¤%&/)(=?`]).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", ".", "_", "+" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="text-align:right;">Salasana *</td>
+	                        <td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td><br></td>
+	                        <td></td>
+	                    </tr>
+	                    <tr>
+	                    	<td><input type="reset" value="Tyhjennä" /></td>  
 	                    	<td><input type="submit" value="Vahvista" /></td>
-	                    	<td><input type="reset" value="Tyhjennä" /></td>                     
+	                    	                   
 	                    </tr>
 	                </tbody>
 	            </table>
@@ -167,7 +167,7 @@
 			</form>
         </c:if>
 	</div>
-
+</div>
 
  <footer class="footer">
      <div class="container">

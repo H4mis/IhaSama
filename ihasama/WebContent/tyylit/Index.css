@@ -20,19 +20,23 @@ h1{
     
 }
 
+table{
+	text-align:center;
+	margin:auto;
+}
 /*###################pizza taulukko tyyliä######################################*/ 
 #laatikko{
 	background-color: rgba(150,150,150,0.8);
 	text-align: center;
 	font-family: 'Merienda', cursive;
-	opacity:0.9;
+	opacity:1;
 	margin: auto;
 	min-width: 300px;
-	width: 40%;
-	border-radius:10px;
+	max-width: 40%;
+	border-radius:0px;
 	box-shadow: 0 0 200px #00000;
 	padding: 10px;
-	
+	display:inline-block;
 	
 }
 
@@ -104,6 +108,7 @@ pre{
 .marginblock{
 	margin:auto;
 	text-align:center;
+	
 }
 
 #laatikko1{

@@ -78,43 +78,52 @@
 </nav>
 
 <h1>Castello é Fiore</h1>
+  <div class="marginblock">
   	<div id="laatikko">
+  	
 		<table>
 			<tr>
-				<th style="text-align: left;">Pizzat</td>
-				<th>Hinta</td>
-				<th>Tilaa</td>
+				<th style="text-align: left;">Pizzat</th>
+				<th>Hinta</th>
+				<th>Tilaa</th>
 			</tr>
-			<c:if test="${empty menulista}"></table> Pizzalista on tyhjä!</c:if>
+			<c:if test="${empty menulista}"><c:out value="</table>"/> Pizzalista on tyhjä!</c:if>
 			
 			<c:if test="${not empty menulista}">
 			<c:forEach items="${menulista}" var="pizza">
-			<tr>
-				<td style="text-align: left;">
-					<form action="KoriKontrolleri" method="post">
-					<c:out value="${pizza.pizzanimi}"/>
-					<br>
-					<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
-					<input type="checkbox" value="1" name="oregano"/> oregano 
-					<input type="checkbox" value="1" name="laktoositon"/> lakt.
-					<input type="checkbox" value="1" name="gluteeniton"/> glut.
-					<br><br>
-				</td>
-				<td>
-					<fmt:setLocale value="fi"/>
-					<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
-				</td>
-				<td>
-                    <input type="hidden" value="${pizza.pizzaid}" name="tilaapizza" />
-                    <input type="submit" value="Tilaa" />
-                    </form>
-				</td>
-			</tr>
+			<form action="KoriKontrolleri" method="post">
+				<tr>
+					<td style="text-align: left;">
+						
+						<c:out value="${pizza.pizzanimi}"/>
+						<br>
+						<div class="taytenimi"><c:out value="${pizza.taytteet}"/></div>
+						<input type="checkbox" value="1" name="oregano"/> oregano 
+						<input type="checkbox" value="1" name="laktoositon"/> lakt.
+						<input type="checkbox" value="1" name="gluteeniton"/> glut.
+						<br><br>
+					</td>
+					<td>
+						<fmt:setLocale value="fi"/>
+						<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+					</td>
+					<td>
+	                    <input type="hidden" value="${pizza.pizzaid}" name="tilaapizza" />
+	                    <input type="submit" value="Tilaa" />
+	                    
+					</td>
+				</tr>
+			</form>
 			</c:forEach>
 			</c:if>
 		</table>
+		
+		</div>
 		<c:if test="${not empty param.orderedPizza}"><h3 style="color: green;">Pizza lisätty ostoskoriin!</h3></c:if>
-	</div>
+	
+</div>	
+	
+	
  <footer class="footer">
      <div class="container">
         <ul id="sosiaalinenmedia">        
