@@ -55,6 +55,36 @@
       
      <c:if test="${ empty sessionScope.yht}"><li><a href="KoriKontrolleri"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori</a></li></c:if>
       <c:if test="${not empty sessionScope.yht}"><li><a href="KoriKontrolleri"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <c:out value="${sessionScope.yht}" />€</a></li></c:if>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ostoskori</a>
+	      <div class="dropdown-menu">
+	     	 <table>
+	     	 	<c:set var="index" value="${0}" />
+	      		<c:forEach items="${sessionScope.kori}" var="kori">
+	      			<tr>
+		      			<td><c:out value="${kori.pizza.pizzanimi}" /></td>
+		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
+		      			<td>
+		      				<form action="KoriKontrolleri" method="post">
+				            	<input type="hidden" value="${index}" name="poistopizza" />
+				            	<input type="submit" value="Poista" />
+				       		 </form>
+		      			</td>
+	      			</tr>
+	      			<c:set var="index" value="${index+1}" />
+	      		</c:forEach>
+	      		<tr>
+	      			<td>
+	      				<form action="TilausKontrolleri">
+	      					<input type="hidden" name="toiminto" value="Tilaa">
+	      					<button type="submit">tilaa</button>
+	      				</form>
+	      			</td>
+	      		</tr>
+	      		
+	      	</table>
+	      </div>
+      <li>
+      
       <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
@@ -74,7 +104,7 @@
        <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
           </div>
         </li>   
-            	</c:if> 
+      </c:if> 
       </ul>
     </div>
   </div>
