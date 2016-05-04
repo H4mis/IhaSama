@@ -76,7 +76,7 @@
 </nav>
 <h1>Castello é Fiore</h1>	
         <!-- Logout info -->
-        
+  <div class="marginblock">         
     <div id="laatikko">    	
 	    <h2>Sinut on onnistuneesti kirjattu ulos palvelustamme!</h2>	         
 	            <table>
@@ -89,7 +89,7 @@
 		    	</table>
 			
 	</div>
-
+</div>
  <footer class="footer">
      <div class="container">
         <ul id="sosiaalinenmedia">

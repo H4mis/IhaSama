@@ -66,7 +66,8 @@ th, td {
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a>. <a href="Logout">Logout</a></li></c:if>
+      <li><a href="KoriKontrolleri">Ostoskori</a></li>
+     <c:if test="${not empty sessionScope.kayttajatunnus}"> <li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
@@ -91,7 +92,7 @@ th, td {
  </div>
 </nav>
 <h1>Castello é Fiore</h1>
-
+ <div class="marginblock">  
  <div id="laatikko">
     <h2>Ota yhteyttä</h2>
     
@@ -121,7 +122,7 @@ th, td {
  <br> 
  <br> 
  </div>
-
+</div>
 
 
  <footer class="footer">
