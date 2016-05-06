@@ -94,11 +94,11 @@
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
               <div class="form-group">
                 <label for="usr">Käyttäjätunnus:</label>
-                <input type="text" class="form-control" id="usr" name="kayttajatunnus">
+                <input type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Kirjoita käyttäjätunnus oikein!' class="form-control" id="usr" name="kayttajatunnus">
               </div>
               <div class="form-group">
                 <label for="pwd">Salasana:</label>
-                <input type="password" class="form-control" id="pwd" name="salasana">
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' class="form-control" id="pwd" name="salasana">
               </div>
               <input type="hidden" name="from" value="/TiedoteKontrolleri">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
@@ -137,15 +137,15 @@
 	                <tbody>
 	                    <tr>
 	                        <td style="text-align:right;color:lightgrey;">Etunimi *</td>
-	                        <td><input type="text"  title='Käytä vain merkkejä "A-Z", "a-z", "0-9", "-" tai "_"!'  name="etunimi" value="" /></td>
+	                        <td><input required type="text" pattern='([a-z]|[A-Z]){1,60}' title='Käytä vain aakkosia!'  name="etunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td style="text-align:right;color:lightgrey;"> Sukunimi *</td>
-	                        <td><input type="text"  title='' name="sukunimi" value="" /></td>
+	                        <td><input required type="text" pattern='([a-z]|[A-Z]){1,60}' title='Käytä vain aakkosia!' name="sukunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td style="text-align:right;color:lightgrey;">Sähköposti *</td>
-	                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" /></td>
+	                        <td><input required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td><br></td>
@@ -153,11 +153,11 @@
 	                    </tr>
 	                    <tr>
 	                        <td style="text-align:right;color:lightgrey;">Käyttäjätunnus *</td>
-	                        <td><input type="text" pattern='([a-z]|[A-Z]|[0-9]|[^!"#¤%&/)(=?`]).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", ".", "_", "+" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" /></td>
+	                        <td><input required type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", "_" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td style="text-align:right;color:lightgrey;">Salasana *</td>
-	                        <td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" /></td>
+	                        <td><input required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" /></td>
 	                    </tr>
 	                    <tr>
 	                        <td><br></td>
