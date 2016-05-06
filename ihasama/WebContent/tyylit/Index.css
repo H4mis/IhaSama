@@ -112,13 +112,11 @@ pre{
 
 .usp{
 	margin:auto;
-	background-color: rgba(150,150,150,0.8);
-	opacity:0.9;
-	
+	background-color: rgba(150,150,150,0.0);
 	min-width: 300px;
 	width: 40%;
 	border-radius:0px;
-	box-shadow: 0 0 200px #00000;
+	
 	padding: 10px;
 }
 
