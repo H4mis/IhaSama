@@ -10,6 +10,24 @@ isompi fontti
 JENNI
 testaamista
 
+Korjattavaa löytyi:
+
+Rekisteröinti:
+
+- Etunimen ja sukunimen syöttöön laitettava ehkä enemmän rajoitteita, tällä hetkellä etu- sekä sukunimeksi riittää yksi numero.
+
+Menu:
+
+-Otsikko voisi olla enemmän erillään pizzoista.
+
+Admin- sivu:
+
+-Admin- sivulle siirryttäessä yläpalkki siirtyy pois paikoiltaan ja logout- nappi häviää kokonaan.
+
+Ostoskori:
+
+- Jos ei ole kirjautuneena sisään millään tunnuksella, "tilaa"- nappia painamalla siirrytään takaisin menu- sivulle ja ostoskori tyhjenee, voisi lisätä login- pyynnön.
+
 KREETTA
 toimitustavan valinta: nouto, kotiinkuljetus
 maksutavan valinta toimitustavan jÃ¤lkeen
