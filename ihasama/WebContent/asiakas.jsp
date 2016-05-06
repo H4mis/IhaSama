@@ -94,11 +94,11 @@
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
               <div class="form-group">
                 <label for="usr">Käyttäjätunnus:</label>
-                <input type="text" class="form-control" id="usr" name="kayttajatunnus">
+                <input type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Kirjoita käyttäjätunnus oikein!' class="form-control" id="usr" name="kayttajatunnus">
               </div>
               <div class="form-group">
                 <label for="pwd">Salasana:</label>
-                <input type="password" class="form-control" id="pwd" name="salasana">
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' class="form-control" id="pwd" name="salasana">
               </div>
               <input type="hidden" name="from" value="${mistatulen}">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
