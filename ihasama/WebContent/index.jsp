@@ -185,7 +185,7 @@
 	 	</div>
 	 	
 	  	<div id="laatikko1">
-	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:65px;border-radius:60%;">
+	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:75px;border-radius:60%;">
 	  		<p> 100% tyytyväisyys takuu,<br> jos et pidä tuotteesta palautamme rahanne
 	  		<br><br>
 	  		 </p>
