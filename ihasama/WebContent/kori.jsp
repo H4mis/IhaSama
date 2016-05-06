@@ -186,7 +186,7 @@
         			Käyttäjätunnus: 
         		</td>
         		<td>
-        			<input type="text" name="kayttajatunnus" value="" />
+        			<input type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Kirjoita käyttäjätunnus oikein!' name="kayttajatunnus" value="" />
         		</td>
         	</tr>
 			<tr>
@@ -194,7 +194,7 @@
         			Salasana: 
         		</td>
         		<td>
-				<input type="password" name="salasana" value="" />
+				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' name="salasana" value="" />
         		</td>
         	</tr>
         	<tr>
