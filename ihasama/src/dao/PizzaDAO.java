@@ -31,7 +31,7 @@ public class PizzaDAO {
 	Connection yhteys = null;
 
 	public void avaaYhteys() {
-		// Käyttäjätiedot ja DB:n osoite - lisää puuttuvat tiedot!
+		// Kï¿½yttï¿½jï¿½tiedot ja DB:n osoite - lisï¿½ï¿½ puuttuvat tiedot!
 		String username = "a1500925";
 		String password = "syKA4t68r";
 		String url = "jdbc:mariadb://localhost/a1500925?useUnicode=true&characterEncoding=utf-8";
@@ -53,7 +53,7 @@ public class PizzaDAO {
 				System.out.println("Yhteys suljettu tietokantaan.");
 			}
 		} catch (Exception e) {
-			System.out.println("Tietokantayhteyttä suljettaessa tapahtui virhe!");
+			System.out.println("Tietokantayhteyttï¿½ suljettaessa tapahtui virhe!");
 			e.printStackTrace();
 		}
 	}
@@ -68,14 +68,14 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 			System.out.println("parsetettiin koska ei ollut null, pizzaid=" +pizzaid);
 		}
 		
-		for(int i = 0; i < pizzalista.size(); i++){ //käydään läpi haettu pizzalista
-			if(pizzalista.get(i).getPizzaid() == parsepizzaid) { //jos pizzaid:llä löytyi vastaava
-				System.out.println("Pizza pizzaid:llä " + pizzaid + " löytyi pizzalistalta!");
+		for(int i = 0; i < pizzalista.size(); i++){ //kï¿½ydï¿½ï¿½n lï¿½pi haettu pizzalista
+			if(pizzalista.get(i).getPizzaid() == parsepizzaid) { //jos pizzaid:llï¿½ lï¿½ytyi vastaava
+				System.out.println("Pizza pizzaid:llï¿½ " + pizzaid + " lï¿½ytyi pizzalistalta!");
 				return pizzalista.get(i); //palautetaan se pizzana takaisin.
 			}
 		}
-		System.out.println("pizzaa ei löytynyt listalta!");
-		return null; //jos lista käytiin läpi ja siellä ei ollut kyseistä pizzaa palautetaan null!
+		System.out.println("pizzaa ei lï¿½ytynyt listalta!");
+		return null; //jos lista kï¿½ytiin lï¿½pi ja siellï¿½ ei ollut kyseistï¿½ pizzaa palautetaan null!
 	}
 	
 	public List<Pizza> haePizzat() throws NumberFormatException, SQLException {
@@ -109,7 +109,7 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 			// lisï¿½tï¿½ï¿½n pizza listaan
 			Tayte tayte = new Tayte(tayteid, taytenimi, saatavilla);
 			taytelista.add(tayte);
-			System.out.println("Tietokannasta haettu täyte: " + tayte.getTaytenimi());
+			System.out.println("Tietokannasta haettu tï¿½yte: " + tayte.getTaytenimi());
 		}
 
 		return taytelista;
@@ -120,34 +120,35 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 
 		try {
 			// alustetaan sql-lause
-			String sql = "INSERT INTO Pizza(pizzanimi, hinta) VALUES(?,?)";
+			String sql = "INSERT INTO Pizza(pizzanimi, hinta, piilossa) VALUES(?,?,?)";
 			PreparedStatement lause = yhteys.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 
-			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli pizzan nimi ja hinta)
+			// tÃ¤ydennetÃ¤Ã¤n puuttuvat tiedot (eli pizzan nimi ja hinta)
 			lause.setString(1, p.getPizzanimi());
 			lause.setDouble(2, p.getHinta());
-
+			lause.setBoolean(3, p.isPiilossa());
+			
 			// suoritetaan lause
 			
 			int vaikutetutrowit = lause.executeUpdate();
 			
 			if (vaikutetutrowit == 0){
-				throw new SQLException("Pizzan luominen epännistui, mihinkään rowiin ei tullut mitään");
+				throw new SQLException("Pizzan luominen epï¿½nnistui, mihinkï¿½ï¿½n rowiin ei tullut mitï¿½ï¿½n");
 			}
 			try (ResultSet generatedKeys = lause.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
 	                p.setPizzaid(generatedKeys.getInt(1));
 	            }
 	            else {
-	                throw new SQLException("Pizzan luominen epäonnistui, ei saatu ID:tä");
+	                throw new SQLException("Pizzan luominen epï¿½onnistui, ei saatu ID:tï¿½");
 	            }
 			
 			}
-			System.out.println("Pizza" + p.getPizzanimi() + "lisätty tietokantaan");
+			System.out.println("Pizza" + p.getPizzanimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisäämisyritys aiheutti virheen pizzanlisäysvaiheessa!");
+					.println("Pizzan lisï¿½ï¿½misyritys aiheutti virheen pizzanlisï¿½ysvaiheessa!");
 		}
 		
 	}
@@ -167,10 +168,10 @@ public Pizza haePizza(String pizzaid) throws SQLException {
         while (tulokset.next()) {
             int id = tulokset.getInt("pizzaid");
             
-            // käydään läpi listalta pizzat          
+            // kï¿½ydï¿½ï¿½n lï¿½pi listalta pizzat          
             for (int i = 0; i < pizzalista.size(); i++) {
                 if(pizzalista.get(i).getPizzaid() == id){
-                    pizzalista.remove(i); //poistetaan menulistasta pizzat joissa on täyte joka ei ole saatavilla.
+                    pizzalista.remove(i); //poistetaan menulistasta pizzat joissa on tï¿½yte joka ei ole saatavilla.
                 }
             }   
         }
@@ -199,11 +200,11 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 			// suoritetaan lause
 			lause.executeUpdate();
 			
-			System.out.println("Tayte" + t.getTaytenimi() + "lisätty tietokantaan");
+			System.out.println("Tayte" + t.getTaytenimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Täytteen lisäämisyritys aiheutti virheen täytteenlisäysvaiheessa!");
+					.println("Tï¿½ytteen lisï¿½ï¿½misyritys aiheutti virheen tï¿½ytteenlisï¿½ysvaiheessa!");
 		}
 		
 	}
@@ -222,13 +223,13 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 				lause.setInt(2, Integer.parseInt(s));
 				// suoritetaan lause
 				lause.executeUpdate();
-				System.out.println("Lisättiin pizzaan: " + a.getPizzanimi() + " täyte: " + s);
+				System.out.println("Lisï¿½ttiin pizzaan: " + a.getPizzanimi() + " tï¿½yte: " + s);
 			}
-			System.out.println("Pizza" + a.getPizzanimi() + "lisätty tietokantaan");
+			System.out.println("Pizza" + a.getPizzanimi() + "lisï¿½tty tietokantaan");
 		} catch (Exception e) {
 			// Tapahtui jokin virhe
 			System.out
-					.println("Pizzan lisäämisyritys aiheutti virheen pizzantäytevaiheessa!");
+					.println("Pizzan lisï¿½ï¿½misyritys aiheutti virheen pizzantï¿½ytevaiheessa!");
 		}
 	}
 
@@ -255,10 +256,10 @@ public Pizza haePizza(String pizzaid) throws SQLException {
 			for (String s : poistot){
 				lause.setInt(1, Integer.parseInt(s));
 				lause.executeUpdate();
-				System.out.println("Tayte id: "+ s + " poistettiin täytelistalta.");
+				System.out.println("Tayte id: "+ s + " poistettiin tï¿½ytelistalta.");
 			}
 		} catch (SQLException e) {
-		    System.out.println("Tapahtui virhe täytteen poistossa!");
+		    System.out.println("Tapahtui virhe tï¿½ytteen poistossa!");
 			e.printStackTrace();
 		}
 	}

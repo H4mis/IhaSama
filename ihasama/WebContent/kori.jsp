@@ -54,6 +54,7 @@
 		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
+		      					<input type="hidden" value="KoriKontrolleri" name="taaltatulen" />
 				            	<input type="hidden" value="${index}" name="poistopizza" />
 				            	<input type="submit" value="Poista" />
 				       		 </form>
@@ -144,6 +145,7 @@
 				</td>
 				<td>
 					<form action="KoriKontrolleri" method="post">
+						<input type="hidden" value="KoriKontrolleri" name="taaltatulen" />
 			            <input type="hidden" value="${index}" name="poistopizza" />
 			            <input type="submit" value="Poista" />
 			        </form>

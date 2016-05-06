@@ -70,7 +70,7 @@ public class KoriKontrolleri extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+		String sivu = (String) request.getParameter("taaltatulen");
 		String poistop = request.getParameter("poistopizza");
 		int poisto = -1;
 		if(poistop != null && !poistop.isEmpty()){
@@ -81,7 +81,7 @@ public class KoriKontrolleri extends HttpServlet {
 		PizzaDAO pDao = new PizzaDAO();
 		KoriDAO kDao = new KoriDAO();
 		response.setContentType("text/html;charset=UTF-8");
-		HttpSession sessio = request.getSession();
+		HttpSession sessio = request.getSession();		
 		List<TilattuPizza> kori;
 		double yhteishinta;
 		
@@ -90,7 +90,7 @@ public class KoriKontrolleri extends HttpServlet {
 		if(poistop != null && !poistop.equals(null)){
 			kDao.PoistaKorista(poisto, kori);	
 			
-			//p�ivit� ostoskorin yht hinta!
+			//päivitä ostoskorin yhteishinta
 			yhteishinta = pDao.LaskeYhteishinta(kori);
 			sessio.setAttribute("yht", yhteishinta);
 			
@@ -102,59 +102,8 @@ public class KoriKontrolleri extends HttpServlet {
 			sessio.setAttribute("kori", kori);
 		}
 		
-		String koripizza = request.getParameter("tilaapizza");
 		
-		if(koripizza != null && !koripizza.isEmpty()){
-		try {
-			pDao.avaaYhteys();			
-			Pizza pizza = pDao.haePizza(koripizza);
-			
-			if(!pizza.equals(null)) // jos pizza l�ytyy tietokannasta
-			{
-				System.out.println("ollaa tääl");
-
-				boolean oregano = false; //asetetaan oregano aluksi falseksi.
-				String oreganoB = request.getParameter("oregano");
-				if(oreganoB != null) { //jos oregano checkbox on ruksattu
-					oregano = true; //oregano on true
-				}
-				
-				boolean laktoositon = false;
-				String laktoositonB = request.getParameter("laktoositon");
-				if(laktoositonB != null) { //jos oregano checkbox on ruksattu
-					laktoositon = true; //oregano on true
-				}
-				
-				boolean gluteeniton = false;
-				String gluteenitonB = request.getParameter("gluteeniton");
-				if(gluteenitonB != null) { //jos oregano checkbox on ruksattu
-					gluteeniton = true; //oregano on true
-				}
-				
-				System.out.println("oregano: " + oregano + ", laktoositon: "+ laktoositon + ", gluteeniton: " + gluteeniton);
-				
-				Pizza tilPizza = pDao.haePizza(koripizza);
-				TilattuPizza tpizza = new TilattuPizza(tilPizza, oregano, laktoositon, gluteeniton);//luodaa uusi tilattu pizza
-				
-				kori = kDao.lisaaKoriin(tpizza, kori); //lisätään tilattu pizza niine hyvineen koriin
-				
-				sessio.setAttribute("kori", kori);
-				
-				yhteishinta = pDao.LaskeYhteishinta(kori);
-				
-				sessio.setAttribute("yht", yhteishinta);
-				
-			
-		}} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}finally{
-			pDao.suljeYhteys();
-		}
-		
-		
-		}
-		doGet(request, response);
+		response.sendRedirect(sivu+"?removedPizzatoKori=true");
 	}
 
 }

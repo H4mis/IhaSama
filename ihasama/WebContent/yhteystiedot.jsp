@@ -81,6 +81,7 @@ th, td {
 		      			<td ><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
+		      					<input type="hidden" value="yhteystiedot.jsp" name="taaltatulen" />
 				            	<input type="hidden" value="${index}" name="poistopizza" />
 				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
@@ -91,7 +92,7 @@ th, td {
 	      		<tr>
 	      			<td>
 		      			<c:if test="${not empty sessionScope.kori}">
-		      				<form action="TilausKontrolleri">
+		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
 		      					<button id="buttonTilaa" type="submit">tilaa</button>
 		      				</form>
