@@ -171,7 +171,45 @@
 
 
   </div>
-  <br><input type="submit" value="Tilaa" />
+  <br>
+  
+  <c:if test="${not empty sessionScope.kayttajatunnus}">
+  	<input type="submit" value="Tilaa" />
+  </c:if>
+  
+  <c:if test="${empty sessionScope.kayttajatunnus}">
+  	<a href="rekisterointi.jsp">Rekisteröidy</a> tai Kirjaudu sisään.
+  	<form method="post" action="LoginKontrolleri">
+       	<table>
+        	<tr>
+        		<td>
+        			Käyttäjätunnus: 
+        		</td>
+        		<td>
+        			<input type="text" name="kayttajatunnus" value="" />
+        		</td>
+        	</tr>
+			<tr>
+        		<td>
+        			Salasana: 
+        		</td>
+        		<td>
+				<input type="password" name="salasana" value="" />
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+        			Kirjaudu
+        		</td>
+        		<td>
+        		<input type="hidden" name="from" value="/TiedoteKontrolleri">
+				<input type="submit" value="Kirjaudu" />
+        		</td>
+        	</tr>
+    	</table>
+	</form>
+  </c:if>
+  
 </form>
     yhteensä: <fmt:setLocale value="fi"/>
 			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
