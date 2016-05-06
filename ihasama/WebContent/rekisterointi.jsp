@@ -65,7 +65,7 @@
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<button type="submit" value="Poista">Poista</button>
+				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -76,7 +76,7 @@
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="TilausKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">tilaa</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
@@ -124,25 +124,27 @@
     <div class="marginblock">    
     <div id="laatikko">
     	<c:if test="${empty param.registrationSuccess}">
-	    <h2>Rekisteröinti</h2>
+	    <h2 style="color:lightgrey;">Rekisteröinti</h2>
+	    <hr>
 	         <form method="post" action="RekisterointiKontrolleri">
 	            <table>
 	                <thead>
 	                    <tr>
-	                        <th colspan="2">Täytä tietosi tähän, * on pakollinen kohta</th>
+	                        <th colspan="2" style="color:orange">Täytä tietosi tähän, * on pakollinen kohta</th>
+	                        
 	                    </tr>
 	                </thead>
 	                <tbody>
 	                    <tr>
-	                        <td style="text-align:right;">Etunimi *</td>
+	                        <td style="text-align:right;color:lightgrey;">Etunimi *</td>
 	                        <td><input type="text"  title='Käytä vain merkkejä "A-Z", "a-z", "0-9", "-" tai "_"!'  name="etunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
-	                        <td style="text-align:right;"> Sukunimi *</td>
+	                        <td style="text-align:right;color:lightgrey;"> Sukunimi *</td>
 	                        <td><input type="text"  title='' name="sukunimi" value="" /></td>
 	                    </tr>
 	                    <tr>
-	                        <td style="text-align:right;">Sähköposti *</td>
+	                        <td style="text-align:right;color:lightgrey;">Sähköposti *</td>
 	                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Kirjoita sähköposti oikein! esim: esimerkki@esimerkkimaili.fi' name="sahkoposti" value="" /></td>
 	                    </tr>
 	                    <tr>
@@ -150,11 +152,11 @@
 	                        <td></td>
 	                    </tr>
 	                    <tr>
-	                        <td style="text-align:right;">Käyttäjätunnus *</td>
+	                        <td style="text-align:right;color:lightgrey;">Käyttäjätunnus *</td>
 	                        <td><input type="text" pattern='([a-z]|[A-Z]|[0-9]|[^!"#¤%&/)(=?`]).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", ".", "_", "+" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" /></td>
 	                    </tr>
 	                    <tr>
-	                        <td style="text-align:right;">Salasana *</td>
+	                        <td style="text-align:right;color:lightgrey;">Salasana *</td>
 	                        <td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" /></td>
 	                    </tr>
 	                    <tr>

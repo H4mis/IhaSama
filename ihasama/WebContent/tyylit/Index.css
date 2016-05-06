@@ -24,8 +24,18 @@ h1{
 table{
 	text-align:center;
 	margin:auto;
+	
 }
-/*###################pizza taulukko tyyliä######################################*/ 
+
+
+tr > td
+{
+  padding-bottom: 1em;
+}
+
+/*##################pizza taulukko tyyliä######################################*/ 
+
+
 #laatikko{
 	background-color: rgba(0,0,0,0.5);
 	text-align: center;
@@ -43,7 +53,7 @@ table{
 }
 
 .taytenimi{
-	color:orange;
+	color:white;
 	font-family: 'Merienda', cursive;
 }
 
@@ -66,9 +76,42 @@ table{
 
 
 /*################################################*/
+#buttonPoista{
+	  background-color: #fd6640; 
+    border: none;
+    border-width:0px;
+    border-radius:2px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+     box-shadow: 2px 2px 5px #000000;
+    
+}
+
+#buttonTilaa{
+	background-color: #00ff00; 
+    border: none;
+    border-width:0px;
+    border-radius:2px;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+     box-shadow: 2px 2px 5px #000000;
+    
+}
 
 button {
-    background-color: orange; /* Green */
+    background-color: orange; 
     border: none;
     border-width:0px;
     border-radius:2px;

@@ -70,7 +70,7 @@
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<button type="submit" value="Poista">Poista</button>
+				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -81,7 +81,7 @@
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="TilausKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">tilaa</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
@@ -126,10 +126,10 @@
     <h2>Tervetuloa</h2>
     
     <p>
-    Tervetuloa Castello é Fiore- ravintolan kotisivuille! 
+    <p style="color:orange;">Tervetuloa Castello é Fiore- ravintolan kotisivuille! </p>
     <br>
-    <br>
-    Olemme pieni perheyritys, arvojamme ovat mm. upeiden makuelämysten tarjoaminen sekä hyvä tunnelma. Tavoitteemme on
+    
+    <p>Olemme pieni perheyritys, arvojamme ovat mm. upeiden makuelämysten tarjoaminen sekä hyvä tunnelma. Tavoitteemme on
     taata asiakkaille korkealaatuista palvelua, ja korkealuokkaisista raaka-aineista tehtyjä gourmet- pizzoja.
     Laadukkaat raaka-aineet, ekologisuus, ystävällisyys ja mukava ilmapiiri ovat arvoja, joita noudattaen 
     työskentelemme joka ikinen päivä.
@@ -145,7 +145,9 @@
      <br>
      <br>
      <br>
-      ~henkilökunta   </p>
+     </p>
+   
+ <p style="color:orange;"> ~henkilökunta </p>
      <br>
      <br>
      <p>

@@ -65,7 +65,7 @@
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				                <button type="submit" value="Poista">Poista</button>
+				                <button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -76,7 +76,7 @@
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="TilausKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">tilaa</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
@@ -121,9 +121,8 @@
   	
 		<table>
 			<tr>
-				<th style="text-align: left;">Pizzat</th>
-				<th>Hinta</th>
-				<th>Tilaa</th>
+				<th colspan="3" style="text-align:center;"><h2 style="color:white;">Menu<hr></h2></th>
+				
 				
 			</tr>
 			
@@ -133,7 +132,7 @@
 			<c:forEach items="${menulista}" var="pizza">
 			<form action="KoriKontrolleri" method="post">
 				<tr>
-					<td style="text-align: left;color:lightgrey;">
+					<td style="text-align: left;color:orange;">
 						
 						<c:out value="${pizza.pizzanimi}"/>
 						<br>
@@ -143,7 +142,7 @@
 						<input type="checkbox" value="1" name="gluteeniton"/> glut.
 						<br><br>
 					</td>
-					<td style="color:lightgrey;">
+					<td style="color:white;">
 						<fmt:setLocale value="fi"/>
 						<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 					</td>

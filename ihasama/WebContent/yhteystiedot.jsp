@@ -82,7 +82,7 @@ th, td {
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<button type="submit" value="Poista">Poista</button>
+				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -93,7 +93,7 @@ th, td {
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="TilausKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">tilaa</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
@@ -136,21 +136,20 @@ th, td {
  
     <h2>Ota yhteyttä</h2>
      <br>
-    <table style="width:100%">
+    <table style="width:100%;">
+    
   <tr>
-    <th style="text-align:right;">Sähköposti:</th>
-    <td style="text-align:left;"> &nbsp;castelloefiore@castello.fi</td>
+    <th style="text-align:right;vertical-align:top;">Email:</th>
+    <td style="text-align:left;color:orange;"> &nbsp;castelloefiore@castello.fi</td>
   </tr>
   <tr>
-    <th rowspan="2">Puh:</th>
-    <td style="text-align:left;">&nbsp;+35850667832</td>
+    <th style="text-align:right;vertical-align:top;">Puh:</th>
+    <td style="text-align:left;color:orange;">&nbsp;+35850667832</td>
   </tr>
+
   <tr>
-    <td style="text-align:left;">&nbsp;09557334</td>
-  </tr>
-  <tr>
-    <th>Osoite</th>
-    <td style="text-align:left;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
+    <th style="text-align:right;vertical-align:top;">Osoite:</th>
+    <td style="text-align:left;color:orange;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
   </tr> 
 </table>
 <br>
