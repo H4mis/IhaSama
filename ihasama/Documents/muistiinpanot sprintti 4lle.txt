@@ -1,30 +1,30 @@
 
 TEHTY
-login toimimaan rekisteröitymisen perään
-ostoskorin yhteishinta näkymään ylälaitaan loginin viereen
+login toimimaan rekisterÃ¶itymisen perÃ¤Ã¤n
+ostoskorin yhteishinta nÃ¤kymÃ¤Ã¤n ylÃ¤laitaan loginin viereen
 
 
-KORJATTAVAA/TÄRKEETÄ
-salasanan kysely kahteen kertaan rekisteröitymisessä
+KORJATTAVAA/TÃ„RKEETÃ„
+salasanan kysely kahteen kertaan rekisterÃ¶itymisessÃ¤
 isompi fontti
 toimitustavan valinta: nouto, kotiinkuljetus
 tilatessa ohjaa takaisin menu sivulle
-maksutavan valinta toimitustavan jälkeen
+maksutavan valinta toimitustavan jÃ¤lkeen
 testaamista!
-rekisteröitymisessä estä etu ja sukunimessä oudot merkit (hyväksy vain aakkoset)
-pizzan lisäys laittaa uuden pitsan automaattisesti piiloon aluksi
+rekisterÃ¶itymisessÃ¤ estÃ¤ etu ja sukunimessÃ¤ oudot merkit (hyvÃ¤ksy vain aakkoset)
+pizzan lisÃ¤ys laittaa uuden pitsan automaattisesti piiloon aluksi
 
 UUTTA TOIMINTOA / TOISSIJAISTA
 varmuuskopion teko muualle kuin gittiin
-osoitetietojen täyttö
-tilausvahvistus sähköpostiin tilauksen vahvistettaessa
-sivujen nimet järkeväksi: asiakas.jsp => menu.jsp
+osoitetietojen tÃ¤yttÃ¶
+tilausvahvistus sÃ¤hkÃ¶postiin tilauksen vahvistettaessa
+sivujen nimet jÃ¤rkevÃ¤ksi: asiakas.jsp => menu.jsp
 paketoinnit oikein: luokat.paketti => bean paketti
-rekisteröitymisen vahvistaminen sähköpostista
+rekisterÃ¶itymisen vahvistaminen sÃ¤hkÃ¶postista
 anna palautetta lomake (tallentaa viestin ja postausajan)
-käyttäjäsivu, josta voi vaihtaa käyttäjätietoja
-näkyvissä olevaa pizzaa ei voi poistaa
-pöydän varaus
-Käyttäjälle puhelin nro, rekisteröitymisaika(toissijainen) vuosikuponkeja varten?
+kÃ¤yttÃ¤jÃ¤sivu, josta voi vaihtaa kÃ¤yttÃ¤jÃ¤tietoja
+nÃ¤kyvissÃ¤ olevaa pizzaa ei voi poistaa
+pÃ¶ydÃ¤n varaus
+KÃ¤yttÃ¤jÃ¤lle puhelin nro, rekisterÃ¶itymisaika(toissijainen) vuosikuponkeja varten?
 muokkaa olemassa olevan pitsan tietoja
 juomat?
