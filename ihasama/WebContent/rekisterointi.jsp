@@ -126,7 +126,7 @@
     	<c:if test="${empty param.registrationSuccess}">
 	    <h2 style="color:lightgrey;">Rekisteröinti</h2>
 	    <hr>
-	         <form method="post" action="RekisterointiKontrolleri">
+	         <form id="passwordForm" method="post" action="RekisterointiKontrolleri"> 
 	            <table>
 	                <thead>
 	                    <tr>
@@ -151,15 +151,21 @@
 	                        <td><br></td>
 	                        <td></td>
 	                    </tr>
-	                    <tr>
-	                        <td style="text-align:right;color:lightgrey;">Käyttäjätunnus *</td>
+	                    <tr> <td style="text-align:right;color:lightgrey;">Käyttäjätunnus *</td>
 	                        <td><input required type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Käyttäjätunnus voi sisältää vain merkkejä "A-Z", "a-z", "_" tai "-" ja käyttäjätunnuksen pitää olla vähintään 8 merkkiä!' name="kayttajatunnus" value="" /></td>
 	                    </tr>
-	                    <tr>
+	                    <tr><div class="fieldWrapper">
+	                        <label for="salasana"></label>
 	                        <td style="text-align:right;color:lightgrey;">Salasana *</td>
-	                        <td><input required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' name="salasana" value="" /></td>
+	                        <td><input name="salasana" id="salasana" required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Salasana pitää sisältää yhden numeron, ison ja pienen kirjaimen ja sen pitää ollä vähintään 8 merkkiä pitkä!' value="" /></td>
+	                    </div></tr>
+	                    <tr><div class="fieldWrapper">
+		                    <label for="pass2"></label>
+		                    <td style="text-align:right;color:lightgrey;">Salasana *</td>
+		                    <td><input name="pass2" id="pass2" onkeyup="checkPass(); return false;" required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana uudelleen!' value="" /></td>
+		                     <span id="confirmMessage" class="confirmMessage"></span></div>
 	                    </tr>
-	                    <tr>
+
 	                        <td><br></td>
 	                        <td></td>
 	                    </tr>
@@ -224,5 +230,34 @@
  	 </div>
    
  </footer>
+ 
+  <script type="text/javascript">
+   function checkPass()
+   {
+      
+       var salasana = document.getElementById('salasana');
+       var pass2 = document.getElementById('pass2');
+       
+       var message = document.getElementById('confirmMessage');
+       
+       var goodColor = "#66cc66";
+       var badColor = "#ff6666";
+     
+       if(salasana.value == pass2.value){
+          
+           pass2.style.backgroundColor = goodColor;
+           message.style.color = goodColor;
+           message.innerHTML = "Salasanat täsmäävät!"
+       }else{
+           
+           pass2.style.backgroundColor = badColor;
+           message.style.color = badColor;
+           message.innerHTML = "Salasanat eivät täsmää!"
+       }
+   }  
+   </script>
+</body>
+</html>
+ 
 </body>
 </html>
