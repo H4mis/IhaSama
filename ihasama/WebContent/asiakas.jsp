@@ -147,7 +147,7 @@
 					</td>
 					<td>
 	                    <input type="hidden" value="${pizza.pizzaid}" name="tilaapizza" />
-	                    <input type="submit" value="Tilaa" />
+	                    <button type="submit" value="Tilaa" > Tilaa</button>
 	                    
 					</td>
 				</tr>
