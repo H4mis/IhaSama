@@ -154,10 +154,48 @@
 	</table>
 	<form action="asiakasKontrolleri" method="post">
 	   <input type="hidden" value="${korilista}" name="tilattavat" />
-       <input type="submit" value="Tilaa" />
-    </form>
+      
+   
+ <br> <select id="toimitus" name="toimitus">
+            <option value="1">Nouto</option>
+            <option value="2">Kotiinkuljetus</option>
+        
+        </select>
+  <div id="maksutapa">
+  <br><input type="radio" name="maksu" value="Korttimaksu"> Verkkopankki<br>
+  <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
+  <br>
+  Katuosoite: <input type="text" name="katuosoite" value= ""><br>
+  Postinumero: <input type="text" name="posti"><br>
+  Toimipaikka:<input type="text" name="tmpk"><br>
+
+
+  </div>
+  <br><input type="submit" value="Tilaa" />
+</form>
     yhteensä: <fmt:setLocale value="fi"/>
 			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 	</c:if>
+
+</body>
+<script>
+$(document).ready(function () {
+    toggleFields(); //call this first so we start out with the correct visibility depending on the selected form values
+    //this will call our toggleFields function every time the selection value of our underAge field changes
+    $("#toimitus").change(function () {
+        toggleFields();
+    });
+
+});
+//this toggles the visibility of our parent permission fields depending on the current selected value of the underAge field
+function toggleFields() {
+    if ($("#toimitus").val() == 2)
+        $("#maksutapa").show();
+   
+    else
+        $("#maksutapa").hide();
+   
+}
+</script>
 </body>
 </html>
