@@ -155,6 +155,12 @@ pre{
 	color:lightgrey;
 }
 
+.dropdown-menu{ color:black; }
+
+#koriDrop{
+	color:#000000;
+}
+
 /* ####################kolmen boxin USP:t ################################################*/
 
 .usp{
