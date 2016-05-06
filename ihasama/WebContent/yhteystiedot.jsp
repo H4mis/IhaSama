@@ -134,7 +134,7 @@ th, td {
  <div class="marginblock">  
  <div id="laatikko">
  
-    <h2>Ota yhteyttä</h2>
+    <h2>Ota yhteyttä<hr></h2>
      <br>
     <table style="width:100%;">
     
