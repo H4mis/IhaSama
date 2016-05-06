@@ -65,7 +65,7 @@
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<input type="submit" value="Poista" />
+				            	<button type="submit" value="Poista">Poista</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -162,8 +162,8 @@
 	                        <td></td>
 	                    </tr>
 	                    <tr>
-	                    	<td><input type="reset" value="Tyhjennä" /></td>  
-	                    	<td><input type="submit" value="Vahvista" /></td>
+	                    	<td><button type="reset" value="Tyhjennä">Tyhjennä</button></td>  
+	                    	<td><button type="submit" value="Vahvista">Vahvista</button></td>
 	                    	                   
 	                    </tr>
 	                </tbody>

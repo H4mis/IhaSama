@@ -63,7 +63,7 @@
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<input type="submit" value="Poista" />
+				            	<button type="submit" value="Poista">Poista</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
