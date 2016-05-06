@@ -29,7 +29,9 @@
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
 <title>Yhteystiedot</title>
-<style>
+
+<!--
+  <style>
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -42,6 +44,7 @@ th, td {
      
 }
 </style>
+-->
 </head>
 <body>
 
@@ -70,12 +73,12 @@ th, td {
       <!-- ostoskori dropdown -->
      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
 	      <div class="dropdown-menu">
-	     	 <table>
+	     	<table>
 	     	 	<c:set var="index" value="${0}" />
 	      		<c:forEach items="${sessionScope.kori}" var="kori">
 	      			<tr>
-		      			<td><c:out value="${kori.pizza.pizzanimi}" /></td>
-		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
+		      			<td ><c:out value="${kori.pizza.pizzanimi}" /></td>
+		      			<td ><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
 				            	<input type="hidden" value="${index}" name="poistopizza" />
@@ -130,24 +133,25 @@ th, td {
 <h1>Castello é Fiore</h1>
  <div class="marginblock">  
  <div id="laatikko">
+ 
     <h2>Ota yhteyttä</h2>
-    
+     <br>
     <table style="width:100%">
   <tr>
-    <th>Sähköposti</th>
-    <td>castelloefiore@castello.fi</td>
+    <th style="text-align:right;">Sähköposti:</th>
+    <td style="text-align:left;"> &nbsp;castelloefiore@castello.fi</td>
   </tr>
   <tr>
     <th rowspan="2">Puh:</th>
-    <td>+35850667832</td>
+    <td style="text-align:left;">&nbsp;+35850667832</td>
   </tr>
   <tr>
-    <td>09557334</td>
+    <td style="text-align:left;">&nbsp;09557334</td>
   </tr>
   <tr>
     <th>Osoite</th>
-    <td>Sibeliuksenkatu 7, Hämeenlinna</td>
-  </tr>
+    <td style="text-align:left;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
+  </tr> 
 </table>
 <br>
  <br> 
