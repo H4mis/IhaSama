@@ -6,6 +6,7 @@ body{
 	background-position:center; 
 	background-attachment: fixed;
 	background-color:#333;
+	color:lightgrey;
 	
 }
 
@@ -26,7 +27,7 @@ table{
 }
 /*###################pizza taulukko tyyliä######################################*/ 
 #laatikko{
-	background-color: rgba(150,150,150,0.8);
+	background-color: rgba(0,0,0,0.5);
 	text-align: center;
 	font-family: 'Merienda', cursive;
 	opacity:0,9;
@@ -37,11 +38,12 @@ table{
 	box-shadow: 0 0 200px #00000;
 	padding: 10px;
 	display:inline-block;
+	color:lightgrey;
 	
 }
 
 .taytenimi{
-	color:rgba(50,50,50,1);
+	color:orange;
 	font-family: 'Merienda', cursive;
 }
 
@@ -106,7 +108,9 @@ pre{
     font-family: 'Merienda', cursive;
 }
 
-
+#tiedotelaatikko{
+	color:lightgrey;
+}
 
 /* ####################kolmen boxin USP:t ################################################*/
 
@@ -128,8 +132,8 @@ pre{
 
 #laatikko1{
 	display:inline-block;
-	background-color: lightgrey;
-	opacity:0.7;
+	background-color: rgba(0,0,0,0.5);
+	
 	margin: auto;
 	border-radius:0px;
 	padding: 10px;

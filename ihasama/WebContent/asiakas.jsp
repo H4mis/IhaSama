@@ -124,14 +124,16 @@
 				<th style="text-align: left;">Pizzat</th>
 				<th>Hinta</th>
 				<th>Tilaa</th>
+				
 			</tr>
-			<c:if test="${empty menulista}"><c:out value="</table>"/> Pizzalista on tyhjä!</c:if>
 			
+			<c:if test="${empty menulista}"><c:out value="</table>"/> Pizzalista on tyhjä!</c:if>
+		
 			<c:if test="${not empty menulista}">
 			<c:forEach items="${menulista}" var="pizza">
 			<form action="KoriKontrolleri" method="post">
 				<tr>
-					<td style="text-align: left;">
+					<td style="text-align: left;color:lightgrey;">
 						
 						<c:out value="${pizza.pizzanimi}"/>
 						<br>
@@ -141,7 +143,7 @@
 						<input type="checkbox" value="1" name="gluteeniton"/> glut.
 						<br><br>
 					</td>
-					<td>
+					<td style="color:lightgrey;">
 						<fmt:setLocale value="fi"/>
 						<fmt:formatNumber value="${pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 					</td>

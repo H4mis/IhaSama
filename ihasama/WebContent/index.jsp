@@ -149,7 +149,7 @@
      <br>
      <br>
      <p>
-     <table>
+     <table >
      <c:forEach items="${tiedotelista}" var="tiedote">
                     
         
@@ -158,7 +158,7 @@
                             </c:if>                            
                             <c:if test="${tiedote.piilossa}">
                             <tr>
-                            <td>
+                            <td id="tiedotelaatikko">
                                 <c:out value="${tiedote.tiedote}" />
                                 </td>
                                 </tr>
@@ -179,13 +179,13 @@
 <div class="usp">
 	<div class="marginblock">
 	   <div id="laatikko1">
-	   <img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:150px;height:75px;border-radius:60%;">
+	   <img src="kuvat/autojpg.jpg" alt="AutoKuljetus" style="width:150px;height:75px;border-radius:60%;opacity:0.9;">
 	 		<p> NOPEAT KULJETUKSET
 	 			<br> & <br>Yli 20 € tilauksille ilmainen kotiin kuljetus</p>
 	 	</div>
 	 	
 	  	<div id="laatikko1">
-	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:75px;border-radius:60%;">
+	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:75px;border-radius:60%;opacity:0.9;">
 	  		<p> 100% TYYTYVÄISYYS TAKUU,<br> jos et pidä tuotteesta palautamme rahanne
 	  		<br><br>
 	  		 </p>
