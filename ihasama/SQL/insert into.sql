@@ -46,6 +46,9 @@ VALUES ('PoroPizza', 18.00);
 INSERT INTO Pizza (pizzanimi,hinta)
 VALUES ('Alkopala', 19.50);
 
+INSERT INTO Pizza(pizzanimi,hinta,piilossa)
+VALUES ('Bolognese', 10.00, 1);
+
 
 INSERT INTO Tayte (taytenimi, saatavilla)
 VALUES ('Kinkku', 1);
@@ -100,3 +103,24 @@ VALUES(1, 58, 1, 1, 0);
 INSERT INTO Pizzatilaus(tilausnro, pizzaid, laktoositon, gluteeniton, oregano)
 VALUES(2, 58, 1, 1, 0);
 
+/* TiedoteDAO */
+INSERT INTO Tiedote (tiedote, saatavilla)
+VALUES ('Esimerkki tiedotteesta', 1);
+
+/* TilausDAO */
+
+/* Tilaus ilman käyttäjätunnusta */ 
+
+INSERT INTO Tilaus(tilausaika, valmiina, toimitettu, toimitustapa, tilausklo) 
+VALUES(?, ?, ?, ?, ?);
+
+
+/* Tilaus käyttäjätunnuksella */
+
+INSERT INTO Tilaus(tilausaika, valmiina, toimitettu, toimitustapa, tilausklo, tilaajatunnus) 
+VALUES(?, ?, ?, ?, ?, ?);
+
+/* Pizzan lisäys tilaukseen */
+
+INSERT INTO Pizzatilaus(tilausnro, pizzaid, laktoositon, gluteeniton, oregano) 
+VALUES(?,?,?,?,?);
