@@ -91,7 +91,7 @@
                 <label for="pwd">Salasana:</label>
                 <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' class="form-control" id="pwd" name="salasana">
               </div>
-              <input type="hidden" name="from" value="${mistatulen}">
+              <input type="hidden" name="from" value="KoriKontrolleri">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
             </form>
             	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
@@ -178,41 +178,40 @@
   <c:if test="${not empty sessionScope.kayttajatunnus}">
   	<input type="submit" value="Tilaa" />
   </c:if>
-  
-  <c:if test="${empty sessionScope.kayttajatunnus}">
-  	<a href="rekisterointi.jsp">Rekisteröidy</a> tai Kirjaudu sisään.
-  	<form method="post" action="LoginKontrolleri">
-       	<table>
-        	<tr>
-        		<td>
-        			Käyttäjätunnus: 
-        		</td>
-        		<td>
-        			<input type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Kirjoita käyttäjätunnus oikein!' name="kayttajatunnus" value="" />
-        		</td>
-        	</tr>
-			<tr>
-        		<td>
-        			Salasana: 
-        		</td>
-        		<td>
-				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' name="salasana" value="" />
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-        			Kirjaudu
-        		</td>
-        		<td>
-        		<input type="hidden" name="from" value="/TiedoteKontrolleri">
-				<input type="submit" value="Kirjaudu" />
-        		</td>
-        	</tr>
-    	</table>
-	</form>
-  </c:if>
-  
 </form>
+<c:if test="${empty sessionScope.kayttajatunnus}">
+ 	<a href="rekisterointi.jsp">Rekisteröidy</a> tai Kirjaudu sisään.
+ 	<form method="post" action="LoginKontrolleri">
+      	<table>
+	       	<tr>
+	       		<td>
+	       			Käyttäjätunnus: 
+	       		</td>
+	       		<td>
+	       			<input type="text" pattern='([a-z]|[A-Z]|[0-9]|(_-.+)).{8,45}' title='Kirjoita käyttäjätunnus oikein!' name="kayttajatunnus"/>
+	       		</td>
+	       	</tr>
+			<tr>
+	       		<td>
+	       			Salasana: 
+	       		</td>
+	       		<td>
+				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' name="salasana"/>
+	       		</td>
+	       	</tr>
+	       	<tr>
+	       		<td>
+	       			Kirjaudu
+	       		</td>
+	       		<td>
+	       		<input type="hidden" name="from" value="/KoriKontrolleri">
+				<input type="submit" value="Kirjaudu" />
+	       		</td>
+	       	</tr>
+   		</table>	
+	</form>
+</c:if>
+  
     yhteensä: <fmt:setLocale value="fi"/>
 			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 	</c:if>
