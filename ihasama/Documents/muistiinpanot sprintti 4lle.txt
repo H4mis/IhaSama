@@ -2,44 +2,34 @@
 TEHTY
 login toimimaan rekister√∂itymisen per√§√§n
 ostoskorin yhteishinta n√§kym√§√§n yl√§laitaan loginin viereen
-
+salasanan kysely kahteen kertaan rekister√∂itymisess√§
+rekister√∂itymisess√§ est√§ etu ja sukunimess√§ oudot merkit (hyv√§ksy vain aakkoset)
+pizzan lis√§ys laittaa uuden pitsan automaattisesti piiloon aluksi
+tilatessa ohjaa takaisin menu sivulle
+- Etunimen ja sukunimen syˆttˆˆn laitettava ehk‰ enemm‰n rajoitteita, t‰ll‰ hetkell‰ etu- sek‰ sukunimeksi riitt‰‰ yksi numero.
+-Otsikko voisi olla enemm‰n erill‰‰n pizzoista.
+- Jos ei ole kirjautuneena sis‰‰n mill‰‰n tunnuksella, "tilaa"- nappia painamalla siirryt‰‰n takaisin menu- sivulle ja ostoskori tyhjenee, voisi lis‰t‰ login- pyynnˆn.
+toimitustavan valinta: nouto, kotiinkuljetus
+maksutavan valinta toimitustavan j√§lkeen
 
 SEBA
 isompi fontti
 
+
 JENNI
 testaamista
 
-Korjattavaa lˆytyi:
-
-Rekisterˆinti:
-
-- Etunimen ja sukunimen syˆttˆˆn laitettava ehk‰ enemm‰n rajoitteita, t‰ll‰ hetkell‰ etu- sek‰ sukunimeksi riitt‰‰ yksi numero.
-
-Menu:
-
--Otsikko voisi olla enemm‰n erill‰‰n pizzoista.
-
-Admin- sivu:
-
--Admin- sivulle siirrytt‰ess‰ yl‰palkki siirtyy pois paikoiltaan ja logout- nappi h‰vi‰‰ kokonaan.
-
-Ostoskori:
-
-- Jos ei ole kirjautuneena sis‰‰n mill‰‰n tunnuksella, "tilaa"- nappia painamalla siirryt‰‰n takaisin menu- sivulle ja ostoskori tyhjenee, voisi lis‰t‰ login- pyynnˆn.
 
 KREETTA
-toimitustavan valinta: nouto, kotiinkuljetus
-maksutavan valinta toimitustavan j√§lkeen
+anna palautetta lomake (tallentaa viestin ja postausajan)
 
 JUHO
-salasanan kysely kahteen kertaan rekister√∂itymisess√§
-rekister√∂itymisess√§ est√§ etu ja sukunimess√§ oudot merkit (hyv√§ksy vain aakkoset)
+
+
 
 
 MIRA
-pizzan lis√§ys laittaa uuden pitsan automaattisesti piiloon aluksi
-tilatessa ohjaa takaisin menu sivulle
+-Admin- sivulle siirrytt‰ess‰ yl‰palkki siirtyy pois paikoiltaan ja logout- nappi h‰vi‰‰ kokonaan.
 
 NICI
 
@@ -55,7 +45,7 @@ tilausvahvistus s√§hk√∂postiin tilauksen vahvistettaessa
 sivujen nimet j√§rkev√§ksi: asiakas.jsp => menu.jsp
 paketoinnit oikein: luokat.paketti => bean paketti
 rekister√∂itymisen vahvistaminen s√§hk√∂postista
-anna palautetta lomake (tallentaa viestin ja postausajan)
+
 k√§ytt√§j√§sivu, josta voi vaihtaa k√§ytt√§j√§tietoja
 n√§kyviss√§ olevaa pizzaa ei voi poistaa
 p√∂yd√§n varaus
