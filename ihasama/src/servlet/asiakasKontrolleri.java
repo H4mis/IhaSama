@@ -136,7 +136,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			if(postinro == null || postinro.isEmpty()) {
 				postinro = "00000";
 			}
-			int postinroInt = Integer.parseInt(postinro);
+			//int postinroInt = Integer.parseInt(postinro);
 			String postitmp = request.getParameter("tmpk");
 			if(postitmp == null || postitmp.isEmpty()) {
 				postitmp = "";
@@ -151,7 +151,7 @@ public class asiakasKontrolleri extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinroInt, postitmp);
+			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinro, postitmp);
 			tDao.avaaYhteys();
 			Date tilausaika = new Date();
 			boolean valmiina = false;

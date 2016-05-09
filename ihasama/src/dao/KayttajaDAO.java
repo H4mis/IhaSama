@@ -124,7 +124,7 @@ public class KayttajaDAO {
 		
 	}
 	
-	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, int postinro, String postitmp){
+	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, String postinro, String postitmp){
 		
 		try {
 			// alustetaan sql-lause
@@ -133,7 +133,7 @@ public class KayttajaDAO {
 
 			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, osoite);
-			lause.setInt(2, postinro);
+			lause.setString(2, postinro);
 			lause.setString(3, postitmp);
 			lause.setString(4, k.getKayttajatunnus());
 

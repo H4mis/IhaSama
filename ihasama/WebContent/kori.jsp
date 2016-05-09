@@ -167,9 +167,9 @@
   <br><input type="radio" name="maksu" value="Korttimaksu"> Verkkopankki<br>
   <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
   <br>
-  Katuosoite: <input type="text" name="katuosoite" value=""/><br>
-  Postinumero: <input type="text" name="posti" value=""/><br>
-  Toimipaikka:<input type="text" name="tmpk" value=""/><br>
+  Katuosoite: <input type="text" name="katuosoite"><c:out value="${osoite}"></c:out></input><br>
+  Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+  Toimipaikka:<input type="text" name="tmpk" value="${postitmp}"/><br>
 
 
   </div>
@@ -205,7 +205,7 @@
 	       			Kirjaudu
 	       		</td>
 	       		<td>
-	       		<input type="hidden" name="from" value="/KoriKontrolleri">
+	       		<input type="hidden" name="from" value="KoriKontrolleri">
 				<input type="submit" value="Kirjaudu" />
 	       		</td>
 	       	</tr>
