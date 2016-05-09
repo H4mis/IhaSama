@@ -159,7 +159,7 @@ public class Kontrolleri extends HttpServlet {
 			int id = lista.size() + 1;
 			String[] taytteidenIdt = request.getParameterValues("taytteet");
 			// taytteet = taytteidenIdt.length;
-			boolean piilossa = false;
+			boolean piilossa = true;
 
 			Pizza a = new Pizza(id, nimi, hinta, taytteet, piilossa);
 
