@@ -137,7 +137,7 @@ public class asiakasKontrolleri extends HttpServlet {
 				postinro = "00000";
 			}
 			//int postinroInt = Integer.parseInt(postinro);
-			String postitmp = request.getParameter("tmpk");
+			String postitmp = request.getParameter("postitmp");
 			if(postitmp == null || postitmp.isEmpty()) {
 				postitmp = "";
 			}
@@ -148,7 +148,6 @@ public class asiakasKontrolleri extends HttpServlet {
 			try {
 				kayttaja = kaDao.HaeKayttaja(kayttajatunnus1);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinro, postitmp);
