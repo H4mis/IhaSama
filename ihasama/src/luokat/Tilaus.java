@@ -73,6 +73,15 @@ public class Tilaus {
 		this.tilatutPizzat = tilatutPizzat;
 		this.pizzantilausAvuste = pizzantilausAvuste;
 	}
+	
+	public Tilaus(String tilaajatunnus, Date tilausaika, boolean valmiina, boolean toimitettu, String toimitustapa, List<TilattuPizza> tilatutPizzat) {
+		this.tilaajatunnus = tilaajatunnus;
+		this.tilausaika = tilausaika;		
+		this.valmiina = valmiina;
+		this.toimitettu = toimitettu;
+		this.toimitustapa = toimitustapa;
+		this.tilatutPizzat = tilatutPizzat;
+	}
 
 		
 	public int getTilausnro() {
