@@ -30,7 +30,7 @@ tr > td
 {
   padding-bottom: 1em;
 }
-
+ 
 
 
   @media only screen and (max-width: 767px) {
@@ -40,6 +40,20 @@ tr > td
   .form-group
   {color:white;
   }
+  #koriDrop{
+  color:white;
+  }
+  .dropdown-menu{
+  color:white;}
+  table{color:white;}
+  .navbar-inverse .navbar-nav .open .dropdown-menu>td>a,.navbar-inverse .navbar-nav .open .dropdown-menu {
+   
+    color:white;
+  }
+  myNavbar{
+  color:white;}
+  .collapse navbar-collapse{
+  color:white;}
 }
   
   
