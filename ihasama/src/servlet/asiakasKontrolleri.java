@@ -63,6 +63,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			lista2 = pDAO.haeAsiakasPizzat(lista); //luodaan menu asiakkaille
             request.setAttribute("menulista", lista2); //annetaan requestille menu lista pizzoista
             request.setAttribute("mistatulen", request.getServletPath());
+            
             if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
 				String nimi = (String) sessio.getAttribute("nimi");
@@ -72,7 +73,6 @@ public class asiakasKontrolleri extends HttpServlet {
 				request.setAttribute("kayttaja", kayttajatunnus);
 				request.setAttribute("nimi", nimi);
 				request.setAttribute("admin", admin);
-				
 
 			}
             

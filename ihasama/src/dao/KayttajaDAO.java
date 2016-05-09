@@ -58,7 +58,7 @@ public class KayttajaDAO {
 		String sql = "SELECT * FROM Kayttaja WHERE kayttajatunnus=?"; //haetaan kaikki käyttätunnukset
 		PreparedStatement haku = yhteys.prepareStatement(sql);
 		haku.setString(1, kayttajatunnus);
-		ResultSet tulokset = haku.executeQuery(sql);
+		ResultSet tulokset = haku.executeQuery();
 		
 		while (tulokset.next()) {
 			String etunimi = tulokset.getString("etunimi");

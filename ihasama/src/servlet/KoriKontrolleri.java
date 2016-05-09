@@ -46,6 +46,7 @@ public class KoriKontrolleri extends HttpServlet {
 		Kayttaja kayttaja = new Kayttaja();
 		
 		if(sessio.getAttribute("kayttajatunnus") != null) {
+			System.out.println("löydettiin käyttäjätunnus sessiosta dogetissa");
 			String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
 			kaDao.avaaYhteys();
 			try {
