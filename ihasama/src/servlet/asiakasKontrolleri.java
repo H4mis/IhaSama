@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import luokat.Kayttaja;
 import luokat.Pizza;
 import luokat.TilattuPizza;
 import luokat.Tilaus;
+import dao.KayttajaDAO;
 import dao.KoriDAO;
 import dao.PizzaDAO;
 import dao.TilausDAO;
@@ -95,6 +97,8 @@ public class asiakasKontrolleri extends HttpServlet {
 		// TODO: hae asiakkaalta tilatut pizzat.
 		PizzaDAO pDao = new PizzaDAO();
 		TilausDAO tDao = new TilausDAO();
+		KayttajaDAO kaDao = new KayttajaDAO();
+		
 		HttpSession sessio = request.getSession(false);
 		String kayttajatunnus = null;
 		if (sessio != null && sessio.getAttribute("kayttajatunnus") != null){
@@ -112,7 +116,39 @@ public class asiakasKontrolleri extends HttpServlet {
 			yhteishinta = 0; 
 		}
 		
+		String toiminto = request.getParameter("toiminto");
 		
+		if(toiminto != null && toiminto.equals("vahvistaTilaus")) { //tilauspainiketta painettu ostoskorissa
+			String tilattavat  = request.getParameter("tilattavat");
+			String toimitustapa  = request.getParameter("toimitus");
+			String maksutapa  = request.getParameter("maksu");
+
+			String osoite = request.getParameter("katuosoite");
+			String postinro = request.getParameter("posti");
+			int postinroInt = Integer.parseInt(postinro);
+			String postitmp = request.getParameter("tmpk");
+			
+			String kayttajatunnus1 = (String) sessio.getAttribute("kayttajatunnus");
+			
+			kaDao.avaaYhteys();
+			Kayttaja kayttaja = new Kayttaja();
+			try {
+				kayttaja = kaDao.HaeKayttaja(kayttajatunnus1);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinroInt, postitmp);
+			tDao.avaaYhteys();
+			Date tilausaika = new Date();
+			boolean valmiina = false;
+			boolean toimitettu = false;
+			List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("korilista");
+			Tilaus tilaus = new Tilaus(kayttajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilatutPizzat);
+			tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
+			tDao.suljeYhteys();
+			kaDao.suljeYhteys();
+		}
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio
 		

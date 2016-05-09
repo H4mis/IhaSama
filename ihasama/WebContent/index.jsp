@@ -79,7 +79,7 @@
 	      			<c:set var="index" value="${index+1}" />
 	      		</c:forEach>
 	      		<tr>
-	      			<td colspan="2">
+	      			<td id="puhelinKori" colspan="2">
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
@@ -127,7 +127,7 @@
 <h1 style="font-family: 'Dancing Script', cursive;font-size:100px;">Castello é Fiore</h1>
 <div class="marginblock">
  <div id="laatikko">
-    <h2 style="font-family: 'Merienda', cursive;">Tervetuloa</h2>
+    <h2 style="font-family: 'Merienda', cursive;">Tervetuloa<hr></h2>
     
     <p>
     <p style="color:orange;">Tervetuloa Castello é Fiore- ravintolan kotisivuille! </p>
@@ -241,7 +241,11 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     
+  
+
     
+
+
 </body>
 
 </html>

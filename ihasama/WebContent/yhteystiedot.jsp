@@ -90,7 +90,7 @@ th, td {
 	      			<c:set var="index" value="${index+1}" />
 	      		</c:forEach>
 	      		<tr>
-	      			<td colspan="2">
+	      			<td id="puhelinKori" colspan="2">
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
@@ -134,10 +134,7 @@ th, td {
 <h1>Castello é Fiore</h1>
  <div class="marginblock">  
  <div id="laatikko">
- 
-<br>
- <br> 
- <br> 
+
 
     <h2>Ota yhteyttä<hr></h2>
      <br>
@@ -163,7 +160,7 @@ th, td {
 
             
 <h3>Kartta</h3>
- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.028070132561!2d24.461779116511266!3d60.99617808330837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468e5d970c10edb3%3A0xa654c8617544564e!2sSibeliuksenkatu+7%2C+13100+H%C3%A4meenlinna!5e1!3m2!1sfi!2sfi!4v1459936427659" width="300" height="300" frameborder="0" style="border:0"  allowfullscreen></iframe>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.028070132561!2d24.461779116511266!3d60.99617808330837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468e5d970c10edb3%3A0xa654c8617544564e!2sSibeliuksenkatu+7%2C+13100+H%C3%A4meenlinna!5e1!3m2!1sfi!2sfi!4v1459936427659" width="100%" height="300px" frameborder="0" style="border:0"  allowfullscreen></iframe>
  <br> 
  <br> 
  <h2>Anna meille palautetta!</h2>

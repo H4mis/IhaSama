@@ -52,6 +52,26 @@ public class KayttajaDAO {
 		}
 	}
 
+	public Kayttaja HaeKayttaja(String kayttajatunnus) throws SQLException {
+		Kayttaja kayttaja = new Kayttaja();
+		
+		String sql = "SELECT * FROM Kayttaja WHERE kayttajatunnus=?"; //haetaan kaikki käyttätunnukset
+		PreparedStatement haku = yhteys.prepareStatement(sql);
+		haku.setString(1, kayttajatunnus);
+		ResultSet tulokset = haku.executeQuery(sql);
+		
+		while (tulokset.next()) {
+			String etunimi = tulokset.getString("etunimi");
+			String sukunimi = tulokset.getString("sukunimi");
+			String sahkoposti = tulokset.getString("sahkoposti");
+			String osoite = tulokset.getString("osoite");
+			String postinro = tulokset.getString("postinro");
+			String postitmp = tulokset.getString("postitmp");
+			kayttaja = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, postitmp);
+		}
+		return kayttaja;
+	}
+	
 	public boolean onkoKayttajatunnusOlemassa(Kayttaja k) throws SQLException {
 		
 		String sql = "SELECT * FROM Kayttaja"; //haetaan kaikki käyttätunnukset

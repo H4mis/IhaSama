@@ -22,6 +22,17 @@ public class Kayttaja {
 		this.admin = false;
 	}
 	
+	public Kayttaja(String etunimi, String sukunimi, String osoite, String postinro, String sahkoposti, String kayttajatunnus, String postitmp) {
+		super();
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
+		this.sahkoposti = sahkoposti;
+		this.kayttajatunnus = kayttajatunnus;
+		this.osoite = osoite;
+		this.postinro= Integer.parseInt(postinro);
+		this.postitmp= postitmp;
+	}
+	
 	public Kayttaja(String etunimi, String sukunimi, String osoite, String postinro, String sahkoposti, String kayttajatunnus, String salasana, boolean admin, String postitmp) {
 		super();
 		this.etunimi = etunimi;
