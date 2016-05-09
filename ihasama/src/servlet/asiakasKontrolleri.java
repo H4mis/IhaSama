@@ -119,9 +119,10 @@ public class asiakasKontrolleri extends HttpServlet {
 		String toiminto = request.getParameter("toiminto");
 		
 		if(toiminto != null && toiminto.equals("vahvistaTilaus")) { //tilauspainiketta painettu ostoskorissa
-			String tilattavat  = request.getParameter("tilattavat");
+			System.out.println("toiminto on vahvista tilaus");
+			
 			String toimitustapa  = request.getParameter("toimitus");
-			String maksutapa  = request.getParameter("maksu");
+			//String maksutapa  = request.getParameter("maksu");
 
 			String osoite = request.getParameter("katuosoite");
 			String postinro = request.getParameter("posti");
@@ -129,7 +130,6 @@ public class asiakasKontrolleri extends HttpServlet {
 			String postitmp = request.getParameter("tmpk");
 			
 			String kayttajatunnus1 = (String) sessio.getAttribute("kayttajatunnus");
-			
 			kaDao.avaaYhteys();
 			Kayttaja kayttaja = new Kayttaja();
 			try {
@@ -148,6 +148,8 @@ public class asiakasKontrolleri extends HttpServlet {
 			tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();
+			
+			response.sendRedirect("TiedoteKontrolleri?TilausTehty=true");
 		}
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio

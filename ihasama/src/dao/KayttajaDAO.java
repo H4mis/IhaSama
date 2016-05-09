@@ -69,6 +69,7 @@ public class KayttajaDAO {
 			String postitmp = tulokset.getString("postitmp");
 			kayttaja = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, postitmp);
 		}
+		System.out.println("Tietokannasta haettiin käyttäjä " + kayttaja.getKayttajatunnus() + ", etunimi: " + kayttaja.getEtunimi() + ", sukunimi: " + kayttaja.getSukunimi() + " sähköposti: " + kayttaja.getSahkoposti());
 		return kayttaja;
 	}
 	
