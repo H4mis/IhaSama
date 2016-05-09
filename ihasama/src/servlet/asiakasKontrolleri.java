@@ -120,14 +120,27 @@ public class asiakasKontrolleri extends HttpServlet {
 		
 		if(toiminto != null && toiminto.equals("vahvistaTilaus")) { //tilauspainiketta painettu ostoskorissa
 			System.out.println("toiminto on vahvista tilaus");
-			
-			String toimitustapa  = request.getParameter("toimitus");
+			String toimitustapa;
+			String toimitus  = request.getParameter("toimitus");
 			//String maksutapa  = request.getParameter("maksu");
-
+			if(toimitus.equals("1")) {
+				toimitustapa = "nouto";
+			} else {
+				toimitustapa = "kotiinkuljetus";
+			}
 			String osoite = request.getParameter("katuosoite");
+			if(osoite == null || osoite.isEmpty()) {
+				osoite = "";
+			}
 			String postinro = request.getParameter("posti");
+			if(postinro == null || postinro.isEmpty()) {
+				postinro = "00000";
+			}
 			int postinroInt = Integer.parseInt(postinro);
 			String postitmp = request.getParameter("tmpk");
+			if(postitmp == null || postitmp.isEmpty()) {
+				postitmp = "";
+			}
 			
 			String kayttajatunnus1 = (String) sessio.getAttribute("kayttajatunnus");
 			kaDao.avaaYhteys();
