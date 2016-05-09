@@ -157,7 +157,7 @@ th, td {
     <td style="text-align:left;color:orange;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
   </tr> 
 </table>
-            </textarea>
+           
             <br>
             <br>    
 
@@ -170,22 +170,24 @@ th, td {
   <form action="PalauteKontrolleri" method="POST">
 
 Sähköpostiosoite: <br>
-<input type="text" name="email"><br>
+<input style="color:black"type="text" name="email"><br>
 <br>
 
 Aihe: <br>
-<input type="text" name="aihe"><br>
+<input style="color:black" type="text" name="aihe"><br>
 <br>
 
 Palaute: <br>
-<textarea name="palaute" rows="10" width=100%></textarea><br><br>
+<textarea style="color:black" name="palaute" rows="10" width=100%></textarea><br><br>
 
 <button type="submit" value="Lähetä">Lähetä</button>
+
+ 
+</form>
  </div>
 </div>
   
- 
-</form>
+
 
  <footer class="footer">
      <div class="container">
@@ -195,7 +197,7 @@ Palaute: <br>
 			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
 			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
 	
-			<div class="clr"></div>
+			
 
 		</ul>
  	 </div>
