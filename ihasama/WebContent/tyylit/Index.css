@@ -32,6 +32,17 @@ tr > td
 }
 
 
+
+  @media only screen and (max-width: 767px) {
+  #puhelinKori{
+  color:white;
+  }
+  .form-group
+  {color:white;
+  }
+}
+  
+  
 /*##################pizza taulukko tyyliä######################################*/ 
 
 

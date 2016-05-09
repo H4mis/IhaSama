@@ -90,7 +90,7 @@ th, td {
 	      			<c:set var="index" value="${index+1}" />
 	      		</c:forEach>
 	      		<tr>
-	      			<td colspan="2">
+	      			<td id="puhelinKori" colspan="2">
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
@@ -134,10 +134,7 @@ th, td {
 <h1>Castello é Fiore</h1>
  <div class="marginblock">  
  <div id="laatikko">
- 
-<br>
- <br> 
- <br> 
+
 
     <h2>Ota yhteyttä<hr></h2>
      <br>
