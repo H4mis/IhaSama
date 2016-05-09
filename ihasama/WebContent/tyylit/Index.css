@@ -4,21 +4,19 @@ body{
 	background-image:url("../kuvat/ravintola_poyta.JPG");
 	background-repeat:no-repeat;
 	background-position:center; 
-	background-attachment: fixed;
+	background-attachment: fixed; 
 	background-color:#333;
 	color:lightgrey;
-	
+	font-family: 'Merienda', cursive;
 }
 
 h1{
-  
 	text-shadow: 2px 2px 4px #000000;
-	font-family: 'Merienda', cursive;
+	
 	font-size: 100px;
 	font-family: 'Dancing Script', cursive;
     color: orange;
     text-align: center;
-    
 }
 
 table{
@@ -32,6 +30,7 @@ tr > td
 {
   padding-bottom: 1em;
 }
+
 
 /*##################pizza taulukko tyyliä######################################*/ 
 
@@ -49,7 +48,6 @@ tr > td
 	padding: 10px;
 	display:inline-block;
 	color:lightgrey;
-	
 }
 
 .taytenimi{

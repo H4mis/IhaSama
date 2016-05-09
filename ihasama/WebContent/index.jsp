@@ -24,7 +24,8 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="tyylit/Index.css">
-
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- sosiaalinen media kuvat -->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
@@ -121,10 +122,12 @@
  </div> 
 </nav>
 
-<h1>Castello é Fiore</h1>
+
+
+<h1 style="font-family: 'Dancing Script', cursive;font-size:100px;">Castello é Fiore</h1>
 <div class="marginblock">
  <div id="laatikko">
-    <h2>Tervetuloa</h2>
+    <h2 style="font-family: 'Merienda', cursive;">Tervetuloa</h2>
     
     <p>
     <p style="color:orange;">Tervetuloa Castello é Fiore- ravintolan kotisivuille! </p>
@@ -189,7 +192,7 @@
 	 	
 	  	<div id="laatikko1">
 	  		<img src="kuvat/tomaatti.jpg" alt="AutoKuljetus" style="width:75px;height:75px;border-radius:60%;opacity:0.9;">
-	  		<p> 100% TYYTYVÄISYYS TAKUU,<br> jos et pidä tuotteesta palautamme rahanne
+	  		<p> 100% TYYTYVÄISYYSTAKUU,<br> jos et pidä tuotteesta palautamme rahanne
 	  		<br><br>
 	  		 </p>
 	 	</div>
