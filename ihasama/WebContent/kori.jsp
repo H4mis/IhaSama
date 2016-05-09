@@ -176,7 +176,7 @@
   <br>
   
   <c:if test="${not empty sessionScope.kayttajatunnus}">
-  	<input type="submit" name="toiminto" value="Tilaa" />
+  	<input type="submit" value="Tilaa" />
   </c:if>
 </form>
 <c:if test="${empty sessionScope.kayttajatunnus}">
