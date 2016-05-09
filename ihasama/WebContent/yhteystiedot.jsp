@@ -157,35 +157,37 @@ th, td {
     <td style="text-align:left;color:orange;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
   </tr> 
 </table>
-            </textarea>
+           
             <br>
             <br>    
 
             
 <h3>Kartta</h3>
- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.028070132561!2d24.461779116511266!3d60.99617808330837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468e5d970c10edb3%3A0xa654c8617544564e!2sSibeliuksenkatu+7%2C+13100+H%C3%A4meenlinna!5e1!3m2!1sfi!2sfi!4v1459936427659" width="300" height="300" frameborder="0" style="border:0"  allowfullscreen></iframe>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.028070132561!2d24.461779116511266!3d60.99617808330837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468e5d970c10edb3%3A0xa654c8617544564e!2sSibeliuksenkatu+7%2C+13100+H%C3%A4meenlinna!5e1!3m2!1sfi!2sfi!4v1459936427659" width="100%" height="300px" frameborder="0" style="border:0"  allowfullscreen></iframe>
  <br> 
  <br> 
  <h2>Anna meille palautetta!</h2>
   <form action="PalauteKontrolleri" method="POST">
 
 Sähköpostiosoite: <br>
-<input type="text" name="email"><br>
+<input style="color:black"type="text" name="email"><br>
 <br>
 
 Aihe: <br>
-<input type="text" name="aihe"><br>
+<input style="color:black" type="text" name="aihe"><br>
 <br>
 
 Palaute: <br>
-<textarea name="palaute" rows="10" width=100%></textarea><br><br>
+<textarea style="color:black" name="palaute" rows="10" width=100%></textarea><br><br>
 
 <button type="submit" value="Lähetä">Lähetä</button>
+
+ 
+</form>
  </div>
 </div>
   
- 
-</form>
+
 
  <footer class="footer">
      <div class="container">
@@ -195,7 +197,7 @@ Palaute: <br>
 			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
 			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
 	
-			<div class="clr"></div>
+			
 
 		</ul>
  	 </div>

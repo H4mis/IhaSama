@@ -73,11 +73,11 @@
 	      			<c:set var="index" value="${index+1}" />
 	      		</c:forEach>
 	      		<tr>
-	      			<td>
+	      			<td colspan="2">
 		      			<c:if test="${not empty sessionScope.kori}">
 		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button id="buttonTilaa" type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">Siirry tilaamaan!</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
