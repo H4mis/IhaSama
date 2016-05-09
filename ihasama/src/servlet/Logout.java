@@ -21,8 +21,7 @@ public class Logout extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public Logout() {
-        super();
-        // TODO Auto-generated constructor stub
+        super();       
     }
 
 	/**
@@ -31,22 +30,26 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
+		// Luodaan HttpSession-olio, mutta vain jos sessio voidaan saada requestista. Jos ei, ei luoda uutta sessiota
+		
 		HttpSession sessio=request.getSession(false);
+		
+		// Jos sessio ei ole tyhja eika session kayttajatunnus-attribuutti ole tyhja, invalidoidaan sessio
 		
 		if(sessio != null && sessio.getAttribute("kayttajatunnus") != null){
 		sessio.invalidate();}
 		
-		RequestDispatcher disp = request.getRequestDispatcher("logout.jsp");
-		disp.forward(request, response);
+		// Siirrytaan logout.jsp-sivulle
 		
-		// TODO Auto-generated method stub
+		RequestDispatcher disp = request.getRequestDispatcher("logout.jsp");
+		disp.forward(request, response);		
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 	}
 
 }
