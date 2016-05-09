@@ -127,7 +127,7 @@
     	<c:if test="${empty param.registrationSuccess}">
 	    <h2 style="color:lightgrey;">Rekisteröinti</h2>
 	    <hr>
-	         <form id="passwordForm" method="post" action="RekisterointiKontrolleri"> 
+	         <form id="passwordForm" method="post" action="RekisterointiKontrolleri" accept-charset="UTF-8"> 
 	            <table>
 	                <thead>
 	                    <tr>
