@@ -122,7 +122,7 @@
   	
 		<table>
 			<tr>
-				<th colspan="3" style="text-align:center;"><h2 style="color:white;">Menu<hr></h2></th>
+				<th colspan="3" style="text-align:center;"><h2 style="color:lightgrey;">Menu<hr></h2></th>
 				
 				
 			</tr>
