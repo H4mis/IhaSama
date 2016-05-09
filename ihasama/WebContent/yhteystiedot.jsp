@@ -138,8 +138,8 @@ th, td {
 <br>
  <br> 
  <br> 
- <h2>Anna meille palautetta!</h2>
-   <form action="PalauteKontrolleri" method="POST">
+  <h2>Anna meille palautetta!</h2>
+  <form action="PalauteKontrolleri" method="POST">
 
 Sähköpostiosoite: <br>
 <input type="text" name="email"><br>
@@ -150,9 +150,9 @@ Aihe: <br>
 <br>
 
 Palaute: <br>
-<textarea name="palaute" rows="10" cols="50"></textarea><br><br>
+<textarea name="palaute" rows="10" width=100%></textarea><br><br>
 
-<input type="submit" value="Submit">
+<input type="submit" value="Lähetä">
  
 </form>
     <h2>Ota yhteyttä<hr></h2>
