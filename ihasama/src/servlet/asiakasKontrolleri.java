@@ -118,7 +118,7 @@ public class asiakasKontrolleri extends HttpServlet {
 		
 		String toiminto = request.getParameter("toiminto");
 		
-		if(toiminto.equals("Tilaa")) { //tilauspainiketta painettu
+		if(toiminto != null && toiminto.equals("vahvistaTilaus")) { //tilauspainiketta painettu ostoskorissa
 			String tilattavat  = request.getParameter("tilattavat");
 			String toimitustapa  = request.getParameter("toimitus");
 			String maksutapa  = request.getParameter("maksu");
@@ -143,8 +143,8 @@ public class asiakasKontrolleri extends HttpServlet {
 			Date tilausaika = new Date();
 			boolean valmiina = false;
 			boolean toimitettu = false;
-			List<TilattuPizza> tilatutPizzat = 
-			Tilaus tilaus = new Tilaus(kayttaajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, List<TilattuPizza> tilatutPizzat);
+			List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("korilista");
+			Tilaus tilaus = new Tilaus(kayttajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilatutPizzat);
 			tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();
