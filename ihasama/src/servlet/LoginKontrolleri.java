@@ -20,75 +20,103 @@ import dao.LoginDAO;
 @WebServlet("/LoginKontrolleri")
 public class LoginKontrolleri extends HttpServlet {
 	
-	private String sivu = "login.jsp";
+	
 	
 	
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-			// Tieto eteenpäin sivulle, jolle login tehty
-					RequestDispatcher disp = request.getRequestDispatcher(sivu);
+			// Jos doPostia ei kaytetty, edetaan login.jsp:lle (kaien pitaisi kayttaa doPostia)
+					RequestDispatcher disp = request.getRequestDispatcher("login.jsp");
 					disp.forward(request, response);
 		}
 	    
 	
  protected void doPost(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
- 	
+	 
+	 // String, johon tuodaan tieto sivun sijainnista
+	 
+	 String sivu = "login.jsp";	 
+	
+	 PrintWriter out = response.getWriter();
+	 
  	LoginDAO LDao= new LoginDAO ();
  	
+ 	// Maaritetaan ContentType UTF-8:ksi
+ 	
      response.setContentType("text/html;charset=UTF-8");
-     PrintWriter out = response.getWriter();
+     
+     // Haetaan .jsp:lta tuotu kayttajatunnus ja salasana ja maaritellaan ne Stringeiksi
      
      String kayttaja = request.getParameter("kayttajatunnus");
      String salasana = request.getParameter("salasana");
-     sivu = request.getParameter("from");
-    
      
+     // Aiemmin maariteltyyn Stringiin laitetaan tieto sivun nimesta
+     
+     sivu = request.getParameter("from");     
+     
+     // Jos sivu ei ole tyhja, poistetaan sen alusta ihasama/
      
      if(!sivu.equals(null)){
          sivu.replaceFirst("ihasama/","");
          
          System.out.println(sivu);}
        
+     // Jos sivun sisalto on /asiakasKontrolleri, lisataan sen alkuun /ihasama/ 
+     // Yhta hyvin voitaisiin poistaa / samalla tavalla kuin ylemmassa poistetaan ihasama/.
+     // Huomaa: ihasama/ ja /ihasama/ ovat kaksi eri asiaa
      
      if(sivu.equals("/asiakasKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetäänn muuttaa asiakas.jsptä:" + sivu);
+    	 System.out.println("Kun yritetaan muuttaa asiakas.jspta:" + sivu);
      }
+     
+     // Sama kuin ylempana, vain jos sivu sisaltaa tekstin /TiedoteKontrolleri
      
      if(sivu.equals("/TiedoteKontrolleri")){
     	 sivu = "/ihasama" + request.getParameter("from");
-    	 System.out.println("Kun yritetään muuttaa index.jsptä:" + sivu);
+    	 System.out.println("Kun yritetaan muuttaa index.jspta:" + sivu);
      }
      
+     
+     // Jos salasana ei ole null eika kayttajatunnus ole null 
      
      if(salasana !=null && kayttaja !=null){
      try {
      	LDao.avaaYhteys();
      	Kayttaja kayttajaotus = LDao.haeKayttaja(kayttaja, salasana);        	
      	
+     	
+     	// Jos kayttajatunnus tai salasana oli virheellinen (kayttajatunnus maaritelty N/A:ksi), ilmoita virheesta
+     	
      	if(kayttajaotus.getKayttajatunnus().equals("N/A")){
 			   out.println("Username or Password incorrect");
-			   response.sendRedirect(sivu+"?LoginNoSuccess=true");
-			  // RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
-			  // rs.include(request, response);
+			   response.sendRedirect(sivu+"?LoginNoSuccess=true");			  
 			}
 			
+     	
+     	// Jos kayttajatunnus/salasana-yhdistelma loytyi (eli kayttajatunnus ei ole N/A) 
+     	
      	if(!kayttajaotus.getKayttajatunnus().equals("N/A"))
-			{System.out.println("Käyttäjä löytyi: " + kayttaja);
+			{System.out.println("Kayttaja loytyi: " + kayttaja);
 			
-			HttpSession sessio=request.getSession(); 
+			// Maaritellaan sessio
+			
+			HttpSession sessio=request.getSession();
+			
+			// Lisataan sessioon kayttajan etunimi, kayttajatunnus ja se, onko kayttaja admin
+			
 			sessio.setAttribute("nimi", kayttajaotus.getEtunimi());
 			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
 			sessio.setAttribute("admin",kayttajaotus.isAdmin());			
 			
+			// Lahetetaan tieto eteenpain sivulle, jolta pyynto tuli. Lisataan ?LoginSuccess=true URL:n paatteeksi
+			
 			response.sendRedirect(sivu+"?LoginSuccess=true");
-			// RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
-			  // rs.include(request, response);
+			
 			  
 			}		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
      LDao.suljeYhteys();
