@@ -170,7 +170,6 @@
 			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
 			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
 			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>			
-			<div class="clr"></div>
 		</ul>
  	 </div>   
  </footer>
