@@ -66,7 +66,7 @@
 	     	 	<c:set var="index" value="${0}" />
 	      		<c:forEach items="${sessionScope.kori}" var="kori">
 	      			<tr>
-		      			<td><div id="koriDrop">${kori.pizza.pizzanimi}</div>" />&nbsp;</td>
+		      			<td><div id="koriDrop">${kori.pizza.pizzanimi}</div>"&nbsp;</td>
 		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
