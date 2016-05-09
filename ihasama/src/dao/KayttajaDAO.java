@@ -58,7 +58,7 @@ public class KayttajaDAO {
 		String sql = "SELECT * FROM Kayttaja WHERE kayttajatunnus=?"; //haetaan kaikki käyttätunnukset
 		PreparedStatement haku = yhteys.prepareStatement(sql);
 		haku.setString(1, kayttajatunnus);
-		ResultSet tulokset = haku.executeQuery(sql);
+		ResultSet tulokset = haku.executeQuery();
 		
 		while (tulokset.next()) {
 			String etunimi = tulokset.getString("etunimi");
@@ -69,6 +69,7 @@ public class KayttajaDAO {
 			String postitmp = tulokset.getString("postitmp");
 			kayttaja = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, postitmp);
 		}
+		System.out.println("Tietokannasta haettiin käyttäjä " + kayttaja.getKayttajatunnus() + ", etunimi: " + kayttaja.getEtunimi() + ", sukunimi: " + kayttaja.getSukunimi() + " sähköposti: " + kayttaja.getSahkoposti());
 		return kayttaja;
 	}
 	
@@ -123,7 +124,7 @@ public class KayttajaDAO {
 		
 	}
 	
-	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, int postinro, String postitmp){
+	public void lisaaOsoiteKayttajalle(Kayttaja k, String osoite, String postinro, String postitmp){
 		
 		try {
 			// alustetaan sql-lause
@@ -132,7 +133,7 @@ public class KayttajaDAO {
 
 			// tï¿½ydennetï¿½ï¿½n puuttuvat tiedot (eli käyttäjän tiedot)
 			lause.setString(1, osoite);
-			lause.setInt(2, postinro);
+			lause.setString(2, postinro);
 			lause.setString(3, postitmp);
 			lause.setString(4, k.getKayttajatunnus());
 

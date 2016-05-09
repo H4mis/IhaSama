@@ -167,16 +167,17 @@
   <br><input type="radio" name="maksu" value="Korttimaksu"> Verkkopankki<br>
   <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
   <br>
-  Katuosoite: <input type="text" name="katuosoite" value= ""><br>
-  Postinumero: <input type="text" name="posti"><br>
-  Toimipaikka:<input type="text" name="tmpk"><br>
+  Katuosoite: <input type="text" name="katuosoite" value="${osoite}"><br>
+  Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+  Toimipaikka:<input type="text" name="tmpk" value="${postitmp}"/><br>
 
 
   </div>
   <br>
   
   <c:if test="${not empty sessionScope.kayttajatunnus}">
-  	<input type="submit" value="vahvistaTilaus" />
+  	<input hidden="true" name="kayttajatunnus" value="${sessionScope.kayttajatunnus}" />
+  	<button type="submit" name="toiminto" value="vahvistaTilaus">vahvista tilaus</button>
   </c:if>
 </form>
 <c:if test="${empty sessionScope.kayttajatunnus}">
@@ -204,7 +205,7 @@
 	       			Kirjaudu
 	       		</td>
 	       		<td>
-	       		<input type="hidden" name="from" value="/KoriKontrolleri">
+	       		<input type="hidden" name="from" value="KoriKontrolleri">
 				<input type="submit" value="Kirjaudu" />
 	       		</td>
 	       	</tr>

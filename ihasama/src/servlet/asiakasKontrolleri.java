@@ -63,6 +63,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			lista2 = pDAO.haeAsiakasPizzat(lista); //luodaan menu asiakkaille
             request.setAttribute("menulista", lista2); //annetaan requestille menu lista pizzoista
             request.setAttribute("mistatulen", request.getServletPath());
+            
             if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
 
 				String nimi = (String) sessio.getAttribute("nimi");
@@ -72,7 +73,6 @@ public class asiakasKontrolleri extends HttpServlet {
 				request.setAttribute("kayttaja", kayttajatunnus);
 				request.setAttribute("nimi", nimi);
 				request.setAttribute("admin", admin);
-				
 
 			}
             
@@ -119,17 +119,30 @@ public class asiakasKontrolleri extends HttpServlet {
 		String toiminto = request.getParameter("toiminto");
 		
 		if(toiminto != null && toiminto.equals("vahvistaTilaus")) { //tilauspainiketta painettu ostoskorissa
-			String tilattavat  = request.getParameter("tilattavat");
-			String toimitustapa  = request.getParameter("toimitus");
-			String maksutapa  = request.getParameter("maksu");
-
+			System.out.println("toiminto on vahvista tilaus");
+			String toimitustapa;
+			String toimitus  = request.getParameter("toimitus");
+			//String maksutapa  = request.getParameter("maksu");
+			if(toimitus.equals("1")) {
+				toimitustapa = "nouto";
+			} else {
+				toimitustapa = "kotiinkuljetus";
+			}
 			String osoite = request.getParameter("katuosoite");
+			if(osoite == null || osoite.isEmpty()) {
+				osoite = "";
+			}
 			String postinro = request.getParameter("posti");
-			int postinroInt = Integer.parseInt(postinro);
+			if(postinro == null || postinro.isEmpty()) {
+				postinro = "00000";
+			}
+			//int postinroInt = Integer.parseInt(postinro);
 			String postitmp = request.getParameter("tmpk");
+			if(postitmp == null || postitmp.isEmpty()) {
+				postitmp = "";
+			}
 			
 			String kayttajatunnus1 = (String) sessio.getAttribute("kayttajatunnus");
-			
 			kaDao.avaaYhteys();
 			Kayttaja kayttaja = new Kayttaja();
 			try {
@@ -138,7 +151,7 @@ public class asiakasKontrolleri extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinroInt, postitmp);
+			kaDao.lisaaOsoiteKayttajalle(kayttaja, osoite, postinro, postitmp);
 			tDao.avaaYhteys();
 			Date tilausaika = new Date();
 			boolean valmiina = false;
@@ -148,6 +161,8 @@ public class asiakasKontrolleri extends HttpServlet {
 			tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();
+			
+			response.sendRedirect("TiedoteKontrolleri?TilausTehty=true");
 		}
 		
 		Tilaus tilaus = new Tilaus(); //luodaan uusi tilaus olio

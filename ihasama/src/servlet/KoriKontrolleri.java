@@ -15,9 +15,11 @@ import javax.servlet.http.HttpSession;
 
 import dao.KoriDAO;
 import dao.PizzaDAO;
+import dao.KayttajaDAO;
 import luokat.Pizza;
 import luokat.TilattuPizza;
 import luokat.Tilaus;
+import luokat.Kayttaja;
 
 /**
  * Servlet implementation class KoriKontrolleri
@@ -39,8 +41,26 @@ public class KoriKontrolleri extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		KayttajaDAO kaDao = new KayttajaDAO();
 		HttpSession sessio = request.getSession();
+		Kayttaja kayttaja = new Kayttaja();
+		
+		if(sessio.getAttribute("kayttajatunnus") != null) {
+			System.out.println("löydettiin käyttäjätunnus sessiosta dogetissa");
+			String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
+			kaDao.avaaYhteys();
+			try {
+				kayttaja = kaDao.HaeKayttaja(kayttajatunnus);
+				request.setAttribute("osoite", kayttaja.getOsoite());
+				request.setAttribute("postinro", kayttaja.getPostinro());
+				request.setAttribute("portitmp", kayttaja.getPostitmp());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			kaDao.suljeYhteys();
+		}
+		
 		
 		try{
 		request.setAttribute("korilista", sessio.getAttribute("kori"));  

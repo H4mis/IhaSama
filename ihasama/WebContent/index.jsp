@@ -60,13 +60,13 @@
      
      
 <!-- ostoskori dropdown -->
-     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
+     <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
 	      <div class="dropdown-menu">
 	     	 <table>
 	     	 	<c:set var="index" value="${0}" />
 	      		<c:forEach items="${sessionScope.kori}" var="kori">
 	      			<tr>
-		      			<td id="koriDrop"><c:out value="${kori.pizza.pizzanimi}" />&nbsp;</td>
+		      			<td><c:out value="<div id="koriDrop">${kori.pizza.pizzanimi}</div>" />&nbsp;</td>
 		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
