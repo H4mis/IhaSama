@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Kiitos tilauksestasi!</title>
+<title>Kiitos!</title>
 </head>
 <body>
 <p>Kiitos tilauksestasi!</p>
+
 </body>
 </html>

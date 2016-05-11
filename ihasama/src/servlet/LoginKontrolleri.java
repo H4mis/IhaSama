@@ -104,7 +104,7 @@ public class LoginKontrolleri extends HttpServlet {
 			
 			HttpSession sessio=request.getSession();
 			
-			// Lisataan sessioon kayttajan etunimi, kayttajatunnus ja se, onko kayttaja admin
+			// Lisataan sessioon kayttajan etunimi, kayttajatunnus,sapo ja se, onko kayttaja admin
 			
 			sessio.setAttribute("nimi", kayttajaotus.getEtunimi());
 			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
