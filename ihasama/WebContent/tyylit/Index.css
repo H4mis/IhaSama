@@ -35,10 +35,10 @@ tr > td
 
   @media only screen and (max-width: 767px) {
   #puhelinKori{
-  color:white;
+  color:black;
   }
   .form-group
-  {color:white;
+  {color:black;
   }
   #koriDrop{
   color:white;
@@ -47,7 +47,7 @@ tr > td
   color:white;}
   table{color:white;}
   .navbar-inverse .navbar-nav .open .dropdown-menu>td>a,.navbar-inverse .navbar-nav .open .dropdown-menu {
-   
+    background-color:white;
     color:white;
   }
   myNavbar{
