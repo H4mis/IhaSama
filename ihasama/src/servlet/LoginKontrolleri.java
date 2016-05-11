@@ -108,7 +108,8 @@ public class LoginKontrolleri extends HttpServlet {
 			
 			sessio.setAttribute("nimi", kayttajaotus.getEtunimi());
 			sessio.setAttribute("kayttajatunnus", kayttajaotus.getKayttajatunnus());
-			sessio.setAttribute("admin",kayttajaotus.isAdmin());			
+			sessio.setAttribute("admin",kayttajaotus.isAdmin());
+			sessio.setAttribute("email", kayttajaotus.getSahkoposti());
 			
 			// Lahetetaan tieto eteenpain sivulle, jolta pyynto tuli. Lisataan ?LoginSuccess=true URL:n paatteeksi
 			
