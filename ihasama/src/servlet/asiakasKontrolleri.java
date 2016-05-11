@@ -163,7 +163,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			Date tilausaika = new Date();
 			boolean valmiina = false;
 			boolean toimitettu = false;
-			List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("korilista");
+			List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("kori");
 			Tilaus tilaus = new Tilaus(kayttajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilatutPizzat);
 			tilaus = tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
 			tDao.LisaaPizzaTilaukseen(tilatutPizzat, tilaus);

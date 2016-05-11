@@ -14,7 +14,7 @@ maksutavan valinta toimitustavan jalkeen
 palaute-lomake tehty
 tilaus.jsp:ssa on nyt paistaja- ja toimittajaosuudet
 Admin-sivun ylapalkki korjattu, joskin vahan "sijoiltaan". tilaus.jsp:n ylapalkki korjattu myos
-
+Sahkopostivahvistus ja vahvistussivu
 
 SEBA
 isompi fontti
@@ -26,7 +26,7 @@ testaamista
 
 KREETTA
 
-Sahkopostivahvistus ja vahvistussivu
+
 
 JUHO
 
