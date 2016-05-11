@@ -156,8 +156,10 @@
 	</table>
 	<form action="asiakasKontrolleri" method="post">
 	   <input type="hidden" value="${korilista}" name="tilattavat" />
-      
-   
+      <br>
+   yhteensä: <fmt:setLocale value="fi"/>
+			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+	 <br> 		
  <br> <select id="toimitus" name="toimitus">
             <option value="1">Nouto</option>
             <option value="2">Kotiinkuljetus</option>
@@ -168,13 +170,18 @@
   <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
   <br>
   Katuosoite: <input type="text" name="katuosoite" value="${osoite}"><br>
-  Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+  <c:if test="${postinro == -1}">
+   Postinumero: <input type="text" name="posti" value=""/><br>
+  </c:if>
+  <c:if test="${postinro != -1}">
+   Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+  </c:if>
   Toimipaikka:<input type="text" name="postitmp" value="${postitmp}"/><br>
 
 
   </div>
   <br>
-  
+   <br> 
   <c:if test="${not empty sessionScope.kayttajatunnus}">
   	<input hidden="true" name="kayttajatunnus" value="${sessionScope.kayttajatunnus}" />
   	<button type="submit" name="toiminto" value="vahvistaTilaus">vahvista tilaus</button>
@@ -213,9 +220,10 @@
 	</form>
 </c:if>
   
-    yhteensä: <fmt:setLocale value="fi"/>
-			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+    
 	</c:if>
+
+
 
 </body>
 <script>
