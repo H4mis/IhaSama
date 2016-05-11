@@ -118,6 +118,11 @@ ul {
 	font-family: 'Merienda', cursive;
 }
 
+#navlir{
+	float: right;
+	font-family: 'Merienda', cursive;
+}
+
 li a {
     display: block;
     font-family: 'Merienda', cursive;

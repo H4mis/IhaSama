@@ -35,40 +35,38 @@
 
 <c:if test="${sessionScope.admin}">
 	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+     	<span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>    
+   </div><!-- navbar header loppuu tähän -->
+    
+   <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      
+     	<li><a  href="TiedoteKontrolleri">Etusivu</a></li>
+		<li><a href="asiakasKontrolleri">Menu</a></li>
+		<c:if test="${empty sessionScope.kayttajatunnus}">
+			<li><a  href="rekisterointi.jsp">Rekisteröinti</a></li>
+		</c:if>
+		<li><a  href="yhteystiedot.jsp">Yhteystiedot</a></li>
+		<li><a  href="TilausKontrolleri">Tilauslista</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      	<c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+      
+<!-- Logout -->
+      <li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li>
+     
+<!-- Logout loppuu tähän -->
 
-		<div>
-			<ul class="nav navbar-nav">
-
-				<li><a href="TiedoteKontrolleri">Etusivu</a></li>
-				<li><a href="asiakasKontrolleri">Menu</a></li>				
-				<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				 <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a>. <a href="Logout">Logout</a></li></c:if>
-     <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
-          <div class="dropdown-menu">
-            <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
-              <div class="form-group">
-                <label for="usr">Käyttäjätunnus:</label>
-                <input type="text" class="form-control" id="usr" name="kayttajatunnus">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Salasana:</label>
-                <input type="password" class="form-control" id="pwd" name="salasana">
-              </div>
-              <input type="hidden" name="from" value="${kukkuluuruu}">
-              <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
-            </form>
-            	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
-       <c:if test="${not empty param.LoginNoSuccess}"><h3 style="color: green;">Kirjautuminen epäonnistui!</h3></c:if>
-          </div>
-        </li>   
-            	</c:if>
-			</ul>
-		</div>
-
-	</nav>
+      </ul>
+    </div><!-- collapse navbar-collapse loppuu tähän -->
+  </div><!-- container fluid loppuu tähän -->
+</nav>
 
 	<h1>Castello é Fiore</h1>
   <c:if test="${paistoon}"><h3>Paistajan sivu</h3></c:if>

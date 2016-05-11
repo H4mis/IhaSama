@@ -1,16 +1,20 @@
 
 TEHTY
-login toimimaan rekisteröitymisen perään
-ostoskorin yhteishinta näkymään ylälaitaan loginin viereen
-salasanan kysely kahteen kertaan rekisteröitymisessä
-rekisteröitymisessä estä etu ja sukunimessä oudot merkit (hyväksy vain aakkoset)
-pizzan lisäys laittaa uuden pitsan automaattisesti piiloon aluksi
+login toimimaan rekisteroitymisen peraan
+ostoskorin yhteishinta nakymaan ylalaitaan loginin viereen
+salasanan kysely kahteen kertaan rekisteroitymisessa
+rekisteroitymisessa esta etu ja sukunimessa oudot merkit (hyvaksy vain aakkoset)
+pizzan lisays laittaa uuden pitsan automaattisesti piiloon aluksi
 tilatessa ohjaa takaisin menu sivulle
-- Etunimen ja sukunimen sy�tt��n laitettava ehk� enemm�n rajoitteita, t�ll� hetkell� etu- sek� sukunimeksi riitt�� yksi numero.
--Otsikko voisi olla enemm�n erill��n pizzoista.
-- Jos ei ole kirjautuneena sis��n mill��n tunnuksella, "tilaa"- nappia painamalla siirryt��n takaisin menu- sivulle ja ostoskori tyhjenee, voisi lis�t� login- pyynn�n.
+- Etunimen ja sukunimen syöttöön laitettava ehkä enemmän rajoitteita, tällä hetkellä etu- sekä sukunimeksi riittää yksi numero.
+-Otsikko voisi olla enemmän erillään pizzoista.
+- Jos ei ole kirjautuneena sisään millään tunnuksella, "tilaa"- nappia painamalla siirrytään takaisin menu- sivulle ja ostoskori tyhjenee, voisi lisätä login- pyynnön.
 toimitustavan valinta: nouto, kotiinkuljetus
-maksutavan valinta toimitustavan jälkeen
+maksutavan valinta toimitustavan jalkeen
+palaute-lomake tehty
+tilaus.jsp:ssa on nyt paistaja- ja toimittajaosuudet
+Admin-sivun ylapalkki korjattu, joskin vahan "sijoiltaan". tilaus.jsp:n ylapalkki korjattu myos
+
 
 SEBA
 isompi fontti
@@ -21,7 +25,8 @@ testaamista
 
 
 KREETTA
-anna palautetta lomake (tallentaa viestin ja postausajan)
+
+Sahkopostivahvistus ja vahvistussivu
 
 JUHO
 
@@ -29,26 +34,24 @@ JUHO
 
 
 MIRA
--Admin- sivulle siirrytt�ess� yl�palkki siirtyy pois paikoiltaan ja logout- nappi h�vi�� kokonaan.
+
 
 NICI
 
 
 
-KORJATTAVAA/TÄRKEETÄ
+KORJATTAVAA/TARKEETA
 
 
 UUTTA TOIMINTOA / TOISSIJAISTA
 varmuuskopion teko muualle kuin gittiin
-osoitetietojen täyttö
-tilausvahvistus sähköpostiin tilauksen vahvistettaessa
-sivujen nimet järkeväksi: asiakas.jsp => menu.jsp
+osoitetietojen taytto
+sivujen nimet jarkevaksi: asiakas.jsp => menu.jsp
 paketoinnit oikein: luokat.paketti => bean paketti
-rekisteröitymisen vahvistaminen sähköpostista
-
-käyttäjäsivu, josta voi vaihtaa käyttäjätietoja
-näkyvissä olevaa pizzaa ei voi poistaa
-pöydän varaus
-Käyttäjälle puhelin nro, rekisteröitymisaika(toissijainen) vuosikuponkeja varten?
+rekisteroitymisen vahvistaminen sahkopostista
+kayttajasivu, josta voi vaihtaa kayttajatietoja
+nakyvissa olevaa pizzaa ei voi poistaa
+poydan varaus
+Kayttajalle puhelin nro, rekisteroitymisaika(toissijainen) vuosikuponkeja varten?
 muokkaa olemassa olevan pitsan tietoja
 juomat?
