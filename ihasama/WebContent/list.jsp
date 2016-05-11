@@ -50,6 +50,11 @@ function checkboxlimit(checkgroup, limit){
 <li id="navli"><a href="asiakasKontrolleri">Menu</a></li>
 <li id="navli"><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 <li id="navli"><a href="TilausKontrolleri">Tilauslista</a></li>
+<li id="navlir"><a href="Logout">Logout</a></li>
+<li id="navlir"><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li>
+<li id="navlir"><a href="Kontrolleri">Admin</a></li>
+
+
 </ul>
 
 <h1>Castello é Fiore</h1>
