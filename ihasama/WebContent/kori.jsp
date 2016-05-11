@@ -169,7 +169,7 @@
   <br>
   Katuosoite: <input type="text" name="katuosoite" value="${osoite}"><br>
   Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
-  Toimipaikka:<input type="text" name="tmpk" value="${postitmp}"/><br>
+  Toimipaikka:<input type="text" name="postitmp" value="${postitmp}"/><br>
 
 
   </div>

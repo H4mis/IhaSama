@@ -53,7 +53,7 @@ public class KoriKontrolleri extends HttpServlet {
 				kayttaja = kaDao.HaeKayttaja(kayttajatunnus);
 				request.setAttribute("osoite", kayttaja.getOsoite());
 				request.setAttribute("postinro", kayttaja.getPostinro());
-				request.setAttribute("portitmp", kayttaja.getPostitmp());
+				request.setAttribute("postitmp", kayttaja.getPostitmp());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
