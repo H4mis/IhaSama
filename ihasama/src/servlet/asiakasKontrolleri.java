@@ -268,7 +268,7 @@ public void MailiVahvari(HttpServletRequest request, HttpServletResponse respons
        			m.setFrom(new InternetAddress(email, null));
         		m.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
         		m.setSubject("Tilausvahvistus");
-          		m.setText("Kiitos tilauksestasi!");
+          		m.setText("Kiitos tilauksestasi! T. Pizzeria Castello&Fiore");
         		
           		Transport.send(m);
 
