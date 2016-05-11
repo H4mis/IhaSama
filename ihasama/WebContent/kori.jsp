@@ -170,12 +170,9 @@
   <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
   <br>
   Katuosoite: <input type="text" name="katuosoite" value="${osoite}"><br>
-  <c:if test="${postinro == -1}">
-   Postinumero: <input type="text" name="posti" value=""/><br>
-  </c:if>
-  <c:if test="${postinro != -1}">
-   Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
-  </c:if>
+  
+  Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+
   Toimipaikka:<input type="text" name="postitmp" value="${postitmp}"/><br>
 
 
@@ -222,7 +219,49 @@
   
     
 	</c:if>
-
+	<c:if test="${not empty sessionScope.kayttajatunnus}">
+		<form action="KoriKontrolleri" method="post" accept-charset="utf-8">
+			<table>
+				<tr>
+					<th colspan="2">Tilaajan Tiedot</th>
+				</tr>
+				<tr>
+					<th>käyttäjätunnus</th>
+					<td><c:out value="${sessionScope.kayttajatunnus}"/></td>
+				</tr>
+				<tr>
+					<th>etunimi</th>
+					<td><input type="text" name="etunimi" value="${etunimi}"/></td>
+				</tr>
+				<tr>
+					<th>sukunimi</th>
+					<td><input type="text" name="sukunimi" value="${sukunimi}"/></td>
+				</tr>
+				<tr>
+					<th>sähköposti</th>
+					<td><input type="text" name="sahkoposti" value="${sahkoposti}"/></td>
+				</tr>
+				<tr>
+					<th>katuosoite</th>
+					<td><input type="text" name="osoite" value="${osoite}"/></td>
+				</tr>
+				<tr>
+					<th>postinumero</th>
+					<td>
+						<input type="text" name="postinro" value="${postinro}"/>
+					</td>
+				</tr>
+				<tr>
+					<th>postitoimipaikka</th>
+					<td><input type="text" name="postitmp" value="${postitmp}"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit" name="toiminto" value="muutaTietoja">muuta</button></td>
+				</tr>
+			</table>
+		</form>
+	</c:if>
 
 
 </body>

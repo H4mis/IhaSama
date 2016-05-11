@@ -86,15 +86,11 @@ public class LoginDAO {
 			Boolean admin = tulokset.getBoolean("admin");
 			String postitmp = tulokset.getString("postitmp");
 
-			if (postinro == null) {
-				postinro = "0";
-			}
-			int postinro2 = Integer.parseInt(postinro);
 			
 			kayttaja1.setEtunimi(etunimi);  // luodaan
 			kayttaja1.setSukunimi(sukunimi);
 			kayttaja1.setOsoite(osoite);
-			kayttaja1.setPostinro(postinro2); // tilaus
+			kayttaja1.setPostinro(postinro); // tilaus
 			kayttaja1.setSahkoposti(sahkoposti);
 			kayttaja1.setKayttajatunnus(kayttajatunnus);
 			kayttaja1.setSalasana(salasana1);

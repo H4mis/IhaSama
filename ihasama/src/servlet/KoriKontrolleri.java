@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import dao.KoriDAO;
 import dao.PizzaDAO;
 import dao.KayttajaDAO;
+import dao.TietojenMuokkausDAO;
 import luokat.Pizza;
 import luokat.TilattuPizza;
 import luokat.Tilaus;
@@ -54,6 +55,9 @@ public class KoriKontrolleri extends HttpServlet {
 				request.setAttribute("osoite", kayttaja.getOsoite());
 				request.setAttribute("postinro", kayttaja.getPostinro());
 				request.setAttribute("postitmp", kayttaja.getPostitmp());
+				request.setAttribute("etunimi", kayttaja.getEtunimi());
+				request.setAttribute("sukunimi", kayttaja.getSukunimi());
+				request.setAttribute("sahkoposti", kayttaja.getSahkoposti());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -89,7 +93,9 @@ public class KoriKontrolleri extends HttpServlet {
 	 */
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		String sivu = (String) request.getParameter("taaltatulen");
 		String poistop = request.getParameter("poistopizza");
 		int poisto = -1;
@@ -100,12 +106,35 @@ public class KoriKontrolleri extends HttpServlet {
 		}
 		PizzaDAO pDao = new PizzaDAO();
 		KoriDAO kDao = new KoriDAO();
+		TietojenMuokkausDAO TMDao =  new TietojenMuokkausDAO();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession sessio = request.getSession();		
 		List<TilattuPizza> kori;
 		double yhteishinta;
 		
 		kori = (List<TilattuPizza>) sessio.getAttribute("kori");
+		
+		String toiminto = request.getParameter("toiminto");
+		
+		if(toiminto != null && toiminto.equals("muutaTietoja")) {
+			String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
+			String etunimi  = request.getParameter("etunimi");
+			String sukunimi  = request.getParameter("sukunimi");
+			String sahkoposti  = request.getParameter("sahkoposti");
+			String osoite  = request.getParameter("osoite");
+			String postinro  = request.getParameter("postinro");
+			String postitmp  = request.getParameter("postitmp");
+			System.out.println("postinumero on: "+postinro);
+			Kayttaja kayttaja = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, postitmp);
+			
+			TMDao.avaaYhteys();
+			
+			TMDao.muokkaaTietoja(kayttaja);
+			
+			TMDao.suljeYhteys();
+			
+			sivu = "KoriKontrolleri";
+		}
 		
 		if(poistop != null && !poistop.equals(null)){
 			kDao.PoistaKorista(poisto, kori);	
@@ -123,7 +152,7 @@ public class KoriKontrolleri extends HttpServlet {
 		}
 		
 		
-		response.sendRedirect(sivu+"?removedPizzatoKori=true");
+		response.sendRedirect(sivu);
 	}
 
 }

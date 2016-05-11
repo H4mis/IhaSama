@@ -165,7 +165,7 @@ public class asiakasKontrolleri extends HttpServlet {
 			boolean toimitettu = false;
 			List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("korilista");
 			Tilaus tilaus = new Tilaus(kayttajatunnus, tilausaika, valmiina, toimitettu, toimitustapa, tilatutPizzat);
-			tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
+			tilaus = tDao.LisaaTunnistettuTilaus(tilaus, kayttajatunnus1);
 			tDao.LisaaPizzaTilaukseen(tilatutPizzat, tilaus);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();

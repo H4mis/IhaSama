@@ -65,13 +65,8 @@ public class KayttajaDAO {
 			String sukunimi = tulokset.getString("sukunimi");
 			String sahkoposti = tulokset.getString("sahkoposti");
 			String osoite = tulokset.getString("osoite");
-			String Spostinro = tulokset.getString("postinro");
-			int postinro;
-			if (Spostinro == null){
-				postinro = -1;
-			} else {
-				postinro = Integer.parseInt(Spostinro);
-			}
+			String postinro = tulokset.getString("postinro");
+			
 			String postitmp = tulokset.getString("postitmp");
 			kayttaja = new Kayttaja(etunimi, sukunimi, osoite, postinro, sahkoposti, kayttajatunnus, postitmp);
 		}

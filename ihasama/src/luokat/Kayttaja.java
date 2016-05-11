@@ -5,7 +5,7 @@ public class Kayttaja {
 	private String etunimi;
 	private String sukunimi;
 	private String osoite;
-	private int postinro;
+	private String postinro;
 	private String postitmp;
 	private String sahkoposti;
 	private String kayttajatunnus;
@@ -29,17 +29,6 @@ public class Kayttaja {
 		this.sahkoposti = sahkoposti;
 		this.kayttajatunnus = kayttajatunnus;
 		this.osoite = osoite;
-		this.postinro= Integer.parseInt(postinro);
-		this.postitmp= postitmp;
-	}
-	
-	public Kayttaja(String etunimi, String sukunimi, String osoite, int postinro, String sahkoposti, String kayttajatunnus, String postitmp) {
-		super();
-		this.etunimi = etunimi;
-		this.sukunimi = sukunimi;
-		this.sahkoposti = sahkoposti;
-		this.kayttajatunnus = kayttajatunnus;
-		this.osoite = osoite;
 		this.postinro= postinro;
 		this.postitmp= postitmp;
 	}
@@ -51,7 +40,7 @@ public class Kayttaja {
 		this.sahkoposti = sahkoposti;
 		this.kayttajatunnus = kayttajatunnus;
 		this.osoite = osoite;
-		this.postinro= Integer.parseInt(postinro);
+		this.postinro= postinro;
 		this.postitmp= postitmp;
 		this.salasana = salasana;
 		this.admin = admin;
@@ -63,7 +52,6 @@ public class Kayttaja {
 		 this.sahkoposti = "N/A";
 		 this.kayttajatunnus = "N/A";
 		 this.osoite = "N/A";
-		 this.postinro = 0;
 		this.postitmp = "N/A";
 		this.salasana = "N/A";
 		this.admin = false;
@@ -87,10 +75,10 @@ public class Kayttaja {
 	public void setOsoite(String osoite) {
 		this.osoite = osoite;
 	}
-	public int getPostinro() {
+	public String getPostinro() {
 		return postinro;
 	}
-	public void setPostinro(int postinro) {
+	public void setPostinro(String postinro) {
 		this.postinro = postinro;
 	}
 	public String getSahkoposti() {
