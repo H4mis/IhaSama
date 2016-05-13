@@ -164,7 +164,9 @@
 				</tr>
 			</table>
 		</form>
+		<c:if test="${not empty param.changedProfile}"><h3 style="color: green;">Muokkaus onnistui!</h3></c:if>
 		</div>
+		
 		</div>
 	</c:if>
 
