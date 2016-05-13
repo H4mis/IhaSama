@@ -169,6 +169,8 @@ public class asiakasKontrolleri extends HttpServlet {
 			tDao.LisaaPizzaTilaukseen(tilatutPizzat, tilaus);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();
+			sessio.removeAttribute("kori");
+			sessio.removeAttribute("yht");
 			MailiVahvari(request,response);
 		
 		}

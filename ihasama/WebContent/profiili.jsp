@@ -5,9 +5,7 @@
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="utf-8">
@@ -28,62 +26,47 @@
 <link rel="stylesheet" type="text/css" href="tyylit/Index.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
-<title>Yhteystiedot</title>
+<title>Menu</title>
 
-<!--
-  <style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-left:auto;
-    margin-right:auto;
-}
-th, td {
-    padding: 5px;
-    text-align: left; 
-     
-}
-</style>
--->
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
- 
-     <div class="container-fluid">
-  <div class="navbar-header">
+  <div class="container-fluid">
+  	<div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-     <span class="icon-bar"></span>
+     	<span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>    
-   </div>
+   </div><!-- navbar header loppuu tähän -->
     
-    <div class="collapse navbar-collapse" id="myNavbar">
+   <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       
      	<li><a  href="TiedoteKontrolleri">Etusivu</a></li>
 		<li><a href="asiakasKontrolleri">Menu</a></li>
-		<c:if test="${empty sessionScope.kayttajatunnus}"><li><a  href="rekisterointi.jsp">Rekisteröinti</a></li></c:if>
-		<li><a class="active" href="yhteystiedot.jsp">Yhteystiedot</a></li>
+		<c:if test="${empty sessionScope.kayttajatunnus}">
+			<li><a  href="rekisterointi.jsp">Rekisteröinti</a></li>
+		</c:if>
+		<li><a  href="yhteystiedot.jsp">Yhteystiedot</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-      
-      <!-- ostoskori dropdown -->
+      	<c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+      	
+<!-- ostoskori dropdown -->
      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
 	      <div class="dropdown-menu">
-	     	<table>
+	     	 <table>
 	     	 	<c:set var="index" value="${0}" />
 	      		<c:forEach items="${sessionScope.kori}" var="kori">
 	      			<tr>
-		      			<td ><c:out value="${kori.pizza.pizzanimi}" />&nbsp;</td>
-		      			<td ><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
+		      			<td><c:out value="${kori.pizza.pizzanimi}" />&nbsp;</td>
+		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
-		      					<input type="hidden" value="yhteystiedot.jsp" name="taaltatulen" />
+		      					<input type="hidden" value="asiakasKontrolleri" name="taaltatulen" />
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
+				                <button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
@@ -106,7 +89,7 @@ th, td {
 <!-- ostoskori dropdown loppuu tähän -->
       
 <!-- Login/logout -->
-      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a href="Profiili">Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
+      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a class="active" href="Profiili">Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
@@ -118,7 +101,7 @@ th, td {
                 <label for="pwd">Salasana:</label>
                 <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' class="form-control" id="pwd" name="salasana">
               </div>
-              <input type="hidden" name="from" value="${pageContext.request.requestURI}">
+              <input type="hidden" name="from" value="${mistatulen}">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
             </form>
             	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
@@ -126,80 +109,67 @@ th, td {
           </div>
         </li>   
       </c:if>
-<!-- Login/logout loppuu tähän -->      
+<!-- Login/logout loppuu tähän -->
+
       </ul>
-    </div>
- </div>
+    </div><!-- collapse navbar-collapse loppuu tähän -->
+  </div><!-- container fluid loppuu tähän -->
 </nav>
-<h1>Castello é Fiore</h1>
- <div class="marginblock">  
- <div id="laatikko">
 
+<c:if test="${empty sessionScope.kayttajatunnus}"><c:redirect url="TiedoteKontrolleri"/></c:if>
 
-    <h2>Ota yhteyttä<hr></h2>
-     <br>
-    <table style="width:100%;">
-    
-  <tr>
-    <th style="text-align:right;vertical-align:top;">Email:</th>
-    <td style="text-align:left;color:orange;"> &nbsp;castelloefiore@castello.fi</td>
-  </tr>
-  <tr>
-    <th style="text-align:right;vertical-align:top;">Puh:</th>
-    <td style="text-align:left;color:orange;">&nbsp;+35850667832</td>
-  </tr>
-
-  <tr>
-    <th style="text-align:right;vertical-align:top;">Osoite:</th>
-    <td style="text-align:left;color:orange;">&nbsp;Sibeliuksenkatu 7, Hämeenlinna</td>
-  </tr> 
-</table>
-           
-            <br>
-            <br>    
-
-            
-<h3>Kartta</h3>
- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.028070132561!2d24.461779116511266!3d60.99617808330837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468e5d970c10edb3%3A0xa654c8617544564e!2sSibeliuksenkatu+7%2C+13100+H%C3%A4meenlinna!5e1!3m2!1sfi!2sfi!4v1459936427659" width="100%" height="300px" frameborder="0" style="border:0"  allowfullscreen></iframe>
- <br> 
- <br> 
- <h2>Anna meille palautetta!</h2>
-  <form action="PalauteKontrolleri" method="POST">
-
-Sähköpostiosoite: <br>
-<input style="color:black"type="text" name="email"><br>
-<br>
-
-Aihe: <br>
-<input style="color:black" type="text" name="aihe"><br>
-<br>
-
-Palaute: <br>
-<textarea style="color:black" name="palaute" rows="10" width=100%></textarea><br><br>
-
-<button type="submit" value="Lähetä">Lähetä</button>
-
- 
-</form>
- </div>
-</div>
-  
-
-
- <footer class="footer">
-     <div class="container">
-        <ul id="sosiaalinenmedia">
-        
-			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
-			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
-			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-	
+<c:if test="${not empty sessionScope.kayttajatunnus}">
+<div class="marginblock">
+ 	<div id="laatikko">
+		<form action="Profiili" method="post" accept-charset="utf-8">
+		
+					<h2>Käyttäjän tiedot</h2>
+				
 			
+			<table>
+				
+				<tr>
+					<th style="vertical-align:top;">käyttäjätunnus</th>
+					<td style="color:lightgrey;"><c:out value="${sessionScope.kayttajatunnus}"/></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">etunimi</th>
+					<td><input type="text" name="etunimi" pattern='([a-z]|[A-Z]){1,60}' value="${etunimi}"/></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">sukunimi</th>
+					<td><input type="text" name="sukunimi" pattern='([a-z]|[A-Z]){1,60}' value="${sukunimi}"/></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">sähköposti&nbsp;</th>
+					<td><input type="text" name="sahkoposti" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="${sahkoposti}"/></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">katuosoite&nbsp;</th>
+					<td><input type="text" name="osoite" pattern='([a-z]|[A-Z]|[ ]|[0-9]){1,60}' value="${osoite}"/></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">postinumero</th>
+					<td>
+						<input type="text" name="postinro" pattern="\d{5,5}" maxlength="5" value="${postinro}"/>
+					</td>
+				</tr>
+				<tr>
+					<th style="vertical-align:top;">postitoimipaikka</th>
+					<td><input type="text" name="postitmp" value="${postitmp}"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit" name="toiminto" value="muutaTietoja">muuta</button></td>
+				</tr>
+			</table>
+		</form>
+		<c:if test="${not empty param.changedProfile}"><h3 style="color: green;">Muokkaus onnistui!</h3></c:if>
+		</div>
+		
+		</div>
+	</c:if>
 
-		</ul>
- 	 </div>
-   
- </footer>
+
 </body>
-
 </html>

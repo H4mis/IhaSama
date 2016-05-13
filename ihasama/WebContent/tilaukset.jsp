@@ -59,7 +59,7 @@
       	<c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
       
 <!-- Logout -->
-      <li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li>
+      <li><a href="Profiili">Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li>
      
 <!-- Logout loppuu tähän -->
 

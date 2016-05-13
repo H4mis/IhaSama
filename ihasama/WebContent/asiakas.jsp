@@ -89,7 +89,7 @@
 <!-- ostoskori dropdown loppuu tähän -->
       
 <!-- Login/logout -->
-      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a>Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
+      <c:if test="${not empty sessionScope.kayttajatunnus}"><li><a href="Profiili">Hei, <c:out value="${sessionScope.nimi}" /></a></li><li><a href="Logout">Logout</a></li></c:if>
      <c:if test="${empty sessionScope.kayttajatunnus}"> <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
           <div class="dropdown-menu">
             <form id="formLogin" class="form container-fluid" method="post" action="LoginKontrolleri">
