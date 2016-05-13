@@ -31,7 +31,7 @@ tr > td
   padding-bottom: 1em;
 }
  
-
+/*##################         RESPONSIIVISUUS tyyliä          ######################################*/ 
 
   @media only screen and (max-width: 767px) {
   #puhelinKori{
@@ -46,6 +46,7 @@ tr > td
   .dropdown-menu{
   color:white;}
   table{color:white;}
+  
   .navbar-inverse .navbar-nav .open .dropdown-menu>td>a,.navbar-inverse .navbar-nav .open .dropdown-menu {
     background-color:white;
     color:white;

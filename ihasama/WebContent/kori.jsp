@@ -13,61 +13,77 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="jquery-1.12.0.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+ <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="">
-<link href='https://fonts.googleapis.com/css?family=Dancing+Script'
-	rel='stylesheet' type='text/css'>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="tyylit/Index.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- sosiaalinen media kuvat -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
+<title>Index</title>
 <title>Ostoskori</title>
 
 </head>
-<body>	<nav class="navbar navbar-inverse">
-
-		<div>
-			<ul class="nav navbar-nav">
-
-				<li><a href="TiedoteKontrolleri">Etusivu</a></li>
-				<li><a href="asiakasKontrolleri">Menu</a></li>
-				<li><a href="rekisterointi.jsp">Rekisteröinti</a></li>			
-				<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				 <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
-				 
+<body><nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+  <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+     <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>    
+   </div>
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+    
+      <ul class="nav navbar-nav">
+      
+     	<li><a class="active" href="TiedoteKontrolleri">Etusivu</a></li>
+		<li><a href="asiakasKontrolleri">Menu</a></li>
+		<c:if test="${empty sessionScope.kayttajatunnus}"><li><a  href="rekisterointi.jsp">Rekisteröinti</a></li></c:if>
+		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <c:if test="${sessionScope.admin}"><li><a href="Kontrolleri">Admin</a></li></c:if>
+     
+     
 <!-- ostoskori dropdown -->
-     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
+     <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Ostoskori <fmt:formatNumber value="${sessionScope.yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</a>
 	      <div class="dropdown-menu">
 	     	 <table>
 	     	 	<c:set var="index" value="${0}" />
 	      		<c:forEach items="${sessionScope.kori}" var="kori">
 	      			<tr>
-		      			<td><c:out value="${kori.pizza.pizzanimi}" /></td>
+		      			<td><div id="koriDrop">${kori.pizza.pizzanimi}</div>&nbsp;</td>
 		      			<td><fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€</td>
 		      			<td>
 		      				<form action="KoriKontrolleri" method="post">
-		      					<input type="hidden" value="KoriKontrolleri" name="taaltatulen" />
+		      					<input type="hidden" value="TiedoteKontrolleri" name="taaltatulen" />
 				            	<input type="hidden" value="${index}" name="poistopizza" />
-				            	<input type="submit" value="Poista" />
+				            	<button id="buttonPoista" type="submit" value="Poista">X</button>
 				       		 </form>
 		      			</td>
 	      			</tr>
 	      			<c:set var="index" value="${index+1}" />
 	      		</c:forEach>
 	      		<tr>
-	      			<td>
+	      			<td id="puhelinKori" colspan="2">
 		      			<c:if test="${not empty sessionScope.kori}">
-		      				<form action="TilausKontrolleri">
+		      				<form action="KoriKontrolleri">
 		      					<input type="hidden" name="toiminto" value="Tilaa">
-		      					<button type="submit">tilaa</button>
+		      					<button id="buttonTilaa" type="submit">Siirry tilaamaan!</button>
 		      				</form>
 		      			</c:if>
 		      			<c:if test="${empty sessionScope.kori}">Ostoskori on tyhjä</c:if>
@@ -91,7 +107,7 @@
                 <label for="pwd">Salasana:</label>
                 <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title='Kirjoita salasana oikein!' class="form-control" id="pwd" name="salasana">
               </div>
-              <input type="hidden" name="from" value="KoriKontrolleri">
+              <input type="hidden" name="from" value="${mistatulen}">
               <button type="submit" id="btnLogin" class="btn btn-block">Login</button>
             </form>
             	<c:if test="${not empty param.LoginSuccess}"><h3 style="color: green;">Kirjautuminen onnistui!</h3></c:if>
@@ -101,82 +117,99 @@
       </c:if>
 <!-- Login/logout loppuu tähän -->
 
-			</ul>
-		</div>
+      </ul>
+    </div>
+ </div> 
+</nav>
 
-	</nav>
-
-	<h1>Castello é Fiore</h1>
+	<h1  style="font-family: 'Dancing Script', cursive;font-size:100px;">Castello é Fiore</h1>
 	
-	<h1>Ostoskorisi</h1>
-	<form action='asiakasKontrolleri'>Lisää pizzoja listaan <input type='submit' value='tästä'></form>
-	Ostoskori:
-	<table border="1">
+	<div class="marginblock">
+ 	<div id="laatikko">
+ 	
+	<h2 style="font-family: 'Merienda', cursive;">Ostoskorisi <hr></h2>
+	<br>
+ 
+	<form action='asiakasKontrolleri'>Lisää pizzoja listaan <button type='submit' value='tästä'>Tästä</button></form>
+	<br>
+	<br>
+	
+	<div class="marginblock">
+	
+	<table>
+	
 		<tr>
-			<td>Pizzan nimi</td>
-			<td>Hinta</td>
-			<td>Oregano</td>
-			<td>Laktoositon</td>
-			<td>Gluteeniton</td>			
+		<td></td>
 		</tr>
-		<c:if test="${empty korilista}"></table>Ostoskorisi on tyhjä!</c:if>
+		<c:if test="${empty korilista}">Ostoskorisi on tyhjä!</c:if>
 		<c:if test="${not empty korilista}">
 			<c:set var="index" value="${0}" />
 		<c:forEach items="${korilista}" var="kori" varStatus="loop">
 			<tr>
-				<td>
+			
+				<td style="color:lightgrey;">
 					<c:out value="${kori.pizza.pizzanimi}" />
+					<br>
+					<p style="color:orange;">
+						<c:if test="${kori.oregano}">&nbsp;Oregano,&nbsp; </c:if> 
+						<c:if test="${kori.laktoositon}">Lakt,&nbsp; </c:if> 
+						<c:if test="${kori.gluteeniton}">Glut&nbsp; </c:if>
+					</p> 
 				</td>
-				<td>
+				<td style="color:lightgrey;">
 					<fmt:setLocale value="fi"/>
 					<fmt:formatNumber value="${kori.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 				</td>
-				<td>
-			    	<c:if test="${kori.oregano}">Oreganoa</c:if> 
-					<c:if test="${!kori.oregano}">Ei oreganoa</c:if>
-				</td>
-				<td>
-					<c:if test="${kori.laktoositon}">Laktoositon</c:if> 
-					<c:if test="${!kori.laktoositon}">Ei laktoositon</c:if>
-				</td>
-				<td>
-					<c:if test="${kori.gluteeniton}">Gluteeniton</c:if> 
-					<c:if test="${!kori.gluteeniton}">Ei gluteeniton</c:if>
-				</td>
-				<td>
+				<td style="color:lightgrey;">
 					<form action="KoriKontrolleri" method="post">
 						<input type="hidden" value="KoriKontrolleri" name="taaltatulen" />
 			            <input type="hidden" value="${index}" name="poistopizza" />
-			            <input type="submit" value="Poista" />
+			            <button id="buttonPoista" type="submit" value="Poista" >X</button>
 			        </form>
 			    </td>
 			</tr>
 			<c:set var="index" value="${index+1}" />
 		</c:forEach>	
 	</table>
+</div>	
 	<form action="asiakasKontrolleri" method="post">
 	   <input type="hidden" value="${korilista}" name="tilattavat" />
       <br>
    yhteensä: <fmt:setLocale value="fi"/>
 			<fmt:formatNumber value="${yht}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 	 <br> 		
- <br> <select id="toimitus" name="toimitus">
+ <br> <select style="color:black;" id="toimitus" name="toimitus">
             <option value="1">Nouto</option>
             <option value="2">Kotiinkuljetus</option>
         
         </select>
-  <div id="maksutapa">
-  <br><input type="radio" name="maksu" value="Korttimaksu"> Verkkopankki<br>
-  <input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä(käteinen tai kortti)<br>
-  <br>
-  Katuosoite: <input type="text" name="katuosoite" value="${osoite}"><br>
-  
-  Postinumero: <input type="text" name="posti" value="${postinro}"/><br>
+        <br>
+         <br>
+         <div id="maksutapa">
+         <table>
+        <tr>
+        <th></th>
+        <td style="color:lightgrey; text-align:left;"><input type="radio" name="maksu" value="Korttimaksu"> Verkkopankki</td>
+        </tr>
+        <tr>
+        <th></th>
+        <td style="color:lightgrey; text-align:left;" ><input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä (käteinen tai kortti)</td>
+        </tr>
+        <tr>
+        <th>Katuosoite:</th>
+        <td><input type="text" name="katuosoite" value="${osoite}"></td>
+        </tr>
+        <tr>
+        <th> Postinumero:</th>
+        <td><input type="text" name="posti" value="${postinro}"/></td>
+        </tr>
+        <tr>
+        <th>Toimipaikka:</th>
+        <td><input type="text" name="postitmp" value="${postitmp}"/></td>
+        </tr>
+        </table>
+ </div>
 
-  Toimipaikka:<input type="text" name="postitmp" value="${postitmp}"/><br>
-
-
-  </div>
   <br>
    <br> 
   <c:if test="${not empty sessionScope.kayttajatunnus}">
@@ -185,11 +218,11 @@
   </c:if>
 </form>
 <c:if test="${empty sessionScope.kayttajatunnus}">
- 	<a href="rekisterointi.jsp">Rekisteröidy</a> tai Kirjaudu sisään.
+ 	<a href="rekisterointi.jsp" style="color:Lightgrey; text-decoration:bold; text-decoration:underline;">Rekisteröidy</a> <p style="color:orange;">tai Kirjaudu sisään.</p>
  	<form method="post" action="LoginKontrolleri">
       	<table>
 	       	<tr>
-	       		<td>
+	       		<td style="color:lightgrey;">
 	       			Käyttäjätunnus: 
 	       		</td>
 	       		<td>
@@ -197,7 +230,7 @@
 	       		</td>
 	       	</tr>
 			<tr>
-	       		<td>
+	       		<td style="color:lightgrey;">
 	       			Salasana: 
 	       		</td>
 	       		<td>
@@ -206,11 +239,11 @@
 	       	</tr>
 	       	<tr>
 	       		<td>
-	       			Kirjaudu
+	       			
 	       		</td>
 	       		<td>
 	       		<input type="hidden" name="from" value="KoriKontrolleri">
-				<input type="submit" value="Kirjaudu" />
+				<button id="buttonTilaa" type="submit" value="Kirjaudu">Kirjaudu</button>
 	       		</td>
 	       	</tr>
    		</table>	
@@ -219,40 +252,41 @@
   
     
 	</c:if>
+	<br>
+	<br>
+	
 	<c:if test="${not empty sessionScope.kayttajatunnus}">
 		<form action="KoriKontrolleri" method="post" accept-charset="utf-8">
+		<h2 style="font-family: 'Merienda', cursive;">Tilaajan Tiedot</h2><hr>
 			<table>
 				<tr>
-					<th colspan="2">Tilaajan Tiedot</th>
+					<th style="vertical-align:top;">käyttäjätunnus</th>
+					<td style="color:lightgrey;"><c:out value="${sessionScope.kayttajatunnus}"/></td>
 				</tr>
 				<tr>
-					<th>käyttäjätunnus</th>
-					<td><c:out value="${sessionScope.kayttajatunnus}"/></td>
-				</tr>
-				<tr>
-					<th>etunimi</th>
+					<th>etunimi&nbsp;</th>
 					<td><input type="text" name="etunimi" value="${etunimi}"/></td>
 				</tr>
 				<tr>
-					<th>sukunimi</th>
+					<th>sukunimi&nbsp;</th>
 					<td><input type="text" name="sukunimi" value="${sukunimi}"/></td>
 				</tr>
 				<tr>
-					<th>sähköposti</th>
+					<th>sähköposti&nbsp;</th>
 					<td><input type="text" name="sahkoposti" value="${sahkoposti}"/></td>
 				</tr>
 				<tr>
-					<th>katuosoite</th>
+					<th>katuosoite&nbsp;</th>
 					<td><input type="text" name="osoite" value="${osoite}"/></td>
 				</tr>
 				<tr>
-					<th>postinumero</th>
+					<th>postinumero&nbsp;</th>
 					<td>
 						<input type="text" name="postinro" value="${postinro}"/>
 					</td>
 				</tr>
 				<tr>
-					<th>postitoimipaikka</th>
+					<th>postitoimipaikka&nbsp;</th>
 					<td><input type="text" name="postitmp" value="${postitmp}"/></td>
 				</tr>
 				<tr>
@@ -262,9 +296,9 @@
 			</table>
 		</form>
 	</c:if>
+</div>
+</div>
 
-
-</body>
 <script>
 $(document).ready(function () {
     toggleFields(); //call this first so we start out with the correct visibility depending on the selected form values
@@ -284,5 +318,22 @@ function toggleFields() {
    
 }
 </script>
+<br>
+<br>
+<br>
+<footer class="footer">
+     <div class="container">
+        <ul id="sosiaalinenmedia">
+        
+			<li id="facebook"><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
+			<li id="linkedin"><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+			<li id="twitter"><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+			
+			
+
+		</ul>
+ 	 </div>
+   
+ </footer>
 </body>
 </html>
