@@ -256,7 +256,7 @@
 	<br>
 	
 	<c:if test="${not empty sessionScope.kayttajatunnus}">
-		<form action="KoriKontrolleri" method="post" accept-charset="utf-8">
+		<form action="Profiili" method="get" accept-charset="utf-8">
 		<h2 style="font-family: 'Merienda', cursive;">Tilaajan Tiedot</h2><hr>
 			<table>
 				<tr>
@@ -265,29 +265,29 @@
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">etunimi&nbsp;</th>
-					<td><input type="text" name="etunimi" value="${etunimi}"/></td>
+					<td style="color:lightgrey;"><c:out value="${etunimi}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">sukunimi&nbsp;</th>
-					<td><input type="text" name="sukunimi" value="${sukunimi}"/></td>
+					<td style="color:lightgrey;"><c:out value="${sukunimi}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">sähköposti&nbsp;</th>
-					<td><input type="text" name="sahkoposti" value="${sahkoposti}"/></td>
+					<td style="color:lightgrey;"><c:out value="${sahkoposti}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">katuosoite&nbsp;</th>
-					<td><input type="text" name="osoite" value="${osoite}"/></td>
+					<td style="color:lightgrey;"><c:out value="${osoite}"/></td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">postinumero&nbsp;</th>
-					<td>
-						<input type="text" name="postinro" value="${postinro}"/>
+					<td style="color:lightgrey;">
+						<c:out value="${postinro}"/>
 					</td>
 				</tr>
 				<tr>
 					<th style="vertical-align:top;">postitoimipaikka&nbsp;</th>
-					<td><input type="text" name="postitmp" value="${postitmp}"/></td>
+					<td style="color:lightgrey;"><c:out value="${postitmp}"/></td>
 				</tr>
 				<tr>
 					<td></td>
