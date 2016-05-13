@@ -89,8 +89,9 @@
 			</tr>
 		<c:if test="${!poistalista}" >	
 				<c:forEach items="${tilauslista}" var="tilaus">
-				<c:if test="${tilaus.toimitettu}"><tr style="text-decoration: line-through;"></c:if>
-				<c:if test="${!tilaus.toimitettu}"><tr></c:if>
+				<c:if test="${tilaus.toimitettu}"><tr style="text-decoration: line-through; background-color: rgba(150,150,150,0.4);"></c:if>
+				<c:if test="${!tilaus.toimitettu}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
+				<c:if test="${!tilaus.valmiina}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
@@ -249,7 +250,7 @@
 		
 		<c:if test="${paistoon}">			
 				<c:forEach items="${tilauslista}" var="tilaus">				
-				<c:if test="${tilaus.valmiina}"><tr></c:if>
+				<c:if test="${tilaus.valmiina}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
 				<c:if test="${!tilaus.valmiina}">
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
@@ -322,7 +323,7 @@
 	
 	<c:if test="${toimitukseen}">	
 				<c:forEach items="${tilauslista}" var="tilaus">				
-				<c:if test="${tilaus.toimitettu}"><tr></c:if>
+				<c:if test="${tilaus.toimitettu}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
 				<c:if test="${tilaus.valmiina}"><c:if test="${!tilaus.toimitettu}">
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
