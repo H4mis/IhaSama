@@ -412,7 +412,7 @@
 		
 		<td>
 		<input type="hidden" name="tilnum"" value="0" />
-		<input type="submit" value="Reset" />
+		<button type="submit" value="Reset">Kaikki tilaukset</button>
 		</td>
 		</tr>
 	</form>
