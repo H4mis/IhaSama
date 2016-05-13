@@ -410,7 +410,13 @@
 		</td>
 		</form>
 	<form action="TilausKontrolleri" method="post">
-		
+		</tr>
+		<tr>
+		<td>
+		<br>
+		</td>
+		</tr>
+		<tr>
 		<td>
 		<input type="hidden" name="tilnum"" value="0" />
 		<button type="submit" value="Reset">Kaikki tilaukset</button>
@@ -425,11 +431,11 @@
 	<td>
 	<form action="TilausKontrolleri" method="post">
 	<input type="hidden" name="paistoon" value="1" />
-		<input type="submit" value="Paistajalle" />
+		<input style=" background-color: rgba(50,255,50,0.4);" type="submit" value="Paistajalle" />
 	</form>
 	<form action="TilausKontrolleri" method="post">
 	<input type="hidden" name="toimitus" value="1" />
-		<input type="submit" value="Toimittajalle" />
+		<input style=" background-color: rgba(255,255,50,0.4);" type="submit" value="Toimittajalle" />
 	</form>	
 	
 	</td>
