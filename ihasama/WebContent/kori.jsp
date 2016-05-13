@@ -196,15 +196,15 @@
         <td style="color:lightgrey; text-align:left;" ><input type="radio" name="maksu" value="Verkkomaksu"> Maksu toimituksen yhteydessä (käteinen tai kortti)</td>
         </tr>
         <tr>
-        <th>Katuosoite:</th>
+        <th style="vertical-align:top;">Katuosoite:</th>
         <td><input type="text" name="katuosoite" value="${osoite}"></td>
         </tr>
         <tr>
-        <th> Postinumero:</th>
+        <th style="vertical-align:top;"> Postinumero:</th>
         <td><input type="text" name="posti" value="${postinro}"/></td>
         </tr>
         <tr>
-        <th>Toimipaikka:</th>
+        <th style="vertical-align:top;"> Toimipaikka:</th>
         <td><input type="text" name="postitmp" value="${postitmp}"/></td>
         </tr>
         </table>
@@ -264,29 +264,29 @@
 					<td style="color:lightgrey;"><c:out value="${sessionScope.kayttajatunnus}"/></td>
 				</tr>
 				<tr>
-					<th>etunimi&nbsp;</th>
+					<th style="vertical-align:top;">etunimi&nbsp;</th>
 					<td><input type="text" name="etunimi" value="${etunimi}"/></td>
 				</tr>
 				<tr>
-					<th>sukunimi&nbsp;</th>
+					<th style="vertical-align:top;">sukunimi&nbsp;</th>
 					<td><input type="text" name="sukunimi" value="${sukunimi}"/></td>
 				</tr>
 				<tr>
-					<th>sähköposti&nbsp;</th>
+					<th style="vertical-align:top;">sähköposti&nbsp;</th>
 					<td><input type="text" name="sahkoposti" value="${sahkoposti}"/></td>
 				</tr>
 				<tr>
-					<th>katuosoite&nbsp;</th>
+					<th style="vertical-align:top;">katuosoite&nbsp;</th>
 					<td><input type="text" name="osoite" value="${osoite}"/></td>
 				</tr>
 				<tr>
-					<th>postinumero&nbsp;</th>
+					<th style="vertical-align:top;">postinumero&nbsp;</th>
 					<td>
 						<input type="text" name="postinro" value="${postinro}"/>
 					</td>
 				</tr>
 				<tr>
-					<th>postitoimipaikka&nbsp;</th>
+					<th style="vertical-align:top;">postitoimipaikka&nbsp;</th>
 					<td><input type="text" name="postitmp" value="${postitmp}"/></td>
 				</tr>
 				<tr>
