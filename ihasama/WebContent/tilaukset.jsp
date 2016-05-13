@@ -409,39 +409,30 @@
 		<input type="submit" value="Valitse tilaus" />
 		</td>
 		</form>
-	<form action="TilausKontrolleri" method="post">
-		</tr>
-		<tr>
-		<td>
 		<br>
-		</td>
-		</tr>
-		<tr>
-		<td>
-		<input type="hidden" name="tilnum"" value="0" />
-		<button type="submit" value="Reset">Kaikki tilaukset</button>
-		</td>
-		</tr>
-	</form>
 	</table><!-- Vanhan jutun alakontrollerin loppu, jälkeen  -->
 	
-		
 	<table>
-	<tr>
-	<td>
-	<form action="TilausKontrolleri" method="post">
-	<input type="hidden" name="paistoon" value="1" />
-		<input style=" background-color: rgba(50,255,50,0.4);" type="submit" value="Paistajalle" />
-	</form>
-	<form action="TilausKontrolleri" method="post">
-	<input type="hidden" name="toimitus" value="1" />
-		<input style=" background-color: rgba(255,255,50,0.4);" type="submit" value="Toimittajalle" />
-	</form>	
-	
-	</td>
-	</tr>
-	
-	
+		<tr>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="tilnum"" value="0" />
+					<button type="submit" value="Reset">Kaikki tilaukset</button>
+				</form>
+			</td>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="paistoon" value="1" />
+					<input style=" background-color: rgba(50,255,50,0.4);" type="submit" value="Paistajalle" />
+				</form>
+			</td>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="toimitus" value="1" />
+					<input style=" background-color: rgba(255,255,50,0.4);" type="submit" value="Toimittajalle" />
+				</form>	
+			</td>
+		</tr>
 	</table>
 	
 	
