@@ -107,6 +107,7 @@
 				<th>Oreg.</th>
 				<th>Lakt.</th>
 				<th>Glut.</th>
+				<th>Hinta</th>
 				<th>Tilan muutos</th>				
 				<th>Palauta</th>
 				<th>Tilauksen tila</th>
@@ -120,7 +121,7 @@
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
 					<td><c:if test="${tilaus.toimitustapa == 'kotiinkuljetus'}">&#9936;</c:if><c:if test="${tilaus.toimitustapa == 'nouto'}">&#9977;</c:if> <c:out value="${tilaus.toimitustapa}" /></td>
-					<td colspan="4"></td>
+					<td colspan="5"></td>
 					<td>
 						<form action="TilausKontrolleri" method="post">
 							<c:if test="${!tilaus.valmiina && !tilaus.toimitettu}">
@@ -174,6 +175,10 @@
 						<td>
 							<c:if test="${tpizza.gluteeniton}">&#10004;</c:if>
 						</td>
+						<td style="text-align: right;">
+							<fmt:setLocale value="fi" />
+                        	<fmt:formatNumber value="${tpizza.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+						</td>
 						<td>
 						</td>				
 						<td>
@@ -199,8 +204,8 @@
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
-					<td><c:out value="${tilaus.toimitustapa}" /></td>
-					<td colspan="6"></td>
+					<td><c:if test="${tilaus.toimitustapa == 'kotiinkuljetus'}">&#9936;</c:if><c:if test="${tilaus.toimitustapa == 'nouto'}">&#9977;</c:if> <c:out value="${tilaus.toimitustapa}" /></td>
+					<td colspan="7"></td>
 					<td>
 						<c:if test="${(!tilaus.valmiina) && (!tilaus.toimitettu)}">
 							VASTAANOTETTU
@@ -229,6 +234,10 @@
 						</td>
 						<td>
 							<c:if test="${tpizza.gluteeniton}">&#10004;</c:if>
+						</td>
+						<td style="text-align: right;">
+							<fmt:setLocale value="fi" />
+                        	<fmt:formatNumber value="${tpizza.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 						</td>
 						<td>
 							<form action="TilausKontrolleri" method="post">
@@ -270,8 +279,8 @@
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
-					<td><c:out value="${tilaus.toimitustapa}" /></td>
-					<td colspan="4"></td>
+					<td><c:if test="${tilaus.toimitustapa == 'kotiinkuljetus'}">&#9936;</c:if><c:if test="${tilaus.toimitustapa == 'nouto'}">&#9977;</c:if> <c:out value="${tilaus.toimitustapa}" /></td>
+					<td colspan="5"></td>
 					<td>
 						<form action="TilausKontrolleri" method="post">
 							<c:if test="${!tilaus.valmiina && !tilaus.toimitettu}">
@@ -304,6 +313,10 @@
 						<td>
 							<c:if test="${tpizza.gluteeniton}">&#10004;</c:if>
 						</td>
+						<td style="text-align: right;">
+							<fmt:setLocale value="fi" />
+                        	<fmt:formatNumber value="${tpizza.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
+						</td>
 						<td>
 						</td>				
 					</tr>
@@ -322,8 +335,8 @@
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
-					<td><c:out value="${tilaus.toimitustapa}" /></td>
-					<td colspan="4"></td>
+					<td><c:if test="${tilaus.toimitustapa == 'kotiinkuljetus'}">&#9936;</c:if><c:if test="${tilaus.toimitustapa == 'nouto'}">&#9977;</c:if> <c:out value="${tilaus.toimitustapa}" /></td>
+					<td colspan="5"></td>
 					<td>
 						<form action="TilausKontrolleri" method="post">
 							<input type="hidden" value="${tilaus.tilausnro}" name="toiminro" />
@@ -351,6 +364,10 @@
 						</td>
 						<td>
 							<c:if test="${tpizza.gluteeniton}">&#10004;</c:if>
+						</td>
+						<td style="text-align: right;">
+							<fmt:setLocale value="fi" />
+                        	<fmt:formatNumber value="${tpizza.pizza.hinta}" type="number" minFractionDigits="2" maxFractionDigits="2" />€
 						</td>
 						<td>
 						</td>				
