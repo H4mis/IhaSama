@@ -119,7 +119,7 @@
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
-					<td><c:out value="${tilaus.toimitustapa}" /></td>
+					<td><c:if test="${tilaus.toimitustapa == 'kotiinkuljetus'}">&#9936;</c:if><c:if test="${tilaus.toimitustapa == 'nouto'}">&#9977;</c:if> <c:out value="${tilaus.toimitustapa}" /></td>
 					<td colspan="4"></td>
 					<td>
 						<form action="TilausKontrolleri" method="post">
