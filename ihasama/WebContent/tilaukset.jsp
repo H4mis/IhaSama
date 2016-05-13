@@ -303,7 +303,13 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><c:out value="${tpizza.pizza.pizzanimi}" /></td>
+						<td>
+							&#9832; <b><c:out value="${tpizza.pizza.pizzanimi}" /></b>
+							<br>
+							<c:forEach items="${tpizza.pizza.taytteet}" var="tayte">
+								<c:out value="${tayte}" />
+							</c:forEach>
+						</td>
 						<td>
 							<c:if test="${tpizza.oregano}">&#10004;</c:if>
 						</td>

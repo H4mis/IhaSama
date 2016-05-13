@@ -38,3 +38,5 @@ SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as 
 	LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro 
 	LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid 
 	WHERE pt.tilausnro =1;
+	
+

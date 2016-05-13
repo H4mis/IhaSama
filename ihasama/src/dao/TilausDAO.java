@@ -120,9 +120,13 @@ public class TilausDAO {
     }
 	
 	public List<TilattuPizza> HaeTilatutPizzat(int tilausnro) throws SQLException {
-		String sql = "SELECT tp.tilausnro, tp.pizzaid, laktoositon, gluteeniton, oregano, pizzanimi, hinta, piilossa"
-				+ " FROM Pizzatilaus as tp JOIN Pizza ON tp.pizzaid = Pizza.pizzaid"
-				+ " WHERE tp.tilausnro=" + tilausnro;
+		PizzaDAO pDao = new PizzaDAO();
+		Pizza pizza = new Pizza();
+		String sql = "SELECT pt.pizzatilausid, pt.tilausnro, (p.pizzaid) as pizzaid, (p.pizzanimi) as pizzanimi, (t.tilaajatunnus) as Tilaajatunnus, (t.tilausaika) as tilausaika, (t.tilausklo) as tilausklo, (t.valmiina) as valmiina, (t.toimitettu) as toimitettu, (t.toimitustapa) as toimitustapa, pt.laktoositon, pt.gluteeniton, pt.oregano "
+					+ " FROM Pizzatilaus pt "
+					+ " LEFT JOIN Tilaus t ON pt.tilausnro = t.tilausnro "
+					+ " LEFT JOIN Pizza p ON pt.pizzaid = p.pizzaid "
+					+ " WHERE pt.tilausnro =" + tilausnro;
 		Statement haku = yhteys.createStatement();
 		ResultSet tulokset = haku.executeQuery(sql);
 		
@@ -132,11 +136,10 @@ public class TilausDAO {
 			boolean laktoositon = tulokset.getBoolean("laktoositon");
 			boolean gluteeniton = tulokset.getBoolean("gluteeniton");
 			boolean oregano = tulokset.getBoolean("oregano");
-			String pizzanimi = tulokset.getString("pizzanimi");
-			double pizzahinta = Double.parseDouble(tulokset.getString("hinta"));
-			boolean piilossa = tulokset.getBoolean("piilossa");
-			String taytteet = null; //t�ytteit� ei tarvita tilaukseen eik�?
-			Pizza pizza = new Pizza(pizzaid, pizzanimi, pizzahinta, taytteet, piilossa);
+			String Spizzaid = String.valueOf(pizzaid);
+			pDao.avaaYhteys();
+			pizza = pDao.haePizza(Spizzaid);
+			pDao.suljeYhteys();
 			TilattuPizza tilattupizza = new TilattuPizza(pizza, oregano, laktoositon, gluteeniton);
 			tilatutpizzat.add(tilattupizza);
 		}
