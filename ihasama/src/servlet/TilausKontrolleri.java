@@ -29,79 +29,135 @@ public class TilausKontrolleri extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public TilausKontrolleri() {
-        super();
-        // TODO Auto-generated constructor stub
+        super();        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Luodaan TilausDAO-olio		
 		TilausDAO tDAO = new TilausDAO();
+		
+		// Avataan yhteys TilausDAO-oliolla
 		tDAO.avaaYhteys();
 		
+		// Luodaan Arraylistit, joilla listataan tilattuja pizzoja ja niiden ominaisuuksia (gluteeniton, laktoositon, oregano)
 		List<Tilaus>tilauslista;	
 		List<Tilaus>varalista;
+		
+		// Luodaan HttpSession-olio olemassaolevasta sessiosta		
 		HttpSession sessio = request.getSession(false);
 		
-		 try {			
+		try {  
+			 
+			 	// Luodaan integerit, joilla varmistetaan, mikä muoto tilaus.jsp:stä avataan
 			 	int tilnum = 0;
 			 	int paistoon = 0;
 			 	int toimitus = 0;
+			 	
+			 	// Jos sivulta tullut tieto "tilnum" ei ole null,
 			 	if(request.getAttribute("tilnum") != null){
-			 	tilnum = (int) request.getAttribute("tilnum");}
-	            tilauslista = tDAO.HaeTilaukset1();	            
-	            request.setAttribute("tilauslista", tilauslista);
-	            request.setAttribute("poistalista", false);
-	            request.setAttribute("toimitus", false);
-	            request.setAttribute("paistoon", false);
-	            if(tilnum != 0){
-	        	   varalista = tDAO.haeTilaukset(tilnum);
-	        	   request.setAttribute("varalista", varalista);
-	        	   request.setAttribute("poistalista", true);
-	           }
-	            if(request.getAttribute("paisto") != null){
+			 		
+			 		// laitetaan integeriin tilnum kyseinen tieto
+			 		tilnum = (int) request.getAttribute("tilnum");}
+			 	
+			 		// ArrayList tilauslista täytetään TilausDAO-olion HaeTilaukset1-metodilla (metodi hakee kaikki tilaukset)
+			 		tilauslista = tDAO.HaeTilaukset1();
+	            
+			 		// Lähetetään ArrayList tilauslista sivulle
+			 		request.setAttribute("tilauslista", tilauslista);
+	            
+			 		// Asetetaan sivulle lähetettävät booleanit muotoon, joka jättää tavallisen tilauslistauksen auki
+	            
+			 		request.setAttribute("poistalista", false); // Tavallista tilauslistaa ei suljeta
+			 		request.setAttribute("toimitus", false); // Toimittaja-listaa ei haluta auki
+			 		request.setAttribute("paistoon", false); // Paistaja-listaa ei haluta auki
+	            
+			 		// Jos tilnum oli muutettu joksikin muuksi kuin 0
+	            
+			 		if(tilnum != 0){
+	            	
+			 			// ArrayList varalistalle täytetään yhdellä tilauksella, 
+			 			// joka vastaa tilnum-muuttujan avulla tuotua yhtä tilausta
+			 			varalista = tDAO.haeTilaukset(tilnum);   
+	        	   
+			 			request.setAttribute("varalista", varalista);   // Lähetetään ArrayList varalista sivulle
+			 			request.setAttribute("poistalista", true); // Poistetaan tavallinen tilauslista näkymästä
+			 		}
+	            
+			 		// Jos paisto-attribuutti ei ollut null,
+	            
+			 		if(request.getAttribute("paisto") != null){
+	            	
+	            	// Laitetaan paistoon-muuttujaan sen sisältö	            	
+	            
 	            	paistoon = (int) request.getAttribute("paisto");
 	            	}
-	            if(paistoon != 0){
-	            	request.setAttribute("paistoon", true);
-	            	request.setAttribute("poistalista", true);
-	            }
-	            if(request.getAttribute("toimitukseen") != null){
-	            	toimitus = (int)request.getAttribute("toimitukseen");
+	            
+			 		// Kun halutaan avata Paistaja-sivu, paistoon-muuttuja on muuta kuin 0
+	            
+			 		if(paistoon != 0){
+	            	
+	            	// Jolloin muokataan sivulle vietävät booleanit muotoon:
+	            	
+			 			request.setAttribute("paistoon", true); // tämä aktivoi Paistaja-sivun
+			 			request.setAttribute("poistalista", true); // Tämä sulkee tavallisen tilauslistauksen
+			 		}
+	            
+			 		// Jos toimitukseen-attribuutti ei ollut null,
+	            
+			 		if(request.getAttribute("toimitukseen") != null){
+	            	
+			 			// Laitetaan toimitus-muuttujaan sen sisältö
+	            	
+			 			toimitus = (int)request.getAttribute("toimitukseen");
 	            	}
-	            if(toimitus != 0){
-	            	request.setAttribute("toimitukseen", true);
-	            	request.setAttribute("paistoon", false);
-	            	request.setAttribute("poistalista", true);
-	            }	            
-	        	if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
-
-	        		
-	        		
-					String nimi = (String) sessio.getAttribute("nimi");
-					String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
-					boolean admin = (Boolean) sessio.getAttribute("admin");
-					request.setAttribute("kayttaja", kayttajatunnus);
-					request.setAttribute("nimi", nimi);
-					request.setAttribute("admin", admin);
-
-				}
 	            
-	        } catch (NumberFormatException e) {
+			 		// Jos halutaan "Toimittajan" sivu auki, toimitus-muuttuja on jotain muuta kuin 0
+	            
+			 		if(toimitus != 0){
+	            	
+			 			// Jolloin muokataan sivulle vietävät booleanit muotoon: 
+	            	
+			 			request.setAttribute("toimitukseen", true); // Tämä aktivoi Toimittaja-sivun
+			 			request.setAttribute("paistoon", false); // Tällä varmistetaan, että Paistaja-sivu ei aukea
+			 			request.setAttribute("poistalista", true); // Poistetaan tavallinen tilauslista
+			 		}	 
+	            
+			 		// Jos sessio ei ole tnull ja käyttäjätunnus ei ole null
+			 		if (sessio != null && sessio.getAttribute("kayttajatunnus") != null) {
+
+	        		
+			 			// Otetaan käyttäjän nimi, tunnus ja admin-boolean sessiosta 
+			 			String nimi = (String) sessio.getAttribute("nimi");
+			 			String kayttajatunnus = (String) sessio.getAttribute("kayttajatunnus");
+			 			boolean admin = (Boolean) sessio.getAttribute("admin");
+					
+			 			// Ja lisätään ne requestiin
+					
+			 			request.setAttribute("kayttaja", kayttajatunnus);
+			 			request.setAttribute("nimi", nimi);
+			 			request.setAttribute("admin", admin);
+
+			 		}
+	            // Automaattisesti luodut try-catch osuudet
+	        	} catch (NumberFormatException e) {
 	            e.printStackTrace();
-	        } catch (SQLException e) {
+	        	} catch (SQLException e) {
 	            e.printStackTrace();
-	        } catch (ParseException e) {
-				// TODO Auto-generated catch block
+	        	} catch (ParseException e) { 
 				e.printStackTrace();
-			} finally {
-	        	tDAO.suljeYhteys();
+	        	} finally {	
+	        		// Lopulta suljetaan aiemmin TilausDAO-oliolla luotu yhteys 	
+	        		tDAO.suljeYhteys();
 	            
-	        }
+	    }
+		
+		// Lähetetään tiedot doGetistä tilaukset.jsp-sivulle
 		 
-		 RequestDispatcher disp = request.getRequestDispatcher("tilaukset.jsp");
-			disp.forward(request, response);
+		RequestDispatcher disp = request.getRequestDispatcher("tilaukset.jsp");
+		disp.forward(request, response);
 	}
 
 	/**
