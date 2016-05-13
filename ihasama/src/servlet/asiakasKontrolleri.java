@@ -169,8 +169,6 @@ public class asiakasKontrolleri extends HttpServlet {
 			tDao.LisaaPizzaTilaukseen(tilatutPizzat, tilaus);
 			tDao.suljeYhteys();
 			kaDao.suljeYhteys();
-			sessio.removeAttribute("kori");
-			sessio.removeAttribute("yht");
 			MailiVahvari(request,response);
 		
 		}
@@ -240,7 +238,8 @@ public class asiakasKontrolleri extends HttpServlet {
 public void MailiVahvari(HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException{
 	HttpSession sessio = request.getSession(false);
-	
+	List<TilattuPizza> tilatutPizzat = (List<TilattuPizza>) sessio.getAttribute("kori");
+	   
 	String email = null;	
 	if (sessio != null && sessio.getAttribute("email") != null){
 		email = (String) sessio.getAttribute("email");}
@@ -270,7 +269,20 @@ public void MailiVahvari(HttpServletRequest request, HttpServletResponse respons
        			m.setFrom(new InternetAddress(email, null));
         		m.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
         		m.setSubject("Tilausvahvistus");
-          		m.setText("Kiitos tilauksestasi! T. Pizzeria Castello&Fiore");
+        		   String teksti = ""; 
+
+                for(TilattuPizza pizza : tilatutPizzat){
+                    pizza.getPizza();
+                    if(teksti == ""){
+                        teksti = " Kiitos tilauksestasi!"+"\n"+" Tilatut tuotteet: Pizzan nimi: " + pizza.getPizza().getPizzanimi() + " Pizzan hinta: " + pizza.getPizza().getHinta();
+                    }else{
+                    teksti = teksti + "\n" + "Pizzan nimi: " + pizza.getPizza().getPizzanimi() + " Pizzan hinta: " + pizza.getPizza().getHinta();}    
+                }
+            
+                
+                m.setText(teksti+"\n"+" T.Pizzeria Castello é Fiore");
+               
+          		
         		
           		Transport.send(m);
 
@@ -282,13 +294,14 @@ public void MailiVahvari(HttpServletRequest request, HttpServletResponse respons
         	} catch (javax.mail.MessagingException e) {
 			e.printStackTrace();
 		}
-        
+			sessio.removeAttribute("kori");
+			sessio.removeAttribute("yht");
+
 		RequestDispatcher view = request.getRequestDispatcher("vahvistus.jsp");
 		view.forward(request, response);
 	}else{
 		request.setAttribute("error", "Message is empty");
-		
-		RequestDispatcher view = request.getRequestDispatcher("kori.jsp");  // return to contact form
+		 		RequestDispatcher view = request.getRequestDispatcher("kori.jsp");  // return to contact form
 		view.forward(request, response);
 		
 	}
