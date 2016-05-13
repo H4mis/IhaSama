@@ -49,6 +49,8 @@ public class TilausKontrolleri extends HttpServlet {
 		// Luodaan HttpSession-olio olemassaolevasta sessiosta		
 		HttpSession sessio = request.getSession(false);
 		
+		
+		// Try-catch 
 		try {  
 			 
 			 	// Luodaan integerit, joilla varmistetaan, mikä muoto tilaus.jsp:stä avataan
