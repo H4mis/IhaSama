@@ -23,7 +23,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="">
+<link rel="stylesheet" type="text/css" href="tyylit/tilauslista.css">
 <link href='https://fonts.googleapis.com/css?family=Dancing+Script'
 	rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merienda:700' rel='stylesheet' type='text/css'>
@@ -68,11 +68,35 @@
   </div><!-- container fluid loppuu tähän -->
 </nav>
 
-	<h1>Castello é Fiore</h1>
+	<h1>Castello é Fiore / tilauslista</h1>
   <c:if test="${paistoon}"><h3>Paistajan sivu</h3></c:if>
 <c:if test="${toimitukseen}"><h3>Toimittajan sivu</h3></c:if>
 
-	<div id="laatikko">
+	<table><!-- tilauslistan valinta -->
+		<tr>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="tilnum"" value="0" />
+					<button type="submit" value="Reset">Kaikki tilaukset</button>&nbsp;
+				</form>
+			</td>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="paistoon" value="1" />
+					<input style=" background-color: rgba(255,255,50,0.4);" type="submit" value="Paistajalle" />&nbsp;
+				</form>
+			</td>
+			<td>
+				<form action="TilausKontrolleri" method="post">
+					<input type="hidden" name="toimitus" value="1" />
+					<input style=" background-color: rgba(50,255,50,0.4);" type="submit" value="Toimittajalle" />&nbsp;
+				</form>	
+			</td>
+		</tr>
+	</table><!-- tilauslistan valinta loppuu tähän-->
+<br>
+<div>
+	<div class="laatikko">
 		<table border="1">
 			<tr>
 				<th>Tilausnro</th>
@@ -80,9 +104,9 @@
 				<th>Tilaajatunnus</th>				
 				<th>Toimitustapa</th>
 				<th>Pizzat</th>
-				<th>Oregano</th>
-				<th>Laktoositon</th>
-				<th>Gluteeniton</th>
+				<th>Oreg.</th>
+				<th>Lakt.</th>
+				<th>Glut.</th>
 				<th>Tilan muutos</th>				
 				<th>Palauta</th>
 				<th>Tilauksen tila</th>
@@ -90,8 +114,8 @@
 		<c:if test="${!poistalista}" >	
 				<c:forEach items="${tilauslista}" var="tilaus">
 				<c:if test="${tilaus.toimitettu}"><tr style="text-decoration: line-through; background-color: rgba(150,150,150,0.4);"></c:if>
-				<c:if test="${!tilaus.toimitettu}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
-				<c:if test="${!tilaus.valmiina}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
+				<c:if test="${!tilaus.toimitettu}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
+				<c:if test="${!tilaus.valmiina}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
 					<td><c:out value="${tilaus.tilaajatunnus}" /></td>				
@@ -118,16 +142,13 @@
 						<td></td>
 						<td><c:out value="${tpizza.pizza.pizzanimi}" /></td>
 						<td>
-							<c:if test="${tpizza.oregano}">KYLLÄ</c:if> 
-							<c:if test="${!tpizza.oregano}">EI</c:if>
+							<c:if test="${tpizza.oregano}">&#10004;</c:if> 
 						</td>
 						<td>
-							<c:if test="${tpizza.laktoositon}">KYLLÄ</c:if> 
-							<c:if test="${!tpizza.laktoositon}">EI</c:if>
+							<c:if test="${tpizza.laktoositon}">&#10004;</c:if>
 						</td>
 						<td>
-							<c:if test="${tpizza.gluteeniton}">KYLLÄ</c:if> 
-							<c:if test="${!tpizza.gluteeniton}">EI</c:if>
+							<c:if test="${tpizza.gluteeniton}">&#10004;</c:if>
 						</td>
 						<td>
 							<form action="TilausKontrolleri" method="post">
@@ -156,17 +177,14 @@
 						</td>
 					</tr>
 					</c:forEach>	
-				</tr>
+				
 			</c:forEach>
 			</c:if>
 			
 			<!--  vanhan hirvityksen alku ja uuden version loppu -->
 			
-			<c:if test="${poistalista}" >
-			<c:if test="${!paistoon}">
-			<c:if test="${!toimitus}" >	
-			<c:if test="${empty tilauslista}">
-			</table>LISTA ON TYHJÄ!!!!!</c:if>
+			<c:if test="${poistalista && !paistoon && !toimitus}">
+			<c:if test="${empty tilauslista}"></table>LISTA ON TYHJÄ!</c:if>
 			<c:if test="${not empty tilauslista}">
 						
 			<c:forEach items="${varalista}" var="tilaus" varStatus="loop">
@@ -243,14 +261,12 @@
 				</c:if>
 			</c:forEach>
 			</c:if>
-			</c:if>
-			</c:if>
 			</c:if><!--  Vanhan hirvityksen loppu -->
 		<!--  Paistajan osuus alkaa -->
 		
 		<c:if test="${paistoon}">			
 				<c:forEach items="${tilauslista}" var="tilaus">				
-				<c:if test="${tilaus.valmiina}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
+				<c:if test="${tilaus.valmiina}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
 				<c:if test="${!tilaus.valmiina}">
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
@@ -323,7 +339,7 @@
 	
 	<c:if test="${toimitukseen}">	
 				<c:forEach items="${tilauslista}" var="tilaus">				
-				<c:if test="${tilaus.toimitettu}"><tr style=" background-color: rgba(255,255,50,0.4);"></c:if>
+				<c:if test="${tilaus.toimitettu}"><tr style=" background-color: rgba(50,255,50,0.4);"></c:if>
 				<c:if test="${tilaus.valmiina}"><c:if test="${!tilaus.toimitettu}">
 					<td><c:out value="${tilaus.tilausnro}" /></td>
 					<td><c:out value="${tilaus.tilausaika}" /></td>
@@ -392,48 +408,31 @@
 			</c:forEach>			
 			</c:if> <!--  Toimittajan osuus loppuu -->
 	
-		
-	</div>			
 		</table>
-		<table><!--  Vanhan jutun alakontrolleri -->
-		<tr>
-		 <form action="TilausKontrolleri" method="post">
-		<c:forEach items="${tilauslista}" var="tilaus" varStatus="loop">
-		<td>
-		<input type="radio" name="tilnum" value="${tilaus.tilausnro}" required><c:out value="${tilaus.tilaajatunnus}" />
-		</td>
-		</c:forEach>
-		</tr>
-		<tr>
-		<td>
-		<input type="submit" value="Valitse tilaus" />
-		</td>
-		</form>
-		<br>
-	</table><!-- Vanhan jutun alakontrollerin loppu, jälkeen  -->
+	</div>
 	
-	<table>
-		<tr>
-			<td>
-				<form action="TilausKontrolleri" method="post">
-					<input type="hidden" name="tilnum"" value="0" />
-					<button type="submit" value="Reset">Kaikki tilaukset</button>
-				</form>
-			</td>
-			<td>
-				<form action="TilausKontrolleri" method="post">
-					<input type="hidden" name="paistoon" value="1" />
-					<input style=" background-color: rgba(50,255,50,0.4);" type="submit" value="Paistajalle" />
-				</form>
-			</td>
-			<td>
-				<form action="TilausKontrolleri" method="post">
-					<input type="hidden" name="toimitus" value="1" />
-					<input style=" background-color: rgba(255,255,50,0.4);" type="submit" value="Toimittajalle" />
-				</form>	
-			</td>
-		</tr>
-	</table>
+	<div class="laatikko">
+		<form action="TilausKontrolleri" method="post">
+			<table><!--  Vanhan jutun alakontrolleri -->
+				<tr>
+					<th><h3>Tilaajat</h3></th>
+					<td style="vertical-align: middle;">
+						<input type="submit" value="Valitse tilaus" />
+					</td>
+				</tr>
+				<c:forEach items="${tilauslista}" var="tilaus" varStatus="loop">
+					<tr>
+						<td>
+							<input type="radio" name="tilnum" value="${tilaus.tilausnro}" required><c:out value="${tilaus.tilaajatunnus}" />
+						</td>
+					</tr>
+				</c:forEach>
+			</table><!-- Vanhan jutun alakontrollerin loppu, jälkeen  -->
+		</form>
+	</div>		
+</div>	
+	
+
 	
 	
 	</c:if> <!-- näytä vain jos sessio on admin iffi loppuu tähän -->

@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+.laatikko {
+	display: inline-block;
+	margin: auto;
+	vertical-align: top;
+	padding: 5px;
+}
