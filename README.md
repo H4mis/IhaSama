@@ -1,6 +1,6 @@
 # IhaSama
 Team IhaSama:
-Jenni, Juho, Kreetta, Mira & Sebastian
+Jenni, Juho, Kreetta, Mira, Nicolas & Sebastian
 
 Dynamic web-project for Pizza ordering website.
 
